@@ -6,28 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>如何將rails頁面連結到404.html | Charsin&#39;s co_oding life</title>
+  <title>Device 寄信 | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="站內連結聯到找不到的頁面時，會連結到錯誤畫面（因為我用find方法，找不到會直接顯示錯誤訊息） 這時我們就可以用rescue_from捕捉意外，捕捉到什麼呢？ActiveRecord::RecordNotFound 這個錯誤訊息，並且呼叫”record_not_found”（其實可以叫做not_found，只是為了避免以後又有其他not_found系列的方法要再修正比較麻煩，命名準確一點方便維護）">
+  <meta name="description" content="發送設定1. 開啟Devise 寄信功能前往 config&#x2F;initializers&#x2F;devise.rb 裡修改這兩個指令：這個步驟發送信件會由Devise取代rails原本的mailer 1config.mailer &#x3D; &amp;#x27;Devise::Mailer&amp;#x27; 這個步驟會在收件方顯示寄件名稱 1config.mailer_sender &#x3D; &amp;#x27;Ruby_cinema &amp;lt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何將rails頁面連結到404.html">
-<meta property="og:url" content="http://charsin1olly.github.io/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/index.html">
+<meta property="og:title" content="Device 寄信">
+<meta property="og:url" content="http://charsin1olly.github.io/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="站內連結聯到找不到的頁面時，會連結到錯誤畫面（因為我用find方法，找不到會直接顯示錯誤訊息） 這時我們就可以用rescue_from捕捉意外，捕捉到什麼呢？ActiveRecord::RecordNotFound 這個錯誤訊息，並且呼叫”record_not_found”（其實可以叫做not_found，只是為了避免以後又有其他not_found系列的方法要再修正比較麻煩，命名準確一點方便維護）">
+<meta property="og:description" content="發送設定1. 開啟Devise 寄信功能前往 config&#x2F;initializers&#x2F;devise.rb 裡修改這兩個指令：這個步驟發送信件會由Devise取代rails原本的mailer 1config.mailer &#x3D; &amp;#x27;Devise::Mailer&amp;#x27; 這個步驟會在收件方顯示寄件名稱 1config.mailer_sender &#x3D; &amp;#x27;Ruby_cinema &amp;lt">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/Gu5YLZh.png">
-<meta property="og:image" content="https://i.imgur.com/GkgoZEg.png">
-<meta property="og:image" content="https://i.imgur.com/BkwBPmW.png">
-<meta property="og:image" content="https://i.imgur.com/vDAcx94.png">
-<meta property="article:published_time" content="2022-11-18T14:32:00.000Z">
-<meta property="article:modified_time" content="2022-11-23T04:10:31.035Z">
+<meta property="og:image" content="https://i.imgur.com/7aVKNZU.png">
+<meta property="og:image" content="https://i.imgur.com/J4Y6JCL.png">
+<meta property="og:image" content="https://i.imgur.com/D87ESYL.png">
+<meta property="article:published_time" content="2022-12-02T16:42:27.000Z">
+<meta property="article:modified_time" content="2022-12-02T16:46:22.715Z">
 <meta property="article:author" content="Charsin">
 <meta property="article:tag" content="學習筆記">
 <meta property="article:tag" content="Ruby on Rails">
+<meta property="article:tag" content="devise">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/Gu5YLZh.png">
+<meta name="twitter:image" content="https://i.imgur.com/7aVKNZU.png">
   
     <link rel="alternative" href="/atom.xml" title="Charsin&#39;s co_oding life" type="application/atom+xml">
   
@@ -218,14 +218,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20221118 如何將rails頁面連結到404.html" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20221202 devise寄信" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      如何將rails頁面連結到404.html
+      Device 寄信
     </h1>
   
 
@@ -237,8 +237,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" class="archive-article-date">
-        <time datetime="2022-11-18T14:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
+<a href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" class="archive-article-date">
+        <time datetime="2022-12-02T16:42:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-03</time>
 </a>
 
   
@@ -251,7 +251,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">391字</span>
+      <span class="post-count">800字</span>
     </span>
   </span>
 
@@ -260,7 +260,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -271,15 +271,34 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>站內連結聯到找不到的頁面時，會連結到錯誤畫面（因為我用find方法，找不到會直接顯示錯誤訊息）<br><img src="https://i.imgur.com/Gu5YLZh.png"></p>
-<p>這時我們就可以用<code>rescue_from</code>捕捉意外，捕捉到什麼呢？<br>ActiveRecord::RecordNotFound 這個錯誤訊息，並且呼叫”record_not_found”（其實可以叫做not_found，只是為了避免以後又有其他not_found系列的方法要再修正比較麻煩，命名準確一點方便維護）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br></pre></td></tr></table></figure>
-<p>既然呼叫了，我們還是要再建立一個叫做record_not_found的方法：<br>這個方法要做什麼呢？就是要渲染我們想要的頁面（為什麼不是跳轉？第一個是我們沒有給404檔案裝路徑，第二是因為我們要留在原本找不到的那個網址）<br><img src="https://i.imgur.com/GkgoZEg.png"><br>渲染別的檔案我們使用<code>render file</code>，要找到不是在view資料夾裡面的404.html檔案的話可以用”#{Rails.root}”，意思是我要在這個Rails專案的目錄下尋找ＸＸＸ，後面接上路徑就是到某個資料夾尋找某個檔案</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;</span><br></pre></td></tr></table></figure>
-<p>渲染成功，打開網路狀態會看到這樣的結果<br><img src="https://i.imgur.com/BkwBPmW.png"></p>
-<p>網路狀態200（正常的找到你的”找不到”頁面），我們也希望網路的狀態被改成404，在render file後面設定一個status： 404 ，就會得到這樣的畫面<br><img src="https://i.imgur.com/vDAcx94.png"></p>
-<h3 id="獲得真正的404頁面！"><a href="#獲得真正的404頁面！" class="headerlink" title="獲得真正的404頁面！"></a>獲得真正的404頁面！</h3><p>完整程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br><span class="line"></span><br><span class="line">private</span><br><span class="line">def record_not_found</span><br><span class="line">  render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;,layout: false ,status: 400</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+    <h2 id="發送設定"><a href="#發送設定" class="headerlink" title="發送設定"></a>發送設定</h2><h3 id="1-開啟Devise-寄信功能"><a href="#1-開啟Devise-寄信功能" class="headerlink" title="1. 開啟Devise 寄信功能"></a>1. 開啟Devise 寄信功能</h3><p>前往 <code>config/initializers/devise.rb</code> 裡修改這兩個指令：<br>這個步驟發送信件會由Devise取代rails原本的mailer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer = &#x27;Devise::Mailer&#x27;</span><br></pre></td></tr></table></figure>
+<p>這個步驟會在收件方顯示寄件名稱<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-寄件設定（使用mailgun）"><a href="#2-寄件設定（使用mailgun）" class="headerlink" title="2.寄件設定（使用mailgun）"></a>2.寄件設定（使用mailgun）</h3><p>找到檔案<code>config/environments/development.rb</code>(此處為開發環境)，設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.raise_delivery_errors = true</span><br><span class="line">config.action_mailer.delivery_method = :smtp</span><br><span class="line">config.action_mailer.default_url_options = &#123; host: &#x27;localhost&#x27;, port: 3000 &#125;</span><br><span class="line">config.action_mailer.smtp_settings = &#123;</span><br><span class="line">    address:              &#x27;smtp.mailgun.org&#x27;,</span><br><span class="line">    port:                 587,</span><br><span class="line">    domain:               &#x27;&#x27;,</span><br><span class="line">    user_name:            &#x27;postmaster@XXXXXXXXXXX.mailgun.org&#x27;,</span><br><span class="line">    password:             &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    authentication:       &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    enable_starttls_auto: true</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>config.action_mailer.smtp_settings</code>通常會把詳細寄件資訊整理到email.yml檔，所以要在config建立一個email.yml存放資訊設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">development:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br><span class="line">production:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br></pre></td></tr></table></figure>
+<p>domin、user_name、password皆為私人所有，設定為讀取環境變數，config.action_mailer.smtp_settings則要修改為讀取email.yml，可設定不同環境讀取不同的寄件設定（例如development使用gmail寄信、production使用mailgun），但這裡我兩個都使用mailgun。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.smtp_settings = config_for(:email).symbolize_keys</span><br></pre></td></tr></table></figure>
+
+<p>環境變數的設定我是使用<a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv">dotenv</a>套件，只要增加.env檔案設定要帶入email.yml檔的變數即可，設定完成後記得要把<code>.env</code>檔加入<code>.gitignore</code>內，以免推上github被陌生人看光光。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN=sandboxXXXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_USERNAME=postmaster@XXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_PASSWORD=XXXXXXXXXXXXXXXXXX</span><br></pre></td></tr></table></figure>
+
+<p>以上設定完之後就可以去登入介面按忘記密碼測試一下是否能正常寄信囉～<br>大約1分鐘內可以收到。</p>
+<p> <img src="https://i.imgur.com/7aVKNZU.png"></p>
+<h2 id="發送失敗"><a href="#發送失敗" class="headerlink" title="發送失敗"></a>發送失敗</h2><p>那如果很久都沒收到信呢？可以試著檢查看看</p>
+<h4 id="1-config-mailer-sender-一定要帶上郵件地址"><a href="#1-config-mailer-sender-一定要帶上郵件地址" class="headerlink" title="1. config.mailer_sender 一定要帶上郵件地址"></a>1. config.mailer_sender 一定要帶上郵件地址</h4><p>以下兩種字串都會失敗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema&#x27;    沒有角括號</span><br><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby_cinema&gt;&#x27;  沒有長得像email的內容</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/J4Y6JCL.png"><br>經過測試，角括號內長的像email(像是aa@aa這種，在@前後有英文之類的…)就能寄出，而且還會跑到Gmail的促銷內容（原因待查）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-沒有吃到環境變數"><a href="#2-沒有吃到環境變數" class="headerlink" title="2.沒有吃到環境變數"></a>2.沒有吃到環境變數</h3><p>安裝、設定完之後，可以進入rails c輸入<code>ENV</code>查詢目前環境可以讀取到的環境變數，如果設定成功應該會看到，如果沒有的話可以再去檢查看看目前環境是不是挑錯了。<br><img src="https://i.imgur.com/D87ESYL.png"></p>
+<h3 id="3-mailgun註冊後沒有進行開通"><a href="#3-mailgun註冊後沒有進行開通" class="headerlink" title="3.mailgun註冊後沒有進行開通"></a>3.mailgun註冊後沒有進行開通</h3><p>註冊完mailgun請記得去註冊帳號信箱收開通信，否則無法正常使用mailgun功能。</p>
+<h3 id="4-其他原因"><a href="#4-其他原因" class="headerlink" title="4.其他原因"></a>4.其他原因</h3><p>設定<code>config.action_mailer.raise_delivery_errors = true</code>，設定為true則是會在寄信中回報錯誤訊息，我自己會收到錯誤訊息常常因為打錯字或是漏設定(例如smtp沒有設定成mailgun）。</p>
+<p>以上是我利用devise套件寄信的踩雷心得分享，繼續摸索Devise這個套件的奧妙。</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://github.com/heartcombo/devise">devise-github</a><br><a target="_blank" rel="noopener" href="https://railsbook.tw/chapters/20-send-email">為你自己學 Ruby on Rails - 寄發信件</a><br><a target="_blank" rel="noopener" href="https://ihower.tw/rails/actionmailer.html">Rails 實戰聖經-ActionMailer - E-mail 發送</a></p>
+
     
 
     
@@ -325,7 +344,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2022/11/18/20221118 如何將rails頁面連結到404.html/" title="如何將rails頁面連結到404.html" target="_blank">http://charsin1olly.github.io/2022/11/18/20221118 如何將rails頁面連結到404.html/</a>
+          <a href="http://charsin1olly.github.io/2022/12/03/20221202 devise寄信/" title="Device 寄信" target="_blank">http://charsin1olly.github.io/2022/12/03/20221202 devise寄信/</a>
         </li>
         
         <li>
@@ -352,6 +371,10 @@
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">devise</a>
         		</li>
       		
 		</ul>
@@ -407,7 +430,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -422,18 +445,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/11/23/20221123%20find&find_by/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          find 與 find_by 是差在哪裡啦！
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/11/16/20221116%20var&let&const/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">var、let、const的差別</div>
+    <a href="/2022/11/27/20221127%20Stimulus/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Stimulus是一個酷東西！</div>
       <i class="icon-circle-right"></i>
     </a>
   
