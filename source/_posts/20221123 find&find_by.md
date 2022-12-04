@@ -1,5 +1,5 @@
 ---
-title: find 與 find_by 是差在哪裡啦！
+title: 【Ruby on Rails】find 與 find_by 是差在哪裡啦！
 date: 2022-11-23 12:08:33
 tags: [學習筆記,Ruby on Rails]
 ---
