@@ -6,25 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>var、let、const的差別 | Charsin&#39;s co_oding life</title>
+  <title>【Ruby on Rails】應用Enum製作下拉選單 | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1.重複宣告123var a &#x3D; 1var a &#x3D; 2console.log(a) &#x2F;&#x2F; 印出2 var可以重複宣告，並且後來宣告的a會覆蓋前面的a。 123let a &#x3D; 1let a &#x3D; 2console.log(a) &#x2F;&#x2F;錯誤 let不能重複宣告，這樣執行console.log(a)會跳出錯誤訊息：Identifier ‘a’ has already been declared告訴你a這個名">
+  <meta name="description" content="填寫表單時總會遇到一個困擾，那就是我們希望只有1,2,3,4選項可以選，但表格設定類型為integer僅僅能防止非整數以及文字資料輸入，依舊抵擋不了操作者輸入5,6,7,9999之類不在預期範圍的資料，這種時候就可以設定Enum限定操作者填入的資料內容，搭配下拉選單呈現選項。 此處以設定使用者身份示範： 添加欄位如果在table上已經預留好欄位就可以直接跳到ENUM設定步驟，還沒有的就可以添加mi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="var、let、const的差別">
-<meta property="og:url" content="http://charsin1olly.github.io/2022/11/16/20221116%20var&let&const/index.html">
+<meta property="og:title" content="【Ruby on Rails】應用Enum製作下拉選單">
+<meta property="og:url" content="http://charsin1olly.github.io/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="1.重複宣告123var a &#x3D; 1var a &#x3D; 2console.log(a) &#x2F;&#x2F; 印出2 var可以重複宣告，並且後來宣告的a會覆蓋前面的a。 123let a &#x3D; 1let a &#x3D; 2console.log(a) &#x2F;&#x2F;錯誤 let不能重複宣告，這樣執行console.log(a)會跳出錯誤訊息：Identifier ‘a’ has already been declared告訴你a這個名">
+<meta property="og:description" content="填寫表單時總會遇到一個困擾，那就是我們希望只有1,2,3,4選項可以選，但表格設定類型為integer僅僅能防止非整數以及文字資料輸入，依舊抵擋不了操作者輸入5,6,7,9999之類不在預期範圍的資料，這種時候就可以設定Enum限定操作者填入的資料內容，搭配下拉選單呈現選項。 此處以設定使用者身份示範： 添加欄位如果在table上已經預留好欄位就可以直接跳到ENUM設定步驟，還沒有的就可以添加mi">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/rzkMLRO.png">
-<meta property="article:published_time" content="2022-11-16T03:47:36.000Z">
-<meta property="article:modified_time" content="2022-12-04T16:20:08.255Z">
+<meta property="og:image" content="https://i.imgur.com/5voZXPy.png">
+<meta property="og:image" content="https://i.imgur.com/Gk4y8u1.png">
+<meta property="og:image" content="https://i.imgur.com/x1M2hac.png">
+<meta property="og:image" content="https://i.imgur.com/qhZrdXu.png">
+<meta property="article:published_time" content="2022-12-04T16:11:21.000Z">
+<meta property="article:modified_time" content="2022-12-04T16:16:49.943Z">
 <meta property="article:author" content="Charsin">
 <meta property="article:tag" content="學習筆記">
-<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Ruby on Rails">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/rzkMLRO.png">
+<meta name="twitter:image" content="https://i.imgur.com/5voZXPy.png">
   
     <link rel="alternative" href="/atom.xml" title="Charsin&#39;s co_oding life" type="application/atom+xml">
   
@@ -179,14 +182,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20221116 var&amp;let&amp;const" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20221204 Enum與下拉選單" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      var、let、const的差別
+      【Ruby on Rails】應用Enum製作下拉選單
     </h1>
   
 
@@ -198,8 +201,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span> -->
 
-<a href="/2022/11/16/20221116%20var&let&const/" class="archive-article-date">
-        <time datetime="2022-11-16T03:47:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-16</time>
+<a href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" class="archive-article-date">
+        <time datetime="2022-12-04T16:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-05</time>
 </a>
 
   
@@ -208,42 +211,35 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="1-重複宣告"><a href="#1-重複宣告" class="headerlink" title="1.重複宣告"></a>1.重複宣告</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var a = 2</span><br><span class="line">console.log(a) // 印出2</span><br></pre></td></tr></table></figure>
-<p>var可以重複宣告，並且後來宣告的a會覆蓋前面的a。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1</span><br><span class="line">let a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>let不能重複宣告，這樣執行console.log(a)會跳出錯誤訊息：<br><strong>Identifier ‘a’ has already been declared</strong><br>告訴你a這個名字用過了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 1</span><br><span class="line">const a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>const和let一樣不能重複宣告，執行會跳出和let一樣的錯誤訊息 ：<strong>Identifier ‘a’ has already been declared</strong>。</p>
-<h2 id="2-重新賦值"><a href="#2-重新賦值" class="headerlink" title="2.重新賦值"></a>2.重新賦值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var a = 2</span><br><span class="line">a=3</span><br><span class="line">console.log(a) //印出 3</span><br></pre></td></tr></table></figure>
-<p>var除了可以重複宣告以外，也可以直接用全域變數直接重新賦值<br>這樣console.log(a)印出來的結果會是3。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1</span><br><span class="line">a = 2</span><br><span class="line">console.log(a) //印出2</span><br></pre></td></tr></table></figure>
-<p>上面提到過let不能重複宣告，但它可以使用全域變數直接賦值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 1</span><br><span class="line">a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>雖然const跟let一樣不能重複宣告，但const更加嚴格，全域變數也不能重值賦值，會跳出錯誤訊息<strong>Assignment to constant variable.</strong></p>
-<p>但是const也不是完全不能改變，假如const是一個陣列，我們可以藉由指定元素來變更內容 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a=[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]</span><br><span class="line">a[0]=&quot;X&quot;</span><br><span class="line">console.log(a) //印出[ &#x27;X&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27; ]</span><br></pre></td></tr></table></figure>
+    <p>填寫表單時總會遇到一個困擾，那就是我們希望只有1,2,3,4選項可以選，但表格設定類型為integer僅僅能防止非整數以及文字資料輸入，依舊抵擋不了操作者輸入5,6,7,9999之類不在預期範圍的資料，這種時候就可以設定Enum限定操作者填入的資料內容，搭配下拉選單呈現選項。</p>
+<p>此處以設定使用者身份示範：</p>
+<h2 id="添加欄位"><a href="#添加欄位" class="headerlink" title="添加欄位"></a>添加欄位</h2><p>如果在table上已經預留好欄位就可以直接跳到ENUM設定步驟，還沒有的就可以添加migration檔。<br>資料類型integer：我們要用去抓該項設定的key，所以要是整數。<br>設定一個default值：讓新增加的資料自帶預設值0，即默認為Enum的key為0的狀態。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class AddRoleInUser &lt; ActiveRecord::Migration[6.1]</span><br><span class="line">  def change</span><br><span class="line">    add_column :users ,:role , :integer ,default: 0</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-作用的scope"><a href="#3-作用的scope" class="headerlink" title="3.作用的scope"></a>3.作用的scope</h2><p>var的作用範圍是function scope，也就是作用在function區域裡面都可以取用的變數，出了function就拿不到了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function hi()&#123;</span><br><span class="line">  var a=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a) //印出  ReferenceError: a is not defined</span><br></pre></td></tr></table></figure>
-<p>如果不是放在function內的話還是可以在外部取用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    var a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a); //印出in block!</span><br></pre></td></tr></table></figure>
+<h2 id="先用ENUM設定選項內容"><a href="#先用ENUM設定選項內容" class="headerlink" title="先用ENUM設定選項內容"></a>先用ENUM設定選項內容</h2><p>找到要設定項目的Model設定Enum</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class User &lt; ApplicationRecord</span><br><span class="line">  enum role: &#123; user: 0 , staff: 1 , admin: 2&#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>設定完Enum，rails就會送你這幾個方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">user.roles    查詢user的所有role</span><br><span class="line"></span><br><span class="line">user.staff!   把user設定為staff</span><br><span class="line">user.staff?   user是staff嗎？(回傳true,false)</span><br><span class="line">user.role     user現在的身份是什麼</span><br><span class="line"></span><br><span class="line">資料庫查詢</span><br><span class="line">User.where(role: [:user, :staff, :admin])  </span><br><span class="line">User.where.not(role: :staff)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/5voZXPy.png"></p>
+<h2 id="應用表單輔助：options-for-select-做出下拉選單"><a href="#應用表單輔助：options-for-select-做出下拉選單" class="headerlink" title="應用表單輔助：options_for_select 做出下拉選單"></a>應用表單輔助：options_for_select 做出下拉選單</h2><p><img src="https://i.imgur.com/Gk4y8u1.png"></p>
+<p>這個是製作下拉選單內容的本體，可以放兩個參數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options_for_select([ 選項內容 ],預設選項)</span><br></pre></td></tr></table></figure>
+<p>其中第二個參數設定預設項，只要在選項內容找得到的key都可以設定，若是找不到的的選項則會顯示第一個選項為預設。</p>
+<h3 id="首先是固定顯示某個選項（可用於一般表單輸入）"><a href="#首先是固定顯示某個選項（可用於一般表單輸入）" class="headerlink" title="首先是固定顯示某個選項（可用於一般表單輸入）"></a>首先是固定顯示某個選項（可用於一般表單輸入）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">以User所有的role設定的狀態2</span><br><span class="line">&lt;%= form.select :role, options_for_select(User.roles, 2) %&gt;</span><br></pre></td></tr></table></figure>
+<p>可是狀態2是什麼並不直觀，所以有另一種寫法：</p>
+<p>先在controller設定一個實體變數，取每個狀態的key(這裡為了凸顯下一招的厲害我故意打了一個底線)，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    key</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/x1M2hac.png"></p>
+<p>用human_attribute_name幫選項內容整理一下，看起來會比較像人類的表達方式，開頭變成大寫，底線也會變成空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    [User.human_attribute_name(&quot;role.#&#123;key&#125;&quot;), key]</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/qhZrdXu.png"></p>
+<p>接下來就是把剛剛做的實體變數塞進選項清單，這下就可以使用key來設定預設值了～這樣是不是比較直觀呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我要讓admin成為預設選項</span><br><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, &quot;admin&quot;) %&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="那我只是要修改上次的資料呢？"><a href="#那我只是要修改上次的資料呢？" class="headerlink" title="那我只是要修改上次的資料呢？"></a>那我只是要修改上次的資料呢？</h3><p>萬一我的舊資料不是預設選項卻忘了改，那不是完了？<br>別擔心，只要讀取該筆資料的role塞進預設值參數就好了～</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, @user.role) %&gt;</span><br></pre></td></tr></table></figure>
 
-<p>let的作用範圍都是block scope，在{}的範圍以外就無法取用了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    let a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);  //印出 a is not defined</span><br></pre></td></tr></table></figure>
-<p>補充：迴圈也是{}應用的一種（這裡的 a is not defined是指console.log(“out:”+a)的a），通常使用let。<br><br>為什麼不用const呢？因為a++等同於 a&#x3D;a+1，我們前面已經讓a是一個常數(const)了，不能明目張膽的改變它的內容，執行會顯示錯誤訊息<strong>Assignment to constant variable.</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let a=0 ; a&lt;5 ; a++)&#123;</span><br><span class="line">    console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">console.log(&quot;out:&quot;+a) //印出 a is not defined</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>const也是block scope，a無法在外部被取用。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    const a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);  //印出 a is not defined</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-TDZ-暫時性死區"><a href="#4-TDZ-暫時性死區" class="headerlink" title="4.TDZ 暫時性死區"></a>4.TDZ 暫時性死區</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a) //印出 undefined</span><br><span class="line">var a = 1</span><br></pre></td></tr></table></figure>
-<p><strong>var有變數提昇</strong>的特性，如果就以執行順序來看的話，明明還沒宣告var a &#x3D; 1 怎麼console.log會說a是undefined呢？<br><br>JS執行順序為由上往下，步驟分成兩步，第一步先註冊名稱，第二步為賦值，變數提昇有點類似預告，在第一步的時候掃描到var a，告訴系統：「今天有一個a客人會來喔！」，進入第二步賦值由於還沒輪到把1賦予a就被印出來了，所以結果是undefined。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)</span><br><span class="line">let a = 1</span><br><span class="line"></span><br><span class="line">console.log(a)</span><br><span class="line">const a = 1</span><br><span class="line"></span><br><span class="line">以上console.log(a)都會印出 ReferenceError: Cannot access &#x27;a&#x27; before initialization</span><br></pre></td></tr></table></figure>
-<p>let、const則是有一個TDZ，類似一個防雷馬賽克，在第一步的時候TDZ就蓋在let（const）上面，系統就不知道有a客人，進行到第二步就會像a去客人去系統報到，系統卻說：「你沒有預約訂位喔」的樣子。</p>
-<p>這樣的設計可以使流程更加嚴謹，使程式邏輯更加通順、增加可讀性。<br>（就像是：我的點的菜還沒炒好卻可以包空氣帶走？這不太對吧？）</p>
-<h2 id="5-污染window"><a href="#5-污染window" class="headerlink" title="5.污染window"></a>5.污染window</h2><p>在瀏覽器的主控台上宣告 var a&#x3D;1 , let b &#x3D;2 , const c &#x3D;3<br>在window裡面只會有a會被建立出來，</p>
-<p><img src="https://i.imgur.com/rzkMLRO.png"></p>
-<p>【結論】<br><br>宣告的嚴謹程度 const &gt; let &gt; var<br><br>盡量使用const，可以視情況適當改用let，非到萬不得已再使用var。 </p>
+<p>感想：<br>學會Enum＋下拉選單應用對資料的統一性非常的有幫助，再也不用害怕那些不按照規矩來的人了，繼續鑽研…</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://api.rubyonrails.org/v5.1/classes/ActiveRecord/Enum.html">ActiveRecord::Enum</a><br><a target="_blank" rel="noopener" href="https://rails.ruby.tw/form_helpers.html#select-%E8%88%87-option-%E6%A8%99%E7%B1%A4">Select 與 Option 標籤</a></p>
 
     
 
@@ -290,7 +286,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2022/11/16/20221116 var&let&const/" title="var、let、const的差別" target="_blank">http://charsin1olly.github.io/2022/11/16/20221116 var&let&const/</a>
+          <a href="http://charsin1olly.github.io/2022/12/05/20221204 Enum與下拉選單/" title="【Ruby on Rails】應用Enum製作下拉選單" target="_blank">http://charsin1olly.github.io/2022/12/05/20221204 Enum與下拉選單/</a>
         </li>
         
         <li>
@@ -316,7 +312,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
         		</li>
       		
 		</ul>
@@ -372,7 +368,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2022/11/16/20221116%20var&let&const/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -387,15 +383,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          【Ruby on Rails】如何將rails頁面連結到404.html
+          【Ruby on Rails】Timecop 時間管理大師
         
       </div>
     </a>
   
+  
+    <a href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【Ruby on Rails】Devise 寄信</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
