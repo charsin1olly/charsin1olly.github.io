@@ -1,7 +1,7 @@
 ---
 title: var、let、const的差別
 date: 2022-11-16 11:47:36
-tags: 學習筆記
+tags: [學習筆記, JavaScript]
 ---
 
 ## 1.重複宣告
