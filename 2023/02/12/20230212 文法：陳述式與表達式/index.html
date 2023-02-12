@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>20230212 文法：陳述式與表達式 | Charsin&#39;s co_oding life</title>
+  <title>文法：陳述式與表達式 | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="繼上個章節裡提到的JavaScript的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！ 如何判斷陳述式與表達式？最簡單的判斷法就是「會回傳值」就是表達式。 表達式長什麼樣子？打開開發者模式，輸入表達式之後按下enter會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。 表達式可以是  一個值：數字1… 變數：a、user….. 運算子：1 &amp;#x3">
+  <meta name="description" content="繼上個章節裡提到的 JavaScript 的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！ 如何判斷陳述式與表達式？最簡單的判斷法就是「會回傳值」就是表達式。 表達式長什麼樣子？打開開發者模式，輸入表達式之後按下 enter 會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。 表達式可以是  一個值：數字 1… 變數：a、user….. 運算子：1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20230212 文法：陳述式與表達式">
+<meta property="og:title" content="文法：陳述式與表達式">
 <meta property="og:url" content="http://charsin1olly.github.io/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="繼上個章節裡提到的JavaScript的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！ 如何判斷陳述式與表達式？最簡單的判斷法就是「會回傳值」就是表達式。 表達式長什麼樣子？打開開發者模式，輸入表達式之後按下enter會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。 表達式可以是  一個值：數字1… 變數：a、user….. 運算子：1 &amp;#x3">
+<meta property="og:description" content="繼上個章節裡提到的 JavaScript 的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！ 如何判斷陳述式與表達式？最簡單的判斷法就是「會回傳值」就是表達式。 表達式長什麼樣子？打開開發者模式，輸入表達式之後按下 enter 會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。 表達式可以是  一個值：數字 1… 變數：a、user….. 運算子：1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/PZIqxGR.png">
 <meta property="og:image" content="https://i.imgur.com/n7mXbjL.png">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://i.imgur.com/3saVPrI.png">
 <meta property="og:image" content="https://i.imgur.com/FHVun7l.png">
 <meta property="article:published_time" content="2023-02-12T09:44:23.000Z">
-<meta property="article:modified_time" content="2023-02-12T09:45:04.639Z">
+<meta property="article:modified_time" content="2023-02-12T09:49:48.588Z">
 <meta property="article:author" content="Charsin">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="讀書筆記">
@@ -194,7 +194,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      20230212 文法：陳述式與表達式
+      文法：陳述式與表達式
     </h1>
   
 
@@ -216,12 +216,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>繼上個章節裡提到的JavaScript的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！</p>
+    <p>繼上個章節裡提到的 JavaScript 的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！</p>
 <h2 id="如何判斷陳述式與表達式？"><a href="#如何判斷陳述式與表達式？" class="headerlink" title="如何判斷陳述式與表達式？"></a>如何判斷陳述式與表達式？</h2><p>最簡單的判斷法就是「會回傳值」就是表達式。</p>
-<h3 id="表達式長什麼樣子？"><a href="#表達式長什麼樣子？" class="headerlink" title="表達式長什麼樣子？"></a>表達式長什麼樣子？</h3><p>打開開發者模式，輸入表達式之後按下enter會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。<br><img src="https://i.imgur.com/PZIqxGR.png"></p>
+<h3 id="表達式長什麼樣子？"><a href="#表達式長什麼樣子？" class="headerlink" title="表達式長什麼樣子？"></a>表達式長什麼樣子？</h3><p>打開開發者模式，輸入表達式之後按下 enter 會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。<br><img src="https://i.imgur.com/PZIqxGR.png"></p>
 <p>表達式可以是</p>
 <ul>
-<li>一個值：數字1…</li>
+<li>一個值：數字 1…</li>
 <li>變數：a、user…..</li>
 <li>運算子：1 &#x3D;&#x3D;&#x3D; 1、 a &#x3D; 1</li>
 <li>調用函式：fn()</li>
@@ -234,21 +234,21 @@
 <li>迴圈（for、for…in）</li>
 <li>import、export</li>
 </ul>
-<p>相對於表達式，陳述式在瀏覽器模式輸入之後，按下enter則會回傳undefined像是這樣<br><img src="https://i.imgur.com/8Jkv5cE.png"></p>
-<h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>常見的if…else運用是根據條件的true或false進行判斷，而if的條件(condition)可以放入任何表達式:<br><img src="https://i.imgur.com/mxkSUFh.png"></p>
-<p>放入陳述式則會顯示SyntaxError:<br><img src="https://i.imgur.com/K8xqgWH.png"></p>
-<h3 id="函數陳述式＆函數表達式"><a href="#函數陳述式＆函數表達式" class="headerlink" title="函數陳述式＆函數表達式"></a>函數陳述式＆函數表達式</h3><p>函式陳述式一定是具名函式，否則無法調用（當然就沒用了），下例就是一個名稱為hello的具名函式：</p>
+<p>相對於表達式，陳述式在瀏覽器模式輸入之後，按下 enter 則會回傳 undefined 像是這樣<br><img src="https://i.imgur.com/8Jkv5cE.png"></p>
+<h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>常見的 if…else 運用是根據條件的 true 或 false 進行判斷，而 if 的條件(condition)可以放入任何表達式:<br><img src="https://i.imgur.com/mxkSUFh.png"></p>
+<p>放入陳述式則會顯示 SyntaxError:<br><img src="https://i.imgur.com/K8xqgWH.png"></p>
+<h3 id="函數陳述式＆函數表達式"><a href="#函數陳述式＆函數表達式" class="headerlink" title="函數陳述式＆函數表達式"></a>函數陳述式＆函數表達式</h3><p>函式陳述式一定是具名函式，否則無法調用（當然就沒用了），下例就是一個名稱為 hello 的具名函式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function hello()&#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<p>函數表達式可能為具名函式或匿名函式：<br><img src="https://i.imgur.com/vbyr8PA.png"><br>這邊我們看到裡面的hey函式不能在外部被調用，雖然在函式內部可以呼叫，但實務上不太常出現需要這麼做的情況（有但是很少！某些風格規範會建議都要具名）。最後呼叫這個函式還是要用hi()，那麼，這個hey的命名就變得有些多餘，表達式就可以改成這樣：</p>
+<p>函數表達式可能為具名函式或匿名函式：<br><img src="https://i.imgur.com/vbyr8PA.png"><br>這邊我們看到裡面的 hey 函式不能在外部被調用，雖然在函式內部可以呼叫，但實務上不太常出現需要這麼做的情況（有但是很少！某些風格規範會建議都要具名）。最後呼叫這個函式還是要用 hi()，那麼，這個 hey 的命名就變得有些多餘，表達式就可以改成這樣：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const hi = function()&#123;</span><br><span class="line">  console.log(&quot;hey!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="1-陳述式中可能包含表達式的片段"><a href="#1-陳述式中可能包含表達式的片段" class="headerlink" title="1. 陳述式中可能包含表達式的片段"></a>1. 陳述式中可能包含表達式的片段</h3><p><img src="https://i.imgur.com/rZ7IDk3.png"><br>可以看見，雖然有運算子的結構，但它的本質依舊是宣告，不會回傳結果。</p>
-<h3 id="2-調用函式是表達式？function是陳述式？"><a href="#2-調用函式是表達式？function是陳述式？" class="headerlink" title="2. 調用函式是表達式？function是陳述式？"></a>2. 調用函式是表達式？function是陳述式？</h3><p><img src="https://i.imgur.com/3saVPrI.png"><br>明明就有設定return的結果，為什麼是陳述式？因為放到瀏覽器上執行依舊會是undefined，它的本質還是宣告，宣告fn()這個函式。</p>
-<p>而上面提過的，調用函式則是表達式，會回傳fn()的結果，相對的，不寫return結果一樣是undefined，但它依舊是表達式(回傳值為undefined)。</p>
-<h3 id="3-變形的陳述式暗藏陷阱"><a href="#3-變形的陳述式暗藏陷阱" class="headerlink" title="3. 變形的陳述式暗藏陷阱"></a>3. 變形的陳述式暗藏陷阱</h3><p>上面提過流程控制的condition只能放表達式，加上小括號的陳述式是一種表達式，而它回傳的值是函式本身，會被判斷為true，所以這個判斷式會執行true的結果。<br><img src="https://i.imgur.com/FHVun7l.png"></p>
+<h3 id="2-調用函式是表達式？function-是陳述式？"><a href="#2-調用函式是表達式？function-是陳述式？" class="headerlink" title="2. 調用函式是表達式？function 是陳述式？"></a>2. 調用函式是表達式？function 是陳述式？</h3><p><img src="https://i.imgur.com/3saVPrI.png"><br>明明就有設定 return 的結果，為什麼是陳述式？因為放到瀏覽器上執行依舊會是 undefined，它的本質還是宣告，宣告 fn()這個函式。</p>
+<p>而上面提過的，調用函式則是表達式，會回傳 fn()的結果，相對的，不寫 return 結果一樣是 undefined，但它依舊是表達式(回傳值為 undefined)。</p>
+<h3 id="3-變形的陳述式暗藏陷阱"><a href="#3-變形的陳述式暗藏陷阱" class="headerlink" title="3. 變形的陳述式暗藏陷阱"></a>3. 變形的陳述式暗藏陷阱</h3><p>上面提過流程控制的 condition 只能放表達式，加上小括號的陳述式是一種表達式，而它回傳的值是函式本身，會被判斷為 true，所以這個判斷式會執行 true 的結果。<br><img src="https://i.imgur.com/FHVun7l.png"></p>
 <p>參考資料：</p>
-<p><a target="_blank" rel="noopener" href="https://www.books.com.tw/products/0010941867">看完這本就會懂！帶你無痛提升JavaScript面試力：精選55道前端工程師的核心問題 × 求職加分模擬試題解析</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.books.com.tw/products/0010941867">看完這本就會懂！帶你無痛提升 JavaScript 面試力：精選 55 道前端工程師的核心問題 × 求職加分模擬試題解析</a></p>
 
     
 
@@ -295,7 +295,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2023/02/12/20230212 文法：陳述式與表達式/" title="20230212 文法：陳述式與表達式" target="_blank">http://charsin1olly.github.io/2023/02/12/20230212 文法：陳述式與表達式/</a>
+          <a href="http://charsin1olly.github.io/2023/02/12/20230212 文法：陳述式與表達式/" title="文法：陳述式與表達式" target="_blank">http://charsin1olly.github.io/2023/02/12/20230212 文法：陳述式與表達式/</a>
         </li>
         
         <li>
