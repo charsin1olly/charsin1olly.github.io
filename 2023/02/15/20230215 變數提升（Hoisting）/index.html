@@ -6,23 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>Charsin&#39;s co_oding life</title>
+  <title>變數提升（Hoisting） | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content="hello"> -->
-  
-  <meta name="description" content="hello">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Charsin&#39;s co_oding life">
-<meta property="og:url" content="http://charsin1olly.github.io/index.html">
+  <meta name="description" content="初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。 創造期與執行期瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="變數提升（Hoisting）">
+<meta property="og:url" content="http://charsin1olly.github.io/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="hello">
+<meta property="og:description" content="初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。 創造期與執行期瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/X2f9Yei.png">
+<meta property="og:image" content="https://i.imgur.com/AS1lNij.png">
+<meta property="og:image" content="https://i.imgur.com/EAFSg4J.png">
+<meta property="og:image" content="https://i.imgur.com/w2kd6p4.png">
+<meta property="og:image" content="https://i.imgur.com/4uxZEqj.png">
+<meta property="og:image" content="https://i.imgur.com/0Z2bsbi.png">
+<meta property="article:published_time" content="2023-02-15T08:25:49.000Z">
+<meta property="article:modified_time" content="2023-02-15T08:26:15.392Z">
 <meta property="article:author" content="Charsin">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="讀書筆記">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/X2f9Yei.png">
   
     <link rel="alternative" href="/atom.xml" title="Charsin&#39;s co_oding life" type="application/atom+xml">
   
@@ -177,25 +184,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-20230215 變數提升（Hoisting）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-20230215 變數提升（Hoisting）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" target="_blank">變數提升（Hoisting）</a>
-  
+    <h1 class="article-title" itemprop="name">
+      變數提升（Hoisting）
     </h1>
   
 
 
   
   
+        
+        <!-- <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span> -->
+
 <a href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" class="archive-article-date">
         <time datetime="2023-02-15T08:25:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-15</time>
 </a>
@@ -233,9 +240,61 @@
 
     
 
-    <!--  -->
+    <!-- 
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+     -->
 
-    <!--  -->
+    <!-- 
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Charsin
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://charsin1olly.github.io/2023/02/15/20230215 變數提升（Hoisting）/" title="變數提升（Hoisting）" target="_blank">http://charsin1olly.github.io/2023/02/15/20230215 變數提升（Hoisting）/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+     -->
 
   </div>
   <div class="article-info article-info-index">
@@ -259,16 +318,76 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/">展開全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文法：陳述式與表達式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -289,1007 +408,14 @@
 
 
 
-  
-    <article id="post-20230212 文法：陳述式與表達式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/" target="_blank">文法：陳述式與表達式</a>
-  
-    </h1>
-  
 
 
-  
-  
-<a href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/" class="archive-article-date">
-        <time datetime="2023-02-12T09:44:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-12</time>
-</a>
 
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>繼上個章節裡提到的 JavaScript 的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！</p>
-<h2 id="如何判斷陳述式與表達式？"><a href="#如何判斷陳述式與表達式？" class="headerlink" title="如何判斷陳述式與表達式？"></a>如何判斷陳述式與表達式？</h2><p>最簡單的判斷法就是「會回傳值」就是表達式。</p>
-<h3 id="表達式長什麼樣子？"><a href="#表達式長什麼樣子？" class="headerlink" title="表達式長什麼樣子？"></a>表達式長什麼樣子？</h3><p>打開開發者模式，輸入表達式之後按下 enter 會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。<br><img src="https://i.imgur.com/PZIqxGR.png"></p>
-<p>表達式可以是</p>
-<ul>
-<li>一個值：數字 1…</li>
-<li>變數：a、user…..</li>
-<li>運算子：1 &#x3D;&#x3D;&#x3D; 1、 a &#x3D; 1</li>
-<li>調用函式：fn()</li>
-<li>變形的函式陳述式：在函式陳述式前後加上小括號也是一種表達式，回傳結果為函式本身<br><img src="https://i.imgur.com/n7mXbjL.png"></li>
-</ul>
-<h3 id="陳述式長什麼樣子？"><a href="#陳述式長什麼樣子？" class="headerlink" title="陳述式長什麼樣子？"></a>陳述式長什麼樣子？</h3><p>陳述式常見的分類則有</p>
-<ul>
-<li>宣告(var a、let a、const a、function a(){…})</li>
-<li>流程控制（block、if else）</li>
-<li>迴圈（for、for…in）</li>
-<li>import、export</li>
-</ul>
-<p>相對於表達式，陳述式在瀏覽器模式輸入之後，按下 enter 則會回傳 undefined 像是這樣<br><img src="https://i.imgur.com/8Jkv5cE.png"></p>
-<h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>常見的 if…else 運用是根據條件的 true 或 false 進行判斷，而 if 的條件(condition)可以放入任何表達式:<br><img src="https://i.imgur.com/mxkSUFh.png"></p>
-<p>放入陳述式則會顯示 SyntaxError:<br><img src="https://i.imgur.com/K8xqgWH.png"></p>
-<h3 id="函數陳述式＆函數表達式"><a href="#函數陳述式＆函數表達式" class="headerlink" title="函數陳述式＆函數表達式"></a>函數陳述式＆函數表達式</h3><p>函式陳述式一定是具名函式，否則無法調用（當然就沒用了），下例就是一個名稱為 hello 的具名函式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function hello()&#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<p>函數表達式可能為具名函式或匿名函式：<br><img src="https://i.imgur.com/vbyr8PA.png"><br>這邊我們看到裡面的 hey 函式不能在外部被調用，雖然在函式內部可以呼叫，但實務上不太常出現需要這麼做的情況（有但是很少！某些風格規範會建議都要具名）。最後呼叫這個函式還是要用 hi()，那麼，這個 hey 的命名就變得有些多餘，表達式就可以改成這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const hi = function()&#123;</span><br><span class="line">  console.log(&quot;hey!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="1-陳述式中可能包含表達式的片段"><a href="#1-陳述式中可能包含表達式的片段" class="headerlink" title="1. 陳述式中可能包含表達式的片段"></a>1. 陳述式中可能包含表達式的片段</h3><p><img src="https://i.imgur.com/rZ7IDk3.png"><br>可以看見，雖然有運算子的結構，但它的本質依舊是宣告，不會回傳結果。</p>
-<h3 id="2-調用函式是表達式？function-是陳述式？"><a href="#2-調用函式是表達式？function-是陳述式？" class="headerlink" title="2. 調用函式是表達式？function 是陳述式？"></a>2. 調用函式是表達式？function 是陳述式？</h3><p><img src="https://i.imgur.com/3saVPrI.png"><br>明明就有設定 return 的結果，為什麼是陳述式？因為放到瀏覽器上執行依舊會是 undefined，它的本質還是宣告，宣告 fn()這個函式。</p>
-<p>而上面提過的，調用函式則是表達式，會回傳 fn()的結果，相對的，不寫 return 結果一樣是 undefined，但它依舊是表達式(回傳值為 undefined)。</p>
-<h3 id="3-變形的陳述式暗藏陷阱"><a href="#3-變形的陳述式暗藏陷阱" class="headerlink" title="3. 變形的陳述式暗藏陷阱"></a>3. 變形的陳述式暗藏陷阱</h3><p>上面提過流程控制的 condition 只能放表達式，加上小括號的陳述式是一種表達式，而它回傳的值是函式本身，會被判斷為 true，所以這個判斷式會執行 true 的結果。<br><img src="https://i.imgur.com/FHVun7l.png"></p>
-<p>參考資料：</p>
-<p><a target="_blank" rel="noopener" href="https://www.books.com.tw/products/0010941867">看完這本就會懂！帶你無痛提升 JavaScript 面試力：精選 55 道前端工程師的核心問題 × 求職加分模擬試題解析</a></p>
 
-    
 
-    <!--  -->
 
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230208 JavaScript 排序 - sort" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/02/08/20230208%20JavaScript%20%E6%8E%92%E5%BA%8F%20-%20sort/" target="_blank">JavaScript 排序 - sort</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/02/08/20230208%20JavaScript%20%E6%8E%92%E5%BA%8F%20-%20sort/" class="archive-article-date">
-        <time datetime="2023-02-08T06:23:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-08</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在JavaScript 30挑戰的路上遇到sort，以往只用來排序數字大小，當我寫到第四天（實際上超過4天）遇到它，還是寫篇筆記吧…</p>
-<h2 id="根據字串的-Unicode-編碼排序"><a href="#根據字串的-Unicode-編碼排序" class="headerlink" title="根據字串的 Unicode 編碼排序"></a>根據字串的 Unicode 編碼排序</h2><p>像下面這個例子，一般來說順序應該是[1, 4, 21, 30, 100000]但因為數字會被轉換成字串，再轉成Unicode編碼，所以100000會在4前面。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [1, 30, 4, 21, 100000];</span><br><span class="line">array1.sort();</span><br><span class="line">console.log(array1);</span><br><span class="line"></span><br><span class="line">結果： Array [1, 100000, 21, 30, 4]</span><br></pre></td></tr></table></figure>
-<h2 id="sort排序會變更原陣列"><a href="#sort排序會變更原陣列" class="headerlink" title="sort排序會變更原陣列"></a>sort排序會變更原陣列</h2><p>如上面演示的，當我們使用完sort，再去印出原本的陣列，會發現資料順序是排序過的。</p>
-<h2 id="compareFunction可以使sort使用回傳值比較排序"><a href="#compareFunction可以使sort使用回傳值比較排序" class="headerlink" title="compareFunction可以使sort使用回傳值比較排序"></a>compareFunction可以使sort使用回傳值比較排序</h2><p>為了解決上面提到的Unicode排序很亂的問題，我們可以使用compareFunction去定義排序規則。</p>
-<p>先來個基本款：<code>arr.sort((a, b) =&gt; &#123;return a - b&#125;)</code></p>
-<p>原理（越大放越後面）：<br>a - b &lt; 0，會把 a 排在 b 前面。<br>a - b &#x3D; 0，不會進行排序，但會和其他全部的元素比較來排序。<br>a - b &gt; 0，會把 b 排在 a 前面。</p>
-<p>升冪及降冪可以這樣寫</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">arr.sort([compareFunction])</span><br><span class="line"></span><br><span class="line">#升冪排列</span><br><span class="line">function compareNumbers(a, b) &#123;</span><br><span class="line">  return a - b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#降冪排列</span><br><span class="line">function compareNumbers(a, b) &#123;</span><br><span class="line">  return b - a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="可套用在物件的排序"><a href="#可套用在物件的排序" class="headerlink" title="可套用在物件的排序"></a>可套用在物件的排序</h3><p>假設有一個陣列，裡面的元素都是物件，我們也可以用sort針對物件的屬性進行排序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const inventors = [</span><br><span class="line">        &#123; first: &quot;Albert&quot;, last: &quot;Einstein&quot;, year: 1879, passed: 1955 &#125;,</span><br><span class="line">        &#123; first: &quot;Isaac&quot;, last: &quot;Newton&quot;, year: 1643, passed: 1727 &#125;,</span><br><span class="line">        &#123; first: &quot;Galileo&quot;, last: &quot;Galilei&quot;, year: 1564, passed: 1642 &#125;,</span><br><span class="line">        &#123; first: &quot;Marie&quot;, last: &quot;Curie&quot;, year: 1867, passed: 1934 &#125;,</span><br><span class="line">        &#123; first: &quot;Johannes&quot;, last: &quot;Kepler&quot;, year: 1571, passed: 1630 &#125;,</span><br><span class="line">        &#123; first: &quot;Nicolaus&quot;, last: &quot;Copernicus&quot;, year: 1473, passed: 1543 &#125;,</span><br><span class="line">        &#123; first: &quot;Max&quot;, last: &quot;Planck&quot;, year: 1858, passed: 1947 &#125;,</span><br><span class="line">        &#123; first: &quot;Katherine&quot;, last: &quot;Blodgett&quot;, year: 1898, passed: 1979 &#125;,</span><br><span class="line">        &#123; first: &quot;Ada&quot;, last: &quot;Lovelace&quot;, year: 1815, passed: 1852 &#125;,</span><br><span class="line">        &#123; first: &quot;Sarah E.&quot;, last: &quot;Goode&quot;, year: 1855, passed: 1905 &#125;,</span><br><span class="line">        &#123; first: &quot;Lise&quot;, last: &quot;Meitner&quot;, year: 1878, passed: 1968 &#125;,</span><br><span class="line">        &#123; first: &quot;Hanna&quot;, last: &quot;Hammarström&quot;, year: 1829, passed: 1909 &#125;,</span><br><span class="line">      ];</span><br></pre></td></tr></table></figure>
-<h4 id="1-以年齡排序（比較數字）"><a href="#1-以年齡排序（比較數字）" class="headerlink" title="(1)以年齡排序（比較數字）"></a>(1)以年齡排序（比較數字）</h4><p>就如同一般比較數值大小</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const question3 = inventors.sort(function (a, b) &#123;</span><br><span class="line">        return a.year - b.year;</span><br><span class="line">      &#125;);</span><br><span class="line">console.table(question3);</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/T5x61J9.png"></p>
-<h4 id="2-以姓名做排序（比較字串）"><a href="#2-以姓名做排序（比較字串）" class="headerlink" title="(2)以姓名做排序（比較字串）"></a>(2)以姓名做排序（比較字串）</h4><p>如果用inventorA - inventorB 會沒有效果，而其中的1或-1我很好奇的試一下，發現要一正一負才能排序（1:2、-1:-2都不會排序），如果把-1：1倒過來則會變成相反的排序。另外這種比較方法也同樣可以比較數值大小。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const question3 = inventors.sort((inventorA, inventorB) =&gt; &#123; </span><br><span class="line">        return inventorA.first &gt; inventorB.first ? 1 : -1;</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/Fcr6ZnP.png"></p>
-<p>參考資料：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">MDN-sort</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/02/08/20230208%20JavaScript%20%E6%8E%92%E5%BA%8F%20-%20sort/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230130 Timecop 時間管理大師" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" target="_blank">【Ruby on Rails】Timecop 時間管理大師</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" class="archive-article-date">
-        <time datetime="2023-01-29T19:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-30</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近做面試題認識Timecop，Timecop是一個控制時間的套件，怎麼個控制法呢？</p>
-<h2 id="freeze、travel"><a href="#freeze、travel" class="headerlink" title="freeze、travel"></a>freeze、travel</h2><p>freeze是把設定的時間凍住，同時我們的Time.now也會變成freeze的時間，10秒之後（再次提醒自己：sleep會放10秒再繼續執行，不是當機啦！）再使用一次Time.now並不會改變時間，和剛才設定的new_time相同。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.freeze(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; true</span><br></pre></td></tr></table></figure>
-
-<p>而travel是會把我們的時間(Time.now)改成new_time設定的時間，並且開始「流動」，跟freeze不一樣的地方就是new_time和Time.now不會相同，因為new_time的時間是寫死的，而Time.now會一直改變。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.travel(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; false</span><br></pre></td></tr></table></figure>
-
-<p>從github挖出來的freeze和travel可用引數</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. Timecop.freeze(time_inst) </span><br><span class="line">    ＃例：Timecop.travel(Time.zone.local(2023, 1, 29, 22, 30))</span><br><span class="line">2. Timecop.freeze(datetime_inst)</span><br><span class="line">3. Timecop.freeze(date_inst)</span><br><span class="line">4. Timecop.freeze(offset_in_seconds)</span><br><span class="line">5. Timecop.freeze(year, month, day, hour=0, minute=0, second=0)</span><br><span class="line">    ＃例：Timecop.travel(2023, 1, 29, 22, 30)</span><br><span class="line">6. Timecop.freeze() # Defaults to Time.now</span><br></pre></td></tr></table></figure>
-<p>另外爬到的文還有do end用法，在scope裡的都會受到Time.freeze及travel的影響，假設時間是10:00，經過第一層的1.hours之後時間就會前進一個小時、回溯可以用1.hours.ago，時間函數似乎都可以用（這個我不太確定），再經過這個scope裡的Timecop.travel 30.minutes，時間將會再更前推30分鐘。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Timecop.freeze(Time.zone.local(2023, 1, 31, 10, 0))</span><br><span class="line">Timecop.travel 1.hours do</span><br><span class="line">    Time.now ＃ 2023-01-31 11:00:00 +0800</span><br><span class="line">    </span><br><span class="line">    Timecop.travel 30.minutes do</span><br><span class="line">        Time.now ＃ 2023-01-31 11:30:00 +0800</span><br><span class="line">    end    </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>改時間如果有需要復原成正常時間的話，可以使用<code> Timecop.return</code></p>
-<h2 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h2><p>可以縮放時間刻度的比例，scale的引數就是一秒可以當幾秒過</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Timecop.scale(60) do</span><br><span class="line">  Time.now # 2023-01-31 10:00:00 +0800</span><br><span class="line">  sleep 10</span><br><span class="line">  Time.now # 2023-01-31 10:10:00 +0800</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h2 id="before、after"><a href="#before、after" class="headerlink" title="before、after"></a>before、after</h2><p>在before跟after之間的時間都會受到Timecop影響，不過這次我自己用是拿來設定時區的(不知道是不是OK的做法)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> describe &quot;some set of tests to mock&quot; do</span><br><span class="line">  before do</span><br><span class="line">    Timecop.freeze(Time.local(1990))</span><br><span class="line">    Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  after do</span><br><span class="line">    Timecop.return</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  it &quot;should do blah blah blah&quot; do</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h3 id="補充：當我跟Timecop初次見面"><a href="#補充：當我跟Timecop初次見面" class="headerlink" title="補充：當我跟Timecop初次見面"></a>補充：當我跟Timecop初次見面</h3><p>當我第一次使用Rspec＋Timecop跟在深山走丟一樣，不知道是哪裡缺了漏了，報不完的錯，甚至都還沒碰到邏輯就錯了，記錄一下以免太久不碰又忘記（哭</p>
-<ol>
-<li>如果在Rspec使用Timecop會報這個錯誤，在文件上方補上<code>require &quot;timecop&quot;</code>引入就能正常使用了。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br><span class="line">     </span><br><span class="line">     NameError:</span><br><span class="line">       uninitialized constant Timecop</span><br><span class="line">     </span><br><span class="line">             Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br></pre></td></tr></table></figure></li>
-<li>在使用時間函數老是說undefined method，除了這裡的zone還有上面提過的hours、minutes等，這個問題的解決辦法也是在文件上方補上<code> require &quot;active_support/all&quot;</code>就能正常使用。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">     </span><br><span class="line">    NoMethodError:</span><br><span class="line">      undefined method `zone=&#x27; for Time:Class</span><br><span class="line">     </span><br><span class="line">        Time.zone = &quot;Asia/Taipei&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>參考資料：<a target="_blank" rel="noopener" href="https://github.com/travisjeffery/timecop">Timecop 官方文件</a><br><a target="_blank" rel="noopener" href="https://medium.com/@tonyhsu/%E7%94%A8-timecop-%E8%87%AA%E7%94%B1%E7%A9%BF%E6%A2%AD%E6%99%82%E9%96%93%E8%BB%B8-e9d606e8dbd3">用 Timecop 自由穿梭時間軸</a><br>碎念：哎…小白剛踏出新手教學真是什麼都不知道，慢慢來（深呼吸</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221204 Enum與下拉選單" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" target="_blank">【Ruby on Rails】應用Enum製作下拉選單</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" class="archive-article-date">
-        <time datetime="2022-12-04T16:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-05</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>填寫表單時總會遇到一個困擾，那就是我們希望只有1,2,3,4選項可以選，但表格設定類型為integer僅僅能防止非整數以及文字資料輸入，依舊抵擋不了操作者輸入5,6,7,9999之類不在預期範圍的資料，這種時候就可以設定Enum限定操作者填入的資料內容，搭配下拉選單呈現選項。</p>
-<p>此處以設定使用者身份示範：</p>
-<h2 id="添加欄位"><a href="#添加欄位" class="headerlink" title="添加欄位"></a>添加欄位</h2><p>如果在table上已經預留好欄位就可以直接跳到ENUM設定步驟，還沒有的就可以添加migration檔。<br>資料類型integer：我們要用去抓該項設定的key，所以要是整數。<br>設定一個default值：讓新增加的資料自帶預設值0，即默認為Enum的key為0的狀態。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class AddRoleInUser &lt; ActiveRecord::Migration[6.1]</span><br><span class="line">  def change</span><br><span class="line">    add_column :users ,:role , :integer ,default: 0</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-
-<h2 id="先用ENUM設定選項內容"><a href="#先用ENUM設定選項內容" class="headerlink" title="先用ENUM設定選項內容"></a>先用ENUM設定選項內容</h2><p>找到要設定項目的Model設定Enum</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class User &lt; ApplicationRecord</span><br><span class="line">  enum role: &#123; user: 0 , staff: 1 , admin: 2&#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<p>設定完Enum，rails就會送你這幾個方法</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">user.roles    查詢user的所有role</span><br><span class="line"></span><br><span class="line">user.staff!   把user設定為staff</span><br><span class="line">user.staff?   user是staff嗎？(回傳true,false)</span><br><span class="line">user.role     user現在的身份是什麼</span><br><span class="line"></span><br><span class="line">資料庫查詢</span><br><span class="line">User.where(role: [:user, :staff, :admin])  </span><br><span class="line">User.where.not(role: :staff)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/5voZXPy.png"></p>
-<h2 id="應用表單輔助：options-for-select-做出下拉選單"><a href="#應用表單輔助：options-for-select-做出下拉選單" class="headerlink" title="應用表單輔助：options_for_select 做出下拉選單"></a>應用表單輔助：options_for_select 做出下拉選單</h2><p><img src="https://i.imgur.com/Gk4y8u1.png"></p>
-<p>這個是製作下拉選單內容的本體，可以放兩個參數</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options_for_select([ 選項內容 ],預設選項)</span><br></pre></td></tr></table></figure>
-<p>其中第二個參數設定預設項，只要在選項內容找得到的key都可以設定，若是找不到的的選項則會顯示第一個選項為預設。</p>
-<h3 id="首先是固定顯示某個選項（可用於一般表單輸入）"><a href="#首先是固定顯示某個選項（可用於一般表單輸入）" class="headerlink" title="首先是固定顯示某個選項（可用於一般表單輸入）"></a>首先是固定顯示某個選項（可用於一般表單輸入）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">以User所有的role設定的狀態2</span><br><span class="line">&lt;%= form.select :role, options_for_select(User.roles, 2) %&gt;</span><br></pre></td></tr></table></figure>
-<p>可是狀態2是什麼並不直觀，所以有另一種寫法：</p>
-<p>先在controller設定一個實體變數，取每個狀態的key(這裡為了凸顯下一招的厲害我故意打了一個底線)，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    key</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/x1M2hac.png"></p>
-<p>用human_attribute_name幫選項內容整理一下，看起來會比較像人類的表達方式，開頭變成大寫，底線也會變成空格</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    [User.human_attribute_name(&quot;role.#&#123;key&#125;&quot;), key]</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/qhZrdXu.png"></p>
-<p>接下來就是把剛剛做的實體變數塞進選項清單，這下就可以使用key來設定預設值了～這樣是不是比較直觀呢？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我要讓admin成為預設選項</span><br><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, &quot;admin&quot;) %&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="那我只是要修改上次的資料呢？"><a href="#那我只是要修改上次的資料呢？" class="headerlink" title="那我只是要修改上次的資料呢？"></a>那我只是要修改上次的資料呢？</h3><p>萬一我的舊資料不是預設選項卻忘了改，那不是完了？<br>別擔心，只要讀取該筆資料的role塞進預設值參數就好了～</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, @user.role) %&gt;</span><br></pre></td></tr></table></figure>
-
-<p>感想：<br>學會Enum＋下拉選單應用對資料的統一性非常的有幫助，再也不用害怕那些不按照規矩來的人了，繼續鑽研…</p>
-<p>參考資料：<br><a target="_blank" rel="noopener" href="https://api.rubyonrails.org/v5.1/classes/ActiveRecord/Enum.html">ActiveRecord::Enum</a><br><a target="_blank" rel="noopener" href="https://rails.ruby.tw/form_helpers.html#select-%E8%88%87-option-%E6%A8%99%E7%B1%A4">Select 與 Option 標籤</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221202 devise寄信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" target="_blank">【Ruby on Rails】Devise 寄信</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" class="archive-article-date">
-        <time datetime="2022-12-02T16:42:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-03</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="發送設定"><a href="#發送設定" class="headerlink" title="發送設定"></a>發送設定</h2><h3 id="1-開啟Devise-寄信功能"><a href="#1-開啟Devise-寄信功能" class="headerlink" title="1. 開啟Devise 寄信功能"></a>1. 開啟Devise 寄信功能</h3><p>前往 <code>config/initializers/devise.rb</code> 裡修改這兩個指令：<br>這個步驟發送信件會由Devise取代rails原本的mailer</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer = &#x27;Devise::Mailer&#x27;</span><br></pre></td></tr></table></figure>
-<p>這個步驟會在收件方顯示寄件名稱<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-寄件設定（使用mailgun）"><a href="#2-寄件設定（使用mailgun）" class="headerlink" title="2.寄件設定（使用mailgun）"></a>2.寄件設定（使用mailgun）</h3><p>找到檔案<code>config/environments/development.rb</code>(此處為開發環境)，設定</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.raise_delivery_errors = true</span><br><span class="line">config.action_mailer.delivery_method = :smtp</span><br><span class="line">config.action_mailer.default_url_options = &#123; host: &#x27;localhost&#x27;, port: 3000 &#125;</span><br><span class="line">config.action_mailer.smtp_settings = &#123;</span><br><span class="line">    address:              &#x27;smtp.mailgun.org&#x27;,</span><br><span class="line">    port:                 587,</span><br><span class="line">    domain:               &#x27;&#x27;,</span><br><span class="line">    user_name:            &#x27;postmaster@XXXXXXXXXXX.mailgun.org&#x27;,</span><br><span class="line">    password:             &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    authentication:       &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    enable_starttls_auto: true</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>其中<code>config.action_mailer.smtp_settings</code>通常會把詳細寄件資訊整理到email.yml檔，所以要在config建立一個email.yml存放資訊設定</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">development:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br><span class="line">production:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br></pre></td></tr></table></figure>
-<p>domin、user_name、password皆為私人所有，設定為讀取環境變數，config.action_mailer.smtp_settings則要修改為讀取email.yml，可設定不同環境讀取不同的寄件設定（例如development使用gmail寄信、production使用mailgun），但這裡我兩個都使用mailgun。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.smtp_settings = config_for(:email).symbolize_keys</span><br></pre></td></tr></table></figure>
-
-<p>環境變數的設定我是使用<a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv">dotenv</a>套件，只要增加.env檔案設定要帶入email.yml檔的變數即可，設定完成後記得要把<code>.env</code>檔加入<code>.gitignore</code>內，以免推上github被陌生人看光光。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN=sandboxXXXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_USERNAME=postmaster@XXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_PASSWORD=XXXXXXXXXXXXXXXXXX</span><br></pre></td></tr></table></figure>
-
-<p>以上設定完之後就可以去登入介面按忘記密碼測試一下是否能正常寄信囉～<br>大約1分鐘內可以收到。</p>
-<p> <img src="https://i.imgur.com/7aVKNZU.png"></p>
-<h2 id="發送失敗"><a href="#發送失敗" class="headerlink" title="發送失敗"></a>發送失敗</h2><p>那如果很久都沒收到信呢？可以試著檢查看看</p>
-<h4 id="1-config-mailer-sender-一定要帶上郵件地址"><a href="#1-config-mailer-sender-一定要帶上郵件地址" class="headerlink" title="1. config.mailer_sender 一定要帶上郵件地址"></a>1. config.mailer_sender 一定要帶上郵件地址</h4><p>以下兩種字串都會失敗</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema&#x27;    沒有角括號</span><br><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby_cinema&gt;&#x27;  沒有長得像email的內容</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/J4Y6JCL.png"><br>經過測試，角括號內長的像email(像是aa@aa這種，在@前後有英文之類的…)就能寄出，而且還會跑到Gmail的促銷內容（原因待查）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="2-沒有吃到環境變數"><a href="#2-沒有吃到環境變數" class="headerlink" title="2.沒有吃到環境變數"></a>2.沒有吃到環境變數</h3><p>安裝、設定完之後，可以進入rails c輸入<code>ENV</code>查詢目前環境可以讀取到的環境變數，如果設定成功應該會看到，如果沒有的話可以再去檢查看看目前環境是不是挑錯了。<br><img src="https://i.imgur.com/D87ESYL.png"></p>
-<h3 id="3-mailgun註冊後沒有進行開通"><a href="#3-mailgun註冊後沒有進行開通" class="headerlink" title="3.mailgun註冊後沒有進行開通"></a>3.mailgun註冊後沒有進行開通</h3><p>註冊完mailgun請記得去註冊帳號信箱收開通信，否則無法正常使用mailgun功能。</p>
-<h3 id="4-其他原因"><a href="#4-其他原因" class="headerlink" title="4.其他原因"></a>4.其他原因</h3><p>設定<code>config.action_mailer.raise_delivery_errors = true</code>，設定為true則是會在寄信中回報錯誤訊息，我自己會收到錯誤訊息常常因為打錯字或是漏設定(例如smtp沒有設定成mailgun）。</p>
-<p>以上是我利用devise套件寄信的踩雷心得分享，繼續摸索Devise這個套件的奧妙。</p>
-<p>參考資料：<br><a target="_blank" rel="noopener" href="https://github.com/heartcombo/devise">devise-github</a><br><a target="_blank" rel="noopener" href="https://railsbook.tw/chapters/20-send-email">為你自己學 Ruby on Rails - 寄發信件</a><br><a target="_blank" rel="noopener" href="https://ihower.tw/rails/actionmailer.html">Rails 實戰聖經-ActionMailer - E-mail 發送</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">devise</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221127 Stimulus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/27/20221127%20Stimulus/" target="_blank">【Ruby on Rails】Stimulus是一個酷東西！</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/27/20221127%20Stimulus/" class="archive-article-date">
-        <time datetime="2022-11-27T12:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-27</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="什麼是Stimulus-它可以做什麼？"><a href="#什麼是Stimulus-它可以做什麼？" class="headerlink" title="什麼是Stimulus?它可以做什麼？"></a>什麼是Stimulus?它可以做什麼？</h2><ol>
-<li>提供rails一個可以寫JavaScript的空間。</li>
-<li>Stimulus是一種輕量JS框架，主要在HTML上操作，data就是他開始貼標籤的地方。</li>
-<li>它可以簡化JS抓DOM元素的繁雜過程。</li>
-<li>主要核心是Controllers、action、target，做成類似rails  路徑名稱那樣的標籤，包在div、button…任何的&lt;&gt;裡面。</li>
-</ol>
-<h2 id="前置作業：安裝stimulus套件"><a href="#前置作業：安裝stimulus套件" class="headerlink" title="前置作業：安裝stimulus套件"></a>前置作業：安裝stimulus套件</h2><p>在專案資料夾輸入<code>rails</code>查看可以裝什麼框架</p>
-<p><img src="https://i.imgur.com/7BkXfjT.png"></p>
-<p>找到想裝的框架再輸入（同樣適用於圖片上的其他框架）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails webpacker:install:stimulus</span><br></pre></td></tr></table></figure>
-<p>這樣webpacker就會在javascript的資料夾幫我們做好stimulus需要的資料夾<br><img src="https://i.imgur.com/nROj5gU.png"><br>app&#x2F;javascript&#x2F;controllers 這是JS版controller的家，裡面有一個index檔案是使套件可以正常使用的程式碼</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Application &#125; from &quot;stimulus&quot;</span><br><span class="line">import &#123; definitionsFromContext &#125; from &quot;stimulus/webpack-helpers&quot;</span><br><span class="line"></span><br><span class="line">const application = Application.start()</span><br><span class="line">const context = require.context(&quot;controllers&quot;, true, /_controller\.js$/)</span><br><span class="line">application.load(definitionsFromContext(context))</span><br></pre></td></tr></table></figure>
-<p>app&#x2F;javascript&#x2F;controllers&#x2F;hello_controller.js 是一個範例檔，主要用法就是用import接收erb檔設定的controller傳來的訊息，並用export回傳接下來要做的動作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;controllers&#x27;</span><br><span class="line"></span><br><span class="line"> export default class extends Controller &#123;</span><br><span class="line">    static targets = [ &quot;icon&quot; ]</span><br><span class="line"> </span><br><span class="line">    connect() &#123;</span><br><span class="line">    console.log(&quot;hello&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在export default class extends Controller{}裡可以放任何controller所需要用到的function</p>
-<p>常用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connect()：連接上時的觸發事件，可以用來測試是否連接</span><br><span class="line">initialize():可使用於設定初始狀態</span><br><span class="line">static targets =[]：抓設定data-xxx-target的關鍵字（使用陣列放多個target）</span><br></pre></td></tr></table></figure>
-<h2 id="stimulus運作"><a href="#stimulus運作" class="headerlink" title="stimulus運作"></a>stimulus運作</h2><p>stimulus核心三兄弟的運作，我自己理解到的運作模式大概是這樣：</p>
-<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-controller=&quot;favorite-btn&quot;</span><br></pre></td></tr></table></figure>
-<p>這塊地歸我管囉（插一個favorite-btn的旗子，建立favorite-btn_controller辦事處）</p>
-<p>用於設定我們要建立controller的控制範圍及名稱，範圍可大可小，小至一個按鈕，大可以到一整個html，但盡量讓控制範圍小一點比較方便維護。</p>
-<p>註：檔名為 XXX_controller.js  (這個XXX要跟後來設定的data-controller名稱一樣，不然會抓不到)</p>
-<h3 id="Action："><a href="#Action：" class="headerlink" title="Action："></a>Action：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-action=&quot;click-&gt;favorite-btn#toggle&quot;</span><br></pre></td></tr></table></figure>
-<p>我幫你看看favorite-btn有沒有發生什麼事件。<br>發生點擊事件(click)的時候我會叫你的toggle部門出來做事的！</p>
-<p>相當於JavaScript的addEventListener，但不限定只有click之類的預設事件，可以設定範圍，例如<code>update-quantity@document-&gt;order-amount#updateQuantity</code>就代表在document的範圍內監聽update-quantity事件出現，就到order-amount進行updateQuantity的動作。</p>
-<h3 id="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"><a href="#Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼" class="headerlink" title="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"></a>Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-favorite-btn-target=&quot;icon&quot;</span><br></pre></td></tr></table></figure>
-
-<p>相當於JavaScript的document.querySelector(“”)、或是其他抓DOM元素系列的指令。搭配在export default class extends Controller裡的設定：<code>static targets = [ &quot;icon&quot; ]</code>就是抓到icon這個Target，並可以使用iconTarget進行操作（例如：<code>iconTarget.textContent=&quot;&quot;</code> 等）。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最近的Ruby on rails課程提到該如何將JavaScript寫進Rails專案，提到了Stimulus，它不但可以用類似於rails裡面Controller的操作方式決定接下來要做什麼，還可以方便的取用DOM元素，使用AJAX概念紀錄當前操作結果節省網路傳輸，並且集中的controller資料夾能使檔案變得更好管理。</p>
-<p>參考連結：<a target="_blank" rel="noopener" href="https://stimulus.hotwired.dev/handbook/building-something-real">官方手冊</a>、<a target="_blank" rel="noopener" href="https://github.com/hotwired/stimulus-rails">Github</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/27/20221127%20Stimulus/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221123 find&amp;find_by" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/23/20221123%20find&find_by/" target="_blank">【Ruby on Rails】find 與 find_by 是差在哪裡啦！</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/23/20221123%20find&find_by/" class="archive-article-date">
-        <time datetime="2022-11-23T04:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-23</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在rails裡撈資料一下用find、一下用find_by，該用哪個才好呢？<br>先來比較一下它們兩個的不同吧！</p>
-<p>現在我們建立了一個WishList的Model，建立1個wishlist項目，在rails console裡是這樣的<br><img src="https://i.imgur.com/Y0Wiqqe.png"><br>現在看看全部的WishList，現在id編號只有排到7<br><img src="https://i.imgur.com/aLVDOHN.png"></p>
-<hr>
-<p>現在我們來尋找id編號為999的實體資料，</p>
-<h3 id="用find尋找實體"><a href="#用find尋找實體" class="headerlink" title="用find尋找實體"></a>用find尋找實體</h3><p>用find尋找<code>@wish_list=WishList.find(params[:id])</code>，會直接顯示<strong>ActiveRecord::RecordNotFound</strong><br><img src="https://i.imgur.com/LHgkuhg.png"><br>換成大家熟悉的畫面是這樣<br><img src="https://i.imgur.com/SO2gcdF.png"></p>
-<h3 id="用find-by尋找實體"><a href="#用find-by尋找實體" class="headerlink" title="用find_by尋找實體"></a>用find_by尋找實體</h3><p>如果是換成用find_by<code>@wish_list=WishList.find_by(id: params[:id])</code>，則會顯示這是<strong>nil</strong><br><img src="https://i.imgur.com/rE8lbc5.png"><br>換成網頁版<br><img src="https://i.imgur.com/2M9u4sS.png"></p>
-<p>其實find_by有一個兄弟，叫做<code>find_by!</code>它擁有find_by的外表以及find的功能，找不到這筆資料的時候會直接顯示<strong>ActiveRecord::RecordNotFound</strong><br><img src="https://i.imgur.com/rQW14pK.png"></p>
-<h3 id="該用find還是find-by"><a href="#該用find還是find-by" class="headerlink" title="該用find還是find_by?"></a>該用find還是find_by?</h3><p>總結上面提到內容，find跟find_by的不同就是<strong>嚴格程度的不同</strong>（沒有這個id就不給你過vs沒有這個id也是可以通過）。<br>如果我們不需要<strong>顯示畫面</strong>到那筆不存在的資料，那就使用find（例如：這個id所屬的這個頁面不存在，直接讓rails報錯再直接轉去404頁面顯示這個頁面不存在）；如果需要<strong>比對</strong>這筆資料存不存在，會需要利用這個空集合作計算或判斷的話，就使用find_by(例如：會員登入所輸入的帳號是否註冊過？如果他是一個nil就可以被塞到實體變數而不是報錯)</p>
-<p>結論就是：選擇find或find_by就是取決於自己要獲得的結果是錯誤訊息還是一個nil值。</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/23/20221123%20find&find_by/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221118 如何將rails頁面連結到404.html" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" target="_blank">【Ruby on Rails】如何將rails頁面連結到404.html</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" class="archive-article-date">
-        <time datetime="2022-11-18T14:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>站內連結聯到找不到的頁面時，會連結到錯誤畫面（因為我用find方法，找不到會直接顯示錯誤訊息）<br><img src="https://i.imgur.com/Gu5YLZh.png"></p>
-<p>這時我們就可以用<code>rescue_from</code>捕捉意外，捕捉到什麼呢？<br>ActiveRecord::RecordNotFound 這個錯誤訊息，並且呼叫”record_not_found”（其實可以叫做not_found，只是為了避免以後又有其他not_found系列的方法要再修正比較麻煩，命名準確一點方便維護）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br></pre></td></tr></table></figure>
-<p>既然呼叫了，我們還是要再建立一個叫做record_not_found的方法：<br>這個方法要做什麼呢？就是要渲染我們想要的頁面（為什麼不是跳轉？第一個是我們沒有給404檔案裝路徑，第二是因為我們要留在原本找不到的那個網址）<br><img src="https://i.imgur.com/GkgoZEg.png"><br>渲染別的檔案我們使用<code>render file</code>，要找到不是在view資料夾裡面的404.html檔案的話可以用”#{Rails.root}”，意思是我要在這個Rails專案的目錄下尋找ＸＸＸ，後面接上路徑就是到某個資料夾尋找某個檔案</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;</span><br></pre></td></tr></table></figure>
-<p>渲染成功，打開網路狀態會看到這樣的結果<br><img src="https://i.imgur.com/BkwBPmW.png"></p>
-<p>網路狀態200（正常的找到你的”找不到”頁面），我們也希望網路的狀態被改成404，在render file後面設定一個status： 404 ，就會得到這樣的畫面<br><img src="https://i.imgur.com/vDAcx94.png"></p>
-<h3 id="獲得真正的404頁面！"><a href="#獲得真正的404頁面！" class="headerlink" title="獲得真正的404頁面！"></a>獲得真正的404頁面！</h3><p>完整程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br><span class="line"></span><br><span class="line">private</span><br><span class="line">def record_not_found</span><br><span class="line">  render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;,layout: false ,status: 400</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221116 var&amp;let&amp;const" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/16/20221116%20var&let&const/" target="_blank">var、let、const的差別</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/16/20221116%20var&let&const/" class="archive-article-date">
-        <time datetime="2022-11-16T03:47:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-16</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="1-重複宣告"><a href="#1-重複宣告" class="headerlink" title="1.重複宣告"></a>1.重複宣告</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var a = 2</span><br><span class="line">console.log(a) // 印出2</span><br></pre></td></tr></table></figure>
-<p>var可以重複宣告，並且後來宣告的a會覆蓋前面的a。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1</span><br><span class="line">let a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>let不能重複宣告，這樣執行console.log(a)會跳出錯誤訊息：<br><strong>Identifier ‘a’ has already been declared</strong><br>告訴你a這個名字用過了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 1</span><br><span class="line">const a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>const和let一樣不能重複宣告，執行會跳出和let一樣的錯誤訊息 ：<strong>Identifier ‘a’ has already been declared</strong>。</p>
-<h2 id="2-重新賦值"><a href="#2-重新賦值" class="headerlink" title="2.重新賦值"></a>2.重新賦值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var a = 2</span><br><span class="line">a=3</span><br><span class="line">console.log(a) //印出 3</span><br></pre></td></tr></table></figure>
-<p>var除了可以重複宣告以外，也可以直接用全域變數直接重新賦值<br>這樣console.log(a)印出來的結果會是3。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1</span><br><span class="line">a = 2</span><br><span class="line">console.log(a) //印出2</span><br></pre></td></tr></table></figure>
-<p>上面提到過let不能重複宣告，但它可以使用全域變數直接賦值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 1</span><br><span class="line">a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>雖然const跟let一樣不能重複宣告，但const更加嚴格，全域變數也不能重值賦值，會跳出錯誤訊息<strong>Assignment to constant variable.</strong></p>
-<p>但是const也不是完全不能改變，假如const是一個陣列，我們可以藉由指定元素來變更內容 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a=[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]</span><br><span class="line">a[0]=&quot;X&quot;</span><br><span class="line">console.log(a) //印出[ &#x27;X&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27; ]</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-作用的scope"><a href="#3-作用的scope" class="headerlink" title="3.作用的scope"></a>3.作用的scope</h2><p>var的作用範圍是function scope，也就是作用在function區域裡面都可以取用的變數，出了function就拿不到了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function hi()&#123;</span><br><span class="line">  var a=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a) //印出  ReferenceError: a is not defined</span><br></pre></td></tr></table></figure>
-<p>如果不是放在function內的話還是可以在外部取用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    var a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a); //印出in block!</span><br></pre></td></tr></table></figure>
-
-<p>let的作用範圍都是block scope，在{}的範圍以外就無法取用了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    let a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);  //印出 a is not defined</span><br></pre></td></tr></table></figure>
-<p>補充：迴圈也是{}應用的一種（這裡的 a is not defined是指console.log(“out:”+a)的a），通常使用let。<br><br>為什麼不用const呢？因為a++等同於 a&#x3D;a+1，我們前面已經讓a是一個常數(const)了，不能明目張膽的改變它的內容，執行會顯示錯誤訊息<strong>Assignment to constant variable.</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let a=0 ; a&lt;5 ; a++)&#123;</span><br><span class="line">    console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">console.log(&quot;out:&quot;+a) //印出 a is not defined</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>const也是block scope，a無法在外部被取用。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    const a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);  //印出 a is not defined</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-TDZ-暫時性死區"><a href="#4-TDZ-暫時性死區" class="headerlink" title="4.TDZ 暫時性死區"></a>4.TDZ 暫時性死區</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a) //印出 undefined</span><br><span class="line">var a = 1</span><br></pre></td></tr></table></figure>
-<p><strong>var有變數提昇</strong>的特性，如果就以執行順序來看的話，明明還沒宣告var a &#x3D; 1 怎麼console.log會說a是undefined呢？<br><br>JS執行順序為由上往下，步驟分成兩步，第一步先註冊名稱，第二步為賦值，變數提昇有點類似預告，在第一步的時候掃描到var a，告訴系統：「今天有一個a客人會來喔！」，進入第二步賦值由於還沒輪到把1賦予a就被印出來了，所以結果是undefined。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)</span><br><span class="line">let a = 1</span><br><span class="line"></span><br><span class="line">console.log(a)</span><br><span class="line">const a = 1</span><br><span class="line"></span><br><span class="line">以上console.log(a)都會印出 ReferenceError: Cannot access &#x27;a&#x27; before initialization</span><br></pre></td></tr></table></figure>
-<p>let、const則是有一個TDZ，類似一個防雷馬賽克，在第一步的時候TDZ就蓋在let（const）上面，系統就不知道有a客人，進行到第二步就會像a去客人去系統報到，系統卻說：「你沒有預約訂位喔」的樣子。</p>
-<p>這樣的設計可以使流程更加嚴謹，使程式邏輯更加通順、增加可讀性。<br>（就像是：我的點的菜還沒炒好卻可以包空氣帶走？這不太對吧？）</p>
-<h2 id="5-污染window"><a href="#5-污染window" class="headerlink" title="5.污染window"></a>5.污染window</h2><p>在瀏覽器的主控台上宣告 var a&#x3D;1 , let b &#x3D;2 , const c &#x3D;3<br>在window裡面只會有a會被建立出來，</p>
-<p><img src="https://i.imgur.com/rzkMLRO.png"></p>
-<p>【結論】<br><br>宣告的嚴謹程度 const &gt; let &gt; var<br><br>盡量使用const，可以視情況適當改用let，非到萬不得已再使用var。 </p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/16/20221116%20var&let&const/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -1329,8 +455,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
