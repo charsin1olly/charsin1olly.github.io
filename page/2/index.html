@@ -180,6 +180,451 @@
             
 
   
+    <article id="post-20230215 變數提升（Hoisting）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" target="_blank">變數提升（Hoisting）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" class="archive-article-date">
+        <time datetime="2023-02-15T08:25:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-15</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。</p>
+<h2 id="創造期與執行期"><a href="#創造期與執行期" class="headerlink" title="創造期與執行期"></a>創造期與執行期</h2><p>瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期，像是以下這段程式碼：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var food = &quot;漢堡&quot;</span><br><span class="line">console.log(food)</span><br></pre></td></tr></table></figure>
+
+<p>第一階段創造期是去記憶體取得等下要執行程式碼的空間，這個階段如果要使用<code>console.log(food)</code>印出「food」僅能獲得<code>undefined</code>的結果，接下來進入第二階段創造期才會進行賦值，把「漢堡」賦予到「food」變數上，用<code>console.log(food)</code>印出來的結果就會變成漢堡。</p>
+<h2 id="var的提升"><a href="#var的提升" class="headerlink" title="var的提升"></a>var的提升</h2><p>先看看第一個問題，由於變數提升的特性，下面這段程式碼可以印出undefined：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food)</span><br><span class="line">var food = &quot;漢堡&quot;</span><br></pre></td></tr></table></figure>
+<p>創造期會先得到一個food變數，這和平常一樣，但第二階段由於JS執行順序為上到下，food在被賦值之前就被印出來了，但因為依舊有「登記」到food變數，所以印出undefined。</p>
+<p>ES6之後，出現了let、const這類更嚴謹的宣告，多了TDZ修正var的提升特性，不是說let跟const沒有提升，只是有不一樣的錯誤訊息讓開發者更好偵錯。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">const food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
+<p>或是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">let food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/X2f9Yei.png"><br>加入TDZ之後就能看到這個錯誤訊息，並不是undefined（畢竟可能是var food真的沒有賦值或是其他情況導致的，當然錯誤越明確越好～）。</p>
+<p>但有些瀏覽器版本不一樣跑出來的結果可能是<code>Uncaught ReferenceError: food is not defined</code>，和沒有宣告變數的錯誤訊息一樣，所以測試的時候可能要多開幾個瀏覽器看看是不是瀏覽器版本問題（上圖是開firefox的開發者工具，下圖則是chrome）。</p>
+<p><img src="https://i.imgur.com/AS1lNij.png"></p>
+<h2 id="函式陳述式與函式表達式的提升"><a href="#函式陳述式與函式表達式的提升" class="headerlink" title="函式陳述式與函式表達式的提升"></a>函式陳述式與函式表達式的提升</h2><p>再來就是為什麼function放在哪裡都可以被取用，其實寫法不同也會有不一樣的結果：</p>
+<h3 id="函式陳述式"><a href="#函式陳述式" class="headerlink" title="函式陳述式"></a>函式陳述式</h3><p>函式陳述式會提升到創造期就準備好了，執行期就可以直接呼叫函式：<br><img src="https://i.imgur.com/EAFSg4J.png"></p>
+<h3 id="函式表達式"><a href="#函式表達式" class="headerlink" title="函式表達式"></a>函式表達式</h3><p>函式表達式則是遵從前面提過的變數提升，因為function已經變成了變數所需要賦的值，使用var宣告的時候由於還沒有給run的值，變成了undefined，所以錯誤訊息給的是<code>run is not a function</code><br><img src="https://i.imgur.com/w2kd6p4.png"></p>
+<p>換成const或let的時候，一樣會有TDZ的狀態，錯誤訊息則會顯示<code>can&#39;t access lexical declaration &#39;run&#39; before initialization</code></p>
+<p><img src="https://i.imgur.com/4uxZEqj.png"></p>
+<h3 id="執行的優先權"><a href="#執行的優先權" class="headerlink" title="執行的優先權"></a>執行的優先權</h3><p>根據上面兩點可以發現函式陳述式的優先權是大於函式表達式的，因為陳述式會在創造期就準備好可以被呼叫，而函式表達式則多了一道關卡，function的本體在執行期才能被賦予到變數上，也就是說如果有兩個同名的function被呼叫的話最終的結果就是執行順序較後面的會覆蓋掉前面的，例如我故意把函式陳述式放在函式表達式後面，最後的結果還是函式表達式寫法的結果：</p>
+<p><img src="https://i.imgur.com/0Z2bsbi.png"></p>
+<p>可以看見，在第二階段執行由上到下呼叫的三個hello，第一次呼叫的是創造期就準備好的函式陳述式hello，而後來呼叫的hello都是函式表達式內容覆蓋之後的結果。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>變數提升好好運用可以更彈性的維護專案，善用const跟let有TDZ的特性可以少走一些除錯的冤枉路。</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230212 文法：陳述式與表達式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/" target="_blank">文法：陳述式與表達式</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/" class="archive-article-date">
+        <time datetime="2023-02-12T09:44:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-12</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>繼上個章節裡提到的 JavaScript 的陳述式與表達式是什麼呢？剛好看到下個章節有介紹，開始整理重點！</p>
+<h2 id="如何判斷陳述式與表達式？"><a href="#如何判斷陳述式與表達式？" class="headerlink" title="如何判斷陳述式與表達式？"></a>如何判斷陳述式與表達式？</h2><p>最簡單的判斷法就是「會回傳值」就是表達式。</p>
+<h3 id="表達式長什麼樣子？"><a href="#表達式長什麼樣子？" class="headerlink" title="表達式長什麼樣子？"></a>表達式長什麼樣子？</h3><p>打開開發者模式，輸入表達式之後按下 enter 會出現一列前方帶有 &lt; 符號，那就是瀏覽器回傳的結果，而會回傳值的就是表達式。<br><img src="https://i.imgur.com/PZIqxGR.png"></p>
+<p>表達式可以是</p>
+<ul>
+<li>一個值：數字 1…</li>
+<li>變數：a、user…..</li>
+<li>運算子：1 &#x3D;&#x3D;&#x3D; 1、 a &#x3D; 1</li>
+<li>調用函式：fn()</li>
+<li>變形的函式陳述式：在函式陳述式前後加上小括號也是一種表達式，回傳結果為函式本身<br><img src="https://i.imgur.com/n7mXbjL.png"></li>
+</ul>
+<h3 id="陳述式長什麼樣子？"><a href="#陳述式長什麼樣子？" class="headerlink" title="陳述式長什麼樣子？"></a>陳述式長什麼樣子？</h3><p>陳述式常見的分類則有</p>
+<ul>
+<li>宣告(var a、let a、const a、function a(){…})</li>
+<li>流程控制（block、if else）</li>
+<li>迴圈（for、for…in）</li>
+<li>import、export</li>
+</ul>
+<p>相對於表達式，陳述式在瀏覽器模式輸入之後，按下 enter 則會回傳 undefined 像是這樣<br><img src="https://i.imgur.com/8Jkv5cE.png"></p>
+<h2 id="使用情境"><a href="#使用情境" class="headerlink" title="使用情境"></a>使用情境</h2><h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>常見的 if…else 運用是根據條件的 true 或 false 進行判斷，而 if 的條件(condition)可以放入任何表達式:<br><img src="https://i.imgur.com/mxkSUFh.png"></p>
+<p>放入陳述式則會顯示 SyntaxError:<br><img src="https://i.imgur.com/K8xqgWH.png"></p>
+<h3 id="函數陳述式＆函數表達式"><a href="#函數陳述式＆函數表達式" class="headerlink" title="函數陳述式＆函數表達式"></a>函數陳述式＆函數表達式</h3><p>函式陳述式一定是具名函式，否則無法調用（當然就沒用了），下例就是一個名稱為 hello 的具名函式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function hello()&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函數表達式可能為具名函式或匿名函式：<br><img src="https://i.imgur.com/vbyr8PA.png"><br>這邊我們看到裡面的 hey 函式不能在外部被調用，雖然在函式內部可以呼叫，但實務上不太常出現需要這麼做的情況（有但是很少！某些風格規範會建議都要具名）。最後呼叫這個函式還是要用 hi()，那麼，這個 hey 的命名就變得有些多餘，表達式就可以改成這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const hi = function()&#123;</span><br><span class="line">  console.log(&quot;hey!&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="補充"><a href="#補充" class="headerlink" title="補充"></a>補充</h2><h3 id="1-陳述式中可能包含表達式的片段"><a href="#1-陳述式中可能包含表達式的片段" class="headerlink" title="1. 陳述式中可能包含表達式的片段"></a>1. 陳述式中可能包含表達式的片段</h3><p><img src="https://i.imgur.com/rZ7IDk3.png"><br>可以看見，雖然有運算子的結構，但它的本質依舊是宣告，不會回傳結果。</p>
+<h3 id="2-調用函式是表達式？function-是陳述式？"><a href="#2-調用函式是表達式？function-是陳述式？" class="headerlink" title="2. 調用函式是表達式？function 是陳述式？"></a>2. 調用函式是表達式？function 是陳述式？</h3><p><img src="https://i.imgur.com/3saVPrI.png"><br>明明就有設定 return 的結果，為什麼是陳述式？因為放到瀏覽器上執行依舊會是 undefined，它的本質還是宣告，宣告 fn()這個函式。</p>
+<p>而上面提過的，調用函式則是表達式，會回傳 fn()的結果，相對的，不寫 return 結果一樣是 undefined，但它依舊是表達式(回傳值為 undefined)。</p>
+<h3 id="3-變形的陳述式暗藏陷阱"><a href="#3-變形的陳述式暗藏陷阱" class="headerlink" title="3. 變形的陳述式暗藏陷阱"></a>3. 變形的陳述式暗藏陷阱</h3><p>上面提過流程控制的 condition 只能放表達式，加上小括號的陳述式是一種表達式，而它回傳的值是函式本身，會被判斷為 true，所以這個判斷式會執行 true 的結果。<br><img src="https://i.imgur.com/FHVun7l.png"></p>
+<p>參考資料：</p>
+<p><a target="_blank" rel="noopener" href="https://www.books.com.tw/products/0010941867">看完這本就會懂！帶你無痛提升 JavaScript 面試力：精選 55 道前端工程師的核心問題 × 求職加分模擬試題解析</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230208 JavaScript 排序 - sort" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/02/08/20230208%20JavaScript%20%E6%8E%92%E5%BA%8F%20-%20sort/" target="_blank">JavaScript 排序 - sort</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/02/08/20230208%20JavaScript%20%E6%8E%92%E5%BA%8F%20-%20sort/" class="archive-article-date">
+        <time datetime="2023-02-08T06:23:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-08</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>在JavaScript 30挑戰的路上遇到sort，以往只用來排序數字大小，當我寫到第四天（實際上超過4天）遇到它，還是寫篇筆記吧…</p>
+<h2 id="根據字串的-Unicode-編碼排序"><a href="#根據字串的-Unicode-編碼排序" class="headerlink" title="根據字串的 Unicode 編碼排序"></a>根據字串的 Unicode 編碼排序</h2><p>像下面這個例子，一般來說順序應該是[1, 4, 21, 30, 100000]但因為數字會被轉換成字串，再轉成Unicode編碼，所以100000會在4前面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const array1 = [1, 30, 4, 21, 100000];</span><br><span class="line">array1.sort();</span><br><span class="line">console.log(array1);</span><br><span class="line"></span><br><span class="line">結果： Array [1, 100000, 21, 30, 4]</span><br></pre></td></tr></table></figure>
+<h2 id="sort排序會變更原陣列"><a href="#sort排序會變更原陣列" class="headerlink" title="sort排序會變更原陣列"></a>sort排序會變更原陣列</h2><p>如上面演示的，當我們使用完sort，再去印出原本的陣列，會發現資料順序是排序過的。</p>
+<h2 id="compareFunction可以使sort使用回傳值比較排序"><a href="#compareFunction可以使sort使用回傳值比較排序" class="headerlink" title="compareFunction可以使sort使用回傳值比較排序"></a>compareFunction可以使sort使用回傳值比較排序</h2><p>為了解決上面提到的Unicode排序很亂的問題，我們可以使用compareFunction去定義排序規則。</p>
+<p>先來個基本款：<code>arr.sort((a, b) =&gt; &#123;return a - b&#125;)</code></p>
+<p>原理（越大放越後面）：<br>a - b &lt; 0，會把 a 排在 b 前面。<br>a - b &#x3D; 0，不會進行排序，但會和其他全部的元素比較來排序。<br>a - b &gt; 0，會把 b 排在 a 前面。</p>
+<p>升冪及降冪可以這樣寫</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">arr.sort([compareFunction])</span><br><span class="line"></span><br><span class="line">#升冪排列</span><br><span class="line">function compareNumbers(a, b) &#123;</span><br><span class="line">  return a - b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#降冪排列</span><br><span class="line">function compareNumbers(a, b) &#123;</span><br><span class="line">  return b - a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可套用在物件的排序"><a href="#可套用在物件的排序" class="headerlink" title="可套用在物件的排序"></a>可套用在物件的排序</h3><p>假設有一個陣列，裡面的元素都是物件，我們也可以用sort針對物件的屬性進行排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const inventors = [</span><br><span class="line">        &#123; first: &quot;Albert&quot;, last: &quot;Einstein&quot;, year: 1879, passed: 1955 &#125;,</span><br><span class="line">        &#123; first: &quot;Isaac&quot;, last: &quot;Newton&quot;, year: 1643, passed: 1727 &#125;,</span><br><span class="line">        &#123; first: &quot;Galileo&quot;, last: &quot;Galilei&quot;, year: 1564, passed: 1642 &#125;,</span><br><span class="line">        &#123; first: &quot;Marie&quot;, last: &quot;Curie&quot;, year: 1867, passed: 1934 &#125;,</span><br><span class="line">        &#123; first: &quot;Johannes&quot;, last: &quot;Kepler&quot;, year: 1571, passed: 1630 &#125;,</span><br><span class="line">        &#123; first: &quot;Nicolaus&quot;, last: &quot;Copernicus&quot;, year: 1473, passed: 1543 &#125;,</span><br><span class="line">        &#123; first: &quot;Max&quot;, last: &quot;Planck&quot;, year: 1858, passed: 1947 &#125;,</span><br><span class="line">        &#123; first: &quot;Katherine&quot;, last: &quot;Blodgett&quot;, year: 1898, passed: 1979 &#125;,</span><br><span class="line">        &#123; first: &quot;Ada&quot;, last: &quot;Lovelace&quot;, year: 1815, passed: 1852 &#125;,</span><br><span class="line">        &#123; first: &quot;Sarah E.&quot;, last: &quot;Goode&quot;, year: 1855, passed: 1905 &#125;,</span><br><span class="line">        &#123; first: &quot;Lise&quot;, last: &quot;Meitner&quot;, year: 1878, passed: 1968 &#125;,</span><br><span class="line">        &#123; first: &quot;Hanna&quot;, last: &quot;Hammarström&quot;, year: 1829, passed: 1909 &#125;,</span><br><span class="line">      ];</span><br></pre></td></tr></table></figure>
+<h4 id="1-以年齡排序（比較數字）"><a href="#1-以年齡排序（比較數字）" class="headerlink" title="(1)以年齡排序（比較數字）"></a>(1)以年齡排序（比較數字）</h4><p>就如同一般比較數值大小</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const question3 = inventors.sort(function (a, b) &#123;</span><br><span class="line">        return a.year - b.year;</span><br><span class="line">      &#125;);</span><br><span class="line">console.table(question3);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/T5x61J9.png"></p>
+<h4 id="2-以姓名做排序（比較字串）"><a href="#2-以姓名做排序（比較字串）" class="headerlink" title="(2)以姓名做排序（比較字串）"></a>(2)以姓名做排序（比較字串）</h4><p>如果用inventorA - inventorB 會沒有效果，而其中的1或-1我很好奇的試一下，發現要一正一負才能排序（1:2、-1:-2都不會排序），如果把-1：1倒過來則會變成相反的排序。另外這種比較方法也同樣可以比較數值大小。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const question3 = inventors.sort((inventorA, inventorB) =&gt; &#123; </span><br><span class="line">        return inventorA.first &gt; inventorB.first ? 1 : -1;</span><br><span class="line">            &#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Fcr6ZnP.png"></p>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">MDN-sort</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/02/08/20230208%20JavaScript%20%E6%8E%92%E5%BA%8F%20-%20sort/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230130 Timecop 時間管理大師" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" target="_blank">【Ruby on Rails】Timecop 時間管理大師</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" class="archive-article-date">
+        <time datetime="2023-01-29T19:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-30</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近做面試題認識Timecop，Timecop是一個控制時間的套件，怎麼個控制法呢？</p>
+<h2 id="freeze、travel"><a href="#freeze、travel" class="headerlink" title="freeze、travel"></a>freeze、travel</h2><p>freeze是把設定的時間凍住，同時我們的Time.now也會變成freeze的時間，10秒之後（再次提醒自己：sleep會放10秒再繼續執行，不是當機啦！）再使用一次Time.now並不會改變時間，和剛才設定的new_time相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.freeze(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; true</span><br></pre></td></tr></table></figure>
+
+<p>而travel是會把我們的時間(Time.now)改成new_time設定的時間，並且開始「流動」，跟freeze不一樣的地方就是new_time和Time.now不會相同，因為new_time的時間是寫死的，而Time.now會一直改變。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.travel(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; false</span><br></pre></td></tr></table></figure>
+
+<p>從github挖出來的freeze和travel可用引數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. Timecop.freeze(time_inst) </span><br><span class="line">    ＃例：Timecop.travel(Time.zone.local(2023, 1, 29, 22, 30))</span><br><span class="line">2. Timecop.freeze(datetime_inst)</span><br><span class="line">3. Timecop.freeze(date_inst)</span><br><span class="line">4. Timecop.freeze(offset_in_seconds)</span><br><span class="line">5. Timecop.freeze(year, month, day, hour=0, minute=0, second=0)</span><br><span class="line">    ＃例：Timecop.travel(2023, 1, 29, 22, 30)</span><br><span class="line">6. Timecop.freeze() # Defaults to Time.now</span><br></pre></td></tr></table></figure>
+<p>另外爬到的文還有do end用法，在scope裡的都會受到Time.freeze及travel的影響，假設時間是10:00，經過第一層的1.hours之後時間就會前進一個小時、回溯可以用1.hours.ago，時間函數似乎都可以用（這個我不太確定），再經過這個scope裡的Timecop.travel 30.minutes，時間將會再更前推30分鐘。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Timecop.freeze(Time.zone.local(2023, 1, 31, 10, 0))</span><br><span class="line">Timecop.travel 1.hours do</span><br><span class="line">    Time.now ＃ 2023-01-31 11:00:00 +0800</span><br><span class="line">    </span><br><span class="line">    Timecop.travel 30.minutes do</span><br><span class="line">        Time.now ＃ 2023-01-31 11:30:00 +0800</span><br><span class="line">    end    </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>改時間如果有需要復原成正常時間的話，可以使用<code> Timecop.return</code></p>
+<h2 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h2><p>可以縮放時間刻度的比例，scale的引數就是一秒可以當幾秒過</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Timecop.scale(60) do</span><br><span class="line">  Time.now # 2023-01-31 10:00:00 +0800</span><br><span class="line">  sleep 10</span><br><span class="line">  Time.now # 2023-01-31 10:10:00 +0800</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="before、after"><a href="#before、after" class="headerlink" title="before、after"></a>before、after</h2><p>在before跟after之間的時間都會受到Timecop影響，不過這次我自己用是拿來設定時區的(不知道是不是OK的做法)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> describe &quot;some set of tests to mock&quot; do</span><br><span class="line">  before do</span><br><span class="line">    Timecop.freeze(Time.local(1990))</span><br><span class="line">    Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  after do</span><br><span class="line">    Timecop.return</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  it &quot;should do blah blah blah&quot; do</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="補充：當我跟Timecop初次見面"><a href="#補充：當我跟Timecop初次見面" class="headerlink" title="補充：當我跟Timecop初次見面"></a>補充：當我跟Timecop初次見面</h3><p>當我第一次使用Rspec＋Timecop跟在深山走丟一樣，不知道是哪裡缺了漏了，報不完的錯，甚至都還沒碰到邏輯就錯了，記錄一下以免太久不碰又忘記（哭</p>
+<ol>
+<li>如果在Rspec使用Timecop會報這個錯誤，在文件上方補上<code>require &quot;timecop&quot;</code>引入就能正常使用了。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br><span class="line">     </span><br><span class="line">     NameError:</span><br><span class="line">       uninitialized constant Timecop</span><br><span class="line">     </span><br><span class="line">             Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br></pre></td></tr></table></figure></li>
+<li>在使用時間函數老是說undefined method，除了這裡的zone還有上面提過的hours、minutes等，這個問題的解決辦法也是在文件上方補上<code> require &quot;active_support/all&quot;</code>就能正常使用。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">     </span><br><span class="line">    NoMethodError:</span><br><span class="line">      undefined method `zone=&#x27; for Time:Class</span><br><span class="line">     </span><br><span class="line">        Time.zone = &quot;Asia/Taipei&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://github.com/travisjeffery/timecop">Timecop 官方文件</a><br><a target="_blank" rel="noopener" href="https://medium.com/@tonyhsu/%E7%94%A8-timecop-%E8%87%AA%E7%94%B1%E7%A9%BF%E6%A2%AD%E6%99%82%E9%96%93%E8%BB%B8-e9d606e8dbd3">用 Timecop 自由穿梭時間軸</a><br>碎念：哎…小白剛踏出新手教學真是什麼都不知道，慢慢來（深呼吸</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20221204 Enum與下拉選單" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1006,6 +1451,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Edge</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
               </li>
             
             <div class="clearfix"></div>
