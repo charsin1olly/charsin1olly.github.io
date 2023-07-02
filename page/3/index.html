@@ -180,6 +180,123 @@
             
 
   
+    <article id="post-20221202 devise寄信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" target="_blank">【Ruby on Rails】Devise 寄信</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" class="archive-article-date">
+        <time datetime="2022-12-02T16:42:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-03</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="發送設定"><a href="#發送設定" class="headerlink" title="發送設定"></a>發送設定</h2><h3 id="1-開啟Devise-寄信功能"><a href="#1-開啟Devise-寄信功能" class="headerlink" title="1. 開啟Devise 寄信功能"></a>1. 開啟Devise 寄信功能</h3><p>前往 <code>config/initializers/devise.rb</code> 裡修改這兩個指令：<br>這個步驟發送信件會由Devise取代rails原本的mailer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer = &#x27;Devise::Mailer&#x27;</span><br></pre></td></tr></table></figure>
+<p>這個步驟會在收件方顯示寄件名稱<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-寄件設定（使用mailgun）"><a href="#2-寄件設定（使用mailgun）" class="headerlink" title="2.寄件設定（使用mailgun）"></a>2.寄件設定（使用mailgun）</h3><p>找到檔案<code>config/environments/development.rb</code>(此處為開發環境)，設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.raise_delivery_errors = true</span><br><span class="line">config.action_mailer.delivery_method = :smtp</span><br><span class="line">config.action_mailer.default_url_options = &#123; host: &#x27;localhost&#x27;, port: 3000 &#125;</span><br><span class="line">config.action_mailer.smtp_settings = &#123;</span><br><span class="line">    address:              &#x27;smtp.mailgun.org&#x27;,</span><br><span class="line">    port:                 587,</span><br><span class="line">    domain:               &#x27;&#x27;,</span><br><span class="line">    user_name:            &#x27;postmaster@XXXXXXXXXXX.mailgun.org&#x27;,</span><br><span class="line">    password:             &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    authentication:       &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    enable_starttls_auto: true</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>config.action_mailer.smtp_settings</code>通常會把詳細寄件資訊整理到email.yml檔，所以要在config建立一個email.yml存放資訊設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">development:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br><span class="line">production:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br></pre></td></tr></table></figure>
+<p>domin、user_name、password皆為私人所有，設定為讀取環境變數，config.action_mailer.smtp_settings則要修改為讀取email.yml，可設定不同環境讀取不同的寄件設定（例如development使用gmail寄信、production使用mailgun），但這裡我兩個都使用mailgun。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.smtp_settings = config_for(:email).symbolize_keys</span><br></pre></td></tr></table></figure>
+
+<p>環境變數的設定我是使用<a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv">dotenv</a>套件，只要增加.env檔案設定要帶入email.yml檔的變數即可，設定完成後記得要把<code>.env</code>檔加入<code>.gitignore</code>內，以免推上github被陌生人看光光。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN=sandboxXXXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_USERNAME=postmaster@XXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_PASSWORD=XXXXXXXXXXXXXXXXXX</span><br></pre></td></tr></table></figure>
+
+<p>以上設定完之後就可以去登入介面按忘記密碼測試一下是否能正常寄信囉～<br>大約1分鐘內可以收到。</p>
+<p> <img src="https://i.imgur.com/7aVKNZU.png"></p>
+<h2 id="發送失敗"><a href="#發送失敗" class="headerlink" title="發送失敗"></a>發送失敗</h2><p>那如果很久都沒收到信呢？可以試著檢查看看</p>
+<h4 id="1-config-mailer-sender-一定要帶上郵件地址"><a href="#1-config-mailer-sender-一定要帶上郵件地址" class="headerlink" title="1. config.mailer_sender 一定要帶上郵件地址"></a>1. config.mailer_sender 一定要帶上郵件地址</h4><p>以下兩種字串都會失敗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema&#x27;    沒有角括號</span><br><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby_cinema&gt;&#x27;  沒有長得像email的內容</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/J4Y6JCL.png"><br>經過測試，角括號內長的像email(像是aa@aa這種，在@前後有英文之類的…)就能寄出，而且還會跑到Gmail的促銷內容（原因待查）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-沒有吃到環境變數"><a href="#2-沒有吃到環境變數" class="headerlink" title="2.沒有吃到環境變數"></a>2.沒有吃到環境變數</h3><p>安裝、設定完之後，可以進入rails c輸入<code>ENV</code>查詢目前環境可以讀取到的環境變數，如果設定成功應該會看到，如果沒有的話可以再去檢查看看目前環境是不是挑錯了。<br><img src="https://i.imgur.com/D87ESYL.png"></p>
+<h3 id="3-mailgun註冊後沒有進行開通"><a href="#3-mailgun註冊後沒有進行開通" class="headerlink" title="3.mailgun註冊後沒有進行開通"></a>3.mailgun註冊後沒有進行開通</h3><p>註冊完mailgun請記得去註冊帳號信箱收開通信，否則無法正常使用mailgun功能。</p>
+<h3 id="4-其他原因"><a href="#4-其他原因" class="headerlink" title="4.其他原因"></a>4.其他原因</h3><p>設定<code>config.action_mailer.raise_delivery_errors = true</code>，設定為true則是會在寄信中回報錯誤訊息，我自己會收到錯誤訊息常常因為打錯字或是漏設定(例如smtp沒有設定成mailgun）。</p>
+<p>以上是我利用devise套件寄信的踩雷心得分享，繼續摸索Devise這個套件的奧妙。</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://github.com/heartcombo/devise">devise-github</a><br><a target="_blank" rel="noopener" href="https://railsbook.tw/chapters/20-send-email">為你自己學 Ruby on Rails - 寄發信件</a><br><a target="_blank" rel="noopener" href="https://ihower.tw/rails/actionmailer.html">Rails 實戰聖經-ActionMailer - E-mail 發送</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">devise</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20221127 Stimulus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
