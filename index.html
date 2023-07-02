@@ -180,6 +180,343 @@
             
 
   
+    <article id="post-20230629" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/29/20230629/" target="_blank">Tomcat如何使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/29/20230629/" class="archive-article-date">
+        <time datetime="2023-06-29T14:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-29</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>迷茫的JAVA之路，跟之前學的rails不一樣啊~(懷念一下專案裡面直接rails s，就能打開的localhost)JavaWeb專案的預覽server還要另外裝，而我們公司前輩跟我說是使用tomcat，上網查過之後得知tomcat是在JavaWeb開發中蠻常見的伺服器工具，那它要怎麼用呢?</p>
+<h2 id="安裝Tomcat"><a href="#安裝Tomcat" class="headerlink" title="安裝Tomcat"></a>安裝Tomcat</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://tomcat.apache.org/whichversion.html">這裡</a>可以查看適合的版本，找到適合版本可以在左側欄找到相對應版本的下載點，如下圖：<br><img src="https://hackmd.io/_uploads/S1tvvIKdh.png"></p>
+</li>
+<li><p>記得選對作業系統的版本<br><img src="https://hackmd.io/_uploads/rJxWd8Yuh.png"></p>
+</li>
+<li><p>下載後可在任何地方解壓縮即可使用(不要解到自己找不到的地方就行了)，下圖為解壓縮完的樣子(下面那個檔案是下載下來的壓縮檔)，我自己創建了一個tomcat資料夾專門存放tomcat各個版本:<br><img src="https://hackmd.io/_uploads/HJIG9UKu2.png"></p>
+</li>
+</ol>
+<h2 id="資料夾結構"><a href="#資料夾結構" class="headerlink" title="資料夾結構"></a>資料夾結構</h2><ul>
+<li>bin：可以在tomcat上運行的程序</li>
+<li>conf：tomcat的配置文件，像是運行用的port設定之類的</li>
+<li>lib：tomcat運行要用的jar包</li>
+<li>logs：伺服器運行紀錄，啟動之後會產生的伺服器訊息通通都會存在這裡</li>
+<li>temp：運行時所產生的暫存檔</li>
+<li>webapp：存放執行專案，如果要將專案佈署到web上就是要塞進這資料夾<br>  這裡的docs資料夾裡面就是tomcat的技術文件，和網站上看到的一樣；ROOT資料夾則是預設畫面，例如等等要確認開啟是否成功的那個歡迎畫面，就是這個資料夾裡的index.jsp檔案</li>
+<li>work：存放JSP轉成Servlet的編譯檔案</li>
+</ul>
+<h2 id="啟動Tomcat伺服器"><a href="#啟動Tomcat伺服器" class="headerlink" title="啟動Tomcat伺服器"></a>啟動Tomcat伺服器</h2><p>有兩種方法可以開啟tomcat伺服器，挑一種開就行了，我自己是方法一打得開，但輸入網址一直有問題，換了方法二就可以進入成功畫面。</p>
+<h3 id="方法一、使用startup-bat"><a href="#方法一、使用startup-bat" class="headerlink" title="方法一、使用startup.bat"></a>方法一、使用startup.bat</h3><p>a. 找到tomcat的bin資料夾，有一個檔案叫做<code>startup.bat</code>，點擊兩下即可啟動伺服器 </p>
+<p>b. 在網址列輸入<code>http://localhost:8080</code> 或是 <code>http://127.0.0.1:8080</code>檢查是否成功開啟，下圖為成功啟動之畫面<br><img src="https://hackmd.io/_uploads/SyfgJwcO2.png"></p>
+<ul>
+<li>如果視窗點兩下就閃退，可以去檢查JAVA_HOME設定是否正確(名稱是否全大寫、_有沒有打錯、路徑是否到JDK的目錄)</li>
+</ul>
+<hr>
+<h4 id="啟動後顯示亂碼怎麼辦呢"><a href="#啟動後顯示亂碼怎麼辦呢" class="headerlink" title="啟動後顯示亂碼怎麼辦呢?"></a>啟動後顯示亂碼怎麼辦呢?</h4><p><img src="https://hackmd.io/_uploads/SJBMgPq_3.png"><br>雖然似乎不影響使用，但看起來不太舒服，該怎麼讓它正常顯示呢?</p>
+<p>a. 到Windows的設定，找到時間和語言&#x2F;相關設定&#x2F;系統管理語言設定<br><img src="https://hackmd.io/_uploads/SkSVbPq_h.png"></p>
+<p>b. 變更系統地區設定<br><img src="https://hackmd.io/_uploads/rkvD-v9d3.png"></p>
+<p>c. 將下方 <code>Beta:使用Unicode UTF-8提供全球語言支援</code>選項打勾，確定<br><img src="https://hackmd.io/_uploads/HysYWD5Oh.png"></p>
+<p>d. 可以正常顯示中文了~<br><img src="https://hackmd.io/_uploads/BJZezw9u3.png"></p>
+<hr>
+<h3 id="方法二、-使用終端機指令"><a href="#方法二、-使用終端機指令" class="headerlink" title="方法二、 使用終端機指令"></a>方法二、 使用終端機指令</h3><p>a. 用<code>Win+R</code>，輸入<code>cmd</code></p>
+<p>b. 輸入指令到tomcat的bin資料夾，例如:<code>cd C:\Program Files\tomcat\apache-tomcat-8.5.90\bin</code></p>
+<p>c. 輸入指令<code>catalina run</code>開啟伺服器，這個方法的好處就是如果JAVA_HOME設置上有問題，可以直接在終端機上顯示錯誤訊息，一看就知道哪裡有問題~</p>
+<p>d. 在網址列輸入<code>http://localhost:8080</code> 或是 <code>http://127.0.0.1:8080</code>檢查是否成功開啟，成功結果如方法一</p>
+<h2 id="關閉Tomcat伺服器的方式"><a href="#關閉Tomcat伺服器的方式" class="headerlink" title="關閉Tomcat伺服器的方式"></a>關閉Tomcat伺服器的方式</h2><p>三種方法可以選一種用：</p>
+<ol>
+<li>把視窗直接關掉</li>
+<li>在執行的視窗(startup.bat或終端機畫面)按下ctrl+c</li>
+<li>bin資料夾裡的shutdown.bat點兩下，剛才用startup方式打開的視窗就會關掉了</li>
+</ol>
+<h2 id="修改Tomcat使用的port"><a href="#修改Tomcat使用的port" class="headerlink" title="修改Tomcat使用的port"></a>修改Tomcat使用的port</h2><ol>
+<li>進到tomcat的conf資料夾，修改server.xml檔案，可用記事本或是其他編輯器修改</li>
+<li>打開後找到connector標籤，會看到預設port是8080，可以修改成其他的port(1~65535之間的數字，盡量1000以上，避免撞系統使用到的port)，改完存檔 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">           connectionTimeout=&quot;20000&quot;</span><br><span class="line">           redirectPort=&quot;8443&quot;</span><br><span class="line">           maxParameterCount=&quot;1000&quot;</span><br><span class="line">           /&gt;</span><br></pre></td></tr></table></figure></li>
+<li>重新開啟tomcat伺服器，這樣就修改完成了<br><img src="https://hackmd.io/_uploads/B1vKLPcO3.png"></li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLmOn9nNkQxJGJVS8ZqBcbjkxPh0OuaW2E">【尚硅谷】JavaWeb 2020IDEA新版</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/29/20230629/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230628" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/28/20230628/" target="_blank">算是初次見面吧?XML</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/28/20230628/" class="archive-article-date">
+        <time datetime="2023-06-28T10:23:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-28</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>XML這個檔案類型，對於它的印象，我只是隱約記得長得很像HTML，直到工作上用到JavaWeb專案裏頭有一個Servlet用的web.xml檔案，看了很多教學發現XML檔的規範都不太了解，決定先了解基礎再去實作~(不先打好地基，後續真的很麻煩呢)</p>
+<h2 id="甚麼是XML-它又能做什麼"><a href="#甚麼是XML-它又能做什麼" class="headerlink" title="甚麼是XML?它又能做什麼?"></a>甚麼是XML?它又能做什麼?</h2><ol>
+<li><p>XML是一種可擴張的標記性語言</p>
+</li>
+<li><p>可以用於保存數據，標籤名稱可以自訂，例如</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">student[id=3, name=&quot;小明&quot;]</span><br><span class="line">student[id=4, name=&quot;小華&quot;]</span><br><span class="line"></span><br><span class="line">存為xml檔則為</span><br><span class="line">&lt;students&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;3&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小明&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;4&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小華&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">&lt;/students&gt;</span><br></pre></td></tr></table></figure>
+<p> 可用students標籤表示很多學生，裡面又用student表示單個學生，學生又分別有id以及姓名name</p>
+</li>
+<li><p>可用於設定專案配置</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </span><br><span class="line">xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot; </span><br><span class="line">xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot; </span><br><span class="line">id=&quot;WebApp_ID&quot; version=&quot;3.0&quot;&gt;</span><br><span class="line"> &lt;display-name&gt;HelloJSP&lt;/display-name&gt;</span><br><span class="line">  </span><br><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;index.html&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;default.html&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;</span><br><span class="line">&lt;/welcome-file-list&gt;</span><br><span class="line">  </span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;description&gt;&lt;/description&gt;</span><br><span class="line">    &lt;display-name&gt;index&lt;/display-name&gt;</span><br><span class="line">    &lt;servlet-name&gt;index&lt;/servlet-name&gt;</span><br><span class="line">    &lt;jsp-file&gt;/index.jsp&lt;/jsp-file&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;hello&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可當網路資料的傳輸格式(但現在較多使用JSON檔)</p>
+</li>
+</ol>
+<h2 id="第一個XML檔"><a href="#第一個XML檔" class="headerlink" title="第一個XML檔"></a>第一個XML檔</h2><h3 id="1-xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式"><a href="#1-xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式" class="headerlink" title="1. xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式"></a>1. xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-註解"><a href="#2-註解" class="headerlink" title="2. 註解"></a>2. 註解</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 這是XML的註解 --&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-標籤名稱規則"><a href="#3-標籤名稱規則" class="headerlink" title="3. 標籤名稱規則"></a>3. 標籤名稱規則</h3><ul>
+<li>可以包含字母、數字、其他字元(包含中文)，例如:<code>&lt;學生&gt;&lt;/學生&gt;</code>、<code>&lt;book1&gt;&lt;/book1&gt;</code></li>
+<li>不能以數字、標點開頭，像是<code>&lt;1book&gt;&lt;/1book&gt;</code></li>
+<li>不能用xml開頭(但其實可以)</li>
+<li>名稱不能包含空格</li>
+<li>可以是單標籤或雙標籤，例如<code>&lt;student id=&quot;15&quot; name=&quot;小明&quot;/&gt;</code>或是<code>&lt;student id=&quot;15&quot; name=&quot;小明&quot;&gt;&lt;/&lt;student&gt;</code></li>
+<li>標籤的屬性必須要用引號，例如<code>&lt;student id=15 /&gt;</code>會報錯</li>
+<li>使用雙標籤必須有頭有尾，否則會報錯，例如:<code>&lt;book&gt;</code>沒有<code>&lt;/book&gt;</code></li>
+<li>XML檔的大小寫是有區分的，若大小寫不同則會區別為不同標籤</li>
+<li>必須要有根元素，一大包的資料必須要有一層「外殼」，例如  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;students&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;3&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小明&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;4&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小華&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">&lt;/students&gt;</span><br></pre></td></tr></table></figure>
+  students則是根元素。</li>
+<li>如果資料內容有&lt;&gt;則要以&lt;、&gt;表示，否則會報錯，例如<code>&lt;name&gt;&amp;lt;小明&amp;gt;&lt;/name&gt;</code>，產出的結果會顯示為<code>&lt;name&gt;&lt;小明&gt;&lt;/name&gt;</code>，或是使用<code>&lt;![CDATA[輸入想打的字]]&gt;</code>使XML不轉譯文字，例如<code>&lt;![CDATA[&lt;&lt;&lt;&lt;&lt;這裡不會報錯]]&gt;</code></li>
+</ul>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">尚硅谷</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/28/20230628/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230620" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/20/20230620/" target="_blank">百百種錯誤訊息之 the import javax.servlet cannot be resolved</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/20/20230620/" class="archive-article-date">
+        <time datetime="2023-06-20T11:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-20</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因為換了一台新電腦，搬運檔案之後Tomcat的套件遺失，導致servlet沒地方放，就會跳出這個錯誤訊息<br><img src="https://hackmd.io/_uploads/H1tRqlgD3.png"></p>
+<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><ol>
+<li><p>對著左側專案名稱點右鍵，找到Properties(內容)點下去</p>
+</li>
+<li><p>點Java Build Path(JAVA建置路徑)，右側視窗找到Libraries(函式庫)摺頁，點選類別路徑&#x2F;add Libraries&#x2F;伺服器runtime&#x2F;下一步<br><img src="https://hackmd.io/_uploads/Sy53GbgDh.png"></p>
+</li>
+<li><p>選擇要用的server套件(例如Apache Tomcat 8.5)&#x2F;完成</p>
+</li>
+<li><p>apply and close，就會看到的錯誤訊息消失，而剛才找不到的import套件出現在Libraries資料匣。</p>
+</li>
+</ol>
+<p><img src="https://hackmd.io/_uploads/rJ8mN-eP3.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32483145/article/details/80114728">【解决】The import javax.servlet cannot be resolved</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/20/20230620/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230611" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -894,316 +1231,6 @@
 
 
   
-    <article id="post-20230516" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/16/20230516/" target="_blank">螢幕色彩變黃，但螢幕沒壞?</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/16/20230516/" class="archive-article-date">
-        <time datetime="2023-05-16T12:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-16</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~</p>
-<h2 id="夜間模式"><a href="#夜間模式" class="headerlink" title="夜間模式"></a>夜間模式</h2><p>先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~)</p>
-<h3 id="1-找到設定"><a href="#1-找到設定" class="headerlink" title="1. 找到設定"></a>1. 找到設定</h3><p><img src="https://hackmd.io/_uploads/rkl3Muer2.png"></p>
-<h3 id="2-系統-x2F-顯示器"><a href="#2-系統-x2F-顯示器" class="headerlink" title="2. 系統&#x2F;顯示器"></a>2. 系統&#x2F;顯示器</h3><p><img src="https://hackmd.io/_uploads/SkkTr_xr2.png"></p>
-<h2 id="安全模式-本次解決方案"><a href="#安全模式-本次解決方案" class="headerlink" title="安全模式(本次解決方案)"></a>安全模式(本次解決方案)</h2><p>win+R輸入<code>msconfig</code>，找到開機分頁，將安全開機選項打勾，並且重新開機<br><img src="https://hackmd.io/_uploads/rynUQueB3.png"></p>
-<p>如果發現螢幕是正常顏色，就代表是獨立顯卡的問題，這次的案例也是這樣，然後發現網路連不上就把安全模式取消，再重新開機一次，螢幕顏色就正常了!</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>參考資料中的討論串提到:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">記得前一段時間有看過 Lenovo </span><br><span class="line"></span><br><span class="line">調整Lenovo智慧型顯示開關，顯示色調變黃</span><br><span class="line"></span><br><span class="line">剪取工具剪下後，背景顏色變調</span><br><span class="line"></span><br><span class="line">是 Lenovo Vantage 這軟體在作怪將 我的護眼模式  &quot;關閉&quot; ! 色溫調到 6500K</span><br><span class="line"></span><br><span class="line">或 Lenovo Vantage系統更新BIOS 至 N24ET41W 1.16後, 問題已解決</span><br></pre></td></tr></table></figure>
-<p>表示有可能是其他軟體在作怪，雖然本次沒遇到這個情形，但還是可以記錄一下以防未來也遇到~</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/windows/forum/all/win10%E8%9E%A2%E5%B9%95%E8%87%AA%E5%8B%95%E8%AE%8A/ad3a7c85-04ff-4ad0-a135-17d9e30fb61d">WIN10螢幕自動變黃，調整後仍自動跳回</a></p>
-<h5 id="圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh"><a href="#圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh" class="headerlink" title="圖片壞了可以來這裡： https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh"></a>圖片壞了可以來這裡： <a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh">https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh</a></h5>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">設備</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/16/20230516/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230512" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/12/20230512/" target="_blank">如何編輯Win10開始功能表</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/12/20230512/" class="archive-article-date">
-        <time datetime="2023-05-12T11:37:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-12</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近幫同仁裝了Microsoft的office 365，安裝完之後有人反應應用程式分散不好找(如圖)，<br><img src="https://hackmd.io/_uploads/H1MtIfiNn.png"><br>希望幫他放在同一個資料夾內比較方便使用，由於設定完太容易忘記，所以簡單紀錄一下怎麼編輯開始功能表。</p>
-<h2 id="編輯資料夾"><a href="#編輯資料夾" class="headerlink" title="編輯資料夾"></a>編輯資料夾</h2><h3 id="1-找到控制開始功能表的Start-Menu資料夾"><a href="#1-找到控制開始功能表的Start-Menu資料夾" class="headerlink" title="1. 找到控制開始功能表的Start Menu資料夾"></a>1. 找到控制開始功能表的Start Menu資料夾</h3><p>有四種方法可以找到Start Menu這個資料夾(不記得路徑可以應急)，挑一個自己方便的用就行了~</p>
-<p>補充:某些項目可能會在User的AppData裡，所以列a位置(Windows)和b位置(AppData)的方式，如果a沒有就去看b吧~</p>
-<h4 id="方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置"><a href="#方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置" class="headerlink" title="方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置"></a>方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置</h4><p>   <img src="https://hackmd.io/_uploads/B12CI7sE2.png"><br>    (這個方法a跟b都適用)</p>
-<h4 id="方法二、-善用開始功能表搜尋關鍵字start"><a href="#方法二、-善用開始功能表搜尋關鍵字start" class="headerlink" title="方法二、 善用開始功能表搜尋關鍵字start:"></a>方法二、 善用開始功能表搜尋關鍵字start:</h4><p>   a. <img src="https://hackmd.io/_uploads/Hy2OOGsE3.png"></p>
-<p>   b. 這個我的電腦搜不到，原因待查</p>
-<h4 id="方法三、-資料夾搜尋"><a href="#方法三、-資料夾搜尋" class="headerlink" title="方法三、 資料夾搜尋"></a>方法三、 資料夾搜尋</h4><p>   a.如果方法二找不到，可以在C槽找，先看上方工具列&#x2F;檢視&#x2F;隱藏的項目，就可以看見半透明的ProgramData資料夾，點兩下進入後可以在右上角搜尋框搜尋start(直接在C槽找會找很久，記得這個隱藏的資料夾，進去搜尋會比較快)</p>
-<p><img src="https://hackmd.io/_uploads/ryTkpzo4h.png"></p>
-<p>   b. <code>C:\使用者\(帳戶名稱)\AppData</code>進去之後一樣右上角搜尋Start Menu點Roaming裡的那個，步驟同a(不進AppData資料夾會找不到?_?)<br>   <img src="https://hackmd.io/_uploads/BJH-UVj43.png"></p>
-<h4 id="方法四、-直接找路徑"><a href="#方法四、-直接找路徑" class="headerlink" title="方法四、 直接找路徑"></a>方法四、 直接找路徑</h4><p>a. <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs</code><br>b. <code>C:\Users\(帳戶名稱)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs</code></p>
-<h3 id="2-建立資料夾"><a href="#2-建立資料夾" class="headerlink" title="2. 建立資料夾"></a>2. 建立資料夾</h3><p>對著空白處右鍵，新建一個資料夾，自己命名一個方便辨識的名稱(這次我叫它Microsoft 365)</p>
-<p>因為我想讓這台的所有User都可以套用這個設定，所以建立在Windows的這個Start Menu資料夾；如果是個別User的設定就可以放在AppData的Start Menu資料夾<br><img src="https://hackmd.io/_uploads/r17c0GiV3.png"></p>
-<h3 id="3-移動檔案"><a href="#3-移動檔案" class="headerlink" title="3. 移動檔案"></a>3. 移動檔案</h3><p>a. 選取我們想塞進資料夾的檔案(這邊我用日期排序比較好一次選取)，剪下<br><img src="https://hackmd.io/_uploads/Bk88yXsNn.png"><br>b. 再貼到剛才的資料夾裡(<code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft 365</code>)<br>c. 這時候打開開始功能表，就會看到資料夾裡面就是我們剛才搬過去的項目了<br><img src="https://hackmd.io/_uploads/SyNYXQjVh.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.xiaoyao.tw/2021/01/customize-win10-start-menu.html">Windows 10 開始功能表，如何刪除、新增和移動分類應用程式捷徑？</a><br>大部分是久遠的記憶+嘗試找別的路避免忘記…</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/12/20230512/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230510" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/10/20230510/" target="_blank">如何提升edge啟動速度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/10/20230510/" class="archive-article-date">
-        <time datetime="2023-05-10T13:14:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-10</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>公司電腦真的慢，自從不能用IE只能換edge之後問題也是一大堆，先來說說同仁開edge開到天荒地老的故事，會轉到睡著的那種…</p>
-<h2 id="開啟效能"><a href="#開啟效能" class="headerlink" title="開啟效能"></a>開啟效能</h2><ol>
-<li><p>找畫面右上角的三個點&#x2F;設定<br><img src="https://hackmd.io/_uploads/BJPaHKDNn.png"></p>
-</li>
-<li><p>左邊欄找到系統與效能(在網址列輸入<code>edge://settings/system</code> 也能進入同樣頁面)<br>這兩個選項可以測試一下開不開比較順，背景執行關掉是因為公司電腦記憶體CPU常常都在100%上下跑，少開一個避免當機比較好<br><img src="https://hackmd.io/_uploads/ryAxqOvE2.png"></p>
-</li>
-</ol>
-<h2 id="關閉GPU加速-這個特別特別重要"><a href="#關閉GPU加速-這個特別特別重要" class="headerlink" title="關閉GPU加速(這個特別特別重要!!)"></a>關閉GPU加速(這個特別特別重要!!)</h2><ol>
-<li>在網址列輸入<code>edge://flags/</code>，前往頁面</li>
-<li>搜尋列搜尋GPU，把<code>Accelerated 2D canvas</code>和<code>GPU rasterization</code>都停用<br><img src="https://i.imgur.com/leRnAGO.png"><br>原本Edge預設會開啟Accelerated 2D canvas，但性能不好的電腦使用GPU加速反而會更慢，所以我們把這個選項停用</li>
-</ol>
-<h2 id="清理瀏覽器的瀏覽紀錄"><a href="#清理瀏覽器的瀏覽紀錄" class="headerlink" title="清理瀏覽器的瀏覽紀錄"></a>清理瀏覽器的瀏覽紀錄</h2><p>因為同仁電腦可能用了十幾年(或以上)掛了非常多的瀏覽紀錄，刪掉能幫助瀏覽器開啟得快一點</p>
-<ol>
-<li><p>一樣在三個點的設定裡&#x2F;隱私權、搜尋與服務</p>
-</li>
-<li><p>右邊畫面找到清除瀏覽資料及除Internet Explorer，點選「要清除的項目」，前者為清除edge模式的瀏覽紀錄，後者顧名思義就是清除IE模式的紀錄(因為某些網站還沒升級，要用IE模式才能使用，未來應該不太會用到了…吧?)<br><img src="https://hackmd.io/_uploads/S1SEBYwEh.png"></p>
-</li>
-<li><p>可以設定關閉瀏覽器之後直接清除瀏覽歷程記錄</p>
-<p> a.Edge版:「選擇每次關閉瀏覽器時要清除的內容」，把想清除的項目開啟<br><img src="https://hackmd.io/_uploads/S1TluFDE3.png"></p>
-<p> b.IE版:如同字面描述，把清除按鈕下面的選項打開就行了</p>
-</li>
-</ol>
-<h2 id="關閉不用的程式、背景作業"><a href="#關閉不用的程式、背景作業" class="headerlink" title="關閉不用的程式、背景作業"></a>關閉不用的程式、背景作業</h2><p>這個應該不用多說了，開太多會電腦當機，不過常常看到有同仁會以為沒開起來就一直按，導致開了一堆開一半的edge(可能有10多個吧)，這時開工作管理員關掉不用的頁面和全部的edge，再重開edge就行囉~沒整台當掉的話。</p>
-<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><ol>
-<li>開啟瀏覽器連結公司ERP(首頁)從將近1分鐘變成30秒內。</li>
-<li>因為公司的瀏覽器希望停留在穩定版本，就不試更新edge的結果了；刪除不需要的元件這個步驟也跳過，平常只有上ERP的電腦也不會下載。</li>
-</ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://zeekmagazine.com/archives/156269">[教學] 解決Edge與Chrome瀏覽器卡頓拖慢問題</a><br><a target="_blank" rel="noopener" href="https://techwisegroup.com/blog/how-to-speed-up-microsoft-edge-on-windows-10/">How to Speed Up Microsoft Edge on Windows 10</a><br><a target="_blank" rel="noopener" href="https://www.thewindowsclub.com/how-to-speed-up-edge-and-make-it-load-faster">How to speed up Edge and make it load faster</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/10/20230510/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1374,6 +1401,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">尚硅谷</a>
               </li>
             
             <div class="clearfix"></div>
