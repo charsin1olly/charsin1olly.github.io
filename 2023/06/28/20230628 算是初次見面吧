@@ -13,7 +13,7 @@
   <meta name="description" content="XML這個檔案類型，對於它的印象，我只是隱約記得長得很像HTML，直到工作上用到JavaWeb專案裏頭有一個Servlet用的web.xml檔案，看了很多教學發現XML檔的規範都不太了解，決定先了解基礎再去實作~(不先打好地基，後續真的很麻煩呢) 甚麼是XML?它又能做什麼? XML是一種可擴張的標記性語言  可以用於保存數據，標籤名稱可以自訂，例如  1234567891011121314stu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算是初次見面吧?XML">
-<meta property="og:url" content="http://charsin1olly.github.io/2023/06/28/20230628/index.html">
+<meta property="og:url" content="http://charsin1olly.github.io/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
 <meta property="og:description" content="XML這個檔案類型，對於它的印象，我只是隱約記得長得很像HTML，直到工作上用到JavaWeb專案裏頭有一個Servlet用的web.xml檔案，看了很多教學發現XML檔的規範都不太了解，決定先了解基礎再去實作~(不先打好地基，後續真的很麻煩呢) 甚麼是XML?它又能做什麼? XML是一種可擴張的標記性語言  可以用於保存數據，標籤名稱可以自訂，例如  1234567891011121314stu">
 <meta property="og:locale" content="en_US">
@@ -178,7 +178,7 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20230628" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20230628 算是初次見面吧?XML" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -197,7 +197,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span> -->
 
-<a href="/2023/06/28/20230628/" class="archive-article-date">
+<a href="/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7?XML/" class="archive-article-date">
         <time datetime="2023-06-28T10:23:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-28</time>
 </a>
 
@@ -283,7 +283,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2023/06/28/20230628/" title="算是初次見面吧?XML" target="_blank">http://charsin1olly.github.io/2023/06/28/20230628/</a>
+          <a href="http://charsin1olly.github.io/2023/06/28/20230628 算是初次見面吧?XML/" title="算是初次見面吧?XML" target="_blank">http://charsin1olly.github.io/2023/06/28/20230628 算是初次見面吧?XML/</a>
         </li>
         
         <li>
@@ -369,7 +369,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/06/28/20230628/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -384,7 +384,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/06/29/20230629/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/06/29/20230629%20Tomcat%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -394,8 +394,8 @@
     </a>
   
   
-    <a href="/2023/06/20/20230620/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">百百種錯誤訊息之 the import javax.servlet cannot be resolved</div>
+    <a href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JAVA 識別字規則</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -594,10 +594,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

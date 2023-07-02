@@ -6,32 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>Windows難字造字 | Charsin&#39;s co_oding life</title>
+  <title>螢幕色彩變黃，但螢幕沒壞? | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="有時候會有一些生僻字不知道怎麼打，或是知道怎麼唸，但是字的選單卻沒有，那就只好應用造字工具啦~這邊用Win11操作 造字基本操作 搜尋造字，會出現windows內建造字程式，  選擇一個空白的位置  畫出想造的字  設定怎麼打出這個字:編輯&#x2F;文字服務連結 輸入注音:就跟平常打字一樣就行了，記得一聲要按空格，打錯注音可以直接按正確注音，不用刪字即可修改，輸入完畢按登錄  完成   使用參照">
+  <meta name="description" content="同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~ 夜間模式先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~) 1. 找到設定 2. 系統&#x2F;顯示器 安全模式(本次解決方案)win+R輸入msconfig，找">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Windows難字造字">
-<meta property="og:url" content="http://charsin1olly.github.io/2023/06/02/20230602-2/index.html">
+<meta property="og:title" content="螢幕色彩變黃，但螢幕沒壞?">
+<meta property="og:url" content="http://charsin1olly.github.io/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="有時候會有一些生僻字不知道怎麼打，或是知道怎麼唸，但是字的選單卻沒有，那就只好應用造字工具啦~這邊用Win11操作 造字基本操作 搜尋造字，會出現windows內建造字程式，  選擇一個空白的位置  畫出想造的字  設定怎麼打出這個字:編輯&#x2F;文字服務連結 輸入注音:就跟平常打字一樣就行了，記得一聲要按空格，打錯注音可以直接按正確注音，不用刪字即可修改，輸入完畢按登錄  完成   使用參照">
+<meta property="og:description" content="同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~ 夜間模式先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~) 1. 找到設定 2. 系統&#x2F;顯示器 安全模式(本次解決方案)win+R輸入msconfig，找">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hackmd.io/_uploads/rks1d-DLh.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/rJveIGvI2.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/B1smIMvI3.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/SkTUUzD83.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/B1ZTLfw8h.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/SywgKzDI2.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/ByozHQw8n.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/ByBoH7PUn.png">
-<meta property="article:published_time" content="2023-06-02T14:01:32.000Z">
-<meta property="article:modified_time" content="2023-06-11T04:06:51.257Z">
+<meta property="og:image" content="https://hackmd.io/_uploads/rkl3Muer2.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/SkkTr_xr2.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/rynUQueB3.png">
+<meta property="article:published_time" content="2023-05-16T12:58:09.000Z">
+<meta property="article:modified_time" content="2023-05-18T12:08:12.880Z">
 <meta property="article:author" content="Charsin">
-<meta property="article:tag" content="Microsoft">
 <meta property="article:tag" content="工作筆記">
+<meta property="article:tag" content="設備">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hackmd.io/_uploads/rks1d-DLh.png">
+<meta name="twitter:image" content="https://hackmd.io/_uploads/rkl3Muer2.png">
   
     <link rel="alternative" href="/atom.xml" title="Charsin&#39;s co_oding life" type="application/atom+xml">
   
@@ -186,14 +181,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20230602-2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20230516 螢幕色彩變黃，但螢幕沒壞?" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Windows難字造字
+      螢幕色彩變黃，但螢幕沒壞?
     </h1>
   
 
@@ -205,8 +200,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span> -->
 
-<a href="/2023/06/02/20230602-2/" class="archive-article-date">
-        <time datetime="2023-06-02T14:01:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-02</time>
+<a href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" class="archive-article-date">
+        <time datetime="2023-05-16T12:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-16</time>
 </a>
 
   
@@ -215,29 +210,17 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>有時候會有一些生僻字不知道怎麼打，或是知道怎麼唸，但是字的選單卻沒有，那就只好應用造字工具啦~<br>這邊用Win11操作</p>
-<h2 id="造字基本操作"><a href="#造字基本操作" class="headerlink" title="造字基本操作"></a>造字基本操作</h2><ol>
-<li><p>搜尋造字，會出現windows內建造字程式，<br><img src="https://hackmd.io/_uploads/rks1d-DLh.png"></p>
-</li>
-<li><p>選擇一個空白的位置<br><img src="https://hackmd.io/_uploads/rJveIGvI2.png"></p>
-</li>
-<li><p>畫出想造的字<br><img src="https://hackmd.io/_uploads/B1smIMvI3.png"></p>
-</li>
-<li><p>設定怎麼打出這個字:編輯&#x2F;文字服務連結<br><img src="https://hackmd.io/_uploads/SkTUUzD83.png"><br> 輸入注音:就跟平常打字一樣就行了，記得一聲要按空格，打錯注音可以直接按正確注音，不用刪字即可修改，輸入完畢按登錄<br><img src="https://hackmd.io/_uploads/B1ZTLfw8h.png"></p>
-</li>
-<li><p>完成<br><img src="https://hackmd.io/_uploads/SywgKzDI2.png"></p>
-</li>
-</ol>
-<h2 id="使用參照"><a href="#使用參照" class="headerlink" title="使用參照"></a>使用參照</h2><p>擔心字寫得很醜嗎?可以善用參照，複製現有字型的「零件」組合成新的字</p>
-<ol>
-<li><p>視窗&#x2F;參照，可以往下滾找到需要的字元，或是在形狀輸入要找的字，選好就按確定<br><img src="https://hackmd.io/_uploads/ByozHQw8n.png"></p>
-</li>
-<li><p>可以使用左側的選取工具選擇需要的零件，框起來之後ctrl+C複製，到左邊視窗貼上，形狀的大小比例都可以自由調整<br><img src="https://hackmd.io/_uploads/ByBoH7PUn.png"></p>
-</li>
-</ol>
-<hr>
-<p>這樣就能打出一些生僻字囉，但是應用在瀏覽器及PDF上又是另一個課題了~這個就留給另外一篇文章說明</p>
-
+    <p>同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~</p>
+<h2 id="夜間模式"><a href="#夜間模式" class="headerlink" title="夜間模式"></a>夜間模式</h2><p>先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~)</p>
+<h3 id="1-找到設定"><a href="#1-找到設定" class="headerlink" title="1. 找到設定"></a>1. 找到設定</h3><p><img src="https://hackmd.io/_uploads/rkl3Muer2.png"></p>
+<h3 id="2-系統-x2F-顯示器"><a href="#2-系統-x2F-顯示器" class="headerlink" title="2. 系統&#x2F;顯示器"></a>2. 系統&#x2F;顯示器</h3><p><img src="https://hackmd.io/_uploads/SkkTr_xr2.png"></p>
+<h2 id="安全模式-本次解決方案"><a href="#安全模式-本次解決方案" class="headerlink" title="安全模式(本次解決方案)"></a>安全模式(本次解決方案)</h2><p>win+R輸入<code>msconfig</code>，找到開機分頁，將安全開機選項打勾，並且重新開機<br><img src="https://hackmd.io/_uploads/rynUQueB3.png"></p>
+<p>如果發現螢幕是正常顏色，就代表是獨立顯卡的問題，這次的案例也是這樣，然後發現網路連不上就把安全模式取消，再重新開機一次，螢幕顏色就正常了!</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>參考資料中的討論串提到:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">記得前一段時間有看過 Lenovo </span><br><span class="line"></span><br><span class="line">調整Lenovo智慧型顯示開關，顯示色調變黃</span><br><span class="line"></span><br><span class="line">剪取工具剪下後，背景顏色變調</span><br><span class="line"></span><br><span class="line">是 Lenovo Vantage 這軟體在作怪將 我的護眼模式  &quot;關閉&quot; ! 色溫調到 6500K</span><br><span class="line"></span><br><span class="line">或 Lenovo Vantage系統更新BIOS 至 N24ET41W 1.16後, 問題已解決</span><br></pre></td></tr></table></figure>
+<p>表示有可能是其他軟體在作怪，雖然本次沒遇到這個情形，但還是可以記錄一下以防未來也遇到~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/windows/forum/all/win10%E8%9E%A2%E5%B9%95%E8%87%AA%E5%8B%95%E8%AE%8A/ad3a7c85-04ff-4ad0-a135-17d9e30fb61d">WIN10螢幕自動變黃，調整後仍自動跳回</a></p>
+<h5 id="圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh"><a href="#圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh" class="headerlink" title="圖片壞了可以來這裡： https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh"></a>圖片壞了可以來這裡： <a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh">https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh</a></h5>
     
 
     <!-- 
@@ -283,7 +266,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2023/06/02/20230602-2/" title="Windows難字造字" target="_blank">http://charsin1olly.github.io/2023/06/02/20230602-2/</a>
+          <a href="http://charsin1olly.github.io/2023/05/16/20230516 螢幕色彩變黃，但螢幕沒壞?/" title="螢幕色彩變黃，但螢幕沒壞?" target="_blank">http://charsin1olly.github.io/2023/05/16/20230516 螢幕色彩變黃，但螢幕沒壞?/</a>
         </li>
         
         <li>
@@ -305,11 +288,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">設備</a>
         		</li>
       		
 		</ul>
@@ -365,7 +348,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/06/02/20230602-2/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -380,18 +363,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/06/08/20230608/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/05/18/20230518%20%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8BEdge%E7%BE%A4%E7%B5%84%E5%8E%9F%E5%89%87%E7%AE%A1%E7%90%86%E7%AF%84%E6%9C%AC%E6%AA%94(Win10)/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          回退Microsoft Edge版本
+          如何建立Edge群組原則管理範本檔(Win10)
         
       </div>
     </a>
   
   
-    <a href="/2023/06/02/20230602/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">安裝Eclipse中文包</div>
+    <a href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何編輯Win10開始功能表</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -590,10 +573,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

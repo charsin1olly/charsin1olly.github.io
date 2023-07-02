@@ -6,26 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>回退Microsoft Edge版本 | Charsin&#39;s co_oding life</title>
+  <title>如何建立Edge群組原則管理範本檔(Win10) | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="為了設定IE相容性，解決公司系統網站無法正常使用問題，發現IE開啟之後會自動變成Edge開啟(系統來還沒升級RRR)，找了很多文章都說要把Microsoft Edge中以Internet Explorer開啟網站面板改永不，但問題來了，我的Edge版本113.0.1774.57這個面板似乎不見了，前輩的110.0.1587.46版本是有的，我想說把版本降到一致再來設定，雖然說真正解決這個問題的辦法">
+  <meta name="description" content="最近有新同事，設定設備的時候發現他的電腦沒有 Edge 的管理範本，需要安裝，雖然 Microsoft 網站寫得還算清楚(上次很快就裝好，這次迷路了半小時)，但我有機率搞錯資料夾，想想還是寫一個圖文攻略~ (沒有安裝範本檔的狀態) 1. 下載檔案先到Edge 官網下載最新版(A)或是指定版本(B)，指定版本可以下載安裝檔(Download)以及範本檔(Get policy files) 2. 解壓">
 <meta property="og:type" content="article">
-<meta property="og:title" content="回退Microsoft Edge版本">
-<meta property="og:url" content="http://charsin1olly.github.io/2023/06/08/20230608/index.html">
+<meta property="og:title" content="如何建立Edge群組原則管理範本檔(Win10)">
+<meta property="og:url" content="http://charsin1olly.github.io/2023/05/18/20230518%20%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8BEdge%E7%BE%A4%E7%B5%84%E5%8E%9F%E5%89%87%E7%AE%A1%E7%90%86%E7%AF%84%E6%9C%AC%E6%AA%94(Win10)/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="為了設定IE相容性，解決公司系統網站無法正常使用問題，發現IE開啟之後會自動變成Edge開啟(系統來還沒升級RRR)，找了很多文章都說要把Microsoft Edge中以Internet Explorer開啟網站面板改永不，但問題來了，我的Edge版本113.0.1774.57這個面板似乎不見了，前輩的110.0.1587.46版本是有的，我想說把版本降到一致再來設定，雖然說真正解決這個問題的辦法">
+<meta property="og:description" content="最近有新同事，設定設備的時候發現他的電腦沒有 Edge 的管理範本，需要安裝，雖然 Microsoft 網站寫得還算清楚(上次很快就裝好，這次迷路了半小時)，但我有機率搞錯資料夾，想想還是寫一個圖文攻略~ (沒有安裝範本檔的狀態) 1. 下載檔案先到Edge 官網下載最新版(A)或是指定版本(B)，指定版本可以下載安裝檔(Download)以及範本檔(Get policy files) 2. 解壓">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hackmd.io/_uploads/ByGfF9ar3.png">
-<meta property="og:image" content="https://hackmd.io/_uploads/ByCnqqTSn.png">
-<meta property="article:published_time" content="2023-06-08T12:02:56.000Z">
-<meta property="article:modified_time" content="2023-06-11T06:40:35.505Z">
+<meta property="og:image" content="https://hackmd.io/_uploads/HkFfEGmBn.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/HJ9nzfmH2.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/B1VswfQB2.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/HkBjFfQB3.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/S1MqoMQBn.png">
+<meta property="article:published_time" content="2023-05-18T11:37:22.000Z">
+<meta property="article:modified_time" content="2023-05-18T11:54:28.031Z">
 <meta property="article:author" content="Charsin">
-<meta property="article:tag" content="Microsoft">
+<meta property="article:tag" content="工作筆記">
 <meta property="article:tag" content="Edge">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hackmd.io/_uploads/ByGfF9ar3.png">
+<meta name="twitter:image" content="https://hackmd.io/_uploads/HkFfEGmBn.png">
   
     <link rel="alternative" href="/atom.xml" title="Charsin&#39;s co_oding life" type="application/atom+xml">
   
@@ -180,14 +183,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20230608" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20230518 如何建立Edge群組原則管理範本檔(Win10)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      回退Microsoft Edge版本
+      如何建立Edge群組原則管理範本檔(Win10)
     </h1>
   
 
@@ -199,8 +202,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span> -->
 
-<a href="/2023/06/08/20230608/" class="archive-article-date">
-        <time datetime="2023-06-08T12:02:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-08</time>
+<a href="/2023/05/18/20230518%20%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8BEdge%E7%BE%A4%E7%B5%84%E5%8E%9F%E5%89%87%E7%AE%A1%E7%90%86%E7%AF%84%E6%9C%AC%E6%AA%94(Win10)/" class="archive-article-date">
+        <time datetime="2023-05-18T11:37:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-18</time>
 </a>
 
   
@@ -209,36 +212,18 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>為了設定IE相容性，解決公司系統網站無法正常使用問題，發現IE開啟之後會自動變成Edge開啟(系統來還沒升級RRR)，找了很多文章都說要把<code>Microsoft Edge中以Internet Explorer開啟網站面板</code>改永不，但問題來了，我的Edge版本113.0.1774.57這個面板似乎不見了，前輩的110.0.1587.46版本是有的，我想說把版本降到一致再來設定，雖然說真正解決這個問題的辦法不是降版本，但是摸了好幾天不記錄太對不起自己了~</p>
-<h2 id="下載-amp-安裝"><a href="#下載-amp-安裝" class="headerlink" title="下載&amp;安裝"></a>下載&amp;安裝</h2><h3 id="最新版本的範本檔"><a href="#最新版本的範本檔" class="headerlink" title="最新版本的範本檔"></a>最新版本的範本檔</h3><p>到<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-tw/edge/business/download?form=MA13FJ">Microsoft官網</a>下載範本檔，安裝方式之前我有<a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SyuZyGXrh">文章</a>寫過，不過這次要把<code>msedgeupdate.admx</code>和<code>msedgeupdate.adml</code>都複製過去，不然會少一個Edge更新的資料夾選項，這是我卡了好幾天的原因QQ</p>
-<h2 id="方法1-使用-MSI-手動啟用復原"><a href="#方法1-使用-MSI-手動啟用復原" class="headerlink" title="方法1: 使用 MSI 手動啟用復原"></a>方法1: 使用 MSI 手動啟用復原</h2><p>這個方法可以直接停用更新，手動變更版本到下載的版本，也不用怕自動更新把把它升級回去。</p>
-<ol>
-<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:</p>
-<ul>
-<li>[更新原則覆寫] 點兩下，改成<code>已啟用</code>，左下方輸入欄改成<code>停用更新</code>，描述:「指定 Microsoft Edge Update 如何從 Microsoft Edge 處理可用更新」</li>
-</ul>
-</li>
-<li><p>安裝指定版本的edge<br> a. 上面提到的官網連結，可以下載指定版本的edge，會獲得一個<code>MicrosoftEdgeEnterpriseX64.msi</code>檔案，別急著按，雖然按了也沒事，只會跳出一個訊息框告訴你:你的電腦已經有安裝更新的版本。</p>
-<p> b. 把這個檔案放到桌面或是其他找的到的地方，然後在開始工具列搜尋<code>cmd</code>，<em><strong>用系統管理員身分執行</strong></em>，這很重要，如果沒用系統管理員，後面的步驟可能會無法執行(對…我又被這個卡了好久)<br> <img src="https://hackmd.io/_uploads/ByGfF9ar3.png"></p>
-<p> c. 打開cmd之後先找到剛才放msi檔的地方，像我是放在桌面一個臨時的資料夾，先把現在位置切換到存放安裝檔的資料夾，例如:<code>cd C:\Users\Administrator\Desktop\123\edge</code>。<br> 如果不知道路徑的話，打開剛才存放msi的資料夾，複製資料夾上方的網址，在cmd輸入<code>cd (你剛才複製的網址)</code>是一樣的效果。<br> <img src="https://hackmd.io/_uploads/ByCnqqTSn.png"></p>
-<p> d. 在cmd輸入<code>msiexec /I MicrosoftEdgeEnterpriseX64.msi /qn ALLOWDOWNGRADE=1</code>按下enter，看起來沒反應，打開工作管理員會看到edgeUpdate就代表有在降版本了(如果沒看到相關程序可能就是沒開系統管理員)，這時候我直接關掉edge等更新。</p>
-<ul>
-<li>如果發現怎麼搞都沒反應，可以試試看系統管理員打開Windows PowerShell輸入cmd，再重複d步驟</li>
-<li>如果之前有關掉Edge Update要記得打開，不然會卡在Edge正在更新，請等幾分鐘。</li>
-</ul>
-<p> e. EdgeUpdate跑完之後重開Edge就會發現版本被降回去了(如果發現Edge Update消失，馬上重開也有可能是降版本前的版本，可以過幾分鐘再開開看)</p>
-</li>
-</ol>
-<h2 id="方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原"><a href="#方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原" class="headerlink" title="方法2: 使用 Microsoft Edge Update 和管理範本啟用復原"></a>方法2: 使用 Microsoft Edge Update 和管理範本啟用復原</h2><p>這個方法是利用自動更新設定指定版本，再怎麼樣更新，也還是同一個版本。</p>
-<ol>
-<li><p>按下<code>Win+R</code>輸入<code>gpedit.msc</code>叫出管理範本設定。</p>
-</li>
-<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:<br>  a. <strong>[目標版本複寫]</strong> 點兩下，改成<code>已啟用</code>左下方輸入欄輸入想要的指定版本(例如:110.0.1587.46)，簡單來說就是指定版本用的選項。</p>
-<p>  b. <strong>[復原至目標版本]</strong> 點兩下，改成<code>已啟用</code><br>  這個選項就可以讓update降回當前版本，但前提是「除非設定 ‘目標版本覆寫’ <strong>且</strong>將 ‘更新原則覆寫’ 設定為開啟狀態 (永遠允許更新、僅限無訊息自動更新、僅限手動更新)，否則此原則不會生效。」，和方法1的步驟衝突，要用的時候要留意~</p>
-</li>
-</ol>
-<h2 id="我自己的設定"><a href="#我自己的設定" class="headerlink" title="我自己的設定"></a>我自己的設定</h2><p>我採用方法1降版本，但是多設定方法2的目標版本複寫打開，預防哪天更新不小心被打開版本被升上去，而關閉更新跟公司的管理習慣比較一致，方法2比較傾向拿來恢復成最新版本。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=60030&snA=621392">【心得】分享Edge降版的方法</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-learnmore-rollback">如何將 Microsoft Edge 復原到舊版-Mircrosoft Learn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41963310/article/details/113827270">Microsoft Edge版本回退方法</a></p>
+    <p>最近有新同事，設定設備的時候發現他的電腦沒有 Edge 的管理範本，需要安裝，雖然 Microsoft 網站寫得還算清楚(上次很快就裝好，這次迷路了半小時)，但我有機率搞錯資料夾，想想還是寫一個圖文攻略~</p>
+<p><img src="https://hackmd.io/_uploads/HkFfEGmBn.png"><br>(沒有安裝範本檔的狀態)</p>
+<h2 id="1-下載檔案"><a href="#1-下載檔案" class="headerlink" title="1. 下載檔案"></a>1. 下載檔案</h2><p>先到<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/edge/business/download?form=MA13FJ">Edge 官網</a>下載最新版(A)或是指定版本(B)，指定版本可以下載安裝檔(Download)以及範本檔(Get policy files)<br><img src="https://hackmd.io/_uploads/HJ9nzfmH2.png"></p>
+<h2 id="2-解壓縮檔，取得需要檔案"><a href="#2-解壓縮檔，取得需要檔案" class="headerlink" title="2. 解壓縮檔，取得需要檔案"></a>2. 解壓縮檔，取得需要檔案</h2><p>我用指定版本(因為某些必須要的設定到 113 版就不見了，會增加作業複雜度，用前輩電腦的版本 110.0.1587.46，有時間再來研究怎麼降版本)</p>
+<p>a. 下載完之後解壓縮，獲得一個同名的壓縮檔<code>MicrosoftEdgePolicyTemplates</code>，點兩下打開看裡面的檔案(或是再解一次壓縮也可以，方便操作就行)，點進<code>windows\admx</code>，找到<code>msedge.admx</code>檔案，先記得有這個檔案，下個步驟要用。</p>
+<p><img src="https://hackmd.io/_uploads/B1VswfQB2.png"></p>
+<p>b. 再來找到自己使用的語言資料夾，像我們台灣地區就是選擇 zh-TW(如上圖)，進到這個資料夾之後，看到<code>msedge.adml</code>檔案，也是記得有這個檔案，下個步驟要用。</p>
+<p><img src="https://hackmd.io/_uploads/HkBjFfQB3.png"></p>
+<h2 id="3-移到指定位置"><a href="#3-移到指定位置" class="headerlink" title="3. 移到指定位置"></a>3. 移到指定位置</h2><p>a. 找到路徑<code>C:\Windows\PolicyDefinitions</code>，把 2-a 步驟的<code>msedge.admx</code>複製貼過來。</p>
+<p>b. 再進使用的語言的資料夾<code>zh-TW</code>，把 2-b 步驟的<code>msedge.adml</code>複製貼過來。</p>
+<p>c. 這樣就可以使用 Edge 範本檔囉~成功之後的畫面如下<br><img src="https://hackmd.io/_uploads/S1MqoMQBn.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/configure-microsoft-edge">在 Windows 裝置上設定 Microsoft Edge 原則設定</a></p>
 
     
 
@@ -285,7 +270,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2023/06/08/20230608/" title="回退Microsoft Edge版本" target="_blank">http://charsin1olly.github.io/2023/06/08/20230608/</a>
+          <a href="http://charsin1olly.github.io/2023/05/18/20230518 如何建立Edge群組原則管理範本檔(Win10)/" title="如何建立Edge群組原則管理範本檔(Win10)" target="_blank">http://charsin1olly.github.io/2023/05/18/20230518 如何建立Edge群組原則管理範本檔(Win10)/</a>
         </li>
         
         <li>
@@ -307,7 +292,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -367,7 +352,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/06/08/20230608/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/05/18/20230518%20%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8BEdge%E7%BE%A4%E7%B5%84%E5%8E%9F%E5%89%87%E7%AE%A1%E7%90%86%E7%AF%84%E6%9C%AC%E6%AA%94(Win10)/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -382,18 +367,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/06/09/20230609/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/05/18/20230518%20Win10%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2%E9%80%A3%E7%B7%9A%EF%BC%9A%E5%B7%B2%E6%8B%92%E7%B5%95%E9%80%A3%E7%B7%9A%EF%BC%8C%E5%9B%A0%E7%82%BA%E6%9C%AA%E6%8E%88%E6%AC%8A%E8%A9%B2%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          錯誤訊息 - the import javax.servlet cannot be resolved
+          Win10遠端桌面連線：已拒絕連線，因為未授權該使用者帳戶遠端登入
         
       </div>
     </a>
   
   
-    <a href="/2023/06/02/20230602-2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Windows難字造字</div>
+    <a href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">螢幕色彩變黃，但螢幕沒壞?</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -592,10 +577,6 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Eclipse</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
