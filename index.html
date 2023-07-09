@@ -180,7 +180,7 @@
             
 
   
-    <article id="post-20230703" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-20230703 錯誤The origin server did not find a current representation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -188,7 +188,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2023/07/03/20230703/" target="_blank">百百種錯誤訊息之 The origin server did not find a current representation for the target resource or ....</a>
+	  <a class="article-title" href="/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/" target="_blank">百百種錯誤訊息之 The origin server did not find a current representation for the target resource or ....</a>
   
     </h1>
   
@@ -196,7 +196,7 @@
 
   
   
-<a href="/2023/07/03/20230703/" class="archive-article-date">
+<a href="/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/" class="archive-article-date">
         <time datetime="2023-07-03T11:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-03</time>
 </a>
 
@@ -253,7 +253,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2023/07/03/20230703/">展開全文 >></a>
+      <a class="article-more-a" href="/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/">展開全文 >></a>
     </p>
     
 
@@ -442,7 +442,10 @@
 <h3 id="方法一、使用startup-bat"><a href="#方法一、使用startup-bat" class="headerlink" title="方法一、使用startup.bat"></a>方法一、使用startup.bat</h3><p>a. 找到tomcat的bin資料夾，有一個檔案叫做<code>startup.bat</code>，點擊兩下即可啟動伺服器 </p>
 <p>b. 在網址列輸入<code>http://localhost:8080</code> 或是 <code>http://127.0.0.1:8080</code>檢查是否成功開啟，下圖為成功啟動之畫面<br><img src="https://hackmd.io/_uploads/SyfgJwcO2.png"></p>
 <ul>
-<li>如果視窗點兩下就閃退，可以去檢查JAVA_HOME設定是否正確(名稱是否全大寫、_有沒有打錯、路徑是否到JDK的目錄)</li>
+<li><p>如果視窗點兩下就閃退，可以去檢查JAVA_HOME設定是否正確(名稱是否全大寫、_有沒有打錯、路徑是否到JDK的目錄)</p>
+</li>
+<li><p>遇到閃退情形也有可能是Tomcat與當前使用的JAVA版本不相容，原本下載10(支援JAVA 8以後，使用同樣支援JAVA8以後的Tomcat 9也是閃退)，發現系統JAVA是1.7，下載Tomcat 8就可以順利開啟。</p>
+</li>
 </ul>
 <hr>
 <h4 id="啟動後顯示亂碼怎麼辦呢"><a href="#啟動後顯示亂碼怎麼辦呢" class="headerlink" title="啟動後顯示亂碼怎麼辦呢?"></a>啟動後顯示亂碼怎麼辦呢?</h4><p><img src="https://hackmd.io/_uploads/SJBMgPq_3.png"><br>雖然似乎不影響使用，但看起來不太舒服，該怎麼讓它正常顯示呢?</p>

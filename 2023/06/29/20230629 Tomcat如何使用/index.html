@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://hackmd.io/_uploads/BJZezw9u3.png">
 <meta property="og:image" content="https://hackmd.io/_uploads/B1vKLPcO3.png">
 <meta property="article:published_time" content="2023-06-29T14:28:56.000Z">
-<meta property="article:modified_time" content="2023-07-02T00:39:42.541Z">
+<meta property="article:modified_time" content="2023-07-09T05:48:06.804Z">
 <meta property="article:author" content="Charsin">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hackmd.io/_uploads/S1tvvIKdh.png">
@@ -237,7 +237,10 @@
 <h3 id="方法一、使用startup-bat"><a href="#方法一、使用startup-bat" class="headerlink" title="方法一、使用startup.bat"></a>方法一、使用startup.bat</h3><p>a. 找到tomcat的bin資料夾，有一個檔案叫做<code>startup.bat</code>，點擊兩下即可啟動伺服器 </p>
 <p>b. 在網址列輸入<code>http://localhost:8080</code> 或是 <code>http://127.0.0.1:8080</code>檢查是否成功開啟，下圖為成功啟動之畫面<br><img src="https://hackmd.io/_uploads/SyfgJwcO2.png"></p>
 <ul>
-<li>如果視窗點兩下就閃退，可以去檢查JAVA_HOME設定是否正確(名稱是否全大寫、_有沒有打錯、路徑是否到JDK的目錄)</li>
+<li><p>如果視窗點兩下就閃退，可以去檢查JAVA_HOME設定是否正確(名稱是否全大寫、_有沒有打錯、路徑是否到JDK的目錄)</p>
+</li>
+<li><p>遇到閃退情形也有可能是Tomcat與當前使用的JAVA版本不相容，原本下載10(支援JAVA 8以後，使用同樣支援JAVA8以後的Tomcat 9也是閃退)，發現系統JAVA是1.7，下載Tomcat 8就可以順利開啟。</p>
+</li>
 </ul>
 <hr>
 <h4 id="啟動後顯示亂碼怎麼辦呢"><a href="#啟動後顯示亂碼怎麼辦呢" class="headerlink" title="啟動後顯示亂碼怎麼辦呢?"></a>啟動後顯示亂碼怎麼辦呢?</h4><p><img src="https://hackmd.io/_uploads/SJBMgPq_3.png"><br>雖然似乎不影響使用，但看起來不太舒服，該怎麼讓它正常顯示呢?</p>
