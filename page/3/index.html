@@ -180,6 +180,118 @@
             
 
   
+    <article id="post-20230130 Timecop 時間管理大師" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" target="_blank">【Ruby on Rails】Timecop 時間管理大師</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" class="archive-article-date">
+        <time datetime="2023-01-29T19:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-30</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近做面試題認識Timecop，Timecop是一個控制時間的套件，怎麼個控制法呢？</p>
+<h2 id="freeze、travel"><a href="#freeze、travel" class="headerlink" title="freeze、travel"></a>freeze、travel</h2><p>freeze是把設定的時間凍住，同時我們的Time.now也會變成freeze的時間，10秒之後（再次提醒自己：sleep會放10秒再繼續執行，不是當機啦！）再使用一次Time.now並不會改變時間，和剛才設定的new_time相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.freeze(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; true</span><br></pre></td></tr></table></figure>
+
+<p>而travel是會把我們的時間(Time.now)改成new_time設定的時間，並且開始「流動」，跟freeze不一樣的地方就是new_time和Time.now不會相同，因為new_time的時間是寫死的，而Time.now會一直改變。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.travel(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; false</span><br></pre></td></tr></table></figure>
+
+<p>從github挖出來的freeze和travel可用引數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. Timecop.freeze(time_inst) </span><br><span class="line">    ＃例：Timecop.travel(Time.zone.local(2023, 1, 29, 22, 30))</span><br><span class="line">2. Timecop.freeze(datetime_inst)</span><br><span class="line">3. Timecop.freeze(date_inst)</span><br><span class="line">4. Timecop.freeze(offset_in_seconds)</span><br><span class="line">5. Timecop.freeze(year, month, day, hour=0, minute=0, second=0)</span><br><span class="line">    ＃例：Timecop.travel(2023, 1, 29, 22, 30)</span><br><span class="line">6. Timecop.freeze() # Defaults to Time.now</span><br></pre></td></tr></table></figure>
+<p>另外爬到的文還有do end用法，在scope裡的都會受到Time.freeze及travel的影響，假設時間是10:00，經過第一層的1.hours之後時間就會前進一個小時、回溯可以用1.hours.ago，時間函數似乎都可以用（這個我不太確定），再經過這個scope裡的Timecop.travel 30.minutes，時間將會再更前推30分鐘。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Timecop.freeze(Time.zone.local(2023, 1, 31, 10, 0))</span><br><span class="line">Timecop.travel 1.hours do</span><br><span class="line">    Time.now ＃ 2023-01-31 11:00:00 +0800</span><br><span class="line">    </span><br><span class="line">    Timecop.travel 30.minutes do</span><br><span class="line">        Time.now ＃ 2023-01-31 11:30:00 +0800</span><br><span class="line">    end    </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>改時間如果有需要復原成正常時間的話，可以使用<code> Timecop.return</code></p>
+<h2 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h2><p>可以縮放時間刻度的比例，scale的引數就是一秒可以當幾秒過</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Timecop.scale(60) do</span><br><span class="line">  Time.now # 2023-01-31 10:00:00 +0800</span><br><span class="line">  sleep 10</span><br><span class="line">  Time.now # 2023-01-31 10:10:00 +0800</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="before、after"><a href="#before、after" class="headerlink" title="before、after"></a>before、after</h2><p>在before跟after之間的時間都會受到Timecop影響，不過這次我自己用是拿來設定時區的(不知道是不是OK的做法)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> describe &quot;some set of tests to mock&quot; do</span><br><span class="line">  before do</span><br><span class="line">    Timecop.freeze(Time.local(1990))</span><br><span class="line">    Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  after do</span><br><span class="line">    Timecop.return</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  it &quot;should do blah blah blah&quot; do</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="補充：當我跟Timecop初次見面"><a href="#補充：當我跟Timecop初次見面" class="headerlink" title="補充：當我跟Timecop初次見面"></a>補充：當我跟Timecop初次見面</h3><p>當我第一次使用Rspec＋Timecop跟在深山走丟一樣，不知道是哪裡缺了漏了，報不完的錯，甚至都還沒碰到邏輯就錯了，記錄一下以免太久不碰又忘記（哭</p>
+<ol>
+<li>如果在Rspec使用Timecop會報這個錯誤，在文件上方補上<code>require &quot;timecop&quot;</code>引入就能正常使用了。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br><span class="line">     </span><br><span class="line">     NameError:</span><br><span class="line">       uninitialized constant Timecop</span><br><span class="line">     </span><br><span class="line">             Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br></pre></td></tr></table></figure></li>
+<li>在使用時間函數老是說undefined method，除了這裡的zone還有上面提過的hours、minutes等，這個問題的解決辦法也是在文件上方補上<code> require &quot;active_support/all&quot;</code>就能正常使用。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">     </span><br><span class="line">    NoMethodError:</span><br><span class="line">      undefined method `zone=&#x27; for Time:Class</span><br><span class="line">     </span><br><span class="line">        Time.zone = &quot;Asia/Taipei&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://github.com/travisjeffery/timecop">Timecop 官方文件</a><br><a target="_blank" rel="noopener" href="https://medium.com/@tonyhsu/%E7%94%A8-timecop-%E8%87%AA%E7%94%B1%E7%A9%BF%E6%A2%AD%E6%99%82%E9%96%93%E8%BB%B8-e9d606e8dbd3">用 Timecop 自由穿梭時間軸</a><br>碎念：哎…小白剛踏出新手教學真是什麼都不知道，慢慢來（深呼吸</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20221204 Enum與下拉選單" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1022,6 +1134,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JSP</a>
               </li>
             
             <div class="clearfix"></div>

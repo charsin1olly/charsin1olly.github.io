@@ -180,6 +180,104 @@
             
 
   
+    <article id="post-20230709 JSP是什麼 &amp; 如何開始使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/09/20230709%20JSP%E6%98%AF%E4%BB%80%E9%BA%BC%20&%20%E5%A6%82%E4%BD%95%E9%96%8B%E5%A7%8B%E4%BD%BF%E7%94%A8/" target="_blank">JSP是什麼 &amp; 如何開始使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/09/20230709%20JSP%E6%98%AF%E4%BB%80%E9%BA%BC%20&%20%E5%A6%82%E4%BD%95%E9%96%8B%E5%A7%8B%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2023-07-09T07:18:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-09</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>JSP 全名 Java Server Pages，本質上是 Servlet，是一種動態網頁開發技術，用於回應客戶端傳送的請求，並根據請求內容動態地生成 HTML、XML 或其他格式文件的 Web 網頁，然後返回給發送請求的客戶端。比起 Servlet 要生成網站 HTML 的方式還要更簡便、快速。</p>
+<p>而且，它是一個可以在 HTML 頁面使用 Java 的酷東西。</p>
+<h2 id="開始-JSP（使用-Eclipse）"><a href="#開始-JSP（使用-Eclipse）" class="headerlink" title="開始 JSP（使用 Eclipse）"></a>開始 JSP（使用 Eclipse）</h2><h3 id="1-新建一個專案-參考文章裡的使用介面跟這個版本不太一樣"><a href="#1-新建一個專案-參考文章裡的使用介面跟這個版本不太一樣" class="headerlink" title="1. 新建一個專案(參考文章裡的使用介面跟這個版本不太一樣):"></a>1. 新建一個專案(參考文章裡的使用介面跟這個版本不太一樣):</h3><p>a. 打開 Eclipse(這裡版本是 2023.6 版)，找到工具列左上角的檔案&#x2F;新建&#x2F;動態 Web 專案（Dynamic Web Project）</p>
+<p>b. 設定專案環境<br><img src="https://hackmd.io/_uploads/BkQnDAPYh.png"><br>_ 專案名稱(Project name): 就是專案名稱，方便辨識的就行了<br>_ Target runtime:我們剛才下載的 Tomcat(如果沒有的話去 New Runtime 找，Apache 資料夾裡會有，選擇一樣版本號的 Tomcat)<br>到這裡如果沒有其他細節（例如更改資料夾結構之類的）可以直接完成。</p>
+<h3 id="2-新增-JSP-頁面"><a href="#2-新增-JSP-頁面" class="headerlink" title="2.新增 JSP 頁面"></a>2.新增 JSP 頁面</h3><p>可能因為結構設定不同，所以介面差的有點多，不過我猜測 webapp 就是 WebCotent，在這個資料夾中建立一個叫做 index 的 JSP 檔。<br>建立的步驟很簡單，在 webapp 資料夾上按右鍵，新建選項裡有個 JSP File 點下去就對了，命名 JSP 檔案名稱完畢後，按完成即可建立新的 JSP 頁面。<br><img src="https://hackmd.io/_uploads/Skj9KCDKn.png"></p>
+<h3 id="3-預覽頁面"><a href="#3-預覽頁面" class="headerlink" title="3. 預覽頁面"></a>3. 預覽頁面</h3><p>點執行按鈕，啟動 Tomcat 就可以進行頁面預覽<br><img src="https://hackmd.io/_uploads/ry5zjCDKn.png"></p>
+<h2 id="JAVA-要寫在哪裡呢"><a href="#JAVA-要寫在哪裡呢" class="headerlink" title="JAVA 要寫在哪裡呢"></a>JAVA 要寫在哪裡呢</h2><p>由 Eclipse 產生的 JSP 文件檔案有類似 HTML 的基本架構，title 是網頁分頁名稱，而&lt;% %&gt;內則可以撰寫 JAVA，像是這樣：<br><img src="https://hackmd.io/_uploads/Syer2Rvth.png"><br>在網頁呈現出來的畫面：<br><img src="https://hackmd.io/_uploads/SkS-hRwY3.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/jsp/eclipse-jsp.html">Eclipse JSP&#x2F;Servlet 环境搭建</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/JSP">JSP - 維基百科</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">JSP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/09/20230709%20JSP%E6%98%AF%E4%BB%80%E9%BA%BC%20&%20%E5%A6%82%E4%BD%95%E9%96%8B%E5%A7%8B%E4%BD%BF%E7%94%A8/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230703 錯誤The origin server did not find a current representation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1229,112 +1327,6 @@
 
 
   
-    <article id="post-20230602 安裝Eclipse中文包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/02/20230602%20%E5%AE%89%E8%A3%9DEclipse%E4%B8%AD%E6%96%87%E5%8C%85/" target="_blank">安裝Eclipse中文包</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/02/20230602%20%E5%AE%89%E8%A3%9DEclipse%E4%B8%AD%E6%96%87%E5%8C%85/" class="archive-article-date">
-        <time datetime="2023-06-02T13:59:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-02</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>雖然看習慣英文比較好，但同事習慣看中文的時候還是統一吧</p>
-<h2 id="線上安裝"><a href="#線上安裝" class="headerlink" title="線上安裝"></a>線上安裝</h2><ol>
-<li><p>先到<a target="_blank" rel="noopener" href="https://eclipse.dev/babel/downloads.php">eclipse babel</a>的語言下載包列表，看到安裝步驟，有附一段網址(這段是下載最新版的意思，有些文章說Eclipse版本不同會有不相容的問題)，先複製</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://download.eclipse.org/technology/babel/update-site/latest/</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打開eclipse看到上方工具列的help，點選選項install New Software開啟面板<br><img src="https://hackmd.io/_uploads/HyaIh7QL2.png"></p>
-</li>
-<li><p>點擊Add，Location貼上剛才複製的網址，Name可以自訂，按OK<br><img src="https://hackmd.io/_uploads/HJC1Ch8I2.png"></p>
-</li>
-<li><p>下載完之後選取想安裝的工具語言包，<br><img src="https://hackmd.io/_uploads/rkA5s6UIn.png"></p>
-<p> 不想設定這麼瑣碎也可以直接往下滾動，以語言為群組直接下載，完成選取就按Next<br> <img src="https://hackmd.io/_uploads/r1Cchp8I2.png"></p>
-</li>
-<li><p>勾選I accept the terms of the license agreement，按finish<br><img src="https://hackmd.io/_uploads/ryEf6p8I3.png"></p>
-</li>
-<li><p>勾選Always trust all content後，按Trust Selected<br><img src="https://hackmd.io/_uploads/BkQWFCUIn.png"><br>跑完之後會叫你重新啟動Eclipse<br><img src="https://hackmd.io/_uploads/H1j_YRILn.png"></p>
-</li>
-<li><p>面板變成中文了!!但因為漢化不完全，所以有部分英文是正常的<br><img src="https://hackmd.io/_uploads/SJBb9R8In.png"></p>
-</li>
-</ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>官方網站</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/02/20230602%20%E5%AE%89%E8%A3%9DEclipse%E4%B8%AD%E6%96%87%E5%8C%85/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1513,6 +1505,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JSP</a>
               </li>
             
             <div class="clearfix"></div>
