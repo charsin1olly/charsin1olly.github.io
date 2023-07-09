@@ -180,6 +180,121 @@
             
 
   
+    <article id="post-20221204 Enum與下拉選單" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" target="_blank">【Ruby on Rails】應用Enum製作下拉選單</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" class="archive-article-date">
+        <time datetime="2022-12-04T16:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-05</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>填寫表單時總會遇到一個困擾，那就是我們希望只有1,2,3,4選項可以選，但表格設定類型為integer僅僅能防止非整數以及文字資料輸入，依舊抵擋不了操作者輸入5,6,7,9999之類不在預期範圍的資料，這種時候就可以設定Enum限定操作者填入的資料內容，搭配下拉選單呈現選項。</p>
+<p>此處以設定使用者身份示範：</p>
+<h2 id="添加欄位"><a href="#添加欄位" class="headerlink" title="添加欄位"></a>添加欄位</h2><p>如果在table上已經預留好欄位就可以直接跳到ENUM設定步驟，還沒有的就可以添加migration檔。<br>資料類型integer：我們要用去抓該項設定的key，所以要是整數。<br>設定一個default值：讓新增加的資料自帶預設值0，即默認為Enum的key為0的狀態。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class AddRoleInUser &lt; ActiveRecord::Migration[6.1]</span><br><span class="line">  def change</span><br><span class="line">    add_column :users ,:role , :integer ,default: 0</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="先用ENUM設定選項內容"><a href="#先用ENUM設定選項內容" class="headerlink" title="先用ENUM設定選項內容"></a>先用ENUM設定選項內容</h2><p>找到要設定項目的Model設定Enum</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class User &lt; ApplicationRecord</span><br><span class="line">  enum role: &#123; user: 0 , staff: 1 , admin: 2&#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>設定完Enum，rails就會送你這幾個方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">user.roles    查詢user的所有role</span><br><span class="line"></span><br><span class="line">user.staff!   把user設定為staff</span><br><span class="line">user.staff?   user是staff嗎？(回傳true,false)</span><br><span class="line">user.role     user現在的身份是什麼</span><br><span class="line"></span><br><span class="line">資料庫查詢</span><br><span class="line">User.where(role: [:user, :staff, :admin])  </span><br><span class="line">User.where.not(role: :staff)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/5voZXPy.png"></p>
+<h2 id="應用表單輔助：options-for-select-做出下拉選單"><a href="#應用表單輔助：options-for-select-做出下拉選單" class="headerlink" title="應用表單輔助：options_for_select 做出下拉選單"></a>應用表單輔助：options_for_select 做出下拉選單</h2><p><img src="https://i.imgur.com/Gk4y8u1.png"></p>
+<p>這個是製作下拉選單內容的本體，可以放兩個參數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options_for_select([ 選項內容 ],預設選項)</span><br></pre></td></tr></table></figure>
+<p>其中第二個參數設定預設項，只要在選項內容找得到的key都可以設定，若是找不到的的選項則會顯示第一個選項為預設。</p>
+<h3 id="首先是固定顯示某個選項（可用於一般表單輸入）"><a href="#首先是固定顯示某個選項（可用於一般表單輸入）" class="headerlink" title="首先是固定顯示某個選項（可用於一般表單輸入）"></a>首先是固定顯示某個選項（可用於一般表單輸入）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">以User所有的role設定的狀態2</span><br><span class="line">&lt;%= form.select :role, options_for_select(User.roles, 2) %&gt;</span><br></pre></td></tr></table></figure>
+<p>可是狀態2是什麼並不直觀，所以有另一種寫法：</p>
+<p>先在controller設定一個實體變數，取每個狀態的key(這裡為了凸顯下一招的厲害我故意打了一個底線)，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    key</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/x1M2hac.png"></p>
+<p>用human_attribute_name幫選項內容整理一下，看起來會比較像人類的表達方式，開頭變成大寫，底線也會變成空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    [User.human_attribute_name(&quot;role.#&#123;key&#125;&quot;), key]</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/qhZrdXu.png"></p>
+<p>接下來就是把剛剛做的實體變數塞進選項清單，這下就可以使用key來設定預設值了～這樣是不是比較直觀呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我要讓admin成為預設選項</span><br><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, &quot;admin&quot;) %&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="那我只是要修改上次的資料呢？"><a href="#那我只是要修改上次的資料呢？" class="headerlink" title="那我只是要修改上次的資料呢？"></a>那我只是要修改上次的資料呢？</h3><p>萬一我的舊資料不是預設選項卻忘了改，那不是完了？<br>別擔心，只要讀取該筆資料的role塞進預設值參數就好了～</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, @user.role) %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>感想：<br>學會Enum＋下拉選單應用對資料的統一性非常的有幫助，再也不用害怕那些不按照規矩來的人了，繼續鑽研…</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://api.rubyonrails.org/v5.1/classes/ActiveRecord/Enum.html">ActiveRecord::Enum</a><br><a target="_blank" rel="noopener" href="https://rails.ruby.tw/form_helpers.html#select-%E8%88%87-option-%E6%A8%99%E7%B1%A4">Select 與 Option 標籤</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20221202 devise寄信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -903,6 +1018,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">尚硅谷</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
             
             <div class="clearfix"></div>

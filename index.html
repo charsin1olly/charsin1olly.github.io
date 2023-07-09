@@ -180,6 +180,109 @@
             
 
   
+    <article id="post-20230703" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/03/20230703/" target="_blank">百百種錯誤訊息之 The origin server did not find a current representation for the target resource or ....</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/03/20230703/" class="archive-article-date">
+        <time datetime="2023-07-03T11:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-03</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>太長了標題放不下，全部的錯誤訊息是這樣：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</span><br></pre></td></tr></table></figure>
+
+<p>這個訊息在我學習 servlet 拜訪網址的時候出現過，有以下幾種可能</p>
+<p><font color="red"> 1. web.xml 文件標籤錯字導致的文法錯誤</font><br><font color="red"> 2. 拜訪的網址有錯字</font><br><font color="red"> 3. 新增或是修改 servlet 網址之後沒有重開 tomcat(本次問題)</font><br><font color="red"> 4. 網址名稱不能和 servlet 的名字一樣(本次問題)</font></p>
+<p>基本上這個錯誤訊息都是各種錯字造成的，請大家要仔細檢查自己打的有沒有錯啊~另外，網址名稱不能和 Servlet 的名字一樣這一點不知道是不是巧合，當我的網址改成和 Servlet 名稱不同的網址就能順利拜訪，希望有知道原理的大大可以告訴我(跪</p>
+<p>參考資料裡面還有幾個解決方式，但具體為甚麼會有關聯沒有說得很清楚，也許有朝一日我也會用到?</p>
+<hr>
+<h2 id="關於伺服器設定的部分"><a href="#關於伺服器設定的部分" class="headerlink" title="關於伺服器設定的部分"></a>關於伺服器設定的部分</h2><p><img src="https://hackmd.io/_uploads/Bkx8YelK3.png"></p>
+<p>第二篇參考文章中提到這個錯誤有可能會與伺服器設置有關，而參考文章第一篇的問題三中也有和伺服器設定有關的解決方法，我照著設置結果 tomcat 直接開不起來，顯示的錯誤訊息和路徑錯誤有關，重新新增伺服器之後發現一切正常，而我的電腦預設 Server Locations 選項是選<code>Use workspace metadata</code>，發現不一定要和文中說的一樣選擇<code>Use Tomcat installation</code>這個選項，但如果要對應問題六的畫面，就必定要選這個選項才會有自己的專案資料夾生成在 tomcat 的資料夾中(依照 Deploy path 位置生成，我這邊會佈署到<code>wtpwebapps</code>資料夾)，否則就會跑進<code>workspace</code>的<code>.metadata</code>資料夾，所以在 tomcat 找不到專案資料夾的話，可以去檢查 tomcat 伺服器設定，看看它究竟把專案佈署到哪裡去囉~</p>
+<p><img src="https://hackmd.io/_uploads/HJV5jexK2.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/DBC_121/article/details/79204340">Web 开发：关于 Tomcat 出现 The origin server did not find a current representation for the target resourc…的问题</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/71680405/404-the-origin-server-did-not-find-a-current-representation-for-the-target-res">“404: The origin server did not find a current representation for the target resource or is not willing to disclose that one exists” with Tomcat</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/03/20230703/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230702 JAVA 數據類型的自動轉換" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1223,97 +1326,6 @@
 
 
   
-    <article id="post-20230518 Win10遠端桌面連線：已拒絕連線，因為未授權該使用者帳戶遠端登入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/18/20230518%20Win10%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2%E9%80%A3%E7%B7%9A%EF%BC%9A%E5%B7%B2%E6%8B%92%E7%B5%95%E9%80%A3%E7%B7%9A%EF%BC%8C%E5%9B%A0%E7%82%BA%E6%9C%AA%E6%8E%88%E6%AC%8A%E8%A9%B2%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5/" target="_blank">Win10遠端桌面連線：已拒絕連線，因為未授權該使用者帳戶遠端登入</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/18/20230518%20Win10%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2%E9%80%A3%E7%B7%9A%EF%BC%9A%E5%B7%B2%E6%8B%92%E7%B5%95%E9%80%A3%E7%B7%9A%EF%BC%8C%E5%9B%A0%E7%82%BA%E6%9C%AA%E6%8E%88%E6%AC%8A%E8%A9%B2%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5/" class="archive-article-date">
-        <time datetime="2023-05-18T11:38:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-18</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>工作時常會用到遠端操作同事的電腦，直接用內網IP位址連線過去就很方便。某一天我想連結到某一台電腦，跳出:<code>已拒絕連線，因為未授權該使用者帳戶遠端登入</code>，<br><img src="https://hackmd.io/_uploads/Sk0zkDmH2.png"></p>
-<p>這個錯誤訊息是代表這個帳戶沒有被允許遠端連線，平常我遠端連的都是那台電腦的Administrator帳戶，不代表同一台電腦的user可以這樣連線，解決方法:</p>
-<h2 id="開始功能表點開-x2F-設定-齒輪圖示-x2F-系統-x2F-左側欄的遠端桌面"><a href="#開始功能表點開-x2F-設定-齒輪圖示-x2F-系統-x2F-左側欄的遠端桌面" class="headerlink" title="開始功能表點開&#x2F;設定(齒輪圖示)&#x2F;系統&#x2F;左側欄的遠端桌面"></a>開始功能表點開&#x2F;設定(齒輪圖示)&#x2F;系統&#x2F;左側欄的遠端桌面</h2><p><img src="https://hackmd.io/_uploads/S1-6gvQr2.png"><br>點使用者帳戶下方的「選取可以從遠端存取此電腦的使用者」</p>
-<h2 id="新增可遠端帳戶"><a href="#新增可遠端帳戶" class="headerlink" title="新增可遠端帳戶"></a>新增可遠端帳戶</h2><p>新增&#x2F;在方框內輸入帳戶名稱&#x2F;檢查名稱(自動翻譯成電腦看得懂的樣子)&#x2F;一路確定<br><img src="https://hackmd.io/_uploads/BkhEbvQS2.png"></p>
-<p>這樣就可以順利連線囉~</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/18/20230518%20Win10%E9%81%A0%E7%AB%AF%E6%A1%8C%E9%9D%A2%E9%80%A3%E7%B7%9A%EF%BC%9A%E5%B7%B2%E6%8B%92%E7%B5%95%E9%80%A3%E7%B7%9A%EF%BC%8C%E5%9B%A0%E7%82%BA%E6%9C%AA%E6%8E%88%E6%AC%8A%E8%A9%B2%E4%BD%BF%E7%94%A8%E8%80%85%E5%B8%B3%E6%88%B6%E9%81%A0%E7%AB%AF%E7%99%BB%E5%85%A5/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1488,6 +1500,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">尚硅谷</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Tomcat</a>
               </li>
             
             <div class="clearfix"></div>
