@@ -469,6 +469,12 @@
 <li>打開後找到connector標籤，會看到預設port是8080，可以修改成其他的port(1~65535之間的數字，盡量1000以上，避免撞系統使用到的port)，改完存檔 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">           connectionTimeout=&quot;20000&quot;</span><br><span class="line">           redirectPort=&quot;8443&quot;</span><br><span class="line">           maxParameterCount=&quot;1000&quot;</span><br><span class="line">           /&gt;</span><br></pre></td></tr></table></figure></li>
 <li>重新開啟tomcat伺服器，這樣就修改完成了<br><img src="https://hackmd.io/_uploads/B1vKLPcO3.png"></li>
 </ol>
+<h2 id="在Eclipse上使用"><a href="#在Eclipse上使用" class="headerlink" title="在Eclipse上使用"></a>在Eclipse上使用</h2><h3 id="1-新增伺服器"><a href="#1-新增伺服器" class="headerlink" title="1. 新增伺服器"></a>1. 新增伺服器</h3><p>a. 視窗(Window) &#x2F; 喜好設定(Preferences) &#x2F; 伺服器（Server） &#x2F; Runtime Environments &#x2F; 新增(add)&#x2F;找到我們要用的Tomcat版本 &#x2F; 下一步<br><img src="https://hackmd.io/_uploads/rkxqfAwK2.png"></p>
+<p>b. 瀏覽&#x2F;選擇tomcat所在資料夾，要在<code>apache-tomcat-（版本號）</code>這個資料夾的目錄 &#x2F;完成<br><img src="https://hackmd.io/_uploads/rkF8bAvY3.png"></p>
+<h3 id="2-執行"><a href="#2-執行" class="headerlink" title="2. 執行"></a>2. 執行</h3><p>a. 找到上方工具列的視窗(Window) &#x2F; Web 瀏覽器能設定我們開啟server的時候要用哪個瀏覽器<br><img src="https://hackmd.io/_uploads/rkVWXADYh.png"></p>
+<p>b. 進到想預覽的頁面檔案，按工具列的綠色執行按鈕，選擇剛才添加的伺服器&#x2F;完成<br><img src="https://hackmd.io/_uploads/Hk7-rAPY2.png"></p>
+<p>c.成功啟動～<br><img src="https://hackmd.io/_uploads/B12VHCwK2.png"></p>
+<p>d.關閉伺服器<br>下方視窗的主控台分頁有個紅色的停止鍵，按下去就能關閉<br><img src="https://hackmd.io/_uploads/HyVFBRDKh.png"></p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLmOn9nNkQxJGJVS8ZqBcbjkxPh0OuaW2E">【尚硅谷】JavaWeb 2020IDEA新版</a></p>
 
     
