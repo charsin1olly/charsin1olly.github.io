@@ -180,6 +180,209 @@
             
 
   
+    <article id="post-20230721 Thunderbird 關於資料備份匯入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/" target="_blank">Thunderbird，關於資料備份匯入</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/" class="archive-article-date">
+        <time datetime="2023-07-21T13:48:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-21</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>公司信箱用的是Thunderbird，遇到某些狀況需要重裝，同事的資料都需要備份(之前有一次忘記備份差點被追殺orz)，可是Thunderbird的資料夾功能可能因為本人覺得不是那麼好理解，來簡單說說怎麼備份~</p>
+<p>相關的檔案在<code>C:\Users\(使用者名稱 )\AppData\Roaming\Thunderbird\Profiles\(亂數).default-release</code>這一層資料夾裡，而亂數名稱的資料夾則是一個亂數對應一個帳號，例如現在我有新增一個A信箱的帳號，就會產生一個像是lyh99o1n之類的亂數名稱資料夾，再新增一個B信箱的話，就會再產生另一個新的亂數名稱hqk49oc9資料夾，就可以得知關於這個帳號的資料都在這個資料夾裡，整個資料夾複製到找的到的地方，但我自己習慣整個Thunderbird資料夾都複製，以免有遺漏。</p>
+<h2 id="信件備份匯入"><a href="#信件備份匯入" class="headerlink" title="信件備份匯入"></a>信件備份匯入</h2><p>亂數資料夾點開之後會看到非常多的資料夾以及檔案，找到Mail資料夾，他是用來存放信件的。</p>
+<p>打開重新安裝的Thunderbird同樣找到<code>C:\Users\(使用者名稱)\AppData\Roaming\Thunderbird\Profiles\</code>資料夾，就會看見多了一個新的亂數資料夾，點進去，把剛才複製的Mail資料夾貼上並且覆蓋即可。</p>
+<p>小提醒:如果沒有要定期自動刪郵件，重裝之後也要自己在<code>帳號設定/伺服器設定</code>那邊勾選不刪除伺服器上的郵件，這樣可以避免下次要重裝結果有信件遺失的意外。</p>
+<h2 id="通訊錄匯入"><a href="#通訊錄匯入" class="headerlink" title="通訊錄匯入"></a>通訊錄匯入</h2><p>亂碼資料夾下有三個檔案關於通訊錄資料，分別是</p>
+<ul>
+<li>個人通訊錄：abook.mab</li>
+<li>收集到的E-mail：history.mab</li>
+<li>群組：impab.mab</li>
+</ul>
+<p>原本我以為只要複製貼上到相對應位置就可以成功，結果怎麼試都沒用，突然想起剛才研究匯出檔案類型時路過的匯入檔案按鈕，巧了，mab檔案可以匯入:<br><img src="https://hackmd.io/_uploads/r1XIfjv53.png"></p>
+<p>這樣就選擇使用mab檔匯入資料，下一步選擇檔案，把剛才備份、也就是舊資料夾的<code>abook.mab</code>、<code>history.mab</code>、<code>impad.mab</code>這三個檔案依次匯入，通訊錄資料就可以回復囉~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="http://dennisliao.blogspot.com/2012/09/thunderbird.html">Thunderbird通訊錄手動還原</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230720 在JAVA Web的JSP檔案使用Bootstrap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/20/20230720%20%E5%9C%A8JAVA%20Web%E7%9A%84JSP%E6%AA%94%E6%A1%88%E4%BD%BF%E7%94%A8Bootstrap/" target="_blank">在JAVA Web的JSP檔案使用Bootstrap</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/20/20230720%20%E5%9C%A8JAVA%20Web%E7%9A%84JSP%E6%AA%94%E6%A1%88%E4%BD%BF%E7%94%A8Bootstrap/" class="archive-article-date">
+        <time datetime="2023-07-20T12:15:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-20</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>發現公司系統的專案都是寫原生CSS，開發切版花了很多時間，不如來用一下之前學過的Bootstrap加速一下~<br>先貼上一段bootstrap的程式碼，還沒成功引入bootstrap的畫面<br><img src="https://hackmd.io/_uploads/HkOPgNU9n.png"></p>
+<p>預期會變成這樣，它是一個可以展開、摺疊的摺頁，這樣就需要引入bootstrap的CSS和JavaScript控制的這兩個部分<br><img src="https://hackmd.io/_uploads/Byiix48ch.png"></p>
+<h2 id="最簡單粗暴的-線上導入"><a href="#最簡單粗暴的-線上導入" class="headerlink" title="最簡單粗暴的-線上導入"></a>最簡單粗暴的-線上導入</h2><p>在head標籤中加入這串，這樣就能導入css部分的程式碼：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC&quot; crossorigin=&quot;anonymous&quot;&gt;		</span><br></pre></td></tr></table></figure>
+
+<p>別忘了還有負責動態效果的JavaScript，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用下載版本的Bootstrap"><a href="#使用下載版本的Bootstrap" class="headerlink" title="使用下載版本的Bootstrap"></a>使用下載版本的Bootstrap</h2><ol>
+<li><p>先到<a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/getting-started/download/">載點</a>下載CSS以及JS的檔案，這裡下載完會獲得一個壓縮檔<br><img src="https://hackmd.io/_uploads/Sk8WxILc3.png"></p>
+</li>
+<li><p>在專案的WebContent資料夾裡新建一個Bootstrap資料夾(或是其他名字也可以)，把剛才下載的壓縮檔裡的CSS、JS資料夾塞進去，像這樣(js資料夾的錯誤還沒搞清楚是怎麼一回事，但目前用起來沒什麼問題)<br><img src="https://hackmd.io/_uploads/HJBEW8U93.png"></p>
+</li>
+<li><p>和上一種方法相同，將這段程式碼貼在head標籤內，將路徑位置改成資料夾的位置就可以正常使用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;Bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;  &gt;</span><br><span class="line">&lt;script src=&quot;Bootstrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/getting-started/download/">bootstrap-Download</a><br><a target="_blank" rel="noopener" href="https://vitalflux.com/get-started-bootstrap-ui-eclipse/">How to Get Started with Bootstrap (UI) &amp; Eclipse</a><br><a target="_blank" rel="noopener" href="https://www.javaguides.net/2020/01/add-bootstrap-to-jsp-page.html">Add Bootstrap to JSP Page</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/20/20230720%20%E5%9C%A8JAVA%20Web%E7%9A%84JSP%E6%AA%94%E6%A1%88%E4%BD%BF%E7%94%A8Bootstrap/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230711 Github如何使用SSH推送檔案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1105,224 +1308,9 @@
 
 
   
-    <article id="post-20230609  the import javax.servlet cannot be resolved" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/" target="_blank">錯誤訊息 - the import javax.servlet cannot be resolved</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/" class="archive-article-date">
-        <time datetime="2023-06-09T11:25:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-09</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>因為換了一台新電腦，搬運檔案之後Tomcat的套件遺失，導致servlet沒地方放，就會跳出這個錯誤訊息<br><img src="https://hackmd.io/_uploads/H1tRqlgD3.png"></p>
-<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><ol>
-<li><p>對著左側專案名稱點右鍵，找到Properties(內容)點下去</p>
-</li>
-<li><p>點Java Build Path(JAVA建置路徑)，右側視窗找到Libraries(函式庫)摺頁，點選類別路徑&#x2F;add Libraries&#x2F;伺服器runtime&#x2F;下一步<br><img src="https://hackmd.io/_uploads/Sy53GbgDh.png"></p>
-</li>
-<li><p>選擇要用的server套件(例如Apache Tomcat 8.5)&#x2F;完成</p>
-</li>
-<li><p>apply and close，就會看到的錯誤訊息消失，而剛才找不到的import套件出現在Libraries資料匣。</p>
-</li>
-</ol>
-<p><img src="https://hackmd.io/_uploads/rJ8mN-eP3.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32483145/article/details/80114728">【解决】The import javax.servlet cannot be resolved</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230608 回退Microsoft Edge版本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/" target="_blank">回退Microsoft Edge版本</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/" class="archive-article-date">
-        <time datetime="2023-06-08T12:02:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-08</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>為了設定IE相容性，解決公司系統網站無法正常使用問題，發現IE開啟之後會自動變成Edge開啟(系統來還沒升級RRR)，找了很多文章都說要把<code>Microsoft Edge中以Internet Explorer開啟網站面板</code>改永不，但問題來了，我的Edge版本113.0.1774.57這個面板似乎不見了，前輩的110.0.1587.46版本是有的，我想說把版本降到一致再來設定，雖然說真正解決這個問題的辦法不是降版本，但是摸了好幾天不記錄太對不起自己了~</p>
-<h2 id="下載-amp-安裝"><a href="#下載-amp-安裝" class="headerlink" title="下載&amp;安裝"></a>下載&amp;安裝</h2><h3 id="最新版本的範本檔"><a href="#最新版本的範本檔" class="headerlink" title="最新版本的範本檔"></a>最新版本的範本檔</h3><p>到<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-tw/edge/business/download?form=MA13FJ">Microsoft官網</a>下載範本檔，安裝方式之前我有<a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SyuZyGXrh">文章</a>寫過，不過這次要把<code>msedgeupdate.admx</code>和<code>msedgeupdate.adml</code>都複製過去，不然會少一個Edge更新的資料夾選項，這是我卡了好幾天的原因QQ</p>
-<h2 id="方法1-使用-MSI-手動啟用復原"><a href="#方法1-使用-MSI-手動啟用復原" class="headerlink" title="方法1: 使用 MSI 手動啟用復原"></a>方法1: 使用 MSI 手動啟用復原</h2><p>這個方法可以直接停用更新，手動變更版本到下載的版本，也不用怕自動更新把把它升級回去。</p>
-<ol>
-<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:</p>
-<ul>
-<li>[更新原則覆寫] 點兩下，改成<code>已啟用</code>，左下方輸入欄改成<code>停用更新</code>，描述:「指定 Microsoft Edge Update 如何從 Microsoft Edge 處理可用更新」</li>
-</ul>
-</li>
-<li><p>安裝指定版本的edge<br> a. 上面提到的官網連結，可以下載指定版本的edge，會獲得一個<code>MicrosoftEdgeEnterpriseX64.msi</code>檔案，別急著按，雖然按了也沒事，只會跳出一個訊息框告訴你:你的電腦已經有安裝更新的版本。</p>
-<p> b. 把這個檔案放到桌面或是其他找的到的地方，然後在開始工具列搜尋<code>cmd</code>，<em><strong>用系統管理員身分執行</strong></em>，這很重要，如果沒用系統管理員，後面的步驟可能會無法執行(對…我又被這個卡了好久)<br> <img src="https://hackmd.io/_uploads/ByGfF9ar3.png"></p>
-<p> c. 打開cmd之後先找到剛才放msi檔的地方，像我是放在桌面一個臨時的資料夾，先把現在位置切換到存放安裝檔的資料夾，例如:<code>cd C:\Users\Administrator\Desktop\123\edge</code>。<br> 如果不知道路徑的話，打開剛才存放msi的資料夾，複製資料夾上方的網址，在cmd輸入<code>cd (你剛才複製的網址)</code>是一樣的效果。<br> <img src="https://hackmd.io/_uploads/ByCnqqTSn.png"></p>
-<p> d. 在cmd輸入<code>msiexec /I MicrosoftEdgeEnterpriseX64.msi /qn ALLOWDOWNGRADE=1</code>按下enter，看起來沒反應，打開工作管理員會看到edgeUpdate就代表有在降版本了(如果沒看到相關程序可能就是沒開系統管理員)，這時候我直接關掉edge等更新。</p>
-<ul>
-<li>如果發現怎麼搞都沒反應，可以試試看系統管理員打開Windows PowerShell輸入cmd，再重複d步驟</li>
-<li>如果之前有關掉Edge Update要記得打開，不然會卡在Edge正在更新，請等幾分鐘。</li>
-</ul>
-<p> e. EdgeUpdate跑完之後重開Edge就會發現版本被降回去了(如果發現Edge Update消失，馬上重開也有可能是降版本前的版本，可以過幾分鐘再開開看)</p>
-</li>
-</ol>
-<h2 id="方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原"><a href="#方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原" class="headerlink" title="方法2: 使用 Microsoft Edge Update 和管理範本啟用復原"></a>方法2: 使用 Microsoft Edge Update 和管理範本啟用復原</h2><p>這個方法是利用自動更新設定指定版本，再怎麼樣更新，也還是同一個版本。</p>
-<ol>
-<li><p>按下<code>Win+R</code>輸入<code>gpedit.msc</code>叫出管理範本設定。</p>
-</li>
-<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:<br>  a. <strong>[目標版本複寫]</strong> 點兩下，改成<code>已啟用</code>左下方輸入欄輸入想要的指定版本(例如:110.0.1587.46)，簡單來說就是指定版本用的選項。</p>
-<p>  b. <strong>[復原至目標版本]</strong> 點兩下，改成<code>已啟用</code><br>  這個選項就可以讓update降回當前版本，但前提是「除非設定 ‘目標版本覆寫’ <strong>且</strong>將 ‘更新原則覆寫’ 設定為開啟狀態 (永遠允許更新、僅限無訊息自動更新、僅限手動更新)，否則此原則不會生效。」，和方法1的步驟衝突，要用的時候要留意~</p>
-</li>
-</ol>
-<h2 id="我自己的設定"><a href="#我自己的設定" class="headerlink" title="我自己的設定"></a>我自己的設定</h2><p>我採用方法1降版本，但是多設定方法2的目標版本複寫打開，預防哪天更新不小心被打開版本被升上去，而關閉更新跟公司的管理習慣比較一致，方法2比較傾向拿來恢復成最新版本。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=60030&snA=621392">【心得】分享Edge降版的方法</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-learnmore-rollback">如何將 Microsoft Edge 復原到舊版-Mircrosoft Learn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41963310/article/details/113827270">Microsoft Edge版本回退方法</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Edge</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1506,6 +1494,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
             
             <div class="clearfix"></div>
