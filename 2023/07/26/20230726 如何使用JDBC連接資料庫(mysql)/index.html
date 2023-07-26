@@ -6,30 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://charsin1olly.github.io">
-  <title>變數提升（Hoisting） | Charsin&#39;s co_oding life</title>
+  <title>如何使用JDBC連接資料庫(mysql) | Charsin&#39;s co_oding life</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。 創造期與執行期瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期">
+  <meta name="description" content="這邊我是連接公司的XAMPP伺服器上的MySQL，以為連接方式會跟一般MySQL不同(因為公司專案的檔案寫法跟連接SQL Server差很多，雖然看得出意思差不多……) 1. 產生一個Package來裝檔案功能相近或相關的JAVA檔案通常會放在同一個Package裡，這次要接資料庫也一樣，幫它開一個包廂(X)，package的命名也有慣例，這邊就不歪樓了 (實際上是自己也還搞不清楚)在專案的Jav">
 <meta property="og:type" content="article">
-<meta property="og:title" content="變數提升（Hoisting）">
-<meta property="og:url" content="http://charsin1olly.github.io/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/index.html">
+<meta property="og:title" content="如何使用JDBC連接資料庫(mysql)">
+<meta property="og:url" content="http://charsin1olly.github.io/2023/07/26/20230726%20%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8JDBC%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB(mysql)/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。 創造期與執行期瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期">
+<meta property="og:description" content="這邊我是連接公司的XAMPP伺服器上的MySQL，以為連接方式會跟一般MySQL不同(因為公司專案的檔案寫法跟連接SQL Server差很多，雖然看得出意思差不多……) 1. 產生一個Package來裝檔案功能相近或相關的JAVA檔案通常會放在同一個Package裡，這次要接資料庫也一樣，幫它開一個包廂(X)，package的命名也有慣例，這邊就不歪樓了 (實際上是自己也還搞不清楚)在專案的Jav">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/X2f9Yei.png">
-<meta property="og:image" content="https://i.imgur.com/AS1lNij.png">
-<meta property="og:image" content="https://i.imgur.com/EAFSg4J.png">
-<meta property="og:image" content="https://i.imgur.com/w2kd6p4.png">
-<meta property="og:image" content="https://i.imgur.com/4uxZEqj.png">
-<meta property="og:image" content="https://i.imgur.com/0Z2bsbi.png">
-<meta property="article:published_time" content="2023-02-15T08:25:49.000Z">
-<meta property="article:modified_time" content="2023-02-15T08:26:15.392Z">
+<meta property="og:image" content="https://hackmd.io/_uploads/B1Lv4SC92.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/SJy0gvR5h.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/Syn9oE09h.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/Hyi87SC52.png">
+<meta property="og:image" content="https://hackmd.io/_uploads/BJvV5E05n.png">
+<meta property="article:published_time" content="2023-07-26T15:19:14.000Z">
+<meta property="article:modified_time" content="2023-07-26T15:19:58.890Z">
 <meta property="article:author" content="Charsin">
-<meta property="article:tag" content="JS">
-<meta property="article:tag" content="讀書筆記">
+<meta property="article:tag" content="JAVA">
+<meta property="article:tag" content="Eclipse">
+<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/X2f9Yei.png">
+<meta name="twitter:image" content="https://hackmd.io/_uploads/B1Lv4SC92.png">
   
     <link rel="alternative" href="/atom.xml" title="Charsin&#39;s co_oding life" type="application/atom+xml">
   
@@ -184,14 +184,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20230215 變數提升（Hoisting）" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20230726 如何使用JDBC連接資料庫(mysql)" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      變數提升（Hoisting）
+      如何使用JDBC連接資料庫(mysql)
     </h1>
   
 
@@ -203,8 +203,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span> -->
 
-<a href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" class="archive-article-date">
-        <time datetime="2023-02-15T08:25:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-15</time>
+<a href="/2023/07/26/20230726%20%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8JDBC%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB(mysql)/" class="archive-article-date">
+        <time datetime="2023-07-26T15:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-26</time>
 </a>
 
   
@@ -213,30 +213,38 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。</p>
-<h2 id="創造期與執行期"><a href="#創造期與執行期" class="headerlink" title="創造期與執行期"></a>創造期與執行期</h2><p>瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期，像是以下這段程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var food = &quot;漢堡&quot;</span><br><span class="line">console.log(food)</span><br></pre></td></tr></table></figure>
+    <p>這邊我是連接公司的XAMPP伺服器上的MySQL，以為連接方式會跟一般MySQL不同(因為公司專案的檔案寫法跟連接SQL Server差很多，雖然看得出意思差不多……)</p>
+<h2 id="1-產生一個Package來裝檔案"><a href="#1-產生一個Package來裝檔案" class="headerlink" title="1. 產生一個Package來裝檔案"></a>1. 產生一個Package來裝檔案</h2><p>功能相近或相關的JAVA檔案通常會放在同一個Package裡，這次要接資料庫也一樣，幫它開一個包廂(X)，package的命名也有慣例，這邊就不歪樓了 <del>(實際上是自己也還搞不清楚)</del><br>在專案的<code>Java Resources/src</code>資料夾右鍵，新建一個Package(套件)，然後建立一個JAVA檔案<code>dbConnect.java</code><br><img src="https://hackmd.io/_uploads/B1Lv4SC92.png"></p>
+<h2 id="2-準備套件"><a href="#2-準備套件" class="headerlink" title="2. 準備套件"></a>2. 準備套件</h2><p>在JAVA使用SQL主要是依賴java.sql這個系列的(?)jar包，剛開始嘗試寫連接的code時，Eclipse的自動修正幫我import了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br></pre></td></tr></table></figure>
+<p>雖然要能動，import這些檔案就行了，但import一大串不太好看，萬一又要用其他sql功能可能又要再加，在網上查到很多資料都是直接引入<code>java.sql.*</code>，所以這邊我就引入整包sql的package。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br></pre></td></tr></table></figure>
 
-<p>第一階段創造期是去記憶體取得等下要執行程式碼的空間，這個階段如果要使用<code>console.log(food)</code>印出「food」僅能獲得<code>undefined</code>的結果，接下來進入第二階段創造期才會進行賦值，把「漢堡」賦予到「food」變數上，用<code>console.log(food)</code>印出來的結果就會變成漢堡。</p>
-<h2 id="var的提升"><a href="#var的提升" class="headerlink" title="var的提升"></a>var的提升</h2><p>先看看第一個問題，由於變數提升的特性，下面這段程式碼可以印出undefined：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food)</span><br><span class="line">var food = &quot;漢堡&quot;</span><br></pre></td></tr></table></figure>
-<p>創造期會先得到一個food變數，這和平常一樣，但第二階段由於JS執行順序為上到下，food在被賦值之前就被印出來了，但因為依舊有「登記」到food變數，所以印出undefined。</p>
-<p>ES6之後，出現了let、const這類更嚴謹的宣告，多了TDZ修正var的提升特性，不是說let跟const沒有提升，只是有不一樣的錯誤訊息讓開發者更好偵錯。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">const food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
-<p>或是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">let food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/X2f9Yei.png"><br>加入TDZ之後就能看到這個錯誤訊息，並不是undefined（畢竟可能是var food真的沒有賦值或是其他情況導致的，當然錯誤越明確越好～）。</p>
-<p>但有些瀏覽器版本不一樣跑出來的結果可能是<code>Uncaught ReferenceError: food is not defined</code>，和沒有宣告變數的錯誤訊息一樣，所以測試的時候可能要多開幾個瀏覽器看看是不是瀏覽器版本問題（上圖是開firefox的開發者工具，下圖則是chrome）。</p>
-<p><img src="https://i.imgur.com/AS1lNij.png"></p>
-<h2 id="函式陳述式與函式表達式的提升"><a href="#函式陳述式與函式表達式的提升" class="headerlink" title="函式陳述式與函式表達式的提升"></a>函式陳述式與函式表達式的提升</h2><p>再來就是為什麼function放在哪裡都可以被取用，其實寫法不同也會有不一樣的結果：</p>
-<h3 id="函式陳述式"><a href="#函式陳述式" class="headerlink" title="函式陳述式"></a>函式陳述式</h3><p>函式陳述式會提升到創造期就準備好了，執行期就可以直接呼叫函式：<br><img src="https://i.imgur.com/EAFSg4J.png"></p>
-<h3 id="函式表達式"><a href="#函式表達式" class="headerlink" title="函式表達式"></a>函式表達式</h3><p>函式表達式則是遵從前面提過的變數提升，因為function已經變成了變數所需要賦的值，使用var宣告的時候由於還沒有給run的值，變成了undefined，所以錯誤訊息給的是<code>run is not a function</code><br><img src="https://i.imgur.com/w2kd6p4.png"></p>
-<p>換成const或let的時候，一樣會有TDZ的狀態，錯誤訊息則會顯示<code>can&#39;t access lexical declaration &#39;run&#39; before initialization</code></p>
-<p><img src="https://i.imgur.com/4uxZEqj.png"></p>
-<h3 id="執行的優先權"><a href="#執行的優先權" class="headerlink" title="執行的優先權"></a>執行的優先權</h3><p>根據上面兩點可以發現函式陳述式的優先權是大於函式表達式的，因為陳述式會在創造期就準備好可以被呼叫，而函式表達式則多了一道關卡，function的本體在執行期才能被賦予到變數上，也就是說如果有兩個同名的function被呼叫的話最終的結果就是執行順序較後面的會覆蓋掉前面的，例如我故意把函式陳述式放在函式表達式後面，最後的結果還是函式表達式寫法的結果：</p>
-<p><img src="https://i.imgur.com/0Z2bsbi.png"></p>
-<p>可以看見，在第二階段執行由上到下呼叫的三個hello，第一次呼叫的是創造期就準備好的函式陳述式hello，而後來呼叫的hello都是函式表達式內容覆蓋之後的結果。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>變數提升好好運用可以更彈性的維護專案，善用const跟let有TDZ的特性可以少走一些除錯的冤枉路。</p>
+
+<h2 id="3-連接"><a href="#3-連接" class="headerlink" title="3. 連接"></a>3. 連接</h2><p>終於可以開始連接資料庫啦~老樣子先創建一個main方法，使用try執行，我習慣在測試的時候印訊息，確保有成功啟動，搭配catch捕捉錯誤訊息比較好除錯。</p>
+<p>a. 首先裝上第一個零件：driver，使用<code>Class.forName(dbDriver)</code>註冊驅動，如果有順利啟動就會在終端機Log看到「驅動成功啟動」的訊息</p>
+<p>b. 第二個零件：資料庫登入訊息，就像上飛機要檢查機票一樣，要知道我們要去哪裡，核對身分證以及姓名，這邊DriverManager提供的<code>getConnection()</code>方法可以告訴電腦我要連去哪個資料庫(格式：<code>jdbc:資料庫://IP位址:port/欲連接的table</code>)、登入資料庫的帳號密碼(根據之前Rails開發的經驗，Java的帳號密碼資訊應該也是也要丟在其他檔案的吧，這樣直接寫在Code超可怕的耶<del>“</del> 有空研究一下)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection dbConn=DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>, <span class="string">&quot;(你的帳號)&quot;</span>, <span class="string">&quot;(你的密碼)&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>總結這個步驟3，現在code長這樣</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">dbConnect</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;驅動成功啟動&quot;</span>);</span><br><span class="line">            </span><br><span class="line">            Connection dbConn=DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>, <span class="string">&quot;(你的帳號)&quot;</span>, <span class="string">&quot;(你的密碼)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;連接成功&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span>(ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;找不到驅動程式&quot;</span>);</span><br><span class="line">			</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;加載失敗&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-查詢SQL資料"><a href="#4-查詢SQL資料" class="headerlink" title="4. 查詢SQL資料"></a>4. 查詢SQL資料</h2><p>在try的block繼續加上code，畢竟連接成功才能搜尋嘛~<br>建立一個和資料庫溝通用的Statement物件，搭配儲存結果用的ResultSet物件進行SQL查詢，再用<br>迴圈把結果轉出來</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> dbConn.createStatement();</span><br><span class="line">String sql=<span class="string">&quot;SELECT *  FROM user&quot;</span>;</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);		</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;-----資料輸出開始-----&quot;</span>);</span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;gender&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">email</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;email&quot;</span>); </span><br><span class="line">    System.out.println(name+<span class="string">&quot;,&quot;</span>+age+<span class="string">&quot;,&quot;</span>+gender+<span class="string">&quot;,&quot;</span>+email);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;-----資料輸出完畢-----&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>呈現出來的結果<br><img src="https://hackmd.io/_uploads/SJy0gvR5h.png"></p>
+<h2 id="5-清除垃圾"><a href="#5-清除垃圾" class="headerlink" title="5. 清除垃圾"></a>5. 清除垃圾</h2><p>最後，我們使用完查詢要記得關閉資料庫連接，把剛才建立的物件清乾淨，減少記憶體的負擔</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dbConn.close();</span><br><span class="line">stmt.close();</span><br><span class="line">rs.close();</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-整理連接用的數據"><a href="#6-整理連接用的數據" class="headerlink" title="6. 整理連接用的數據"></a>6. 整理連接用的數據</h2><p>全部塞在code裡面很長，把這些資料整理出來另外寫比較好維護，而把這些落落長的資料寫成變數放在方法裡也比較好理解這些方法帶入的資料代表的是什麼。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String dbDriver=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String dbURL=<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>;</span><br><span class="line">                            </span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String userName=<span class="string">&quot;你的帳號&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String userPassword=<span class="string">&quot;你的密碼&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="最後成果"><a href="#最後成果" class="headerlink" title="最後成果"></a>最後成果</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test.dbConnect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">dbConnect</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String dbDriver=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String dbURL=<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String userName=<span class="string">&quot;你的帳號&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String userPassword=<span class="string">&quot;你的密碼&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(dbDriver);</span><br><span class="line">			</span><br><span class="line">            Connection dbConn=DriverManager.getConnection(dbURL, userName, userPassword);</span><br><span class="line">            <span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> dbConn.createStatement();</span><br><span class="line">			</span><br><span class="line">            String sql=<span class="string">&quot;SELECT *  FROM user&quot;</span>;</span><br><span class="line">            <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);			</span><br><span class="line">            <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">                <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;gender&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">email</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;email&quot;</span>);</span><br><span class="line">                System.out.println(name+<span class="string">&quot;,&quot;</span>+age+<span class="string">&quot;,&quot;</span>+gender+<span class="string">&quot;,&quot;</span>+email);</span><br><span class="line">            &#125;</span><br><span class="line">                    </span><br><span class="line">            dbConn.close();</span><br><span class="line">            stmt.close();</span><br><span class="line">            rs.close();</span><br><span class="line">	        </span><br><span class="line">        &#125;<span class="keyword">catch</span>(ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;找不到驅動程式&quot;</span>);</span><br><span class="line">			</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;加載失敗&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="為什麼還是連不上"><a href="#為什麼還是連不上" class="headerlink" title="為什麼還是連不上?"></a>為什麼還是連不上?</h2><h3 id="java-lang-ClassNotFoundException-com-mysql-jdbc-Driver"><a href="#java-lang-ClassNotFoundException-com-mysql-jdbc-Driver" class="headerlink" title="java.lang.ClassNotFoundException: com.mysql.jdbc.Driver"></a>java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</h3><p>出現這就代表mysql-connecter的jar包可能沒有被成功的引入到這個專案，這次的解決方法是：<br>a. 工作區的專案名稱按右鍵&#x2F;內容<br><img src="https://hackmd.io/_uploads/Syn9oE09h.png"></p>
+<p>b. JAVA 建置路徑&#x2F;按類別路徑&#x2F;add library&#x2F;Web 應用程式程式庫&#x2F;下一步&#x2F;完成<br><img src="https://hackmd.io/_uploads/Hyi87SC52.png"><br>如果本身專案有Web應用程式庫，可以檢查看看<code>WEB-INF\lib</code>資料夾有沒有<code>mysql-connector-java-(版本號).jar</code>檔案，可能只缺它，如果沒有的話可以去<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/connector/j/5.0.html">MySQL</a>下載，windows可以選擇Platform Independent版本的zip檔，解壓縮就會獲得jar檔了。</p>
+<p>c.新增完成後就能解決這個問題~</p>
+<p>比對了一下發現Java Resources底下的Libraries資料夾，原本直接寫好code就能動的專案，底下有個Web應用程式庫，不知道是不是new專案的時候選了什麼選項自動生成的，既然漏掉了，現在知道怎麼補救了(經驗+1)<br><img src="https://hackmd.io/_uploads/BJvV5E05n.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html">Lesson: JDBC Introduction</a><br><a target="_blank" rel="noopener" href="https://tw511.com/20/213/8346.html">JDBC查詢資料範例</a><br><a target="_blank" rel="noopener" href="https://tw511.com/20/213/8321.html">JDBC快速入門教學</a><br><a target="_blank" rel="noopener" href="https://docs.informatica.com/integration-cloud/data-integration-connectors/current-version/mysql-connector/introduction-to-mysql-connector/administration-of-mysql-connector/installing-mysql-jdbc-driver.html">Installing MySQL JDBC driver(下載driver教學)</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17484764/java-lang-classnotfoundexception-com-mysql-jdbc-driver-in-eclipse">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver in Eclipse</a></p>
 
     
 
@@ -283,7 +291,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2023/02/15/20230215 變數提升（Hoisting）/" title="變數提升（Hoisting）" target="_blank">http://charsin1olly.github.io/2023/02/15/20230215 變數提升（Hoisting）/</a>
+          <a href="http://charsin1olly.github.io/2023/07/26/20230726 如何使用JDBC連接資料庫(mysql)/" title="如何使用JDBC連接資料庫(mysql)" target="_blank">http://charsin1olly.github.io/2023/07/26/20230726 如何使用JDBC連接資料庫(mysql)/</a>
         </li>
         
         <li>
@@ -305,11 +313,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
         		</li>
       		
 		</ul>
@@ -365,7 +377,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2023/07/26/20230726%20%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8JDBC%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB(mysql)/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -380,18 +392,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          如何跳過Microsoft Authenticator驗證程序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/02/12/20230212%20%E6%96%87%E6%B3%95%EF%BC%9A%E9%99%B3%E8%BF%B0%E5%BC%8F%E8%88%87%E8%A1%A8%E9%81%94%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">文法：陳述式與表達式</div>
+    <a href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Thunderbird，關於資料備份匯入</div>
       <i class="icon-circle-right"></i>
     </a>
   

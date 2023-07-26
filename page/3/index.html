@@ -180,6 +180,120 @@
             
 
   
+    <article id="post-20230510 如何提升edge啟動速度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" target="_blank">如何提升edge啟動速度</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" class="archive-article-date">
+        <time datetime="2023-05-10T13:14:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>公司電腦真的慢，自從不能用IE只能換edge之後問題也是一大堆，先來說說同仁開edge開到天荒地老的故事，會轉到睡著的那種…</p>
+<h2 id="開啟效能"><a href="#開啟效能" class="headerlink" title="開啟效能"></a>開啟效能</h2><ol>
+<li><p>找畫面右上角的三個點&#x2F;設定<br><img src="https://hackmd.io/_uploads/BJPaHKDNn.png"></p>
+</li>
+<li><p>左邊欄找到系統與效能(在網址列輸入<code>edge://settings/system</code> 也能進入同樣頁面)<br>這兩個選項可以測試一下開不開比較順，背景執行關掉是因為公司電腦記憶體CPU常常都在100%上下跑，少開一個避免當機比較好<br><img src="https://hackmd.io/_uploads/ryAxqOvE2.png"></p>
+</li>
+</ol>
+<h2 id="關閉GPU加速-這個特別特別重要"><a href="#關閉GPU加速-這個特別特別重要" class="headerlink" title="關閉GPU加速(這個特別特別重要!!)"></a>關閉GPU加速(這個特別特別重要!!)</h2><ol>
+<li>在網址列輸入<code>edge://flags/</code>，前往頁面</li>
+<li>搜尋列搜尋GPU，把<code>Accelerated 2D canvas</code>和<code>GPU rasterization</code>都停用<br><img src="https://i.imgur.com/leRnAGO.png"><br>原本Edge預設會開啟Accelerated 2D canvas，但性能不好的電腦使用GPU加速反而會更慢，所以我們把這個選項停用</li>
+</ol>
+<h2 id="清理瀏覽器的瀏覽紀錄"><a href="#清理瀏覽器的瀏覽紀錄" class="headerlink" title="清理瀏覽器的瀏覽紀錄"></a>清理瀏覽器的瀏覽紀錄</h2><p>因為同仁電腦可能用了十幾年(或以上)掛了非常多的瀏覽紀錄，刪掉能幫助瀏覽器開啟得快一點</p>
+<ol>
+<li><p>一樣在三個點的設定裡&#x2F;隱私權、搜尋與服務</p>
+</li>
+<li><p>右邊畫面找到清除瀏覽資料及除Internet Explorer，點選「要清除的項目」，前者為清除edge模式的瀏覽紀錄，後者顧名思義就是清除IE模式的紀錄(因為某些網站還沒升級，要用IE模式才能使用，未來應該不太會用到了…吧?)<br><img src="https://hackmd.io/_uploads/S1SEBYwEh.png"></p>
+</li>
+<li><p>可以設定關閉瀏覽器之後直接清除瀏覽歷程記錄</p>
+<p> a.Edge版:「選擇每次關閉瀏覽器時要清除的內容」，把想清除的項目開啟<br><img src="https://hackmd.io/_uploads/S1TluFDE3.png"></p>
+<p> b.IE版:如同字面描述，把清除按鈕下面的選項打開就行了</p>
+</li>
+</ol>
+<h2 id="關閉不用的程式、背景作業"><a href="#關閉不用的程式、背景作業" class="headerlink" title="關閉不用的程式、背景作業"></a>關閉不用的程式、背景作業</h2><p>這個應該不用多說了，開太多會電腦當機，不過常常看到有同仁會以為沒開起來就一直按，導致開了一堆開一半的edge(可能有10多個吧)，這時開工作管理員關掉不用的頁面和全部的edge，再重開edge就行囉~沒整台當掉的話。</p>
+<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><ol>
+<li>開啟瀏覽器連結公司ERP(首頁)從將近1分鐘變成30秒內。</li>
+<li>因為公司的瀏覽器希望停留在穩定版本，就不試更新edge的結果了；刪除不需要的元件這個步驟也跳過，平常只有上ERP的電腦也不會下載。</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://zeekmagazine.com/archives/156269">[教學] 解決Edge與Chrome瀏覽器卡頓拖慢問題</a><br><a target="_blank" rel="noopener" href="https://techwisegroup.com/blog/how-to-speed-up-microsoft-edge-on-windows-10/">How to Speed Up Microsoft Edge on Windows 10</a><br><a target="_blank" rel="noopener" href="https://www.thewindowsclub.com/how-to-speed-up-edge-and-make-it-load-faster">How to speed up Edge and make it load faster</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230502 如何跳過Microsoft Authenticator驗證程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1186,100 +1300,6 @@
 
 
   
-    <article id="post-20221118 如何將rails頁面連結到404.html" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" target="_blank">【Ruby on Rails】如何將rails頁面連結到404.html</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" class="archive-article-date">
-        <time datetime="2022-11-18T14:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>站內連結聯到找不到的頁面時，會連結到錯誤畫面（因為我用find方法，找不到會直接顯示錯誤訊息）<br><img src="https://i.imgur.com/Gu5YLZh.png"></p>
-<p>這時我們就可以用<code>rescue_from</code>捕捉意外，捕捉到什麼呢？<br>ActiveRecord::RecordNotFound 這個錯誤訊息，並且呼叫”record_not_found”（其實可以叫做not_found，只是為了避免以後又有其他not_found系列的方法要再修正比較麻煩，命名準確一點方便維護）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br></pre></td></tr></table></figure>
-<p>既然呼叫了，我們還是要再建立一個叫做record_not_found的方法：<br>這個方法要做什麼呢？就是要渲染我們想要的頁面（為什麼不是跳轉？第一個是我們沒有給404檔案裝路徑，第二是因為我們要留在原本找不到的那個網址）<br><img src="https://i.imgur.com/GkgoZEg.png"><br>渲染別的檔案我們使用<code>render file</code>，要找到不是在view資料夾裡面的404.html檔案的話可以用”#{Rails.root}”，意思是我要在這個Rails專案的目錄下尋找ＸＸＸ，後面接上路徑就是到某個資料夾尋找某個檔案</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;</span><br></pre></td></tr></table></figure>
-<p>渲染成功，打開網路狀態會看到這樣的結果<br><img src="https://i.imgur.com/BkwBPmW.png"></p>
-<p>網路狀態200（正常的找到你的”找不到”頁面），我們也希望網路的狀態被改成404，在render file後面設定一個status： 404 ，就會得到這樣的畫面<br><img src="https://i.imgur.com/vDAcx94.png"></p>
-<h3 id="獲得真正的404頁面！"><a href="#獲得真正的404頁面！" class="headerlink" title="獲得真正的404頁面！"></a>獲得真正的404頁面！</h3><p>完整程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br><span class="line"></span><br><span class="line">private</span><br><span class="line">def record_not_found</span><br><span class="line">  render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;,layout: false ,status: 400</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1470,6 +1490,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
             
             <div class="clearfix"></div>

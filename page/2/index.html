@@ -180,6 +180,175 @@
             
 
   
+    <article id="post-20230612 Java 變數類型 - 基本類型篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/" target="_blank">Java 變數類型 - 基本類型篇</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/" class="archive-article-date">
+        <time datetime="2023-06-11T01:35:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-11</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因為JAVA是一種強類型的語言，所以任何變數在宣告的時候就會賦予它一個值的類型，有哪些類型呢？</p>
+<h2 id="如何宣告JAVA變數？"><a href="#如何宣告JAVA變數？" class="headerlink" title="如何宣告JAVA變數？"></a>如何宣告JAVA變數？</h2><p>在看類型之前先了解一下JAVA變數的結構，是由類型、變數名稱、＝、值組成的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int age = 20;</span><br></pre></td></tr></table></figure>
+<p>int是類型，代表這個變數是整數；age為變數名稱；20則是賦予給age的值（已經設定是int了，不能帶小數點，否則會顯示錯誤）。</p>
+<p>或是可以拆開分成兩個步驟：先宣告變量，再賦予值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int age;</span><br><span class="line">age = 18;</span><br></pre></td></tr></table></figure>
+
+<h2 id="數字"><a href="#數字" class="headerlink" title="數字"></a>數字</h2><p>宣告數值類型除了要符合整數、小術類型，也不能超出數據大小範圍，可以依照需求設定變數類型。</p>
+<h3 id="整數"><a href="#整數" class="headerlink" title="整數"></a>整數</h3><ol>
+<li><strong>byte</strong>	(1 byte)<br> 範圍-128～127，例如：<code>byte myNum = 100;</code></li>
+<li><strong>short</strong> (2 bytes)<br> 範圍-32,768～32,767，例如：<code>short myNum = 5000;</code></li>
+<li><strong>int(開發常用)</strong> (4 bytes)<br> 範圍-2,147,483,648～2,147,483,647，例如：<code>int myNum = 100000;</code></li>
+<li><strong>long</strong> (8 bytes)<ul>
+<li>範圍-9,223,372,036,854,775,808～9,223,372,036,854,775,807</li>
+<li>以”Ｌ”結尾，例如：<code>long myNum = 15000000000L;</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="小數"><a href="#小數" class="headerlink" title="小數"></a>小數</h3><ol>
+<li><p><strong>float</strong> (4 bytes)</p>
+<ul>
+<li>範圍3.4e−038～3.4e+038 (可到小數7位，範圍比double更大，因為精度相較不高)</li>
+<li>以”f”結尾，例如：<code>float myNum = 5.75f;</code></li>
+<li>如果超出小數7位，則只會取到小數第一位：   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> public static void main(String[] args)&#123;</span><br><span class="line">   float f1 = 5.000000003f;</span><br><span class="line">   System.out.println(f1);  //印出5.0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+   所以會造成另一個奇怪的現象，明明ff2是ff1+1的結果，但ff1和FF2卻是相等的：   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float f1 = 123123123;</span><br><span class="line">float f2 = f1+1;</span><br><span class="line">System.out.println(f1); //印出 1.2312312E8</span><br><span class="line">System.out.println(f2); //印出 1.2312312E8</span><br><span class="line">System.out.println(f1 == f2); //印出 true</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>double（開發常用）</strong> (8 bytes)</p>
+<ul>
+<li>1.7e-308～1.7e+308(可到小數15位)</li>
+<li>以”d”結尾，例如：<code>double myNum = 19.99d;</code></li>
+</ul>
+</li>
+<li><p><strong>BigDecimal</strong><br> 需要保持高精度的數字（例如財會系統），不適用以上兩種類型，<br> 除了像是上面提過的f1&#x3D;&#x3D;f2現象，還有經典題目：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(0.1+0.2);  //印出0.30000000000000004</span><br></pre></td></tr></table></figure>
+<p>從這些案例來看，專案開發中需要高精度的數據必須使用BigDecimal類型，</p>
+</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
+<li><p><strong>boolean</strong>	(內存 1 bit，區域變數 4 bytes)<br> true 或 false，系統默認true數值為1，false數值為0，常用於流程控制</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">boolean isJavaFun = true;</span><br><span class="line"></span><br><span class="line">if (isJavaFun)&#123;</span><br><span class="line">  System.out.println(&quot;Java真有趣！&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  System.out.println(&quot;Java不好玩ＱＱ&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//印出 JAVA真有趣！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>char</strong> (2 bytes)<br> 單個字元&#x2F;字母或 ASCII 值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;B&#x27;;</span><br><span class="line">System.out.println(myGrade); //輸出B</span><br><span class="line"></span><br><span class="line">char myGrade = &#x27;2&#x27;;</span><br><span class="line">System.out.println(myGrade); //輸出2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>可使用Unicode<br> 在開頭加入\u，後面加上Unicode編碼就能使用Unicode調用字元</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c8 = &#x27;\u0025&#x27;;</span><br><span class="line">System.out.println(c8);  // 印出 %</span><br></pre></td></tr></table></figure></li>
+<li><p>可使用正規表示法</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c9 = &#x27;\n&#x27;;</span><br><span class="line">System.out.println(&quot;中間有一個&quot; + c9 + &quot;c9喔&quot;);</span><br></pre></td></tr></table></figure>
+<p>  終端機運行結果，發現應該在同一行的文字變成兩行：        <img src="https://hackmd.io/_uploads/BkN8bXQDn.png"></p>
+</li>
+<li><p>轉成ASCII值應用<br> 不管變數名稱是什麼，只要給的值是數字，便會去尋找那個ASCII值所對應的字元:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char a = 65, hi = 66, c = 68;</span><br><span class="line">System.out.println(a); //輸出A</span><br><span class="line">System.out.println(hi); //輸出B</span><br><span class="line">System.out.println(c); //輸出D</span><br></pre></td></tr></table></figure>
+<p> <em><strong>錯誤示範</strong></em><br> 輸入超過一個字、空白、雙引號字串就會無法編譯，顯示錯誤</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;HI&#x27;; </span><br><span class="line">// error: incompatible types: String cannot be converted to char</span><br><span class="line"></span><br><span class="line">char myName = &quot;C&quot;;  </span><br><span class="line">//同上</span><br><span class="line"></span><br><span class="line">char myAdge= &#x27;&#x27; ;  </span><br><span class="line">//error: empty character literal</span><br></pre></td></tr></table></figure>
+<p> 有些電腦輸入中文也會轉成亂碼無法編譯(可以檢查看看編輯器的編碼，中文是Big5，VScode預設是UTF-8，像我一開始不知道要改的時候，還以為不能打中文，附上<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10190243">如何更改VS Code的文字編碼</a>的方法)</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;安&#x27;;  //印出 安</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="String不是基礎數據類型！"><a href="#String不是基礎數據類型！" class="headerlink" title="String不是基礎數據類型！"></a>String不是基礎數據類型！</h2><p>隨然常常都會這樣宣告字串，但String不是基礎數據類型，至於為什麼？這個以後查清楚再來寫一篇～</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String greeting = &quot;Hello World&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>一個變數的作用域為同一個class的大括號</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    System.out.println(age);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void main2(String[] args)&#123;</span><br><span class="line">      System.out.println(age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果只有main class被編譯，並且被執行的話是沒有問題的，可以正常印出18，但如果連同main2一起編譯則會顯示錯誤訊息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ch2/VariableTest.java:10: error: cannot find symbol</span><br><span class="line">      System.out.println(age);</span><br><span class="line">                         ^</span><br><span class="line">  symbol:   variable age</span><br><span class="line">  location: class VariableTest</span><br><span class="line">1 error</span><br></pre></td></tr></table></figure>
+<p>從錯誤訊息看得出來第8行，也就是main2的age變數是找不到的。</p>
+<h2 id="可以重複宣告變數嗎？"><a href="#可以重複宣告變數嗎？" class="headerlink" title="可以重複宣告變數嗎？"></a>可以重複宣告變數嗎？</h2><ol>
+<li><p><strong>不能重複宣告</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    int age =20;</span><br><span class="line">    System.out.println(age);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 錯誤訊息，表示adge這個變數已經在main宣告過了：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ch2/VariableTest.java:6: error: variable age is already defined in method main(String[])</span><br><span class="line">  int age =20;</span><br><span class="line">      ^</span><br><span class="line">1 error</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可以重複賦值</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    age =20;</span><br><span class="line">    System.out.println(age); //印出20</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 順帶一提，如果沒宣告過的變數不能直接賦值</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">  name =20;</span><br><span class="line">  System.out.println(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  錯誤訊息，第一則表示找不到name這個變數，第二則也表示找不到這個變數，所以不能像JavaScript一樣，把賦值這個動作直接生出變數使用，宣告是有一定格式的：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> ch2/VariableTest.java:6: error: cannot find symbol</span><br><span class="line">   name =20;</span><br><span class="line">   ^</span><br><span class="line">  symbol:   variable name</span><br><span class="line">  location: class VariableTest</span><br><span class="line">ch2/VariableTest.java:7: error: cannot find symbol</span><br><span class="line">    System.out.println(name);</span><br><span class="line">                       ^</span><br><span class="line">  symbol:   variable name</span><br><span class="line">  location: class VariableTest</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">尚硅谷</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230609  the import javax.servlet cannot be resolved" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1094,120 +1263,6 @@
 
 
   
-    <article id="post-20230510 如何提升edge啟動速度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" target="_blank">如何提升edge啟動速度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" class="archive-article-date">
-        <time datetime="2023-05-10T13:14:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-10</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>公司電腦真的慢，自從不能用IE只能換edge之後問題也是一大堆，先來說說同仁開edge開到天荒地老的故事，會轉到睡著的那種…</p>
-<h2 id="開啟效能"><a href="#開啟效能" class="headerlink" title="開啟效能"></a>開啟效能</h2><ol>
-<li><p>找畫面右上角的三個點&#x2F;設定<br><img src="https://hackmd.io/_uploads/BJPaHKDNn.png"></p>
-</li>
-<li><p>左邊欄找到系統與效能(在網址列輸入<code>edge://settings/system</code> 也能進入同樣頁面)<br>這兩個選項可以測試一下開不開比較順，背景執行關掉是因為公司電腦記憶體CPU常常都在100%上下跑，少開一個避免當機比較好<br><img src="https://hackmd.io/_uploads/ryAxqOvE2.png"></p>
-</li>
-</ol>
-<h2 id="關閉GPU加速-這個特別特別重要"><a href="#關閉GPU加速-這個特別特別重要" class="headerlink" title="關閉GPU加速(這個特別特別重要!!)"></a>關閉GPU加速(這個特別特別重要!!)</h2><ol>
-<li>在網址列輸入<code>edge://flags/</code>，前往頁面</li>
-<li>搜尋列搜尋GPU，把<code>Accelerated 2D canvas</code>和<code>GPU rasterization</code>都停用<br><img src="https://i.imgur.com/leRnAGO.png"><br>原本Edge預設會開啟Accelerated 2D canvas，但性能不好的電腦使用GPU加速反而會更慢，所以我們把這個選項停用</li>
-</ol>
-<h2 id="清理瀏覽器的瀏覽紀錄"><a href="#清理瀏覽器的瀏覽紀錄" class="headerlink" title="清理瀏覽器的瀏覽紀錄"></a>清理瀏覽器的瀏覽紀錄</h2><p>因為同仁電腦可能用了十幾年(或以上)掛了非常多的瀏覽紀錄，刪掉能幫助瀏覽器開啟得快一點</p>
-<ol>
-<li><p>一樣在三個點的設定裡&#x2F;隱私權、搜尋與服務</p>
-</li>
-<li><p>右邊畫面找到清除瀏覽資料及除Internet Explorer，點選「要清除的項目」，前者為清除edge模式的瀏覽紀錄，後者顧名思義就是清除IE模式的紀錄(因為某些網站還沒升級，要用IE模式才能使用，未來應該不太會用到了…吧?)<br><img src="https://hackmd.io/_uploads/S1SEBYwEh.png"></p>
-</li>
-<li><p>可以設定關閉瀏覽器之後直接清除瀏覽歷程記錄</p>
-<p> a.Edge版:「選擇每次關閉瀏覽器時要清除的內容」，把想清除的項目開啟<br><img src="https://hackmd.io/_uploads/S1TluFDE3.png"></p>
-<p> b.IE版:如同字面描述，把清除按鈕下面的選項打開就行了</p>
-</li>
-</ol>
-<h2 id="關閉不用的程式、背景作業"><a href="#關閉不用的程式、背景作業" class="headerlink" title="關閉不用的程式、背景作業"></a>關閉不用的程式、背景作業</h2><p>這個應該不用多說了，開太多會電腦當機，不過常常看到有同仁會以為沒開起來就一直按，導致開了一堆開一半的edge(可能有10多個吧)，這時開工作管理員關掉不用的頁面和全部的edge，再重開edge就行囉~沒整台當掉的話。</p>
-<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><ol>
-<li>開啟瀏覽器連結公司ERP(首頁)從將近1分鐘變成30秒內。</li>
-<li>因為公司的瀏覽器希望停留在穩定版本，就不試更新edge的結果了；刪除不需要的元件這個步驟也跳過，平常只有上ERP的電腦也不會下載。</li>
-</ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://zeekmagazine.com/archives/156269">[教學] 解決Edge與Chrome瀏覽器卡頓拖慢問題</a><br><a target="_blank" rel="noopener" href="https://techwisegroup.com/blog/how-to-speed-up-microsoft-edge-on-windows-10/">How to Speed Up Microsoft Edge on Windows 10</a><br><a target="_blank" rel="noopener" href="https://www.thewindowsclub.com/how-to-speed-up-edge-and-make-it-load-faster">How to speed up Edge and make it load faster</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1398,6 +1453,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">SQL</a>
               </li>
             
             <div class="clearfix"></div>
