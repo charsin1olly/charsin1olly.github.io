@@ -180,6 +180,123 @@
             
 
   
+    <article id="post-20230729 如何在MAC切換JDK版本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/29/20230729%20%E5%A6%82%E4%BD%95%E5%9C%A8MAC%E5%88%87%E6%8F%9BJDK%E7%89%88%E6%9C%AC/" target="_blank">如何在MAC切換JDK版本</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/29/20230729%20%E5%A6%82%E4%BD%95%E5%9C%A8MAC%E5%88%87%E6%8F%9BJDK%E7%89%88%E6%9C%AC/" class="archive-article-date">
+        <time datetime="2023-07-29T08:11:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-29</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="終端機查看當前版本"><a href="#終端機查看當前版本" class="headerlink" title="終端機查看當前版本"></a>終端機查看當前版本</h2><p>我目前使用的是JAVA17</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br><span class="line"></span><br><span class="line">顯示：</span><br><span class="line">java version &quot;17.0.6&quot; 2023-01-17 LTS</span><br></pre></td></tr></table></figure>
+
+<p>查看所有安裝的JAVA版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br><span class="line"></span><br><span class="line">顯示：</span><br><span class="line">Matching Java Virtual Machines (3):</span><br><span class="line">    17.0.6 (arm64) &quot;Oracle Corporation&quot; - &quot;Java SE 17.0.6&quot; /Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</span><br><span class="line">    1.7.80.15 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java&quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span><br><span class="line">    1.7.0_80 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java SE 7&quot; /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home</span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<h2 id="JDK的安裝路徑資料夾"><a href="#JDK的安裝路徑資料夾" class="headerlink" title="JDK的安裝路徑資料夾"></a>JDK的安裝路徑資料夾</h2><p>&#x2F;Library&#x2F;Java&#x2F;JavaVirtualMachines<br>Library在中文作業系統可能叫資源庫，我找好久才找到，用ＭＡＣ可以用打開FINDER點<code>前往/前往檔案夾</code>直接複製路徑貼上，這樣就找得到資料夾囉<br><img src="https://hackmd.io/_uploads/HJgaVQfo3.png"><br>等等我們所需要的jdk資料夾都在這邊，依照需要的jdk版本點進去，找到<code>Contents/Home</code>的資料夾，複製Home的路徑</p>
+<p>備註 ：複製路徑的方法就是對著資料夾右鍵（control＋按面板）點<code>拷貝</code></p>
+<h2 id="切換JDK版本"><a href="#切換JDK版本" class="headerlink" title="切換JDK版本"></a>切換JDK版本</h2><h3 id="1-編輯bash-profile"><a href="#1-編輯bash-profile" class="headerlink" title="1. 編輯bash_profile"></a>1. 編輯bash_profile</h3><p>打開終端機輸入指令，用vim打開bash_profile檔案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-編輯檔案"><a href="#2-編輯檔案" class="headerlink" title="2.編輯檔案"></a>2.編輯檔案</h3><p>a. 進入之後看到編輯畫面（我這邊沒有網路其他文章那的一堆字的畫面），按下<code>i</code>進入編輯模式，成功進入會看見下方變成INSERT ：<br><img src="https://hackmd.io/_uploads/HkaZIVGi2.png"></p>
+<p>b. 設定JAVA_HOME變數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/(版本號.jdk)/Contents/Home</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+<p>網路上查到一個方式，可以把另一個版本的資料夾名稱弄成另一個變數，這樣切換版本就很方便，也不用怕打錯路徑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_7=jdk1.7.0_80.jdk</span><br><span class="line">export JAVA_17=jdk-17.jdk</span><br><span class="line">export JAVA_HOME=/Library/Java/JavaVirtualMachines/$JAVA_17/Contents/Home</span><br></pre></td></tr></table></figure>
+<p>以上面這種寫法來說，我只要把JAVA_HOME變數<code>$JAVA_17</code>改<br>成<code>$JAVA_7</code>就能成功切換成JAVA7的版本</p>
+<p>備註：</p>
+<ul>
+<li>JDK還是要自己下載，這不是自動的！！</li>
+<li>JAVA版本的變數一定要在JAVA_HOME前，否則JAVA_HOME會抓不到（檔案讀取是由上而下）</li>
+</ul>
+<p>更改完要按<code>esc</code>再輸入<code>:wq</code>儲存再離開</p>
+<h2 id="3-啟用設定"><a href="#3-啟用設定" class="headerlink" title="3. 啟用設定"></a>3. 啟用設定</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure>
+<p>這個指令是讓文件立刻生效，不輸入的話要重開才有用（然後鬼打牆怎麼設定都不對）</p>
+<h2 id="4-檢查設定"><a href="#4-檢查設定" class="headerlink" title="4. 檢查設定"></a>4. 檢查設定</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $JAVA_HOME</span><br></pre></td></tr></table></figure>
+<p>這個指令會顯示剛才我們設定的路徑，記得一定要加＄字號才是環境變數喔～</p>
+<h2 id="5-成果"><a href="#5-成果" class="headerlink" title="5. 成果"></a>5. 成果</h2><p><img src="https://hackmd.io/_uploads/BJ8a3VGjh.png"></p>
+<h2 id="為什麼我重開終端機之後版本又變回來了？"><a href="#為什麼我重開終端機之後版本又變回來了？" class="headerlink" title="為什麼我重開終端機之後版本又變回來了？"></a>為什麼我重開終端機之後版本又變回來了？</h2><p>注意一下終端機執行的位置，我一開始用的那個是在zsh的shell，而我們剛才設定的是在bash，在zsh打開之後沒有執行source指令的話，就不會沿用剛才我們的bash＿profile設定。</p>
+<p>解決方法就是可以把寫在bash_profile的部分寫在zshenv檔案裡，開啟方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .zshenv</span><br></pre></td></tr></table></figure>
+<p>其他步驟都一樣，立即生效設定的指令改為</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .zshenv</span><br></pre></td></tr></table></figure>
+
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://iyoumealice20.pixnet.net/blog/post/327171772">Java For Mac 安裝Java與設定環境變數path</a><br><a target="_blank" rel="noopener" href="https://hackmd.io/@spark9092/HyR_57oGY">Mac OS X 設定 .bash_profile (Java &amp; Maven)</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/tardis/sogou/ans/2345481001">iTerm 2、Bash 和 Zsh 之间的区别是什么？</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/29/20230729%20%E5%A6%82%E4%BD%95%E5%9C%A8MAC%E5%88%87%E6%8F%9BJDK%E7%89%88%E6%9C%AC/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230726 如何使用JDBC連接資料庫(mysql)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1136,102 +1253,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7?XML/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230611 JAVA 識別字規則" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/" target="_blank">JAVA 識別字規則</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/" class="archive-article-date">
-        <time datetime="2023-06-11T06:37:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-11</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>我的老師說過，如果要成為真正的工程師，每個語言都有命名慣例，依照這些慣例寫出來的Code可以讓自己看起來更專業，從頭學JAVA，也要遵守！</p>
-<h2 id="必須遵守！否則會造成編譯錯誤！"><a href="#必須遵守！否則會造成編譯錯誤！" class="headerlink" title="必須遵守！否則會造成編譯錯誤！"></a>必須遵守！否則會造成編譯錯誤！</h2><ol>
-<li>由英文+數字(可包含 _ 及 ＄)組合而成，但不可用數字當開頭（例：可以main_1，不能1_main或是main+）</li>
-<li>不可以包含保留字（例如：for，可參考<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Keyword</a>）</li>
-<li>長度沒有限制，大小寫有別</li>
-<li>不可以包含空格（例如：Hello World）</li>
-</ol>
-<h2 id="不會有錯，但寫好會更好看"><a href="#不會有錯，但寫好會更好看" class="headerlink" title="不會有錯，但寫好會更好看"></a>不會有錯，但寫好會更好看</h2><ol>
-<li>package名稱：全小寫（例：java.lang）</li>
-<li>Class名、接口名：大駝峰式命名（例：HelloWorld）</li>
-<li>變數名、方法名：小駝峰式命名（例: userName）</li>
-<li>常數名：全大寫，組合單字中間用 _ 串接（例：USER_IP）</li>
-<li>就算沒有字數限制，也不要取太長或是太類似的名稱（例:MyWebContentForTextChange、MyWebContentForImageChange）</li>
-</ol>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/">展開全文 >></a>
     </p>
     
 

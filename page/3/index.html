@@ -180,6 +180,106 @@
             
 
   
+    <article id="post-20230512 如何編輯Win10開始功能表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" target="_blank">如何編輯Win10開始功能表</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" class="archive-article-date">
+        <time datetime="2023-05-12T11:37:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-12</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近幫同仁裝了Microsoft的office 365，安裝完之後有人反應應用程式分散不好找(如圖)，<br><img src="https://hackmd.io/_uploads/H1MtIfiNn.png"><br>希望幫他放在同一個資料夾內比較方便使用，由於設定完太容易忘記，所以簡單紀錄一下怎麼編輯開始功能表。</p>
+<h2 id="編輯資料夾"><a href="#編輯資料夾" class="headerlink" title="編輯資料夾"></a>編輯資料夾</h2><h3 id="1-找到控制開始功能表的Start-Menu資料夾"><a href="#1-找到控制開始功能表的Start-Menu資料夾" class="headerlink" title="1. 找到控制開始功能表的Start Menu資料夾"></a>1. 找到控制開始功能表的Start Menu資料夾</h3><p>有四種方法可以找到Start Menu這個資料夾(不記得路徑可以應急)，挑一個自己方便的用就行了~</p>
+<p>補充:某些項目可能會在User的AppData裡，所以列a位置(Windows)和b位置(AppData)的方式，如果a沒有就去看b吧~</p>
+<h4 id="方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置"><a href="#方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置" class="headerlink" title="方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置"></a>方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置</h4><p>   <img src="https://hackmd.io/_uploads/B12CI7sE2.png"><br>    (這個方法a跟b都適用)</p>
+<h4 id="方法二、-善用開始功能表搜尋關鍵字start"><a href="#方法二、-善用開始功能表搜尋關鍵字start" class="headerlink" title="方法二、 善用開始功能表搜尋關鍵字start:"></a>方法二、 善用開始功能表搜尋關鍵字start:</h4><p>   a. <img src="https://hackmd.io/_uploads/Hy2OOGsE3.png"></p>
+<p>   b. 這個我的電腦搜不到，原因待查</p>
+<h4 id="方法三、-資料夾搜尋"><a href="#方法三、-資料夾搜尋" class="headerlink" title="方法三、 資料夾搜尋"></a>方法三、 資料夾搜尋</h4><p>   a.如果方法二找不到，可以在C槽找，先看上方工具列&#x2F;檢視&#x2F;隱藏的項目，就可以看見半透明的ProgramData資料夾，點兩下進入後可以在右上角搜尋框搜尋start(直接在C槽找會找很久，記得這個隱藏的資料夾，進去搜尋會比較快)</p>
+<p><img src="https://hackmd.io/_uploads/ryTkpzo4h.png"></p>
+<p>   b. <code>C:\使用者\(帳戶名稱)\AppData</code>進去之後一樣右上角搜尋Start Menu點Roaming裡的那個，步驟同a(不進AppData資料夾會找不到?_?)<br>   <img src="https://hackmd.io/_uploads/BJH-UVj43.png"></p>
+<h4 id="方法四、-直接找路徑"><a href="#方法四、-直接找路徑" class="headerlink" title="方法四、 直接找路徑"></a>方法四、 直接找路徑</h4><p>a. <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs</code><br>b. <code>C:\Users\(帳戶名稱)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs</code></p>
+<h3 id="2-建立資料夾"><a href="#2-建立資料夾" class="headerlink" title="2. 建立資料夾"></a>2. 建立資料夾</h3><p>對著空白處右鍵，新建一個資料夾，自己命名一個方便辨識的名稱(這次我叫它Microsoft 365)</p>
+<p>因為我想讓這台的所有User都可以套用這個設定，所以建立在Windows的這個Start Menu資料夾；如果是個別User的設定就可以放在AppData的Start Menu資料夾<br><img src="https://hackmd.io/_uploads/r17c0GiV3.png"></p>
+<h3 id="3-移動檔案"><a href="#3-移動檔案" class="headerlink" title="3. 移動檔案"></a>3. 移動檔案</h3><p>a. 選取我們想塞進資料夾的檔案(這邊我用日期排序比較好一次選取)，剪下<br><img src="https://hackmd.io/_uploads/Bk88yXsNn.png"><br>b. 再貼到剛才的資料夾裡(<code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft 365</code>)<br>c. 這時候打開開始功能表，就會看到資料夾裡面就是我們剛才搬過去的項目了<br><img src="https://hackmd.io/_uploads/SyNYXQjVh.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.xiaoyao.tw/2021/01/customize-win10-start-menu.html">Windows 10 開始功能表，如何刪除、新增和移動分類應用程式捷徑？</a><br>大部分是久遠的記憶+嘗試找別的路避免忘記…</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230510 如何提升edge啟動速度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1176,101 +1276,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2022/11/27/20221127%20Stimulus/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221123 find&amp;find_by" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/23/20221123%20find&find_by/" target="_blank">【Ruby on Rails】find 與 find_by 是差在哪裡啦！</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/23/20221123%20find&find_by/" class="archive-article-date">
-        <time datetime="2022-11-23T04:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-23</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在rails裡撈資料一下用find、一下用find_by，該用哪個才好呢？<br>先來比較一下它們兩個的不同吧！</p>
-<p>現在我們建立了一個WishList的Model，建立1個wishlist項目，在rails console裡是這樣的<br><img src="https://i.imgur.com/Y0Wiqqe.png"><br>現在看看全部的WishList，現在id編號只有排到7<br><img src="https://i.imgur.com/aLVDOHN.png"></p>
-<hr>
-<p>現在我們來尋找id編號為999的實體資料，</p>
-<h3 id="用find尋找實體"><a href="#用find尋找實體" class="headerlink" title="用find尋找實體"></a>用find尋找實體</h3><p>用find尋找<code>@wish_list=WishList.find(params[:id])</code>，會直接顯示<strong>ActiveRecord::RecordNotFound</strong><br><img src="https://i.imgur.com/LHgkuhg.png"><br>換成大家熟悉的畫面是這樣<br><img src="https://i.imgur.com/SO2gcdF.png"></p>
-<h3 id="用find-by尋找實體"><a href="#用find-by尋找實體" class="headerlink" title="用find_by尋找實體"></a>用find_by尋找實體</h3><p>如果是換成用find_by<code>@wish_list=WishList.find_by(id: params[:id])</code>，則會顯示這是<strong>nil</strong><br><img src="https://i.imgur.com/rE8lbc5.png"><br>換成網頁版<br><img src="https://i.imgur.com/2M9u4sS.png"></p>
-<p>其實find_by有一個兄弟，叫做<code>find_by!</code>它擁有find_by的外表以及find的功能，找不到這筆資料的時候會直接顯示<strong>ActiveRecord::RecordNotFound</strong><br><img src="https://i.imgur.com/rQW14pK.png"></p>
-<h3 id="該用find還是find-by"><a href="#該用find還是find-by" class="headerlink" title="該用find還是find_by?"></a>該用find還是find_by?</h3><p>總結上面提到內容，find跟find_by的不同就是<strong>嚴格程度的不同</strong>（沒有這個id就不給你過vs沒有這個id也是可以通過）。<br>如果我們不需要<strong>顯示畫面</strong>到那筆不存在的資料，那就使用find（例如：這個id所屬的這個頁面不存在，直接讓rails報錯再直接轉去404頁面顯示這個頁面不存在）；如果需要<strong>比對</strong>這筆資料存不存在，會需要利用這個空集合作計算或判斷的話，就使用find_by(例如：會員登入所輸入的帳號是否註冊過？如果他是一個nil就可以被塞到實體變數而不是報錯)</p>
-<p>結論就是：選擇find或find_by就是取決於自己要獲得的結果是錯誤訊息還是一個nil值。</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/23/20221123%20find&find_by/">展開全文 >></a>
     </p>
     
 
