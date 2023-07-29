@@ -180,6 +180,127 @@
             
 
   
+    <article id="post-20221127 Stimulus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/11/27/20221127%20Stimulus/" target="_blank">【Ruby on Rails】Stimulus是一個酷東西！</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/11/27/20221127%20Stimulus/" class="archive-article-date">
+        <time datetime="2022-11-27T12:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-27</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="什麼是Stimulus-它可以做什麼？"><a href="#什麼是Stimulus-它可以做什麼？" class="headerlink" title="什麼是Stimulus?它可以做什麼？"></a>什麼是Stimulus?它可以做什麼？</h2><ol>
+<li>提供rails一個可以寫JavaScript的空間。</li>
+<li>Stimulus是一種輕量JS框架，主要在HTML上操作，data就是他開始貼標籤的地方。</li>
+<li>它可以簡化JS抓DOM元素的繁雜過程。</li>
+<li>主要核心是Controllers、action、target，做成類似rails  路徑名稱那樣的標籤，包在div、button…任何的&lt;&gt;裡面。</li>
+</ol>
+<h2 id="前置作業：安裝stimulus套件"><a href="#前置作業：安裝stimulus套件" class="headerlink" title="前置作業：安裝stimulus套件"></a>前置作業：安裝stimulus套件</h2><p>在專案資料夾輸入<code>rails</code>查看可以裝什麼框架</p>
+<p><img src="https://i.imgur.com/7BkXfjT.png"></p>
+<p>找到想裝的框架再輸入（同樣適用於圖片上的其他框架）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails webpacker:install:stimulus</span><br></pre></td></tr></table></figure>
+<p>這樣webpacker就會在javascript的資料夾幫我們做好stimulus需要的資料夾<br><img src="https://i.imgur.com/nROj5gU.png"><br>app&#x2F;javascript&#x2F;controllers 這是JS版controller的家，裡面有一個index檔案是使套件可以正常使用的程式碼</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Application &#125; from &quot;stimulus&quot;</span><br><span class="line">import &#123; definitionsFromContext &#125; from &quot;stimulus/webpack-helpers&quot;</span><br><span class="line"></span><br><span class="line">const application = Application.start()</span><br><span class="line">const context = require.context(&quot;controllers&quot;, true, /_controller\.js$/)</span><br><span class="line">application.load(definitionsFromContext(context))</span><br></pre></td></tr></table></figure>
+<p>app&#x2F;javascript&#x2F;controllers&#x2F;hello_controller.js 是一個範例檔，主要用法就是用import接收erb檔設定的controller傳來的訊息，並用export回傳接下來要做的動作。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;controllers&#x27;</span><br><span class="line"></span><br><span class="line"> export default class extends Controller &#123;</span><br><span class="line">    static targets = [ &quot;icon&quot; ]</span><br><span class="line"> </span><br><span class="line">    connect() &#123;</span><br><span class="line">    console.log(&quot;hello&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>在export default class extends Controller{}裡可以放任何controller所需要用到的function</p>
+<p>常用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connect()：連接上時的觸發事件，可以用來測試是否連接</span><br><span class="line">initialize():可使用於設定初始狀態</span><br><span class="line">static targets =[]：抓設定data-xxx-target的關鍵字（使用陣列放多個target）</span><br></pre></td></tr></table></figure>
+<h2 id="stimulus運作"><a href="#stimulus運作" class="headerlink" title="stimulus運作"></a>stimulus運作</h2><p>stimulus核心三兄弟的運作，我自己理解到的運作模式大概是這樣：</p>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-controller=&quot;favorite-btn&quot;</span><br></pre></td></tr></table></figure>
+<p>這塊地歸我管囉（插一個favorite-btn的旗子，建立favorite-btn_controller辦事處）</p>
+<p>用於設定我們要建立controller的控制範圍及名稱，範圍可大可小，小至一個按鈕，大可以到一整個html，但盡量讓控制範圍小一點比較方便維護。</p>
+<p>註：檔名為 XXX_controller.js  (這個XXX要跟後來設定的data-controller名稱一樣，不然會抓不到)</p>
+<h3 id="Action："><a href="#Action：" class="headerlink" title="Action："></a>Action：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-action=&quot;click-&gt;favorite-btn#toggle&quot;</span><br></pre></td></tr></table></figure>
+<p>我幫你看看favorite-btn有沒有發生什麼事件。<br>發生點擊事件(click)的時候我會叫你的toggle部門出來做事的！</p>
+<p>相當於JavaScript的addEventListener，但不限定只有click之類的預設事件，可以設定範圍，例如<code>update-quantity@document-&gt;order-amount#updateQuantity</code>就代表在document的範圍內監聽update-quantity事件出現，就到order-amount進行updateQuantity的動作。</p>
+<h3 id="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"><a href="#Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼" class="headerlink" title="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"></a>Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-favorite-btn-target=&quot;icon&quot;</span><br></pre></td></tr></table></figure>
+
+<p>相當於JavaScript的document.querySelector(“”)、或是其他抓DOM元素系列的指令。搭配在export default class extends Controller裡的設定：<code>static targets = [ &quot;icon&quot; ]</code>就是抓到icon這個Target，並可以使用iconTarget進行操作（例如：<code>iconTarget.textContent=&quot;&quot;</code> 等）。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最近的Ruby on rails課程提到該如何將JavaScript寫進Rails專案，提到了Stimulus，它不但可以用類似於rails裡面Controller的操作方式決定接下來要做什麼，還可以方便的取用DOM元素，使用AJAX概念紀錄當前操作結果節省網路傳輸，並且集中的controller資料夾能使檔案變得更好管理。</p>
+<p>參考連結：<a target="_blank" rel="noopener" href="https://stimulus.hotwired.dev/handbook/building-something-real">官方手冊</a>、<a target="_blank" rel="noopener" href="https://github.com/hotwired/stimulus-rails">Github</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/11/27/20221127%20Stimulus/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20221123 find&amp;find_by" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

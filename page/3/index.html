@@ -180,6 +180,102 @@
             
 
   
+    <article id="post-20230516 螢幕色彩變黃，但螢幕沒壞?" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" target="_blank">螢幕色彩變黃，但螢幕沒壞?</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" class="archive-article-date">
+        <time datetime="2023-05-16T12:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-16</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~</p>
+<h2 id="夜間模式"><a href="#夜間模式" class="headerlink" title="夜間模式"></a>夜間模式</h2><p>先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~)</p>
+<h3 id="1-找到設定"><a href="#1-找到設定" class="headerlink" title="1. 找到設定"></a>1. 找到設定</h3><p><img src="https://hackmd.io/_uploads/rkl3Muer2.png"></p>
+<h3 id="2-系統-x2F-顯示器"><a href="#2-系統-x2F-顯示器" class="headerlink" title="2. 系統&#x2F;顯示器"></a>2. 系統&#x2F;顯示器</h3><p><img src="https://hackmd.io/_uploads/SkkTr_xr2.png"></p>
+<h2 id="安全模式-本次解決方案"><a href="#安全模式-本次解決方案" class="headerlink" title="安全模式(本次解決方案)"></a>安全模式(本次解決方案)</h2><p>win+R輸入<code>msconfig</code>，找到開機分頁，將安全開機選項打勾，並且重新開機<br><img src="https://hackmd.io/_uploads/rynUQueB3.png"></p>
+<p>如果發現螢幕是正常顏色，就代表是獨立顯卡的問題，這次的案例也是這樣，然後發現網路連不上就把安全模式取消，再重新開機一次，螢幕顏色就正常了!</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>參考資料中的討論串提到:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">記得前一段時間有看過 Lenovo </span><br><span class="line"></span><br><span class="line">調整Lenovo智慧型顯示開關，顯示色調變黃</span><br><span class="line"></span><br><span class="line">剪取工具剪下後，背景顏色變調</span><br><span class="line"></span><br><span class="line">是 Lenovo Vantage 這軟體在作怪將 我的護眼模式  &quot;關閉&quot; ! 色溫調到 6500K</span><br><span class="line"></span><br><span class="line">或 Lenovo Vantage系統更新BIOS 至 N24ET41W 1.16後, 問題已解決</span><br></pre></td></tr></table></figure>
+<p>表示有可能是其他軟體在作怪，雖然本次沒遇到這個情形，但還是可以記錄一下以防未來也遇到~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/windows/forum/all/win10%E8%9E%A2%E5%B9%95%E8%87%AA%E5%8B%95%E8%AE%8A/ad3a7c85-04ff-4ad0-a135-17d9e30fb61d">WIN10螢幕自動變黃，調整後仍自動跳回</a></p>
+<h5 id="圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh"><a href="#圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh" class="headerlink" title="圖片壞了可以來這裡： https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh"></a>圖片壞了可以來這裡： <a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh">https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh</a></h5>
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">設備</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230512 如何編輯Win10開始功能表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1155,127 +1251,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221127 Stimulus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/27/20221127%20Stimulus/" target="_blank">【Ruby on Rails】Stimulus是一個酷東西！</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/27/20221127%20Stimulus/" class="archive-article-date">
-        <time datetime="2022-11-27T12:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-27</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="什麼是Stimulus-它可以做什麼？"><a href="#什麼是Stimulus-它可以做什麼？" class="headerlink" title="什麼是Stimulus?它可以做什麼？"></a>什麼是Stimulus?它可以做什麼？</h2><ol>
-<li>提供rails一個可以寫JavaScript的空間。</li>
-<li>Stimulus是一種輕量JS框架，主要在HTML上操作，data就是他開始貼標籤的地方。</li>
-<li>它可以簡化JS抓DOM元素的繁雜過程。</li>
-<li>主要核心是Controllers、action、target，做成類似rails  路徑名稱那樣的標籤，包在div、button…任何的&lt;&gt;裡面。</li>
-</ol>
-<h2 id="前置作業：安裝stimulus套件"><a href="#前置作業：安裝stimulus套件" class="headerlink" title="前置作業：安裝stimulus套件"></a>前置作業：安裝stimulus套件</h2><p>在專案資料夾輸入<code>rails</code>查看可以裝什麼框架</p>
-<p><img src="https://i.imgur.com/7BkXfjT.png"></p>
-<p>找到想裝的框架再輸入（同樣適用於圖片上的其他框架）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails webpacker:install:stimulus</span><br></pre></td></tr></table></figure>
-<p>這樣webpacker就會在javascript的資料夾幫我們做好stimulus需要的資料夾<br><img src="https://i.imgur.com/nROj5gU.png"><br>app&#x2F;javascript&#x2F;controllers 這是JS版controller的家，裡面有一個index檔案是使套件可以正常使用的程式碼</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Application &#125; from &quot;stimulus&quot;</span><br><span class="line">import &#123; definitionsFromContext &#125; from &quot;stimulus/webpack-helpers&quot;</span><br><span class="line"></span><br><span class="line">const application = Application.start()</span><br><span class="line">const context = require.context(&quot;controllers&quot;, true, /_controller\.js$/)</span><br><span class="line">application.load(definitionsFromContext(context))</span><br></pre></td></tr></table></figure>
-<p>app&#x2F;javascript&#x2F;controllers&#x2F;hello_controller.js 是一個範例檔，主要用法就是用import接收erb檔設定的controller傳來的訊息，並用export回傳接下來要做的動作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;controllers&#x27;</span><br><span class="line"></span><br><span class="line"> export default class extends Controller &#123;</span><br><span class="line">    static targets = [ &quot;icon&quot; ]</span><br><span class="line"> </span><br><span class="line">    connect() &#123;</span><br><span class="line">    console.log(&quot;hello&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在export default class extends Controller{}裡可以放任何controller所需要用到的function</p>
-<p>常用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connect()：連接上時的觸發事件，可以用來測試是否連接</span><br><span class="line">initialize():可使用於設定初始狀態</span><br><span class="line">static targets =[]：抓設定data-xxx-target的關鍵字（使用陣列放多個target）</span><br></pre></td></tr></table></figure>
-<h2 id="stimulus運作"><a href="#stimulus運作" class="headerlink" title="stimulus運作"></a>stimulus運作</h2><p>stimulus核心三兄弟的運作，我自己理解到的運作模式大概是這樣：</p>
-<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-controller=&quot;favorite-btn&quot;</span><br></pre></td></tr></table></figure>
-<p>這塊地歸我管囉（插一個favorite-btn的旗子，建立favorite-btn_controller辦事處）</p>
-<p>用於設定我們要建立controller的控制範圍及名稱，範圍可大可小，小至一個按鈕，大可以到一整個html，但盡量讓控制範圍小一點比較方便維護。</p>
-<p>註：檔名為 XXX_controller.js  (這個XXX要跟後來設定的data-controller名稱一樣，不然會抓不到)</p>
-<h3 id="Action："><a href="#Action：" class="headerlink" title="Action："></a>Action：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-action=&quot;click-&gt;favorite-btn#toggle&quot;</span><br></pre></td></tr></table></figure>
-<p>我幫你看看favorite-btn有沒有發生什麼事件。<br>發生點擊事件(click)的時候我會叫你的toggle部門出來做事的！</p>
-<p>相當於JavaScript的addEventListener，但不限定只有click之類的預設事件，可以設定範圍，例如<code>update-quantity@document-&gt;order-amount#updateQuantity</code>就代表在document的範圍內監聽update-quantity事件出現，就到order-amount進行updateQuantity的動作。</p>
-<h3 id="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"><a href="#Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼" class="headerlink" title="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"></a>Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-favorite-btn-target=&quot;icon&quot;</span><br></pre></td></tr></table></figure>
-
-<p>相當於JavaScript的document.querySelector(“”)、或是其他抓DOM元素系列的指令。搭配在export default class extends Controller裡的設定：<code>static targets = [ &quot;icon&quot; ]</code>就是抓到icon這個Target，並可以使用iconTarget進行操作（例如：<code>iconTarget.textContent=&quot;&quot;</code> 等）。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最近的Ruby on rails課程提到該如何將JavaScript寫進Rails專案，提到了Stimulus，它不但可以用類似於rails裡面Controller的操作方式決定接下來要做什麼，還可以方便的取用DOM元素，使用AJAX概念紀錄當前操作結果節省網路傳輸，並且集中的controller資料夾能使檔案變得更好管理。</p>
-<p>參考連結：<a target="_blank" rel="noopener" href="https://stimulus.hotwired.dev/handbook/building-something-real">官方手冊</a>、<a target="_blank" rel="noopener" href="https://github.com/hotwired/stimulus-rails">Github</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/27/20221127%20Stimulus/">展開全文 >></a>
     </p>
     
 
