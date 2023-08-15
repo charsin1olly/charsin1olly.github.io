@@ -180,6 +180,330 @@
             
 
   
+    <article id="post-20230815 如何在XP上儲存使用者認證" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/08/16/20230815%20%E5%A6%82%E4%BD%95%E5%9C%A8XP%E4%B8%8A%E5%84%B2%E5%AD%98%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" target="_blank">如何在XP上儲存使用者認證</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/08/16/20230815%20%E5%A6%82%E4%BD%95%E5%9C%A8XP%E4%B8%8A%E5%84%B2%E5%AD%98%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" class="archive-article-date">
+        <time datetime="2023-08-15T17:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-16</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="狀況描述"><a href="#狀況描述" class="headerlink" title="狀況描述"></a>狀況描述</h2><p>因為我們公司的個人電腦沒有office，所以部分人需要連到舊的xp主機使用office作業，但個別帳戶的網路磁碟機的帳號密碼認證常常在重新開機之後被清除，導致每次開啟資料夾都需要輸入帳號密碼，win10都有儲存認證這功能了，雖然xp很久遠，但應該也是有的吧?</p>
+<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><ol>
+<li><p>打開控制台，點選使用者帳戶圖示，點選左側的使用者帳戶<br> <img src="https://hackmd.io/_uploads/BJmRfjdh2.png"></p>
+</li>
+<li><p>彈出新視窗後，點選管理我的網路密碼<br> <img src="https://hackmd.io/_uploads/B1eQmsd23.png"></p>
+</li>
+<li><p>輸入資訊<br> <img src="https://hackmd.io/_uploads/HJCZEou32.png"></p>
+<p> 對照win10介面(相同顏色為相同資訊)<br> <img src="https://hackmd.io/_uploads/H1cuVj_n3.png"><br> 這邊需要注意的是xp的<strong>伺服器名稱</strong>格式，附上官方範本，我這邊連接的名稱是公司內部的網路磁碟機，和這邊的格式不一樣</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*.Microsoft.com</span><br><span class="line"></span><br><span class="line">或  \\Server\Share</span><br><span class="line"></span><br><span class="line">或  IP</span><br><span class="line"></span><br><span class="line">或  網路磁碟機怎麼連就叫甚麼名字</span><br></pre></td></tr></table></figure>
+
+<p> <strong>使用者名稱</strong>格式Microsoft可以改成網路磁碟機的名字，User則是連線這個網路的使用者帳戶名稱，像是Nas帳號那種，不是登入電腦的User帳戶喔~</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Microsoft\User</span><br><span class="line"></span><br><span class="line">或  User@microsoft.com</span><br></pre></td></tr></table></figure>
+
+<p> <strong>密碼</strong>就是登入這個網路連線的密碼</p>
+</li>
+<li><p>按確定就儲存好了~</p>
+</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/topic/how-to-manage-stored-user-names-and-passwords-on-a-computer-that-is-not-in-a-domain-in-windows-xp-e1809b89-0d8a-94a2-3029-9eacc18ef418">How To Manage Stored User Names and Passwords on a Computer That Is Not in a Domain in Windows XP</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/08/16/20230815%20%E5%A6%82%E4%BD%95%E5%9C%A8XP%E4%B8%8A%E5%84%B2%E5%AD%98%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230805 在Win11上使用VPN連公司內網發生問題" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/08/16/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" target="_blank">在Win11上使用VPN連公司內網發生問題</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/08/16/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" class="archive-article-date">
+        <time datetime="2023-08-15T17:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-16</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>今天終於在新電腦上嘗試一下能不能連 VPN 到公司網路，沒想到，這個任務還是問題一堆…</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">嘗試l2tp連線失敗因為安全性階層在與遠端電腦進行初始交涉時處理錯誤</span><br></pre></td></tr></table></figure>
+
+<p>公司防火牆提供給我們連公司內網的 VPN 是使用 L2TP+IPsec 預先共用金鑰，設定的過程跟 Win10 沒什麼兩樣，這邊就不多說了，主要記錄一下我怎麼解決這個錯誤訊息(原理有時間再來深扒)。</p>
+<h2 id="VPN-的內容設定"><a href="#VPN-的內容設定" class="headerlink" title="VPN 的內容設定"></a>VPN 的內容設定</h2><p><code>控制台\網路和網際網路\網路連線</code>，對著剛才新增的 VPN 點右鍵查看內容，要勾選「允許這些通訊協定」<br><img src="https://hackmd.io/_uploads/Ski9mVF32.png"></p>
+<p>在選項頁點 PPP 設定按鈕，查看是否勾選啟用 LCP 擴充<br><img src="https://hackmd.io/_uploads/Hy_ORc9jn.png"></p>
+<h2 id="檢查-windows-版本"><a href="#檢查-windows-版本" class="headerlink" title="檢查 windows 版本"></a>檢查 windows 版本</h2><p>Win10 的 KB5009543、Win11 的 KB5009566 版本可能會造成 L2TP 的連線問題，到<code>設定/WindowsUpdate/更新紀錄</code>可以查看是否有安裝這幾個版本，如果有的話可以移除更新<br><img src="https://hackmd.io/_uploads/H1NRpccjh.png"></p>
+<h2 id="服務"><a href="#服務" class="headerlink" title="服務"></a>服務</h2><p>按下<code>win+R</code>，輸入<code>services.msc</code></p>
+<ol>
+<li><p>找到<code>IPSec Policy Agent</code>右鍵點選重新啟動，打開內容修改啟動類型為自動。也有人說手動，反正不是停用就行了，這項服務負責的是支援 IPsec 的驗證，如果不打開會有連線問題。</p>
+</li>
+<li><p>找到<code>IKE and AuthIP IPsec Keying Modules</code>重複 1.步驟。這個服務是支援金鑰交換，如果停用會導致交換失敗。</p>
+</li>
+</ol>
+<h2 id="更改登錄檔"><a href="#更改登錄檔" class="headerlink" title="更改登錄檔"></a>更改登錄檔</h2><p><code>win+R</code>召喚老朋友，輸入<code>regedit</code>就可以叫出登錄檔</p>
+<ol>
+<li>路徑<code>電腦\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PolicyAgent</code><br>新增一個 DWORD 值(32 位元)，命名為<code>AssumeUDPEncapsulationContextOnSendRule</code>並且設定值為 2</li>
+</ol>
+<p>  這個選項的值<br>  0 是預設值，無法和 NAT 後的設備產生關連<br>  1 是可以和位於 NAT 後端的設備建立安全關連<br>  2 是當服務器和 VPN 客戶端都位於 NAT 設備後面時，能夠建立安全關聯</p>
+<ol start="2">
+<li>路徑<code>電腦\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\RasMan\Parameters</code></li>
+</ol>
+<ul>
+<li><p>新增一個 DWORD 值(32 位元)，命名為<code>ProhibitIPSec</code>設定值為 1</p>
+<p>0 為預設值，可以在 RRAS 服務器(遠端存取服務)上使用 IPsec 進行資料保護<br>1 為禁用自動配置的 IPsec(看起來跟 Mac 一樣是繞過 IPsec 的操作呢，不改真的連不上)</p>
+</li>
+<li><p>修改<code>AllowL2TPWeakCrypto</code>的值為 1(原為 0)，不過這個我後來把它改回 0 也沒影響 VPN 連線結果，就放著參考吧~</p>
+<p>0 為表示不允許使用 L2TP 中的較弱的加密方式。<br>1 為允許使用則表示允許使用 L2TP 中的較弱的加密方式。</p>
+</li>
+</ul>
+<p>修改完重開電腦就可以連了~</p>
+<h2 id="查看防火牆"><a href="#查看防火牆" class="headerlink" title="查看防火牆"></a>查看防火牆</h2><p>在 cmd 輸入<code>netstat -ano</code>查看是否有 4500、500port，如果是使用 NAT 技術傳送資料的話，會需要這兩個 port，如果沒有的話可以去防火牆<code>控制台\系統及安全性\Windows Defender 防火牆\進階設定</code>這裡新增，好讓 VPN 傳來的資料可以通過防火牆<br><img src="https://hackmd.io/_uploads/SkPTYo9in.png"></p>
+<p>在輸入規則，<br>新增 UDP 連接埠<code>500, 4500</code>，下一步選允許連線，設定允許的網域之後就完成了<br><img src="https://hackmd.io/_uploads/ryiJ5jcon.png"><br><img src="https://hackmd.io/_uploads/SJtZqs9i3.png"></p>
+<h2 id="VPN-連上了，但我沒辦法使用遠端桌面連線"><a href="#VPN-連上了，但我沒辦法使用遠端桌面連線" class="headerlink" title="VPN 連上了，但我沒辦法使用遠端桌面連線"></a>VPN 連上了，但我沒辦法使用遠端桌面連線</h2><p>使用遠端預設閘道打勾就能解決，之前在 win10 使用這個遠端預設閘道好像會導致本身電腦無法連外，但我用的這個 win11 沒有這個問題，通常預設都會是有勾選的，但我為了避免斷網先關掉它，反而讓自己連不上遠端桌面&#x3D; &#x3D;</p>
+<p>這個在 VPN 的內容&#x2F;網路功能&#x2F;進階設定&#x2F;網路通訊協定第 4 版&#x2F;內容&#x2F;進階<br><img src="https://hackmd.io/_uploads/BJvMi5qi3.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nerdsu/article/details/122544171">Windows 11 L2TP 连接尝试失败，因为安全层在初始化与远程计算机的协商时遇到了一个处理错误</a><br><a target="_blank" rel="noopener" href="https://www.anyviewer.com/tw/how-to/l2tp-connection-attempt-failed-because-the-security-layer.html">我的 VPN 突然無法正常連線了</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/NAT%E7%A9%BF%E9%80%8F">NAT 穿透</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-l2tp-ipsec-server-behind-nat-t-device">Configure a L2TP&#x2F;IPsec server behind a NAT-T device</a><br><a target="_blank" rel="noopener" href="https://woshub.com/l2tp-ipsec-vpn-server-behind/">Configuring L2TP&#x2F;IPSec VPN Connection Behind a NAT, VPN Error Code 809</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">網路</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/08/16/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230804 ThunderBird-無法自動儲存密碼" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/08/04/20230804%20ThunderBird-%E7%84%A1%E6%B3%95%E8%87%AA%E5%8B%95%E5%84%B2%E5%AD%98%E5%AF%86%E7%A2%BC/" target="_blank">ThunderBird-無法自動儲存密碼</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/08/04/20230804%20ThunderBird-%E7%84%A1%E6%B3%95%E8%87%AA%E5%8B%95%E5%84%B2%E5%AD%98%E5%AF%86%E7%A2%BC/" class="archive-article-date">
+        <time datetime="2023-08-03T17:13:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-04</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>有一天同事找我，說mail有問題，就是不論輸入幾次密碼，並且將「使用密碼管理員記住此密碼」打勾，依舊會瘋狂地跳出這個警示窗：<br><img src="https://hackmd.io/_uploads/SJLZXMcs2.png"></p>
+<p>直接尋找所謂的密碼管理員，也就是在設定(工具&#x2F;設定&#x2F;隱私權與安全性&#x2F;密碼)這個地方<br><img src="https://hackmd.io/_uploads/S1QjHzqon.png"></p>
+<p>點進去發現是空的，而且帳戶訊息完全寫不進去，正常來說應該是要長這樣<br><img src="https://hackmd.io/_uploads/B1YL8G5s2.png"></p>
+<p>嘗試過把帳號移除重新新增，發現新增帳號功能也壞了，開啟內建的疑難排除模式(說明&#x2F;疑難排解模式)卻可以正常使用，能夠正常新增帳號以及儲存密碼，但我們也沒有額外下載什麼元件，真的滿臉問號</p>
+<p>直到我爬到這篇參考文章，才找到解決方法，又是profiles資料夾的文件搞的鬼<br>(真巧，剛好我們的版本也是102.1左右呢)</p>
+<p>再次附上這個位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\(User的名字)\AppData\Roaming\Thunderbird\Profiles\(代表這個mail的亂數資料夾)</span><br></pre></td></tr></table></figure>
+
+<p>有幾篇文章有提到把<code>cert8.db</code>、<code>key3.db</code>刪除，這兩個檔案是舊版本才會產生的，可能會造成使用上的問題，重啟ThunderBird之後會重新生成<code>cert9.db</code>、<code>key4.db</code>這兩個檔案，通常這樣就不會有問題了。</p>
+<p>但是，我就是那個還有問題的，再刪除一個叫做<code>secmod.db</code>的檔案，這個檔案看起來也是舊版本留下的遺跡，同事電腦的這個檔案最後更新日期是2017年，而我這台新裝的ThunderBird卻沒有，把這個檔案砍掉之後就能正常儲存密碼囉~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1385134">Thunderbird v102.1.0 Won’t save passwords</a></p>
+<h6 id="ThunderBird這東西…哪裡壞了八成要從profiles下手吧"><a href="#ThunderBird這東西…哪裡壞了八成要從profiles下手吧" class="headerlink" title="ThunderBird這東西…哪裡壞了八成要從profiles下手吧"></a>ThunderBird這東西…哪裡壞了八成要從profiles下手吧</h6>
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/08/04/20230804%20ThunderBird-%E7%84%A1%E6%B3%95%E8%87%AA%E5%8B%95%E5%84%B2%E5%AD%98%E5%AF%86%E7%A2%BC/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230729 java 執行class時出現 java.lang.NoClassDefFoundError" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -322,7 +646,7 @@
 </ul>
 <p>更改完要按<code>esc</code>再輸入<code>:wq</code>儲存再離開</p>
 <h2 id="3-啟用設定"><a href="#3-啟用設定" class="headerlink" title="3. 啟用設定"></a>3. 啟用設定</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-<p>這個指令是讓文件立刻生效，不輸入的話要重開才有用（然後鬼打牆怎麼設定都不對）</p>
+<p>這個指令是讓文件立刻生效，不輸入的話要重開才有用（不重開的話，會鬼打牆怎麼設定都不對）</p>
 <h2 id="4-檢查設定"><a href="#4-檢查設定" class="headerlink" title="4. 檢查設定"></a>4. 檢查設定</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $JAVA_HOME</span><br></pre></td></tr></table></figure>
 <p>這個指令會顯示剛才我們設定的路徑，記得一定要加＄字號才是環境變數喔～</p>
 <h2 id="5-成果"><a href="#5-成果" class="headerlink" title="5. 成果"></a>5. 成果</h2><p><img src="https://hackmd.io/_uploads/BJ8a3VGjh.png"></p>
@@ -913,347 +1237,6 @@
 
 
   
-    <article id="post-20230703 錯誤The origin server did not find a current representation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/" target="_blank">百百種錯誤訊息之 The origin server did not find a current representation for the target resource or ....</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/" class="archive-article-date">
-        <time datetime="2023-07-03T11:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-03</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>太長了標題放不下，全部的錯誤訊息是這樣：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The origin server did not find a current representation for the target resource or is not willing to disclose that one exists.</span><br></pre></td></tr></table></figure>
-
-<p>這個訊息在我學習 servlet 拜訪網址的時候出現過，有以下幾種可能</p>
-<p><font color="red"> 1. web.xml 文件標籤錯字導致的文法錯誤</font><br><font color="red"> 2. 拜訪的網址有錯字</font><br><font color="red"> 3. 新增或是修改 servlet 網址之後沒有重開 tomcat(本次問題)</font><br><font color="red"> 4. 網址名稱不能和 servlet 的名字一樣(本次問題)</font></p>
-<p>基本上這個錯誤訊息都是各種錯字造成的，請大家要仔細檢查自己打的有沒有錯啊~另外，網址名稱不能和 Servlet 的名字一樣這一點不知道是不是巧合，當我的網址改成和 Servlet 名稱不同的網址就能順利拜訪，希望有知道原理的大大可以告訴我(跪</p>
-<p>參考資料裡面還有幾個解決方式，但具體為甚麼會有關聯沒有說得很清楚，也許有朝一日我也會用到?</p>
-<hr>
-<h2 id="關於伺服器設定的部分"><a href="#關於伺服器設定的部分" class="headerlink" title="關於伺服器設定的部分"></a>關於伺服器設定的部分</h2><p><img src="https://hackmd.io/_uploads/Bkx8YelK3.png"></p>
-<p>第二篇參考文章中提到這個錯誤有可能會與伺服器設置有關，而參考文章第一篇的問題三中也有和伺服器設定有關的解決方法，我照著設置結果 tomcat 直接開不起來，顯示的錯誤訊息和路徑錯誤有關，重新新增伺服器之後發現一切正常，而我的電腦預設 Server Locations 選項是選<code>Use workspace metadata</code>，發現不一定要和文中說的一樣選擇<code>Use Tomcat installation</code>這個選項，但如果要對應問題六的畫面，就必定要選這個選項才會有自己的專案資料夾生成在 tomcat 的資料夾中(依照 Deploy path 位置生成，我這邊會佈署到<code>wtpwebapps</code>資料夾)，否則就會跑進<code>workspace</code>的<code>.metadata</code>資料夾，所以在 tomcat 找不到專案資料夾的話，可以去檢查 tomcat 伺服器設定，看看它究竟把專案佈署到哪裡去囉~</p>
-<p><img src="https://hackmd.io/_uploads/HJV5jexK2.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/DBC_121/article/details/79204340">Web 开发：关于 Tomcat 出现 The origin server did not find a current representation for the target resourc…的问题</a></p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/71680405/404-the-origin-server-did-not-find-a-current-representation-for-the-target-res">“404: The origin server did not find a current representation for the target resource or is not willing to disclose that one exists” with Tomcat</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Tomcat</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230702 JAVA 數據類型的自動轉換" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/07/02/20230702%20JAVA%20%E6%95%B8%E6%93%9A%E9%A1%9E%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8B%95%E8%BD%89%E6%8F%9B/" target="_blank">JAVA 數據類型的自動轉換</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/07/02/20230702%20JAVA%20%E6%95%B8%E6%93%9A%E9%A1%9E%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8B%95%E8%BD%89%E6%8F%9B/" class="archive-article-date">
-        <time datetime="2023-07-02T04:11:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-02</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="基本：範圍小的類型會自動提升為數據範圍大的類型"><a href="#基本：範圍小的類型會自動提升為數據範圍大的類型" class="headerlink" title="基本：範圍小的類型會自動提升為數據範圍大的類型"></a>基本：範圍小的類型會自動提升為數據範圍大的類型</h2><p><strong>範圍由小到大：byte &lt; short &lt; int &lt; long &lt; float &lt; double</strong></p>
-<p>float的範圍是3.4e−038～3.4e+038比long的-9,223,372,036,854,775,808～9,223,372,036,854,775,807還廣，所以long可以被轉換成float，但float不能轉換成long</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">intOne</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="variable">longOne</span> <span class="operator">=</span> intOne;</span><br><span class="line">System.out.println(<span class="string">&quot;這是longOne -&gt;&quot;</span>+longOne);</span><br><span class="line"><span class="comment">//印出 這是longOne -&gt;1</span></span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="variable">longTwo</span> <span class="operator">=</span> <span class="number">222</span>;</span><br><span class="line"><span class="type">float</span> <span class="variable">floatTwo</span> <span class="operator">=</span> longTwo;</span><br><span class="line">System.out.println(<span class="string">&quot;這是floatTwo -&gt;&quot;</span>+floatTwo);</span><br><span class="line"><span class="comment">// 印出 這是floatTwo -&gt;222.0</span></span><br></pre></td></tr></table></figure>
-<p>如果想把float轉成long就會產生錯誤訊息 ：cannot convert from float to long</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> <span class="variable">floatThree</span> <span class="operator">=</span> <span class="number">2.01f</span>;</span><br><span class="line"><span class="type">long</span> <span class="variable">longThree</span> <span class="operator">=</span> floatThree;</span><br><span class="line">System.out.println(<span class="string">&quot;這是longThree -&gt;&quot;</span>+longThree);</span><br><span class="line">System.out.println(<span class="string">&quot;這是floatThree -&gt;&quot;</span>+floatThree);</span><br></pre></td></tr></table></figure>
-
-<h2 id="特殊：byte、short和char的運算結果為int"><a href="#特殊：byte、short和char的運算結果為int" class="headerlink" title="特殊：byte、short和char的運算結果為int"></a>特殊：byte、short和char的運算結果為int</h2><p>byte和byte以及short和short之間運算的結果為int，這個設計是為了避免運算過程超出byte和short的數據範圍</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 先寫一個可以檢查數據類型的方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getType</span><span class="params">(Object obj)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> obj.getClass().toString();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    <span class="type">byte</span> <span class="variable">byteOne</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">short</span> <span class="variable">shortOne</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">    <span class="type">char</span> <span class="variable">charOne</span> <span class="operator">=</span> <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="type">long</span> <span class="variable">longTwo</span> <span class="operator">=</span> <span class="number">222</span>;</span><br><span class="line">      </span><br><span class="line">    System.out.println(<span class="string">&quot;byte相加的數據類型是：&quot;</span>+getType(byteOne+byteOne));</span><br><span class="line">    <span class="comment">// byte相加的數據類型是：class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">&quot;short相加的數據類型是：&quot;</span>+getType(shortOne+shortOne));</span><br><span class="line">    <span class="comment">// short相加的數據類型是：class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">&quot;char相加的數據類型是：&quot;</span>+getType(charOne+charOne));</span><br><span class="line">    <span class="comment">// char相加的數據類型是：class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">&quot;byte+short的數據類型是：&quot;</span>+getType(byteOne+shortOne));</span><br><span class="line">    <span class="comment">// byte+short的數據類型是：class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">&quot;char+byte相加的數據類型是：&quot;</span>+getType(charOne+byteOne));</span><br><span class="line">    <span class="comment">// char+byte相加的數據類型是：class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(<span class="string">&quot;long相加的數據類型是：&quot;</span>+getType(longTwo+longTwo));</span><br><span class="line">    <span class="comment">// long相加的數據類型是：class java.lang.Long</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="特殊：不按照規則宣告變數的自動轉換"><a href="#特殊：不按照規則宣告變數的自動轉換" class="headerlink" title="特殊：不按照規則宣告變數的自動轉換"></a>特殊：不按照規則宣告變數的自動轉換</h2><p>當宣告變數時不按照JAVA宣告變數，像是宣告long的時候沒有在數字後方加上L，則這個數據會被判斷為int，但因為int是可以轉換成<br>long的數據類型（int範圍小於long），所以編譯時不會報錯</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">   <span class="type">long</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">123L</span>;</span><br><span class="line">   <span class="type">long</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">123</span>; <span class="comment">//此時的123判定為int</span></span><br><span class="line">    </span><br><span class="line">   System.out.println(getType(a));</span><br><span class="line">    <span class="comment">// 印出 class java.lang.Long</span></span><br><span class="line">    </span><br><span class="line">   System.out.println(getType(<span class="number">123</span>));</span><br><span class="line">    <span class="comment">// 印出 class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">   System.out.println(getType(b));</span><br><span class="line">    <span class="comment">// 印出class java.lang.Long</span></span><br><span class="line"> &#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-<p>同理如果是把範圍較大的double轉換成範圍較小的float，則會報錯</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    <span class="type">float</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">123.01F</span>;</span><br><span class="line">    <span class="type">float</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">123.01</span>; <span class="comment">//此時的123.01判斷為double</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(getType(c));</span><br><span class="line">    System.out.println(getType(<span class="number">123.01</span>));</span><br><span class="line">    System.out.println(getType(d));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 錯誤訊息 ：</span></span><br><span class="line"><span class="comment">// error: incompatible types: possible lossy conversion from double to float</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="數據運算的預設類型"><a href="#數據運算的預設類型" class="headerlink" title="數據運算的預設類型"></a>數據運算的預設類型</h2><p>整數運算後的預設數據類型為int、有小數的數據則為double</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    <span class="type">byte</span> <span class="variable">b1</span> <span class="operator">=</span> <span class="number">123</span>;</span><br><span class="line">    </span><br><span class="line">    System.out.println(getType(b1+<span class="number">1</span>));</span><br><span class="line">    <span class="comment">// 印出 class java.lang.Integer</span></span><br><span class="line">    </span><br><span class="line">    System.out.println(getType(b1+<span class="number">1.1</span>));</span><br><span class="line">    <span class="comment">// 印出 class java.lang.Double</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果運算結果超過int範圍的話，結果則還是int類型(但答案會很奇怪):</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    System.out.println(getType(b1+<span class="number">2147483647</span>));</span><br><span class="line">    System.out.println(b1+<span class="number">2147483647</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//class java.lang.Integer</span></span><br><span class="line"><span class="comment">// -2147483526</span></span><br></pre></td></tr></table></figure>
-<p>為了不產生奇怪的結果，則要使用Long，數據類型也會依照運算結果變成Long（）：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">    System.out.println(getType(b1+<span class="number">2147483647L</span>));</span><br><span class="line">    System.out.println(b1+<span class="number">2147483647L</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class java.lang.Long</span></span><br><span class="line"><span class="comment">// 2147483770</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>JAVA數據類型是根據結果判斷的，如果兩種不同類型的數據進行運算，結果則會轉換為範圍大的數據類型；另外，運算結果會超出該數據類型的範圍，則會報錯或是產出不正確的答案，要謹慎選擇宣告類型。</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">尚硅谷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/07/02/20230702%20JAVA%20%E6%95%B8%E6%93%9A%E9%A1%9E%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8B%95%E8%BD%89%E6%8F%9B/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230629 Tomcat如何使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/29/20230629%20Tomcat%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" target="_blank">Tomcat如何使用</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/29/20230629%20Tomcat%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2023-06-29T14:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-29</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>迷茫的JAVA之路，跟之前學的rails不一樣啊~(懷念一下專案裡面直接rails s，就能打開的localhost)JavaWeb專案的預覽server還要另外裝，而我們公司前輩跟我說是使用tomcat，上網查過之後得知tomcat是在JavaWeb開發中蠻常見的伺服器工具，那它要怎麼用呢?</p>
-<h2 id="安裝Tomcat"><a href="#安裝Tomcat" class="headerlink" title="安裝Tomcat"></a>安裝Tomcat</h2><ol>
-<li><p><a target="_blank" rel="noopener" href="https://tomcat.apache.org/whichversion.html">這裡</a>可以查看適合的版本，找到適合版本可以在左側欄找到相對應版本的下載點，如下圖：<br><img src="https://hackmd.io/_uploads/S1tvvIKdh.png"></p>
-</li>
-<li><p>記得選對作業系統的版本<br><img src="https://hackmd.io/_uploads/rJxWd8Yuh.png"></p>
-</li>
-<li><p>下載後可在任何地方解壓縮即可使用(不要解到自己找不到的地方就行了)，下圖為解壓縮完的樣子(下面那個檔案是下載下來的壓縮檔)，我自己創建了一個tomcat資料夾專門存放tomcat各個版本:<br><img src="https://hackmd.io/_uploads/HJIG9UKu2.png"></p>
-</li>
-</ol>
-<h2 id="資料夾結構"><a href="#資料夾結構" class="headerlink" title="資料夾結構"></a>資料夾結構</h2><ul>
-<li>bin：可以在tomcat上運行的程序</li>
-<li>conf：tomcat的配置文件，像是運行用的port設定之類的</li>
-<li>lib：tomcat運行要用的jar包</li>
-<li>logs：伺服器運行紀錄，啟動之後會產生的伺服器訊息通通都會存在這裡</li>
-<li>temp：運行時所產生的暫存檔</li>
-<li>webapp：存放執行專案，如果要將專案佈署到web上就是要塞進這資料夾<br>  這裡的docs資料夾裡面就是tomcat的技術文件，和網站上看到的一樣；ROOT資料夾則是預設畫面，例如等等要確認開啟是否成功的那個歡迎畫面，就是這個資料夾裡的index.jsp檔案</li>
-<li>work：存放JSP轉成Servlet的編譯檔案</li>
-</ul>
-<h2 id="啟動Tomcat伺服器"><a href="#啟動Tomcat伺服器" class="headerlink" title="啟動Tomcat伺服器"></a>啟動Tomcat伺服器</h2><p>有兩種方法可以開啟tomcat伺服器，挑一種開就行了，我自己是方法一打得開，但輸入網址一直有問題，換了方法二就可以進入成功畫面。</p>
-<h3 id="方法一、使用startup-bat"><a href="#方法一、使用startup-bat" class="headerlink" title="方法一、使用startup.bat"></a>方法一、使用startup.bat</h3><p>a. 找到tomcat的bin資料夾，有一個檔案叫做<code>startup.bat</code>，點擊兩下即可啟動伺服器 </p>
-<p>b. 在網址列輸入<code>http://localhost:8080</code> 或是 <code>http://127.0.0.1:8080</code>檢查是否成功開啟，下圖為成功啟動之畫面<br><img src="https://hackmd.io/_uploads/SyfgJwcO2.png"></p>
-<ul>
-<li><p>如果視窗點兩下就閃退，可以去檢查JAVA_HOME設定是否正確(名稱是否全大寫、_有沒有打錯、路徑是否到JDK的目錄)</p>
-</li>
-<li><p>遇到閃退情形也有可能是Tomcat與當前使用的JAVA版本不相容，原本下載10(支援JAVA 8以後，使用同樣支援JAVA8以後的Tomcat 9也是閃退)，發現系統JAVA是1.7，下載Tomcat 8就可以順利開啟。</p>
-</li>
-</ul>
-<hr>
-<h4 id="啟動後顯示亂碼怎麼辦呢"><a href="#啟動後顯示亂碼怎麼辦呢" class="headerlink" title="啟動後顯示亂碼怎麼辦呢?"></a>啟動後顯示亂碼怎麼辦呢?</h4><p><img src="https://hackmd.io/_uploads/SJBMgPq_3.png"><br>雖然似乎不影響使用，但看起來不太舒服，該怎麼讓它正常顯示呢?</p>
-<p>a. 到Windows的設定，找到時間和語言&#x2F;相關設定&#x2F;系統管理語言設定<br><img src="https://hackmd.io/_uploads/SkSVbPq_h.png"></p>
-<p>b. 變更系統地區設定<br><img src="https://hackmd.io/_uploads/rkvD-v9d3.png"></p>
-<p>c. 將下方 <code>Beta:使用Unicode UTF-8提供全球語言支援</code>選項打勾，確定<br><img src="https://hackmd.io/_uploads/HysYWD5Oh.png"></p>
-<p>d. 可以正常顯示中文了~<br><img src="https://hackmd.io/_uploads/BJZezw9u3.png"></p>
-<hr>
-<h3 id="方法二、-使用終端機指令"><a href="#方法二、-使用終端機指令" class="headerlink" title="方法二、 使用終端機指令"></a>方法二、 使用終端機指令</h3><p>a. 用<code>Win+R</code>，輸入<code>cmd</code></p>
-<p>b. 輸入指令到tomcat的bin資料夾，例如:<code>cd C:\Program Files\tomcat\apache-tomcat-8.5.90\bin</code></p>
-<p>c. 輸入指令<code>catalina run</code>開啟伺服器，這個方法的好處就是如果JAVA_HOME設置上有問題，可以直接在終端機上顯示錯誤訊息，一看就知道哪裡有問題~</p>
-<p>d. 在網址列輸入<code>http://localhost:8080</code> 或是 <code>http://127.0.0.1:8080</code>檢查是否成功開啟，成功結果如方法一</p>
-<h2 id="關閉Tomcat伺服器的方式"><a href="#關閉Tomcat伺服器的方式" class="headerlink" title="關閉Tomcat伺服器的方式"></a>關閉Tomcat伺服器的方式</h2><p>三種方法可以選一種用：</p>
-<ol>
-<li>把視窗直接關掉</li>
-<li>在執行的視窗(startup.bat或終端機畫面)按下ctrl+c</li>
-<li>bin資料夾裡的shutdown.bat點兩下，剛才用startup方式打開的視窗就會關掉了</li>
-</ol>
-<h2 id="修改Tomcat使用的port"><a href="#修改Tomcat使用的port" class="headerlink" title="修改Tomcat使用的port"></a>修改Tomcat使用的port</h2><ol>
-<li>進到tomcat的conf資料夾，修改server.xml檔案，可用記事本或是其他編輯器修改</li>
-<li>打開後找到connector標籤，會看到預設port是8080，可以修改成其他的port(1~65535之間的數字，盡量1000以上，避免撞系統使用到的port)，改完存檔 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">           connectionTimeout=&quot;20000&quot;</span><br><span class="line">           redirectPort=&quot;8443&quot;</span><br><span class="line">           maxParameterCount=&quot;1000&quot;</span><br><span class="line">           /&gt;</span><br></pre></td></tr></table></figure></li>
-<li>重新開啟tomcat伺服器，這樣就修改完成了<br><img src="https://hackmd.io/_uploads/B1vKLPcO3.png"></li>
-</ol>
-<h2 id="在Eclipse上使用"><a href="#在Eclipse上使用" class="headerlink" title="在Eclipse上使用"></a>在Eclipse上使用</h2><h3 id="1-新增伺服器"><a href="#1-新增伺服器" class="headerlink" title="1. 新增伺服器"></a>1. 新增伺服器</h3><p>a. 視窗(Window) &#x2F; 喜好設定(Preferences) &#x2F; 伺服器（Server） &#x2F; Runtime Environments &#x2F; 新增(add)&#x2F;找到我們要用的Tomcat版本 &#x2F; 下一步<br><img src="https://hackmd.io/_uploads/rkxqfAwK2.png"></p>
-<p>b. 瀏覽&#x2F;選擇tomcat所在資料夾，要在<code>apache-tomcat-（版本號）</code>這個資料夾的目錄 &#x2F;完成<br><img src="https://hackmd.io/_uploads/rkF8bAvY3.png"></p>
-<h3 id="2-執行"><a href="#2-執行" class="headerlink" title="2. 執行"></a>2. 執行</h3><p>a. 找到上方工具列的視窗(Window) &#x2F; Web 瀏覽器能設定我們開啟server的時候要用哪個瀏覽器<br><img src="https://hackmd.io/_uploads/rkVWXADYh.png"></p>
-<p>b. 進到想預覽的頁面檔案，按工具列的綠色執行按鈕，選擇剛才添加的伺服器&#x2F;完成<br><img src="https://hackmd.io/_uploads/Hk7-rAPY2.png"></p>
-<p>c.成功啟動～<br><img src="https://hackmd.io/_uploads/B12VHCwK2.png"></p>
-<p>d.關閉伺服器<br>下方視窗的主控台分頁有個紅色的停止鍵，按下去就能關閉<br><img src="https://hackmd.io/_uploads/HyVFBRDKh.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.youtube.com/playlist?list=PLmOn9nNkQxJGJVS8ZqBcbjkxPh0OuaW2E">【尚硅谷】JavaWeb 2020IDEA新版</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/29/20230629%20Tomcat%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1448,6 +1431,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">網路</a>
               </li>
             
             <div class="clearfix"></div>

@@ -180,6 +180,350 @@
             
 
   
+    <article id="post-20230130 Timecop 時間管理大師" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" target="_blank">【Ruby on Rails】Timecop 時間管理大師</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/" class="archive-article-date">
+        <time datetime="2023-01-29T19:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-01-30</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近做面試題認識Timecop，Timecop是一個控制時間的套件，怎麼個控制法呢？</p>
+<h2 id="freeze、travel"><a href="#freeze、travel" class="headerlink" title="freeze、travel"></a>freeze、travel</h2><p>freeze是把設定的時間凍住，同時我們的Time.now也會變成freeze的時間，10秒之後（再次提醒自己：sleep會放10秒再繼續執行，不是當機啦！）再使用一次Time.now並不會改變時間，和剛才設定的new_time相同。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.freeze(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; true</span><br></pre></td></tr></table></figure>
+
+<p>而travel是會把我們的時間(Time.now)改成new_time設定的時間，並且開始「流動」，跟freeze不一樣的地方就是new_time和Time.now不會相同，因為new_time的時間是寫死的，而Time.now會一直改變。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new_time = Time.local(2008, 9, 1, 12, 0, 0)</span><br><span class="line">Timecop.travel(new_time)</span><br><span class="line">sleep(10)</span><br><span class="line">new_time == Time.now # ==&gt; false</span><br></pre></td></tr></table></figure>
+
+<p>從github挖出來的freeze和travel可用引數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1. Timecop.freeze(time_inst) </span><br><span class="line">    ＃例：Timecop.travel(Time.zone.local(2023, 1, 29, 22, 30))</span><br><span class="line">2. Timecop.freeze(datetime_inst)</span><br><span class="line">3. Timecop.freeze(date_inst)</span><br><span class="line">4. Timecop.freeze(offset_in_seconds)</span><br><span class="line">5. Timecop.freeze(year, month, day, hour=0, minute=0, second=0)</span><br><span class="line">    ＃例：Timecop.travel(2023, 1, 29, 22, 30)</span><br><span class="line">6. Timecop.freeze() # Defaults to Time.now</span><br></pre></td></tr></table></figure>
+<p>另外爬到的文還有do end用法，在scope裡的都會受到Time.freeze及travel的影響，假設時間是10:00，經過第一層的1.hours之後時間就會前進一個小時、回溯可以用1.hours.ago，時間函數似乎都可以用（這個我不太確定），再經過這個scope裡的Timecop.travel 30.minutes，時間將會再更前推30分鐘。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Timecop.freeze(Time.zone.local(2023, 1, 31, 10, 0))</span><br><span class="line">Timecop.travel 1.hours do</span><br><span class="line">    Time.now ＃ 2023-01-31 11:00:00 +0800</span><br><span class="line">    </span><br><span class="line">    Timecop.travel 30.minutes do</span><br><span class="line">        Time.now ＃ 2023-01-31 11:30:00 +0800</span><br><span class="line">    end    </span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>改時間如果有需要復原成正常時間的話，可以使用<code> Timecop.return</code></p>
+<h2 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h2><p>可以縮放時間刻度的比例，scale的引數就是一秒可以當幾秒過</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Timecop.scale(60) do</span><br><span class="line">  Time.now # 2023-01-31 10:00:00 +0800</span><br><span class="line">  sleep 10</span><br><span class="line">  Time.now # 2023-01-31 10:10:00 +0800</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="before、after"><a href="#before、after" class="headerlink" title="before、after"></a>before、after</h2><p>在before跟after之間的時間都會受到Timecop影響，不過這次我自己用是拿來設定時區的(不知道是不是OK的做法)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> describe &quot;some set of tests to mock&quot; do</span><br><span class="line">  before do</span><br><span class="line">    Timecop.freeze(Time.local(1990))</span><br><span class="line">    Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  after do</span><br><span class="line">    Timecop.return</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  it &quot;should do blah blah blah&quot; do</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="補充：當我跟Timecop初次見面"><a href="#補充：當我跟Timecop初次見面" class="headerlink" title="補充：當我跟Timecop初次見面"></a>補充：當我跟Timecop初次見面</h3><p>當我第一次使用Rspec＋Timecop跟在深山走丟一樣，不知道是哪裡缺了漏了，報不完的錯，甚至都還沒碰到邏輯就錯了，記錄一下以免太久不碰又忘記（哭</p>
+<ol>
+<li>如果在Rspec使用Timecop會報這個錯誤，在文件上方補上<code>require &quot;timecop&quot;</code>引入就能正常使用了。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br><span class="line">     </span><br><span class="line">     NameError:</span><br><span class="line">       uninitialized constant Timecop</span><br><span class="line">     </span><br><span class="line">             Timecop.travel(Time.zone.local(2023, 1, 31, 5, 0))</span><br></pre></td></tr></table></figure></li>
+<li>在使用時間函數老是說undefined method，除了這裡的zone還有上面提過的hours、minutes等，這個問題的解決辦法也是在文件上方補上<code> require &quot;active_support/all&quot;</code>就能正常使用。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Failure/Error: Time.zone = &quot;Asia/Taipei&quot;</span><br><span class="line">     </span><br><span class="line">    NoMethodError:</span><br><span class="line">      undefined method `zone=&#x27; for Time:Class</span><br><span class="line">     </span><br><span class="line">        Time.zone = &quot;Asia/Taipei&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>參考資料：<a target="_blank" rel="noopener" href="https://github.com/travisjeffery/timecop">Timecop 官方文件</a><br><a target="_blank" rel="noopener" href="https://medium.com/@tonyhsu/%E7%94%A8-timecop-%E8%87%AA%E7%94%B1%E7%A9%BF%E6%A2%AD%E6%99%82%E9%96%93%E8%BB%B8-e9d606e8dbd3">用 Timecop 自由穿梭時間軸</a><br>碎念：哎…小白剛踏出新手教學真是什麼都不知道，慢慢來（深呼吸</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/01/30/20230130%20Timecop%20%E6%99%82%E9%96%93%E7%AE%A1%E7%90%86%E5%A4%A7%E5%B8%AB/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20221204 Enum與下拉選單" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" target="_blank">【Ruby on Rails】應用Enum製作下拉選單</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/" class="archive-article-date">
+        <time datetime="2022-12-04T16:11:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-05</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>填寫表單時總會遇到一個困擾，那就是我們希望只有1,2,3,4選項可以選，但表格設定類型為integer僅僅能防止非整數以及文字資料輸入，依舊抵擋不了操作者輸入5,6,7,9999之類不在預期範圍的資料，這種時候就可以設定Enum限定操作者填入的資料內容，搭配下拉選單呈現選項。</p>
+<p>此處以設定使用者身份示範：</p>
+<h2 id="添加欄位"><a href="#添加欄位" class="headerlink" title="添加欄位"></a>添加欄位</h2><p>如果在table上已經預留好欄位就可以直接跳到ENUM設定步驟，還沒有的就可以添加migration檔。<br>資料類型integer：我們要用去抓該項設定的key，所以要是整數。<br>設定一個default值：讓新增加的資料自帶預設值0，即默認為Enum的key為0的狀態。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class AddRoleInUser &lt; ActiveRecord::Migration[6.1]</span><br><span class="line">  def change</span><br><span class="line">    add_column :users ,:role , :integer ,default: 0</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h2 id="先用ENUM設定選項內容"><a href="#先用ENUM設定選項內容" class="headerlink" title="先用ENUM設定選項內容"></a>先用ENUM設定選項內容</h2><p>找到要設定項目的Model設定Enum</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class User &lt; ApplicationRecord</span><br><span class="line">  enum role: &#123; user: 0 , staff: 1 , admin: 2&#125;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>設定完Enum，rails就會送你這幾個方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">user.roles    查詢user的所有role</span><br><span class="line"></span><br><span class="line">user.staff!   把user設定為staff</span><br><span class="line">user.staff?   user是staff嗎？(回傳true,false)</span><br><span class="line">user.role     user現在的身份是什麼</span><br><span class="line"></span><br><span class="line">資料庫查詢</span><br><span class="line">User.where(role: [:user, :staff, :admin])  </span><br><span class="line">User.where.not(role: :staff)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/5voZXPy.png"></p>
+<h2 id="應用表單輔助：options-for-select-做出下拉選單"><a href="#應用表單輔助：options-for-select-做出下拉選單" class="headerlink" title="應用表單輔助：options_for_select 做出下拉選單"></a>應用表單輔助：options_for_select 做出下拉選單</h2><p><img src="https://i.imgur.com/Gk4y8u1.png"></p>
+<p>這個是製作下拉選單內容的本體，可以放兩個參數</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options_for_select([ 選項內容 ],預設選項)</span><br></pre></td></tr></table></figure>
+<p>其中第二個參數設定預設項，只要在選項內容找得到的key都可以設定，若是找不到的的選項則會顯示第一個選項為預設。</p>
+<h3 id="首先是固定顯示某個選項（可用於一般表單輸入）"><a href="#首先是固定顯示某個選項（可用於一般表單輸入）" class="headerlink" title="首先是固定顯示某個選項（可用於一般表單輸入）"></a>首先是固定顯示某個選項（可用於一般表單輸入）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">以User所有的role設定的狀態2</span><br><span class="line">&lt;%= form.select :role, options_for_select(User.roles, 2) %&gt;</span><br></pre></td></tr></table></figure>
+<p>可是狀態2是什麼並不直觀，所以有另一種寫法：</p>
+<p>先在controller設定一個實體變數，取每個狀態的key(這裡為了凸顯下一招的厲害我故意打了一個底線)，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    key</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/x1M2hac.png"></p>
+<p>用human_attribute_name幫選項內容整理一下，看起來會比較像人類的表達方式，開頭變成大寫，底線也會變成空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@roles_select_options = User.roles.keys.map do |key|</span><br><span class="line">    [User.human_attribute_name(&quot;role.#&#123;key&#125;&quot;), key]</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/qhZrdXu.png"></p>
+<p>接下來就是把剛剛做的實體變數塞進選項清單，這下就可以使用key來設定預設值了～這樣是不是比較直觀呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">我要讓admin成為預設選項</span><br><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, &quot;admin&quot;) %&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="那我只是要修改上次的資料呢？"><a href="#那我只是要修改上次的資料呢？" class="headerlink" title="那我只是要修改上次的資料呢？"></a>那我只是要修改上次的資料呢？</h3><p>萬一我的舊資料不是預設選項卻忘了改，那不是完了？<br>別擔心，只要讀取該筆資料的role塞進預設值參數就好了～</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form.select :role, options_for_select(@roles_select_options, @user.role) %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>感想：<br>學會Enum＋下拉選單應用對資料的統一性非常的有幫助，再也不用害怕那些不按照規矩來的人了，繼續鑽研…</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://api.rubyonrails.org/v5.1/classes/ActiveRecord/Enum.html">ActiveRecord::Enum</a><br><a target="_blank" rel="noopener" href="https://rails.ruby.tw/form_helpers.html#select-%E8%88%87-option-%E6%A8%99%E7%B1%A4">Select 與 Option 標籤</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/12/05/20221204%20Enum%E8%88%87%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20221202 devise寄信" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" target="_blank">【Ruby on Rails】Devise 寄信</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/" class="archive-article-date">
+        <time datetime="2022-12-02T16:42:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-12-03</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="發送設定"><a href="#發送設定" class="headerlink" title="發送設定"></a>發送設定</h2><h3 id="1-開啟Devise-寄信功能"><a href="#1-開啟Devise-寄信功能" class="headerlink" title="1. 開啟Devise 寄信功能"></a>1. 開啟Devise 寄信功能</h3><p>前往 <code>config/initializers/devise.rb</code> 裡修改這兩個指令：<br>這個步驟發送信件會由Devise取代rails原本的mailer</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer = &#x27;Devise::Mailer&#x27;</span><br></pre></td></tr></table></figure>
+<p>這個步驟會在收件方顯示寄件名稱<br> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-寄件設定（使用mailgun）"><a href="#2-寄件設定（使用mailgun）" class="headerlink" title="2.寄件設定（使用mailgun）"></a>2.寄件設定（使用mailgun）</h3><p>找到檔案<code>config/environments/development.rb</code>(此處為開發環境)，設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.raise_delivery_errors = true</span><br><span class="line">config.action_mailer.delivery_method = :smtp</span><br><span class="line">config.action_mailer.default_url_options = &#123; host: &#x27;localhost&#x27;, port: 3000 &#125;</span><br><span class="line">config.action_mailer.smtp_settings = &#123;</span><br><span class="line">    address:              &#x27;smtp.mailgun.org&#x27;,</span><br><span class="line">    port:                 587,</span><br><span class="line">    domain:               &#x27;&#x27;,</span><br><span class="line">    user_name:            &#x27;postmaster@XXXXXXXXXXX.mailgun.org&#x27;,</span><br><span class="line">    password:             &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    authentication:       &#x27;XXXXXXXX&#x27;,</span><br><span class="line">    enable_starttls_auto: true</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>其中<code>config.action_mailer.smtp_settings</code>通常會把詳細寄件資訊整理到email.yml檔，所以要在config建立一個email.yml存放資訊設定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">development:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br><span class="line">production:</span><br><span class="line">  address: &quot;smtp.mailgun.org&quot;</span><br><span class="line">  port: &quot;587&quot;</span><br><span class="line">  domain: &lt;%=ENV[&#x27;DOMAIN&#x27;]%&gt;</span><br><span class="line">  authentication: &quot;plain&quot;</span><br><span class="line">  user_name: &lt;%=ENV[&#x27;MAILGUN_USERNAME&#x27;]%&gt;</span><br><span class="line">  password: &lt;%=ENV[&#x27;MAILGUN_PASSWORD&#x27;]%&gt;</span><br><span class="line">  enable_starttls_auto: true</span><br></pre></td></tr></table></figure>
+<p>domin、user_name、password皆為私人所有，設定為讀取環境變數，config.action_mailer.smtp_settings則要修改為讀取email.yml，可設定不同環境讀取不同的寄件設定（例如development使用gmail寄信、production使用mailgun），但這裡我兩個都使用mailgun。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.action_mailer.smtp_settings = config_for(:email).symbolize_keys</span><br></pre></td></tr></table></figure>
+
+<p>環境變數的設定我是使用<a target="_blank" rel="noopener" href="https://github.com/motdotla/dotenv">dotenv</a>套件，只要增加.env檔案設定要帶入email.yml檔的變數即可，設定完成後記得要把<code>.env</code>檔加入<code>.gitignore</code>內，以免推上github被陌生人看光光。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DOMAIN=sandboxXXXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_USERNAME=postmaster@XXXXXXXXXXXX.mailgun.org</span><br><span class="line">MAILGUN_PASSWORD=XXXXXXXXXXXXXXXXXX</span><br></pre></td></tr></table></figure>
+
+<p>以上設定完之後就可以去登入介面按忘記密碼測試一下是否能正常寄信囉～<br>大約1分鐘內可以收到。</p>
+<p> <img src="https://i.imgur.com/7aVKNZU.png"></p>
+<h2 id="發送失敗"><a href="#發送失敗" class="headerlink" title="發送失敗"></a>發送失敗</h2><p>那如果很久都沒收到信呢？可以試著檢查看看</p>
+<h4 id="1-config-mailer-sender-一定要帶上郵件地址"><a href="#1-config-mailer-sender-一定要帶上郵件地址" class="headerlink" title="1. config.mailer_sender 一定要帶上郵件地址"></a>1. config.mailer_sender 一定要帶上郵件地址</h4><p>以下兩種字串都會失敗</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema&#x27;    沒有角括號</span><br><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby_cinema&gt;&#x27;  沒有長得像email的內容</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/J4Y6JCL.png"><br>經過測試，角括號內長的像email(像是aa@aa這種，在@前後有英文之類的…)就能寄出，而且還會跑到Gmail的促銷內容（原因待查）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.mailer_sender = &#x27;Ruby_cinema &lt;Ruby@cinema.com&gt;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-沒有吃到環境變數"><a href="#2-沒有吃到環境變數" class="headerlink" title="2.沒有吃到環境變數"></a>2.沒有吃到環境變數</h3><p>安裝、設定完之後，可以進入rails c輸入<code>ENV</code>查詢目前環境可以讀取到的環境變數，如果設定成功應該會看到，如果沒有的話可以再去檢查看看目前環境是不是挑錯了。<br><img src="https://i.imgur.com/D87ESYL.png"></p>
+<h3 id="3-mailgun註冊後沒有進行開通"><a href="#3-mailgun註冊後沒有進行開通" class="headerlink" title="3.mailgun註冊後沒有進行開通"></a>3.mailgun註冊後沒有進行開通</h3><p>註冊完mailgun請記得去註冊帳號信箱收開通信，否則無法正常使用mailgun功能。</p>
+<h3 id="4-其他原因"><a href="#4-其他原因" class="headerlink" title="4.其他原因"></a>4.其他原因</h3><p>設定<code>config.action_mailer.raise_delivery_errors = true</code>，設定為true則是會在寄信中回報錯誤訊息，我自己會收到錯誤訊息常常因為打錯字或是漏設定(例如smtp沒有設定成mailgun）。</p>
+<p>以上是我利用devise套件寄信的踩雷心得分享，繼續摸索Devise這個套件的奧妙。</p>
+<p>參考資料：<br><a target="_blank" rel="noopener" href="https://github.com/heartcombo/devise">devise-github</a><br><a target="_blank" rel="noopener" href="https://railsbook.tw/chapters/20-send-email">為你自己學 Ruby on Rails - 寄發信件</a><br><a target="_blank" rel="noopener" href="https://ihower.tw/rails/actionmailer.html">Rails 實戰聖經-ActionMailer - E-mail 發送</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">devise</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/12/03/20221202%20devise%E5%AF%84%E4%BF%A1/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20221127 Stimulus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -806,6 +1150,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">網路</a>
               </li>
             
             <div class="clearfix"></div>
