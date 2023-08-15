@@ -293,7 +293,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2023/08/16/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" target="_blank">在Win11上使用VPN連公司內網發生問題</a>
+	  <a class="article-title" href="/2023/08/05/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" target="_blank">在Win11上使用VPN連公司內網發生問題</a>
   
     </h1>
   
@@ -301,8 +301,8 @@
 
   
   
-<a href="/2023/08/16/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" class="archive-article-date">
-        <time datetime="2023-08-15T17:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-16</time>
+<a href="/2023/08/05/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" class="archive-article-date">
+        <time datetime="2023-08-05T13:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-05</time>
 </a>
 
   
@@ -329,7 +329,7 @@
 <ol>
 <li>路徑<code>電腦\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PolicyAgent</code><br>新增一個 DWORD 值(32 位元)，命名為<code>AssumeUDPEncapsulationContextOnSendRule</code>並且設定值為 2</li>
 </ol>
-<p>  這個選項的值<br>  0 是預設值，無法和 NAT 後的設備產生關連<br>  1 是可以和位於 NAT 後端的設備建立安全關連<br>  2 是當服務器和 VPN 客戶端都位於 NAT 設備後面時，能夠建立安全關聯</p>
+<p>這個選項的值<br>0 是預設值，無法和 NAT 後的設備產生關連<br>1 是可以和位於 NAT 後端的設備建立安全關連<br>2 是當服務器和 VPN 客戶端都位於 NAT 設備後面時，能夠建立安全關聯</p>
 <ol start="2">
 <li>路徑<code>電腦\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\RasMan\Parameters</code></li>
 </ol>
@@ -381,7 +381,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/16/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/">展開全文 >></a>
+      <a class="article-more-a" href="/2023/08/05/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/">展開全文 >></a>
     </p>
     
 
@@ -437,18 +437,18 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>有一天同事找我，說mail有問題，就是不論輸入幾次密碼，並且將「使用密碼管理員記住此密碼」打勾，依舊會瘋狂地跳出這個警示窗：<br><img src="https://hackmd.io/_uploads/SJLZXMcs2.png"></p>
+    <p>有一天同事找我，說 mail 有問題，就是不論輸入幾次密碼，並且將「使用密碼管理員記住此密碼」打勾，依舊會瘋狂地跳出這個警示窗：<br><img src="https://hackmd.io/_uploads/SJLZXMcs2.png"></p>
 <p>直接尋找所謂的密碼管理員，也就是在設定(工具&#x2F;設定&#x2F;隱私權與安全性&#x2F;密碼)這個地方<br><img src="https://hackmd.io/_uploads/S1QjHzqon.png"></p>
 <p>點進去發現是空的，而且帳戶訊息完全寫不進去，正常來說應該是要長這樣<br><img src="https://hackmd.io/_uploads/B1YL8G5s2.png"></p>
 <p>嘗試過把帳號移除重新新增，發現新增帳號功能也壞了，開啟內建的疑難排除模式(說明&#x2F;疑難排解模式)卻可以正常使用，能夠正常新增帳號以及儲存密碼，但我們也沒有額外下載什麼元件，真的滿臉問號</p>
-<p>直到我爬到這篇參考文章，才找到解決方法，又是profiles資料夾的文件搞的鬼<br>(真巧，剛好我們的版本也是102.1左右呢)</p>
+<p>直到我爬到這篇參考文章，才找到解決方法，又是 profiles 資料夾的文件搞的鬼<br>(真巧，剛好我們的版本也是 102.1 左右呢)</p>
 <p>再次附上這個位置</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\(User的名字)\AppData\Roaming\Thunderbird\Profiles\(代表這個mail的亂數資料夾)</span><br></pre></td></tr></table></figure>
 
-<p>有幾篇文章有提到把<code>cert8.db</code>、<code>key3.db</code>刪除，這兩個檔案是舊版本才會產生的，可能會造成使用上的問題，重啟ThunderBird之後會重新生成<code>cert9.db</code>、<code>key4.db</code>這兩個檔案，通常這樣就不會有問題了。</p>
-<p>但是，我就是那個還有問題的，再刪除一個叫做<code>secmod.db</code>的檔案，這個檔案看起來也是舊版本留下的遺跡，同事電腦的這個檔案最後更新日期是2017年，而我這台新裝的ThunderBird卻沒有，把這個檔案砍掉之後就能正常儲存密碼囉~</p>
+<p>有幾篇文章有提到把<code>cert8.db</code>、<code>key3.db</code>刪除，這兩個檔案是舊版本才會產生的，可能會造成使用上的問題，重啟 ThunderBird 之後會重新生成<code>cert9.db</code>、<code>key4.db</code>這兩個檔案，通常這樣就不會有問題了。</p>
+<p>但是，我就是那個還有問題的，再刪除一個叫做<code>secmod.db</code>的檔案，這個檔案看起來也是舊版本留下的遺跡，同事電腦的這個檔案最後更新日期是 2017 年，而我這台新裝的 ThunderBird 卻沒有，把這個檔案砍掉之後就能正常儲存密碼囉~</p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1385134">Thunderbird v102.1.0 Won’t save passwords</a></p>
-<h6 id="ThunderBird這東西…哪裡壞了八成要從profiles下手吧"><a href="#ThunderBird這東西…哪裡壞了八成要從profiles下手吧" class="headerlink" title="ThunderBird這東西…哪裡壞了八成要從profiles下手吧"></a>ThunderBird這東西…哪裡壞了八成要從profiles下手吧</h6>
+<h6 id="ThunderBird-這東西…哪裡壞了八成要從-profiles-下手吧"><a href="#ThunderBird-這東西…哪裡壞了八成要從-profiles-下手吧" class="headerlink" title="ThunderBird 這東西…哪裡壞了八成要從 profiles 下手吧"></a>ThunderBird 這東西…哪裡壞了八成要從 profiles 下手吧</h6>
     
 
     <!--  -->
