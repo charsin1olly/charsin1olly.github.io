@@ -180,6 +180,539 @@
             
 
   
+    <article id="post-20230516 螢幕色彩變黃，但螢幕沒壞?" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" target="_blank">螢幕色彩變黃，但螢幕沒壞?</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" class="archive-article-date">
+        <time datetime="2023-05-16T12:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-16</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~</p>
+<h2 id="夜間模式"><a href="#夜間模式" class="headerlink" title="夜間模式"></a>夜間模式</h2><p>先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~)</p>
+<h3 id="1-找到設定"><a href="#1-找到設定" class="headerlink" title="1. 找到設定"></a>1. 找到設定</h3><p><img src="https://hackmd.io/_uploads/rkl3Muer2.png"></p>
+<h3 id="2-系統-x2F-顯示器"><a href="#2-系統-x2F-顯示器" class="headerlink" title="2. 系統&#x2F;顯示器"></a>2. 系統&#x2F;顯示器</h3><p><img src="https://hackmd.io/_uploads/SkkTr_xr2.png"></p>
+<h2 id="安全模式-本次解決方案"><a href="#安全模式-本次解決方案" class="headerlink" title="安全模式(本次解決方案)"></a>安全模式(本次解決方案)</h2><p>win+R輸入<code>msconfig</code>，找到開機分頁，將安全開機選項打勾，並且重新開機<br><img src="https://hackmd.io/_uploads/rynUQueB3.png"></p>
+<p>如果發現螢幕是正常顏色，就代表是獨立顯卡的問題，這次的案例也是這樣，然後發現網路連不上就把安全模式取消，再重新開機一次，螢幕顏色就正常了!</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>參考資料中的討論串提到:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">記得前一段時間有看過 Lenovo </span><br><span class="line"></span><br><span class="line">調整Lenovo智慧型顯示開關，顯示色調變黃</span><br><span class="line"></span><br><span class="line">剪取工具剪下後，背景顏色變調</span><br><span class="line"></span><br><span class="line">是 Lenovo Vantage 這軟體在作怪將 我的護眼模式  &quot;關閉&quot; ! 色溫調到 6500K</span><br><span class="line"></span><br><span class="line">或 Lenovo Vantage系統更新BIOS 至 N24ET41W 1.16後, 問題已解決</span><br></pre></td></tr></table></figure>
+<p>表示有可能是其他軟體在作怪，雖然本次沒遇到這個情形，但還是可以記錄一下以防未來也遇到~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/windows/forum/all/win10%E8%9E%A2%E5%B9%95%E8%87%AA%E5%8B%95%E8%AE%8A/ad3a7c85-04ff-4ad0-a135-17d9e30fb61d">WIN10螢幕自動變黃，調整後仍自動跳回</a></p>
+<h5 id="圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh"><a href="#圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh" class="headerlink" title="圖片壞了可以來這裡： https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh"></a>圖片壞了可以來這裡： <a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh">https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh</a></h5>
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">設備</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230512 如何編輯Win10開始功能表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" target="_blank">如何編輯Win10開始功能表</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" class="archive-article-date">
+        <time datetime="2023-05-12T11:37:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-12</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近幫同仁裝了Microsoft的office 365，安裝完之後有人反應應用程式分散不好找(如圖)，<br><img src="https://hackmd.io/_uploads/H1MtIfiNn.png"><br>希望幫他放在同一個資料夾內比較方便使用，由於設定完太容易忘記，所以簡單紀錄一下怎麼編輯開始功能表。</p>
+<h2 id="編輯資料夾"><a href="#編輯資料夾" class="headerlink" title="編輯資料夾"></a>編輯資料夾</h2><h3 id="1-找到控制開始功能表的Start-Menu資料夾"><a href="#1-找到控制開始功能表的Start-Menu資料夾" class="headerlink" title="1. 找到控制開始功能表的Start Menu資料夾"></a>1. 找到控制開始功能表的Start Menu資料夾</h3><p>有四種方法可以找到Start Menu這個資料夾(不記得路徑可以應急)，挑一個自己方便的用就行了~</p>
+<p>補充:某些項目可能會在User的AppData裡，所以列a位置(Windows)和b位置(AppData)的方式，如果a沒有就去看b吧~</p>
+<h4 id="方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置"><a href="#方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置" class="headerlink" title="方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置"></a>方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置</h4><p>   <img src="https://hackmd.io/_uploads/B12CI7sE2.png"><br>    (這個方法a跟b都適用)</p>
+<h4 id="方法二、-善用開始功能表搜尋關鍵字start"><a href="#方法二、-善用開始功能表搜尋關鍵字start" class="headerlink" title="方法二、 善用開始功能表搜尋關鍵字start:"></a>方法二、 善用開始功能表搜尋關鍵字start:</h4><p>   a. <img src="https://hackmd.io/_uploads/Hy2OOGsE3.png"></p>
+<p>   b. 這個我的電腦搜不到，原因待查</p>
+<h4 id="方法三、-資料夾搜尋"><a href="#方法三、-資料夾搜尋" class="headerlink" title="方法三、 資料夾搜尋"></a>方法三、 資料夾搜尋</h4><p>   a.如果方法二找不到，可以在C槽找，先看上方工具列&#x2F;檢視&#x2F;隱藏的項目，就可以看見半透明的ProgramData資料夾，點兩下進入後可以在右上角搜尋框搜尋start(直接在C槽找會找很久，記得這個隱藏的資料夾，進去搜尋會比較快)</p>
+<p><img src="https://hackmd.io/_uploads/ryTkpzo4h.png"></p>
+<p>   b. <code>C:\使用者\(帳戶名稱)\AppData</code>進去之後一樣右上角搜尋Start Menu點Roaming裡的那個，步驟同a(不進AppData資料夾會找不到?_?)<br>   <img src="https://hackmd.io/_uploads/BJH-UVj43.png"></p>
+<h4 id="方法四、-直接找路徑"><a href="#方法四、-直接找路徑" class="headerlink" title="方法四、 直接找路徑"></a>方法四、 直接找路徑</h4><p>a. <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs</code><br>b. <code>C:\Users\(帳戶名稱)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs</code></p>
+<h3 id="2-建立資料夾"><a href="#2-建立資料夾" class="headerlink" title="2. 建立資料夾"></a>2. 建立資料夾</h3><p>對著空白處右鍵，新建一個資料夾，自己命名一個方便辨識的名稱(這次我叫它Microsoft 365)</p>
+<p>因為我想讓這台的所有User都可以套用這個設定，所以建立在Windows的這個Start Menu資料夾；如果是個別User的設定就可以放在AppData的Start Menu資料夾<br><img src="https://hackmd.io/_uploads/r17c0GiV3.png"></p>
+<h3 id="3-移動檔案"><a href="#3-移動檔案" class="headerlink" title="3. 移動檔案"></a>3. 移動檔案</h3><p>a. 選取我們想塞進資料夾的檔案(這邊我用日期排序比較好一次選取)，剪下<br><img src="https://hackmd.io/_uploads/Bk88yXsNn.png"><br>b. 再貼到剛才的資料夾裡(<code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft 365</code>)<br>c. 這時候打開開始功能表，就會看到資料夾裡面就是我們剛才搬過去的項目了<br><img src="https://hackmd.io/_uploads/SyNYXQjVh.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.xiaoyao.tw/2021/01/customize-win10-start-menu.html">Windows 10 開始功能表，如何刪除、新增和移動分類應用程式捷徑？</a><br>大部分是久遠的記憶+嘗試找別的路避免忘記…</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230510 如何提升edge啟動速度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" target="_blank">如何提升edge啟動速度</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" class="archive-article-date">
+        <time datetime="2023-05-10T13:14:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>公司電腦真的慢，自從不能用IE只能換edge之後問題也是一大堆，先來說說同仁開edge開到天荒地老的故事，會轉到睡著的那種…</p>
+<h2 id="開啟效能"><a href="#開啟效能" class="headerlink" title="開啟效能"></a>開啟效能</h2><ol>
+<li><p>找畫面右上角的三個點&#x2F;設定<br><img src="https://hackmd.io/_uploads/BJPaHKDNn.png"></p>
+</li>
+<li><p>左邊欄找到系統與效能(在網址列輸入<code>edge://settings/system</code> 也能進入同樣頁面)<br>這兩個選項可以測試一下開不開比較順，背景執行關掉是因為公司電腦記憶體CPU常常都在100%上下跑，少開一個避免當機比較好<br><img src="https://hackmd.io/_uploads/ryAxqOvE2.png"></p>
+</li>
+</ol>
+<h2 id="關閉GPU加速-這個特別特別重要"><a href="#關閉GPU加速-這個特別特別重要" class="headerlink" title="關閉GPU加速(這個特別特別重要!!)"></a>關閉GPU加速(這個特別特別重要!!)</h2><ol>
+<li>在網址列輸入<code>edge://flags/</code>，前往頁面</li>
+<li>搜尋列搜尋GPU，把<code>Accelerated 2D canvas</code>和<code>GPU rasterization</code>都停用<br><img src="https://i.imgur.com/leRnAGO.png"><br>原本Edge預設會開啟Accelerated 2D canvas，但性能不好的電腦使用GPU加速反而會更慢，所以我們把這個選項停用</li>
+</ol>
+<h2 id="清理瀏覽器的瀏覽紀錄"><a href="#清理瀏覽器的瀏覽紀錄" class="headerlink" title="清理瀏覽器的瀏覽紀錄"></a>清理瀏覽器的瀏覽紀錄</h2><p>因為同仁電腦可能用了十幾年(或以上)掛了非常多的瀏覽紀錄，刪掉能幫助瀏覽器開啟得快一點</p>
+<ol>
+<li><p>一樣在三個點的設定裡&#x2F;隱私權、搜尋與服務</p>
+</li>
+<li><p>右邊畫面找到清除瀏覽資料及除Internet Explorer，點選「要清除的項目」，前者為清除edge模式的瀏覽紀錄，後者顧名思義就是清除IE模式的紀錄(因為某些網站還沒升級，要用IE模式才能使用，未來應該不太會用到了…吧?)<br><img src="https://hackmd.io/_uploads/S1SEBYwEh.png"></p>
+</li>
+<li><p>可以設定關閉瀏覽器之後直接清除瀏覽歷程記錄</p>
+<p> a.Edge版:「選擇每次關閉瀏覽器時要清除的內容」，把想清除的項目開啟<br><img src="https://hackmd.io/_uploads/S1TluFDE3.png"></p>
+<p> b.IE版:如同字面描述，把清除按鈕下面的選項打開就行了</p>
+</li>
+</ol>
+<h2 id="關閉不用的程式、背景作業"><a href="#關閉不用的程式、背景作業" class="headerlink" title="關閉不用的程式、背景作業"></a>關閉不用的程式、背景作業</h2><p>這個應該不用多說了，開太多會電腦當機，不過常常看到有同仁會以為沒開起來就一直按，導致開了一堆開一半的edge(可能有10多個吧)，這時開工作管理員關掉不用的頁面和全部的edge，再重開edge就行囉~沒整台當掉的話。</p>
+<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><ol>
+<li>開啟瀏覽器連結公司ERP(首頁)從將近1分鐘變成30秒內。</li>
+<li>因為公司的瀏覽器希望停留在穩定版本，就不試更新edge的結果了；刪除不需要的元件這個步驟也跳過，平常只有上ERP的電腦也不會下載。</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://zeekmagazine.com/archives/156269">[教學] 解決Edge與Chrome瀏覽器卡頓拖慢問題</a><br><a target="_blank" rel="noopener" href="https://techwisegroup.com/blog/how-to-speed-up-microsoft-edge-on-windows-10/">How to Speed Up Microsoft Edge on Windows 10</a><br><a target="_blank" rel="noopener" href="https://www.thewindowsclub.com/how-to-speed-up-edge-and-make-it-load-faster">How to speed up Edge and make it load faster</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230502 如何跳過Microsoft Authenticator驗證程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/" target="_blank">如何跳過Microsoft Authenticator驗證程序</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
+        <time datetime="2023-05-02T12:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-02</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近公司在幫同仁電腦裝Microsoft 365，總有一個煩躁的步驟:<strong>Microsoft Authenticator驗證</strong>。原本想說全部跳過應該沒關係，後來發現規定14天內要驗證，否則無法使用，硬著頭皮拿著同事手機跟著步驟照做，下載app、掃QRcode……好幾台電腦會發瘋吧……<br>於是，我開始尋找如何跳過這個步驟的方法:</p>
+<h2 id="方法一-官方說法"><a href="#方法一-官方說法" class="headerlink" title="方法一: 官方說法"></a>方法一: 官方說法</h2><p>Microsoft Authenticator驗證是Microsoft的雙步驟驗證的一環，在不信任的裝置使用app，但是不想留下手機信箱之類個人資訊的狀況下，也能對帳號進行保護的一種機制，也可以選擇不要囉(公司的電腦應該不會怎樣吧…?)~<br>這個方法也是最多搜尋結果跳出來的解方，雖然無法解決我想直接跳過的問題(剛開始點進去的時候已經全部都停用了)，還是記錄一下以備不時之需:</p>
+<ol>
+<li><p>先找到admin center，也就是系統管理<br><img src="https://i.imgur.com/d5dz3LN.png"></p>
+</li>
+<li><p>左側功能欄&#x2F;使用者&#x2F;作用中使用者<br><img src="https://i.imgur.com/mXmy5Qi.png"></p>
+</li>
+<li><p>點選畫面中的多重要素驗證</p>
+</li>
+<li><p>勾選想要停用多重要素驗證的帳戶 &#x2F; 停用<br><img src="https://i.imgur.com/amw8DBF.png"></p>
+</li>
+</ol>
+<h2 id="方法二-解決問題"><a href="#方法二-解決問題" class="headerlink" title="方法二(解決問題):"></a>方法二(解決問題):</h2><p>翻了好一段時間，這個辦法才有效解決我想跳過驗證程序的問題(太好了QQ)</p>
+<ol>
+<li><p>一樣在左側功能欄 &#x2F; 找到 Azure Active Directory 點下去<br><img src="https://i.imgur.com/NXsc3ns.png"></p>
+</li>
+<li><p>概觀 &#x2F; 屬性(也可以在搜尋打關鍵字「屬性」，找到租用戶屬性，這樣也會有一樣的操作介面)<br><img src="https://i.imgur.com/kHcKcrH.png"></p>
+</li>
+<li><p>拉到最下面 &#x2F; 管理安全性預設值 &#x2F; 停用<br><img src="https://i.imgur.com/sZ3aRT0.png"></p>
+</li>
+</ol>
+<p>附上第一次不知道怎麼點出來、和參考文章介面一樣的這個面板(再操作一次的時候找不到…orz)<br><img src="https://i.imgur.com/wYKFWiE.png"></p>
+<p>4.完成以上步驟之後，打開Microsoft 365登入就不需要經過驗證囉~不過官方說明寫這樣比較容易被攻擊這個可能要多考慮一下。</p>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/account-billing/%E9%96%8B%E5%95%9F%E6%88%96%E9%97%9C%E9%96%89-microsoft-%E5%B8%B3%E6%88%B6%E7%9A%84%E9%9B%99%E6%AD%A5%E9%A9%9F%E9%A9%97%E8%AD%89-b1a56fc2-caf3-a5a1-f7e3-4309e99987ca">開啟或關閉 Microsoft 帳戶的雙步驟驗證</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/robinooo/article/details/125058722">Office365强制Microsoft Authenticator验证登录如何关闭</a></li>
+</ol>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230215 變數提升（Hoisting）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" target="_blank">變數提升（Hoisting）</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" class="archive-article-date">
+        <time datetime="2023-02-15T08:25:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-15</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。</p>
+<h2 id="創造期與執行期"><a href="#創造期與執行期" class="headerlink" title="創造期與執行期"></a>創造期與執行期</h2><p>瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期，像是以下這段程式碼：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var food = &quot;漢堡&quot;</span><br><span class="line">console.log(food)</span><br></pre></td></tr></table></figure>
+
+<p>第一階段創造期是去記憶體取得等下要執行程式碼的空間，這個階段如果要使用<code>console.log(food)</code>印出「food」僅能獲得<code>undefined</code>的結果，接下來進入第二階段創造期才會進行賦值，把「漢堡」賦予到「food」變數上，用<code>console.log(food)</code>印出來的結果就會變成漢堡。</p>
+<h2 id="var的提升"><a href="#var的提升" class="headerlink" title="var的提升"></a>var的提升</h2><p>先看看第一個問題，由於變數提升的特性，下面這段程式碼可以印出undefined：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food)</span><br><span class="line">var food = &quot;漢堡&quot;</span><br></pre></td></tr></table></figure>
+<p>創造期會先得到一個food變數，這和平常一樣，但第二階段由於JS執行順序為上到下，food在被賦值之前就被印出來了，但因為依舊有「登記」到food變數，所以印出undefined。</p>
+<p>ES6之後，出現了let、const這類更嚴謹的宣告，多了TDZ修正var的提升特性，不是說let跟const沒有提升，只是有不一樣的錯誤訊息讓開發者更好偵錯。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">const food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
+<p>或是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">let food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/X2f9Yei.png"><br>加入TDZ之後就能看到這個錯誤訊息，並不是undefined（畢竟可能是var food真的沒有賦值或是其他情況導致的，當然錯誤越明確越好～）。</p>
+<p>但有些瀏覽器版本不一樣跑出來的結果可能是<code>Uncaught ReferenceError: food is not defined</code>，和沒有宣告變數的錯誤訊息一樣，所以測試的時候可能要多開幾個瀏覽器看看是不是瀏覽器版本問題（上圖是開firefox的開發者工具，下圖則是chrome）。</p>
+<p><img src="https://i.imgur.com/AS1lNij.png"></p>
+<h2 id="函式陳述式與函式表達式的提升"><a href="#函式陳述式與函式表達式的提升" class="headerlink" title="函式陳述式與函式表達式的提升"></a>函式陳述式與函式表達式的提升</h2><p>再來就是為什麼function放在哪裡都可以被取用，其實寫法不同也會有不一樣的結果：</p>
+<h3 id="函式陳述式"><a href="#函式陳述式" class="headerlink" title="函式陳述式"></a>函式陳述式</h3><p>函式陳述式會提升到創造期就準備好了，執行期就可以直接呼叫函式：<br><img src="https://i.imgur.com/EAFSg4J.png"></p>
+<h3 id="函式表達式"><a href="#函式表達式" class="headerlink" title="函式表達式"></a>函式表達式</h3><p>函式表達式則是遵從前面提過的變數提升，因為function已經變成了變數所需要賦的值，使用var宣告的時候由於還沒有給run的值，變成了undefined，所以錯誤訊息給的是<code>run is not a function</code><br><img src="https://i.imgur.com/w2kd6p4.png"></p>
+<p>換成const或let的時候，一樣會有TDZ的狀態，錯誤訊息則會顯示<code>can&#39;t access lexical declaration &#39;run&#39; before initialization</code></p>
+<p><img src="https://i.imgur.com/4uxZEqj.png"></p>
+<h3 id="執行的優先權"><a href="#執行的優先權" class="headerlink" title="執行的優先權"></a>執行的優先權</h3><p>根據上面兩點可以發現函式陳述式的優先權是大於函式表達式的，因為陳述式會在創造期就準備好可以被呼叫，而函式表達式則多了一道關卡，function的本體在執行期才能被賦予到變數上，也就是說如果有兩個同名的function被呼叫的話最終的結果就是執行順序較後面的會覆蓋掉前面的，例如我故意把函式陳述式放在函式表達式後面，最後的結果還是函式表達式寫法的結果：</p>
+<p><img src="https://i.imgur.com/0Z2bsbi.png"></p>
+<p>可以看見，在第二階段執行由上到下呼叫的三個hello，第一次呼叫的是創造期就準備好的函式陳述式hello，而後來呼叫的hello都是函式表達式內容覆蓋之後的結果。</p>
+<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>變數提升好好運用可以更彈性的維護專案，善用const跟let有TDZ的特性可以少走一些除錯的冤枉路。</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230212 文法：陳述式與表達式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -747,441 +1280,9 @@
 
 
   
-    <article id="post-20221127 Stimulus" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/27/20221127%20Stimulus/" target="_blank">【Ruby on Rails】Stimulus是一個酷東西！</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/27/20221127%20Stimulus/" class="archive-article-date">
-        <time datetime="2022-11-27T12:25:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-27</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="什麼是Stimulus-它可以做什麼？"><a href="#什麼是Stimulus-它可以做什麼？" class="headerlink" title="什麼是Stimulus?它可以做什麼？"></a>什麼是Stimulus?它可以做什麼？</h2><ol>
-<li>提供rails一個可以寫JavaScript的空間。</li>
-<li>Stimulus是一種輕量JS框架，主要在HTML上操作，data就是他開始貼標籤的地方。</li>
-<li>它可以簡化JS抓DOM元素的繁雜過程。</li>
-<li>主要核心是Controllers、action、target，做成類似rails  路徑名稱那樣的標籤，包在div、button…任何的&lt;&gt;裡面。</li>
-</ol>
-<h2 id="前置作業：安裝stimulus套件"><a href="#前置作業：安裝stimulus套件" class="headerlink" title="前置作業：安裝stimulus套件"></a>前置作業：安裝stimulus套件</h2><p>在專案資料夾輸入<code>rails</code>查看可以裝什麼框架</p>
-<p><img src="https://i.imgur.com/7BkXfjT.png"></p>
-<p>找到想裝的框架再輸入（同樣適用於圖片上的其他框架）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails webpacker:install:stimulus</span><br></pre></td></tr></table></figure>
-<p>這樣webpacker就會在javascript的資料夾幫我們做好stimulus需要的資料夾<br><img src="https://i.imgur.com/nROj5gU.png"><br>app&#x2F;javascript&#x2F;controllers 這是JS版controller的家，裡面有一個index檔案是使套件可以正常使用的程式碼</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Application &#125; from &quot;stimulus&quot;</span><br><span class="line">import &#123; definitionsFromContext &#125; from &quot;stimulus/webpack-helpers&quot;</span><br><span class="line"></span><br><span class="line">const application = Application.start()</span><br><span class="line">const context = require.context(&quot;controllers&quot;, true, /_controller\.js$/)</span><br><span class="line">application.load(definitionsFromContext(context))</span><br></pre></td></tr></table></figure>
-<p>app&#x2F;javascript&#x2F;controllers&#x2F;hello_controller.js 是一個範例檔，主要用法就是用import接收erb檔設定的controller傳來的訊息，並用export回傳接下來要做的動作。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;controllers&#x27;</span><br><span class="line"></span><br><span class="line"> export default class extends Controller &#123;</span><br><span class="line">    static targets = [ &quot;icon&quot; ]</span><br><span class="line"> </span><br><span class="line">    connect() &#123;</span><br><span class="line">    console.log(&quot;hello&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>在export default class extends Controller{}裡可以放任何controller所需要用到的function</p>
-<p>常用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connect()：連接上時的觸發事件，可以用來測試是否連接</span><br><span class="line">initialize():可使用於設定初始狀態</span><br><span class="line">static targets =[]：抓設定data-xxx-target的關鍵字（使用陣列放多個target）</span><br></pre></td></tr></table></figure>
-<h2 id="stimulus運作"><a href="#stimulus運作" class="headerlink" title="stimulus運作"></a>stimulus運作</h2><p>stimulus核心三兄弟的運作，我自己理解到的運作模式大概是這樣：</p>
-<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-controller=&quot;favorite-btn&quot;</span><br></pre></td></tr></table></figure>
-<p>這塊地歸我管囉（插一個favorite-btn的旗子，建立favorite-btn_controller辦事處）</p>
-<p>用於設定我們要建立controller的控制範圍及名稱，範圍可大可小，小至一個按鈕，大可以到一整個html，但盡量讓控制範圍小一點比較方便維護。</p>
-<p>註：檔名為 XXX_controller.js  (這個XXX要跟後來設定的data-controller名稱一樣，不然會抓不到)</p>
-<h3 id="Action："><a href="#Action：" class="headerlink" title="Action："></a>Action：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-action=&quot;click-&gt;favorite-btn#toggle&quot;</span><br></pre></td></tr></table></figure>
-<p>我幫你看看favorite-btn有沒有發生什麼事件。<br>發生點擊事件(click)的時候我會叫你的toggle部門出來做事的！</p>
-<p>相當於JavaScript的addEventListener，但不限定只有click之類的預設事件，可以設定範圍，例如<code>update-quantity@document-&gt;order-amount#updateQuantity</code>就代表在document的範圍內監聽update-quantity事件出現，就到order-amount進行updateQuantity的動作。</p>
-<h3 id="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"><a href="#Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼" class="headerlink" title="Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼"></a>Target：欸那個新來的，現在開始你的名字叫做icon，我叫你做什麼就做什麼</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data-favorite-btn-target=&quot;icon&quot;</span><br></pre></td></tr></table></figure>
-
-<p>相當於JavaScript的document.querySelector(“”)、或是其他抓DOM元素系列的指令。搭配在export default class extends Controller裡的設定：<code>static targets = [ &quot;icon&quot; ]</code>就是抓到icon這個Target，並可以使用iconTarget進行操作（例如：<code>iconTarget.textContent=&quot;&quot;</code> 等）。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>最近的Ruby on rails課程提到該如何將JavaScript寫進Rails專案，提到了Stimulus，它不但可以用類似於rails裡面Controller的操作方式決定接下來要做什麼，還可以方便的取用DOM元素，使用AJAX概念紀錄當前操作結果節省網路傳輸，並且集中的controller資料夾能使檔案變得更好管理。</p>
-<p>參考連結：<a target="_blank" rel="noopener" href="https://stimulus.hotwired.dev/handbook/building-something-real">官方手冊</a>、<a target="_blank" rel="noopener" href="https://github.com/hotwired/stimulus-rails">Github</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/27/20221127%20Stimulus/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221123 find&amp;find_by" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/23/20221123%20find&find_by/" target="_blank">【Ruby on Rails】find 與 find_by 是差在哪裡啦！</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/23/20221123%20find&find_by/" class="archive-article-date">
-        <time datetime="2022-11-23T04:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-23</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在rails裡撈資料一下用find、一下用find_by，該用哪個才好呢？<br>先來比較一下它們兩個的不同吧！</p>
-<p>現在我們建立了一個WishList的Model，建立1個wishlist項目，在rails console裡是這樣的<br><img src="https://i.imgur.com/Y0Wiqqe.png"><br>現在看看全部的WishList，現在id編號只有排到7<br><img src="https://i.imgur.com/aLVDOHN.png"></p>
-<hr>
-<p>現在我們來尋找id編號為999的實體資料，</p>
-<h3 id="用find尋找實體"><a href="#用find尋找實體" class="headerlink" title="用find尋找實體"></a>用find尋找實體</h3><p>用find尋找<code>@wish_list=WishList.find(params[:id])</code>，會直接顯示<strong>ActiveRecord::RecordNotFound</strong><br><img src="https://i.imgur.com/LHgkuhg.png"><br>換成大家熟悉的畫面是這樣<br><img src="https://i.imgur.com/SO2gcdF.png"></p>
-<h3 id="用find-by尋找實體"><a href="#用find-by尋找實體" class="headerlink" title="用find_by尋找實體"></a>用find_by尋找實體</h3><p>如果是換成用find_by<code>@wish_list=WishList.find_by(id: params[:id])</code>，則會顯示這是<strong>nil</strong><br><img src="https://i.imgur.com/rE8lbc5.png"><br>換成網頁版<br><img src="https://i.imgur.com/2M9u4sS.png"></p>
-<p>其實find_by有一個兄弟，叫做<code>find_by!</code>它擁有find_by的外表以及find的功能，找不到這筆資料的時候會直接顯示<strong>ActiveRecord::RecordNotFound</strong><br><img src="https://i.imgur.com/rQW14pK.png"></p>
-<h3 id="該用find還是find-by"><a href="#該用find還是find-by" class="headerlink" title="該用find還是find_by?"></a>該用find還是find_by?</h3><p>總結上面提到內容，find跟find_by的不同就是<strong>嚴格程度的不同</strong>（沒有這個id就不給你過vs沒有這個id也是可以通過）。<br>如果我們不需要<strong>顯示畫面</strong>到那筆不存在的資料，那就使用find（例如：這個id所屬的這個頁面不存在，直接讓rails報錯再直接轉去404頁面顯示這個頁面不存在）；如果需要<strong>比對</strong>這筆資料存不存在，會需要利用這個空集合作計算或判斷的話，就使用find_by(例如：會員登入所輸入的帳號是否註冊過？如果他是一個nil就可以被塞到實體變數而不是報錯)</p>
-<p>結論就是：選擇find或find_by就是取決於自己要獲得的結果是錯誤訊息還是一個nil值。</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/23/20221123%20find&find_by/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221118 如何將rails頁面連結到404.html" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" target="_blank">【Ruby on Rails】如何將rails頁面連結到404.html</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/" class="archive-article-date">
-        <time datetime="2022-11-18T14:32:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-18</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>站內連結聯到找不到的頁面時，會連結到錯誤畫面（因為我用find方法，找不到會直接顯示錯誤訊息）<br><img src="https://i.imgur.com/Gu5YLZh.png"></p>
-<p>這時我們就可以用<code>rescue_from</code>捕捉意外，捕捉到什麼呢？<br>ActiveRecord::RecordNotFound 這個錯誤訊息，並且呼叫”record_not_found”（其實可以叫做not_found，只是為了避免以後又有其他not_found系列的方法要再修正比較麻煩，命名準確一點方便維護）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br></pre></td></tr></table></figure>
-<p>既然呼叫了，我們還是要再建立一個叫做record_not_found的方法：<br>這個方法要做什麼呢？就是要渲染我們想要的頁面（為什麼不是跳轉？第一個是我們沒有給404檔案裝路徑，第二是因為我們要留在原本找不到的那個網址）<br><img src="https://i.imgur.com/GkgoZEg.png"><br>渲染別的檔案我們使用<code>render file</code>，要找到不是在view資料夾裡面的404.html檔案的話可以用”#{Rails.root}”，意思是我要在這個Rails專案的目錄下尋找ＸＸＸ，後面接上路徑就是到某個資料夾尋找某個檔案</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;</span><br></pre></td></tr></table></figure>
-<p>渲染成功，打開網路狀態會看到這樣的結果<br><img src="https://i.imgur.com/BkwBPmW.png"></p>
-<p>網路狀態200（正常的找到你的”找不到”頁面），我們也希望網路的狀態被改成404，在render file後面設定一個status： 404 ，就會得到這樣的畫面<br><img src="https://i.imgur.com/vDAcx94.png"></p>
-<h3 id="獲得真正的404頁面！"><a href="#獲得真正的404頁面！" class="headerlink" title="獲得真正的404頁面！"></a>獲得真正的404頁面！</h3><p>完整程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ActionController::Base</span><br><span class="line">rescue_from ActiveRecord::RecordNotFound ,with: :record_not_found</span><br><span class="line"></span><br><span class="line">private</span><br><span class="line">def record_not_found</span><br><span class="line">  render file: &quot;#&#123;Rails.root&#125;/public/404.html&quot;,layout: false ,status: 400</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Ruby on Rails</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/18/20221118%20%E5%A6%82%E4%BD%95%E5%B0%87rails%E9%A0%81%E9%9D%A2%E9%80%A3%E7%B5%90%E5%88%B0404.html/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20221116 var&amp;let&amp;const" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/11/16/20221116%20var&let&const/" target="_blank">var、let、const的差別</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/11/16/20221116%20var&let&const/" class="archive-article-date">
-        <time datetime="2022-11-16T03:47:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-11-16</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="1-重複宣告"><a href="#1-重複宣告" class="headerlink" title="1.重複宣告"></a>1.重複宣告</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var a = 2</span><br><span class="line">console.log(a) // 印出2</span><br></pre></td></tr></table></figure>
-<p>var可以重複宣告，並且後來宣告的a會覆蓋前面的a。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1</span><br><span class="line">let a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>let不能重複宣告，這樣執行console.log(a)會跳出錯誤訊息：<br><strong>Identifier ‘a’ has already been declared</strong><br>告訴你a這個名字用過了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 1</span><br><span class="line">const a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>const和let一樣不能重複宣告，執行會跳出和let一樣的錯誤訊息 ：<strong>Identifier ‘a’ has already been declared</strong>。</p>
-<h2 id="2-重新賦值"><a href="#2-重新賦值" class="headerlink" title="2.重新賦值"></a>2.重新賦值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line">var a = 2</span><br><span class="line">a=3</span><br><span class="line">console.log(a) //印出 3</span><br></pre></td></tr></table></figure>
-<p>var除了可以重複宣告以外，也可以直接用全域變數直接重新賦值<br>這樣console.log(a)印出來的結果會是3。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 1</span><br><span class="line">a = 2</span><br><span class="line">console.log(a) //印出2</span><br></pre></td></tr></table></figure>
-<p>上面提到過let不能重複宣告，但它可以使用全域變數直接賦值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a = 1</span><br><span class="line">a = 2</span><br><span class="line">console.log(a) //錯誤</span><br></pre></td></tr></table></figure>
-<p>雖然const跟let一樣不能重複宣告，但const更加嚴格，全域變數也不能重值賦值，會跳出錯誤訊息<strong>Assignment to constant variable.</strong></p>
-<p>但是const也不是完全不能改變，假如const是一個陣列，我們可以藉由指定元素來變更內容 ：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a=[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]</span><br><span class="line">a[0]=&quot;X&quot;</span><br><span class="line">console.log(a) //印出[ &#x27;X&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27; ]</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-作用的scope"><a href="#3-作用的scope" class="headerlink" title="3.作用的scope"></a>3.作用的scope</h2><p>var的作用範圍是function scope，也就是作用在function區域裡面都可以取用的變數，出了function就拿不到了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function hi()&#123;</span><br><span class="line">  var a=1</span><br><span class="line">&#125;</span><br><span class="line">console.log(a) //印出  ReferenceError: a is not defined</span><br></pre></td></tr></table></figure>
-<p>如果不是放在function內的話還是可以在外部取用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    var a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a); //印出in block!</span><br></pre></td></tr></table></figure>
-
-<p>let的作用範圍都是block scope，在{}的範圍以外就無法取用了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    let a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);  //印出 a is not defined</span><br></pre></td></tr></table></figure>
-<p>補充：迴圈也是{}應用的一種（這裡的 a is not defined是指console.log(“out:”+a)的a），通常使用let。<br><br>為什麼不用const呢？因為a++等同於 a&#x3D;a+1，我們前面已經讓a是一個常數(const)了，不能明目張膽的改變它的內容，執行會顯示錯誤訊息<strong>Assignment to constant variable.</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(let a=0 ; a&lt;5 ; a++)&#123;</span><br><span class="line">    console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">console.log(&quot;out:&quot;+a) //印出 a is not defined</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>const也是block scope，a無法在外部被取用。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">age = 10</span><br><span class="line">if(age&gt;5)&#123;</span><br><span class="line">    const a = &quot;in block!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);  //印出 a is not defined</span><br></pre></td></tr></table></figure>
-
-<h2 id="4-TDZ-暫時性死區"><a href="#4-TDZ-暫時性死區" class="headerlink" title="4.TDZ 暫時性死區"></a>4.TDZ 暫時性死區</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(a) //印出 undefined</span><br><span class="line">var a = 1</span><br></pre></td></tr></table></figure>
-<p><strong>var有變數提昇</strong>的特性，如果就以執行順序來看的話，明明還沒宣告var a &#x3D; 1 怎麼console.log會說a是undefined呢？<br><br>JS執行順序為由上往下，步驟分成兩步，第一步先註冊名稱，第二步為賦值，變數提昇有點類似預告，在第一步的時候掃描到var a，告訴系統：「今天有一個a客人會來喔！」，進入第二步賦值由於還沒輪到把1賦予a就被印出來了，所以結果是undefined。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)</span><br><span class="line">let a = 1</span><br><span class="line"></span><br><span class="line">console.log(a)</span><br><span class="line">const a = 1</span><br><span class="line"></span><br><span class="line">以上console.log(a)都會印出 ReferenceError: Cannot access &#x27;a&#x27; before initialization</span><br></pre></td></tr></table></figure>
-<p>let、const則是有一個TDZ，類似一個防雷馬賽克，在第一步的時候TDZ就蓋在let（const）上面，系統就不知道有a客人，進行到第二步就會像a去客人去系統報到，系統卻說：「你沒有預約訂位喔」的樣子。</p>
-<p>這樣的設計可以使流程更加嚴謹，使程式邏輯更加通順、增加可讀性。<br>（就像是：我的點的菜還沒炒好卻可以包空氣帶走？這不太對吧？）</p>
-<h2 id="5-污染window"><a href="#5-污染window" class="headerlink" title="5.污染window"></a>5.污染window</h2><p>在瀏覽器的主控台上宣告 var a&#x3D;1 , let b &#x3D;2 , const c &#x3D;3<br>在window裡面只會有a會被建立出來，</p>
-<p><img src="https://i.imgur.com/rzkMLRO.png"></p>
-<p>【結論】<br><br>宣告的嚴謹程度 const &gt; let &gt; var<br><br>盡量使用const，可以視情況適當改用let，非到萬不得已再使用var。 </p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">學習筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/11/16/20221116%20var&let&const/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1381,6 +1482,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ｍircosoft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">郵件</a>
               </li>
             
             <div class="clearfix"></div>

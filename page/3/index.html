@@ -180,6 +180,606 @@
             
 
   
+    <article id="post-20230628 算是初次見面吧?XML" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7?XML/" target="_blank">算是初次見面吧?XML</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7?XML/" class="archive-article-date">
+        <time datetime="2023-06-28T10:23:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-28</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>XML這個檔案類型，對於它的印象，我只是隱約記得長得很像HTML，直到工作上用到JavaWeb專案裏頭有一個Servlet用的web.xml檔案，看了很多教學發現XML檔的規範都不太了解，決定先了解基礎再去實作~(不先打好地基，後續真的很麻煩呢)</p>
+<h2 id="甚麼是XML-它又能做什麼"><a href="#甚麼是XML-它又能做什麼" class="headerlink" title="甚麼是XML?它又能做什麼?"></a>甚麼是XML?它又能做什麼?</h2><ol>
+<li><p>XML是一種可擴張的標記性語言</p>
+</li>
+<li><p>可以用於保存數據，標籤名稱可以自訂，例如</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">student[id=3, name=&quot;小明&quot;]</span><br><span class="line">student[id=4, name=&quot;小華&quot;]</span><br><span class="line"></span><br><span class="line">存為xml檔則為</span><br><span class="line">&lt;students&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;3&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小明&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;4&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小華&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">&lt;/students&gt;</span><br></pre></td></tr></table></figure>
+<p> 可用students標籤表示很多學生，裡面又用student表示單個學生，學生又分別有id以及姓名name</p>
+</li>
+<li><p>可用於設定專案配置</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;web-app xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; </span><br><span class="line">xmlns=&quot;http://java.sun.com/xml/ns/javaee&quot; </span><br><span class="line">xsi:schemaLocation=&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot; </span><br><span class="line">id=&quot;WebApp_ID&quot; version=&quot;3.0&quot;&gt;</span><br><span class="line"> &lt;display-name&gt;HelloJSP&lt;/display-name&gt;</span><br><span class="line">  </span><br><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">&lt;welcome-file&gt;index.html&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;default.html&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;default.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file&gt;default.htm&lt;/welcome-file&gt;</span><br><span class="line">&lt;/welcome-file-list&gt;</span><br><span class="line">  </span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;description&gt;&lt;/description&gt;</span><br><span class="line">    &lt;display-name&gt;index&lt;/display-name&gt;</span><br><span class="line">    &lt;servlet-name&gt;index&lt;/servlet-name&gt;</span><br><span class="line">    &lt;jsp-file&gt;/index.jsp&lt;/jsp-file&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;hello&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可當網路資料的傳輸格式(但現在較多使用JSON檔)</p>
+</li>
+</ol>
+<h2 id="第一個XML檔"><a href="#第一個XML檔" class="headerlink" title="第一個XML檔"></a>第一個XML檔</h2><h3 id="1-xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式"><a href="#1-xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式" class="headerlink" title="1. xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式"></a>1. xml檔一定會有這個宣告，分別是version宣告版本以及encoding宣告編碼方式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-註解"><a href="#2-註解" class="headerlink" title="2. 註解"></a>2. 註解</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 這是XML的註解 --&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-標籤名稱規則"><a href="#3-標籤名稱規則" class="headerlink" title="3. 標籤名稱規則"></a>3. 標籤名稱規則</h3><ul>
+<li>可以包含字母、數字、其他字元(包含中文)，例如:<code>&lt;學生&gt;&lt;/學生&gt;</code>、<code>&lt;book1&gt;&lt;/book1&gt;</code></li>
+<li>不能以數字、標點開頭，像是<code>&lt;1book&gt;&lt;/1book&gt;</code></li>
+<li>不能用xml開頭(但其實可以)</li>
+<li>名稱不能包含空格</li>
+<li>可以是單標籤或雙標籤，例如<code>&lt;student id=&quot;15&quot; name=&quot;小明&quot;/&gt;</code>或是<code>&lt;student id=&quot;15&quot; name=&quot;小明&quot;&gt;&lt;/&lt;student&gt;</code></li>
+<li>標籤的屬性必須要用引號，例如<code>&lt;student id=15 /&gt;</code>會報錯</li>
+<li>使用雙標籤必須有頭有尾，否則會報錯，例如:<code>&lt;book&gt;</code>沒有<code>&lt;/book&gt;</code></li>
+<li>XML檔的大小寫是有區分的，若大小寫不同則會區別為不同標籤</li>
+<li>必須要有根元素，一大包的資料必須要有一層「外殼」，例如  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;students&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;3&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小明&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">    &lt;student&gt;</span><br><span class="line">        &lt;id&gt;4&lt;/id&gt;</span><br><span class="line">        &lt;name&gt;小華&lt;/name&gt;</span><br><span class="line">    &lt;/studnet&gt;</span><br><span class="line">&lt;/students&gt;</span><br></pre></td></tr></table></figure>
+  students則是根元素。</li>
+<li>如果資料內容有&lt;&gt;則要以&lt;、&gt;表示，否則會報錯，例如<code>&lt;name&gt;&amp;lt;小明&amp;gt;&lt;/name&gt;</code>，產出的結果會顯示為<code>&lt;name&gt;&lt;小明&gt;&lt;/name&gt;</code>，或是使用<code>&lt;![CDATA[輸入想打的字]]&gt;</code>使XML不轉譯文字，例如<code>&lt;![CDATA[&lt;&lt;&lt;&lt;&lt;這裡不會報錯]]&gt;</code></li>
+</ul>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">尚硅谷</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/28/20230628%20%E7%AE%97%E6%98%AF%E5%88%9D%E6%AC%A1%E8%A6%8B%E9%9D%A2%E5%90%A7?XML/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230611 JAVA 識別字規則" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/" target="_blank">JAVA 識別字規則</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/" class="archive-article-date">
+        <time datetime="2023-06-11T06:37:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-11</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>我的老師說過，如果要成為真正的工程師，每個語言都有命名慣例，依照這些慣例寫出來的Code可以讓自己看起來更專業，從頭學JAVA，也要遵守！</p>
+<h2 id="必須遵守！否則會造成編譯錯誤！"><a href="#必須遵守！否則會造成編譯錯誤！" class="headerlink" title="必須遵守！否則會造成編譯錯誤！"></a>必須遵守！否則會造成編譯錯誤！</h2><ol>
+<li>由英文+數字(可包含 _ 及 ＄)組合而成，但不可用數字當開頭（例：可以main_1，不能1_main或是main+）</li>
+<li>不可以包含保留字（例如：for，可參考<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Keyword</a>）</li>
+<li>長度沒有限制，大小寫有別</li>
+<li>不可以包含空格（例如：Hello World）</li>
+</ol>
+<h2 id="不會有錯，但寫好會更好看"><a href="#不會有錯，但寫好會更好看" class="headerlink" title="不會有錯，但寫好會更好看"></a>不會有錯，但寫好會更好看</h2><ol>
+<li>package名稱：全小寫（例：java.lang）</li>
+<li>Class名、接口名：大駝峰式命名（例：HelloWorld）</li>
+<li>變數名、方法名：小駝峰式命名（例: userName）</li>
+<li>常數名：全大寫，組合單字中間用 _ 串接（例：USER_IP）</li>
+<li>就算沒有字數限制，也不要取太長或是太類似的名稱（例:MyWebContentForTextChange、MyWebContentForImageChange）</li>
+</ol>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/11/20230611%20JAVA%20%E8%AD%98%E5%88%A5%E5%AD%97%E8%A6%8F%E5%89%87/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230612 Java 變數類型 - 基本類型篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/" target="_blank">Java 變數類型 - 基本類型篇</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/" class="archive-article-date">
+        <time datetime="2023-06-11T01:35:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-11</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因為JAVA是一種強類型的語言，所以任何變數在宣告的時候就會賦予它一個值的類型，有哪些類型呢？</p>
+<h2 id="如何宣告JAVA變數？"><a href="#如何宣告JAVA變數？" class="headerlink" title="如何宣告JAVA變數？"></a>如何宣告JAVA變數？</h2><p>在看類型之前先了解一下JAVA變數的結構，是由類型、變數名稱、＝、值組成的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int age = 20;</span><br></pre></td></tr></table></figure>
+<p>int是類型，代表這個變數是整數；age為變數名稱；20則是賦予給age的值（已經設定是int了，不能帶小數點，否則會顯示錯誤）。</p>
+<p>或是可以拆開分成兩個步驟：先宣告變量，再賦予值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int age;</span><br><span class="line">age = 18;</span><br></pre></td></tr></table></figure>
+
+<h2 id="數字"><a href="#數字" class="headerlink" title="數字"></a>數字</h2><p>宣告數值類型除了要符合整數、小術類型，也不能超出數據大小範圍，可以依照需求設定變數類型。</p>
+<h3 id="整數"><a href="#整數" class="headerlink" title="整數"></a>整數</h3><ol>
+<li><strong>byte</strong>	(1 byte)<br> 範圍-128～127，例如：<code>byte myNum = 100;</code></li>
+<li><strong>short</strong> (2 bytes)<br> 範圍-32,768～32,767，例如：<code>short myNum = 5000;</code></li>
+<li><strong>int(開發常用)</strong> (4 bytes)<br> 範圍-2,147,483,648～2,147,483,647，例如：<code>int myNum = 100000;</code></li>
+<li><strong>long</strong> (8 bytes)<ul>
+<li>範圍-9,223,372,036,854,775,808～9,223,372,036,854,775,807</li>
+<li>以”Ｌ”結尾，例如：<code>long myNum = 15000000000L;</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="小數"><a href="#小數" class="headerlink" title="小數"></a>小數</h3><ol>
+<li><p><strong>float</strong> (4 bytes)</p>
+<ul>
+<li>範圍3.4e−038～3.4e+038 (可到小數7位，範圍比double更大，因為精度相較不高)</li>
+<li>以”f”結尾，例如：<code>float myNum = 5.75f;</code></li>
+<li>如果超出小數7位，則只會取到小數第一位：   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> public static void main(String[] args)&#123;</span><br><span class="line">   float f1 = 5.000000003f;</span><br><span class="line">   System.out.println(f1);  //印出5.0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+   所以會造成另一個奇怪的現象，明明ff2是ff1+1的結果，但ff1和FF2卻是相等的：   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float f1 = 123123123;</span><br><span class="line">float f2 = f1+1;</span><br><span class="line">System.out.println(f1); //印出 1.2312312E8</span><br><span class="line">System.out.println(f2); //印出 1.2312312E8</span><br><span class="line">System.out.println(f1 == f2); //印出 true</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>double（開發常用）</strong> (8 bytes)</p>
+<ul>
+<li>1.7e-308～1.7e+308(可到小數15位)</li>
+<li>以”d”結尾，例如：<code>double myNum = 19.99d;</code></li>
+</ul>
+</li>
+<li><p><strong>BigDecimal</strong><br> 需要保持高精度的數字（例如財會系統），不適用以上兩種類型，<br> 除了像是上面提過的f1&#x3D;&#x3D;f2現象，還有經典題目：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(0.1+0.2);  //印出0.30000000000000004</span><br></pre></td></tr></table></figure>
+<p>從這些案例來看，專案開發中需要高精度的數據必須使用BigDecimal類型，</p>
+</li>
+</ol>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
+<li><p><strong>boolean</strong>	(內存 1 bit，區域變數 4 bytes)<br> true 或 false，系統默認true數值為1，false數值為0，常用於流程控制</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">boolean isJavaFun = true;</span><br><span class="line"></span><br><span class="line">if (isJavaFun)&#123;</span><br><span class="line">  System.out.println(&quot;Java真有趣！&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  System.out.println(&quot;Java不好玩ＱＱ&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//印出 JAVA真有趣！</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>char</strong> (2 bytes)<br> 單個字元&#x2F;字母或 ASCII 值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;B&#x27;;</span><br><span class="line">System.out.println(myGrade); //輸出B</span><br><span class="line"></span><br><span class="line">char myGrade = &#x27;2&#x27;;</span><br><span class="line">System.out.println(myGrade); //輸出2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>可使用Unicode<br> 在開頭加入\u，後面加上Unicode編碼就能使用Unicode調用字元</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c8 = &#x27;\u0025&#x27;;</span><br><span class="line">System.out.println(c8);  // 印出 %</span><br></pre></td></tr></table></figure></li>
+<li><p>可使用正規表示法</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c9 = &#x27;\n&#x27;;</span><br><span class="line">System.out.println(&quot;中間有一個&quot; + c9 + &quot;c9喔&quot;);</span><br></pre></td></tr></table></figure>
+<p>  終端機運行結果，發現應該在同一行的文字變成兩行：        <img src="https://hackmd.io/_uploads/BkN8bXQDn.png"></p>
+</li>
+<li><p>轉成ASCII值應用<br> 不管變數名稱是什麼，只要給的值是數字，便會去尋找那個ASCII值所對應的字元:</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char a = 65, hi = 66, c = 68;</span><br><span class="line">System.out.println(a); //輸出A</span><br><span class="line">System.out.println(hi); //輸出B</span><br><span class="line">System.out.println(c); //輸出D</span><br></pre></td></tr></table></figure>
+<p> <em><strong>錯誤示範</strong></em><br> 輸入超過一個字、空白、雙引號字串就會無法編譯，顯示錯誤</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;HI&#x27;; </span><br><span class="line">// error: incompatible types: String cannot be converted to char</span><br><span class="line"></span><br><span class="line">char myName = &quot;C&quot;;  </span><br><span class="line">//同上</span><br><span class="line"></span><br><span class="line">char myAdge= &#x27;&#x27; ;  </span><br><span class="line">//error: empty character literal</span><br></pre></td></tr></table></figure>
+<p> 有些電腦輸入中文也會轉成亂碼無法編譯(可以檢查看看編輯器的編碼，中文是Big5，VScode預設是UTF-8，像我一開始不知道要改的時候，還以為不能打中文，附上<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10190243">如何更改VS Code的文字編碼</a>的方法)</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;安&#x27;;  //印出 安</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<h2 id="String不是基礎數據類型！"><a href="#String不是基礎數據類型！" class="headerlink" title="String不是基礎數據類型！"></a>String不是基礎數據類型！</h2><p>隨然常常都會這樣宣告字串，但String不是基礎數據類型，至於為什麼？這個以後查清楚再來寫一篇～</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String greeting = &quot;Hello World&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>一個變數的作用域為同一個class的大括號</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    System.out.println(age);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void main2(String[] args)&#123;</span><br><span class="line">      System.out.println(age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果只有main class被編譯，並且被執行的話是沒有問題的，可以正常印出18，但如果連同main2一起編譯則會顯示錯誤訊息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ch2/VariableTest.java:10: error: cannot find symbol</span><br><span class="line">      System.out.println(age);</span><br><span class="line">                         ^</span><br><span class="line">  symbol:   variable age</span><br><span class="line">  location: class VariableTest</span><br><span class="line">1 error</span><br></pre></td></tr></table></figure>
+<p>從錯誤訊息看得出來第8行，也就是main2的age變數是找不到的。</p>
+<h2 id="可以重複宣告變數嗎？"><a href="#可以重複宣告變數嗎？" class="headerlink" title="可以重複宣告變數嗎？"></a>可以重複宣告變數嗎？</h2><ol>
+<li><p><strong>不能重複宣告</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    int age =20;</span><br><span class="line">    System.out.println(age);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 錯誤訊息，表示adge這個變數已經在main宣告過了：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ch2/VariableTest.java:6: error: variable age is already defined in method main(String[])</span><br><span class="line">  int age =20;</span><br><span class="line">      ^</span><br><span class="line">1 error</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可以重複賦值</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    age =20;</span><br><span class="line">    System.out.println(age); //印出20</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 順帶一提，如果沒宣告過的變數不能直接賦值</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">  name =20;</span><br><span class="line">  System.out.println(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  錯誤訊息，第一則表示找不到name這個變數，第二則也表示找不到這個變數，所以不能像JavaScript一樣，把賦值這個動作直接生出變數使用，宣告是有一定格式的：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> ch2/VariableTest.java:6: error: cannot find symbol</span><br><span class="line">   name =20;</span><br><span class="line">   ^</span><br><span class="line">  symbol:   variable name</span><br><span class="line">  location: class VariableTest</span><br><span class="line">ch2/VariableTest.java:7: error: cannot find symbol</span><br><span class="line">    System.out.println(name);</span><br><span class="line">                       ^</span><br><span class="line">  symbol:   variable name</span><br><span class="line">  location: class VariableTest</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">尚硅谷</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230609  the import javax.servlet cannot be resolved" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/" target="_blank">錯誤訊息 - the import javax.servlet cannot be resolved</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/" class="archive-article-date">
+        <time datetime="2023-06-09T11:25:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-09</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因為換了一台新電腦，搬運檔案之後Tomcat的套件遺失，導致servlet沒地方放，就會跳出這個錯誤訊息<br><img src="https://hackmd.io/_uploads/H1tRqlgD3.png"></p>
+<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><ol>
+<li><p>對著左側專案名稱點右鍵，找到Properties(內容)點下去</p>
+</li>
+<li><p>點Java Build Path(JAVA建置路徑)，右側視窗找到Libraries(函式庫)摺頁，點選類別路徑&#x2F;add Libraries&#x2F;伺服器runtime&#x2F;下一步<br><img src="https://hackmd.io/_uploads/Sy53GbgDh.png"></p>
+</li>
+<li><p>選擇要用的server套件(例如Apache Tomcat 8.5)&#x2F;完成</p>
+</li>
+<li><p>apply and close，就會看到的錯誤訊息消失，而剛才找不到的import套件出現在Libraries資料匣。</p>
+</li>
+</ol>
+<p><img src="https://hackmd.io/_uploads/rJ8mN-eP3.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32483145/article/details/80114728">【解决】The import javax.servlet cannot be resolved</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230608 回退Microsoft Edge版本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/" target="_blank">回退Microsoft Edge版本</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/" class="archive-article-date">
+        <time datetime="2023-06-08T12:02:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-08</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>為了設定IE相容性，解決公司系統網站無法正常使用問題，發現IE開啟之後會自動變成Edge開啟(系統來還沒升級RRR)，找了很多文章都說要把<code>Microsoft Edge中以Internet Explorer開啟網站面板</code>改永不，但問題來了，我的Edge版本113.0.1774.57這個面板似乎不見了，前輩的110.0.1587.46版本是有的，我想說把版本降到一致再來設定，雖然說真正解決這個問題的辦法不是降版本，但是摸了好幾天不記錄太對不起自己了~</p>
+<h2 id="下載-amp-安裝"><a href="#下載-amp-安裝" class="headerlink" title="下載&amp;安裝"></a>下載&amp;安裝</h2><h3 id="最新版本的範本檔"><a href="#最新版本的範本檔" class="headerlink" title="最新版本的範本檔"></a>最新版本的範本檔</h3><p>到<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-tw/edge/business/download?form=MA13FJ">Microsoft官網</a>下載範本檔，安裝方式之前我有<a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SyuZyGXrh">文章</a>寫過，不過這次要把<code>msedgeupdate.admx</code>和<code>msedgeupdate.adml</code>都複製過去，不然會少一個Edge更新的資料夾選項，這是我卡了好幾天的原因QQ</p>
+<h2 id="方法1-使用-MSI-手動啟用復原"><a href="#方法1-使用-MSI-手動啟用復原" class="headerlink" title="方法1: 使用 MSI 手動啟用復原"></a>方法1: 使用 MSI 手動啟用復原</h2><p>這個方法可以直接停用更新，手動變更版本到下載的版本，也不用怕自動更新把把它升級回去。</p>
+<ol>
+<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:</p>
+<ul>
+<li>[更新原則覆寫] 點兩下，改成<code>已啟用</code>，左下方輸入欄改成<code>停用更新</code>，描述:「指定 Microsoft Edge Update 如何從 Microsoft Edge 處理可用更新」</li>
+</ul>
+</li>
+<li><p>安裝指定版本的edge<br> a. 上面提到的官網連結，可以下載指定版本的edge，會獲得一個<code>MicrosoftEdgeEnterpriseX64.msi</code>檔案，別急著按，雖然按了也沒事，只會跳出一個訊息框告訴你:你的電腦已經有安裝更新的版本。</p>
+<p> b. 把這個檔案放到桌面或是其他找的到的地方，然後在開始工具列搜尋<code>cmd</code>，<em><strong>用系統管理員身分執行</strong></em>，這很重要，如果沒用系統管理員，後面的步驟可能會無法執行(對…我又被這個卡了好久)<br> <img src="https://hackmd.io/_uploads/ByGfF9ar3.png"></p>
+<p> c. 打開cmd之後先找到剛才放msi檔的地方，像我是放在桌面一個臨時的資料夾，先把現在位置切換到存放安裝檔的資料夾，例如:<code>cd C:\Users\Administrator\Desktop\123\edge</code>。<br> 如果不知道路徑的話，打開剛才存放msi的資料夾，複製資料夾上方的網址，在cmd輸入<code>cd (你剛才複製的網址)</code>是一樣的效果。<br> <img src="https://hackmd.io/_uploads/ByCnqqTSn.png"></p>
+<p> d. 在cmd輸入<code>msiexec /I MicrosoftEdgeEnterpriseX64.msi /qn ALLOWDOWNGRADE=1</code>按下enter，看起來沒反應，打開工作管理員會看到edgeUpdate就代表有在降版本了(如果沒看到相關程序可能就是沒開系統管理員)，這時候我直接關掉edge等更新。</p>
+<ul>
+<li>如果發現怎麼搞都沒反應，可以試試看系統管理員打開Windows PowerShell輸入cmd，再重複d步驟</li>
+<li>如果之前有關掉Edge Update要記得打開，不然會卡在Edge正在更新，請等幾分鐘。</li>
+</ul>
+<p> e. EdgeUpdate跑完之後重開Edge就會發現版本被降回去了(如果發現Edge Update消失，馬上重開也有可能是降版本前的版本，可以過幾分鐘再開開看)</p>
+</li>
+</ol>
+<h2 id="方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原"><a href="#方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原" class="headerlink" title="方法2: 使用 Microsoft Edge Update 和管理範本啟用復原"></a>方法2: 使用 Microsoft Edge Update 和管理範本啟用復原</h2><p>這個方法是利用自動更新設定指定版本，再怎麼樣更新，也還是同一個版本。</p>
+<ol>
+<li><p>按下<code>Win+R</code>輸入<code>gpedit.msc</code>叫出管理範本設定。</p>
+</li>
+<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:<br>  a. <strong>[目標版本複寫]</strong> 點兩下，改成<code>已啟用</code>左下方輸入欄輸入想要的指定版本(例如:110.0.1587.46)，簡單來說就是指定版本用的選項。</p>
+<p>  b. <strong>[復原至目標版本]</strong> 點兩下，改成<code>已啟用</code><br>  這個選項就可以讓update降回當前版本，但前提是「除非設定 ‘目標版本覆寫’ <strong>且</strong>將 ‘更新原則覆寫’ 設定為開啟狀態 (永遠允許更新、僅限無訊息自動更新、僅限手動更新)，否則此原則不會生效。」，和方法1的步驟衝突，要用的時候要留意~</p>
+</li>
+</ol>
+<h2 id="我自己的設定"><a href="#我自己的設定" class="headerlink" title="我自己的設定"></a>我自己的設定</h2><p>我採用方法1降版本，但是多設定方法2的目標版本複寫打開，預防哪天更新不小心被打開版本被升上去，而關閉更新跟公司的管理習慣比較一致，方法2比較傾向拿來恢復成最新版本。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=60030&snA=621392">【心得】分享Edge降版的方法</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-learnmore-rollback">如何將 Microsoft Edge 復原到舊版-Mircrosoft Learn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41963310/article/details/113827270">Microsoft Edge版本回退方法</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Edge</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230602 Windows難字造字" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -683,542 +1283,9 @@
 
 
   
-    <article id="post-20230516 螢幕色彩變黃，但螢幕沒壞?" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" target="_blank">螢幕色彩變黃，但螢幕沒壞?</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/" class="archive-article-date">
-        <time datetime="2023-05-16T12:58:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-16</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>同事說螢幕顏色不對，我看不出來，按下螢幕的自動調整鍵，發現會短暫變成比較白的色調，然後又變回泛黃的顏色。我更換螢幕之後又再次發生相同問題，前輩說是顯卡的問題(雖然這次好像不是)，紀錄一下解決方法~</p>
-<h2 id="夜間模式"><a href="#夜間模式" class="headerlink" title="夜間模式"></a>夜間模式</h2><p>先檢查夜間模式有沒有開啟，夜間模式開啟的狀態下，螢幕會偏黃光(說明是降低藍光比較好睡~)</p>
-<h3 id="1-找到設定"><a href="#1-找到設定" class="headerlink" title="1. 找到設定"></a>1. 找到設定</h3><p><img src="https://hackmd.io/_uploads/rkl3Muer2.png"></p>
-<h3 id="2-系統-x2F-顯示器"><a href="#2-系統-x2F-顯示器" class="headerlink" title="2. 系統&#x2F;顯示器"></a>2. 系統&#x2F;顯示器</h3><p><img src="https://hackmd.io/_uploads/SkkTr_xr2.png"></p>
-<h2 id="安全模式-本次解決方案"><a href="#安全模式-本次解決方案" class="headerlink" title="安全模式(本次解決方案)"></a>安全模式(本次解決方案)</h2><p>win+R輸入<code>msconfig</code>，找到開機分頁，將安全開機選項打勾，並且重新開機<br><img src="https://hackmd.io/_uploads/rynUQueB3.png"></p>
-<p>如果發現螢幕是正常顏色，就代表是獨立顯卡的問題，這次的案例也是這樣，然後發現網路連不上就把安全模式取消，再重新開機一次，螢幕顏色就正常了!</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>參考資料中的討論串提到:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">記得前一段時間有看過 Lenovo </span><br><span class="line"></span><br><span class="line">調整Lenovo智慧型顯示開關，顯示色調變黃</span><br><span class="line"></span><br><span class="line">剪取工具剪下後，背景顏色變調</span><br><span class="line"></span><br><span class="line">是 Lenovo Vantage 這軟體在作怪將 我的護眼模式  &quot;關閉&quot; ! 色溫調到 6500K</span><br><span class="line"></span><br><span class="line">或 Lenovo Vantage系統更新BIOS 至 N24ET41W 1.16後, 問題已解決</span><br></pre></td></tr></table></figure>
-<p>表示有可能是其他軟體在作怪，雖然本次沒遇到這個情形，但還是可以記錄一下以防未來也遇到~</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/windows/forum/all/win10%E8%9E%A2%E5%B9%95%E8%87%AA%E5%8B%95%E8%AE%8A/ad3a7c85-04ff-4ad0-a135-17d9e30fb61d">WIN10螢幕自動變黃，調整後仍自動跳回</a></p>
-<h5 id="圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh"><a href="#圖片壞了可以來這裡：-https-hackmd-io-diXi7OUmRKqIgmAxMuHz9A-SkuUh8gSh" class="headerlink" title="圖片壞了可以來這裡： https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh"></a>圖片壞了可以來這裡： <a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh">https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SkuUh8gSh</a></h5>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">設備</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/16/20230516%20%E8%9E%A2%E5%B9%95%E8%89%B2%E5%BD%A9%E8%AE%8A%E9%BB%83%EF%BC%8C%E4%BD%86%E8%9E%A2%E5%B9%95%E6%B2%92%E5%A3%9E?/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230512 如何編輯Win10開始功能表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" target="_blank">如何編輯Win10開始功能表</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/" class="archive-article-date">
-        <time datetime="2023-05-12T11:37:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-12</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近幫同仁裝了Microsoft的office 365，安裝完之後有人反應應用程式分散不好找(如圖)，<br><img src="https://hackmd.io/_uploads/H1MtIfiNn.png"><br>希望幫他放在同一個資料夾內比較方便使用，由於設定完太容易忘記，所以簡單紀錄一下怎麼編輯開始功能表。</p>
-<h2 id="編輯資料夾"><a href="#編輯資料夾" class="headerlink" title="編輯資料夾"></a>編輯資料夾</h2><h3 id="1-找到控制開始功能表的Start-Menu資料夾"><a href="#1-找到控制開始功能表的Start-Menu資料夾" class="headerlink" title="1. 找到控制開始功能表的Start Menu資料夾"></a>1. 找到控制開始功能表的Start Menu資料夾</h3><p>有四種方法可以找到Start Menu這個資料夾(不記得路徑可以應急)，挑一個自己方便的用就行了~</p>
-<p>補充:某些項目可能會在User的AppData裡，所以列a位置(Windows)和b位置(AppData)的方式，如果a沒有就去看b吧~</p>
-<h4 id="方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置"><a href="#方法一、開始功能表隨便挑一個應用點右鍵-x2F-更多-x2F-開啟檔案位置" class="headerlink" title="方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置"></a>方法一、開始功能表隨便挑一個應用點右鍵&#x2F;更多&#x2F;開啟檔案位置</h4><p>   <img src="https://hackmd.io/_uploads/B12CI7sE2.png"><br>    (這個方法a跟b都適用)</p>
-<h4 id="方法二、-善用開始功能表搜尋關鍵字start"><a href="#方法二、-善用開始功能表搜尋關鍵字start" class="headerlink" title="方法二、 善用開始功能表搜尋關鍵字start:"></a>方法二、 善用開始功能表搜尋關鍵字start:</h4><p>   a. <img src="https://hackmd.io/_uploads/Hy2OOGsE3.png"></p>
-<p>   b. 這個我的電腦搜不到，原因待查</p>
-<h4 id="方法三、-資料夾搜尋"><a href="#方法三、-資料夾搜尋" class="headerlink" title="方法三、 資料夾搜尋"></a>方法三、 資料夾搜尋</h4><p>   a.如果方法二找不到，可以在C槽找，先看上方工具列&#x2F;檢視&#x2F;隱藏的項目，就可以看見半透明的ProgramData資料夾，點兩下進入後可以在右上角搜尋框搜尋start(直接在C槽找會找很久，記得這個隱藏的資料夾，進去搜尋會比較快)</p>
-<p><img src="https://hackmd.io/_uploads/ryTkpzo4h.png"></p>
-<p>   b. <code>C:\使用者\(帳戶名稱)\AppData</code>進去之後一樣右上角搜尋Start Menu點Roaming裡的那個，步驟同a(不進AppData資料夾會找不到?_?)<br>   <img src="https://hackmd.io/_uploads/BJH-UVj43.png"></p>
-<h4 id="方法四、-直接找路徑"><a href="#方法四、-直接找路徑" class="headerlink" title="方法四、 直接找路徑"></a>方法四、 直接找路徑</h4><p>a. <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs</code><br>b. <code>C:\Users\(帳戶名稱)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs</code></p>
-<h3 id="2-建立資料夾"><a href="#2-建立資料夾" class="headerlink" title="2. 建立資料夾"></a>2. 建立資料夾</h3><p>對著空白處右鍵，新建一個資料夾，自己命名一個方便辨識的名稱(這次我叫它Microsoft 365)</p>
-<p>因為我想讓這台的所有User都可以套用這個設定，所以建立在Windows的這個Start Menu資料夾；如果是個別User的設定就可以放在AppData的Start Menu資料夾<br><img src="https://hackmd.io/_uploads/r17c0GiV3.png"></p>
-<h3 id="3-移動檔案"><a href="#3-移動檔案" class="headerlink" title="3. 移動檔案"></a>3. 移動檔案</h3><p>a. 選取我們想塞進資料夾的檔案(這邊我用日期排序比較好一次選取)，剪下<br><img src="https://hackmd.io/_uploads/Bk88yXsNn.png"><br>b. 再貼到剛才的資料夾裡(<code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft 365</code>)<br>c. 這時候打開開始功能表，就會看到資料夾裡面就是我們剛才搬過去的項目了<br><img src="https://hackmd.io/_uploads/SyNYXQjVh.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.xiaoyao.tw/2021/01/customize-win10-start-menu.html">Windows 10 開始功能表，如何刪除、新增和移動分類應用程式捷徑？</a><br>大部分是久遠的記憶+嘗試找別的路避免忘記…</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/12/20230512%20%E5%A6%82%E4%BD%95%E7%B7%A8%E8%BC%AFWin10%E9%96%8B%E5%A7%8B%E5%8A%9F%E8%83%BD%E8%A1%A8/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230510 如何提升edge啟動速度" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" target="_blank">如何提升edge啟動速度</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/" class="archive-article-date">
-        <time datetime="2023-05-10T13:14:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-10</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>公司電腦真的慢，自從不能用IE只能換edge之後問題也是一大堆，先來說說同仁開edge開到天荒地老的故事，會轉到睡著的那種…</p>
-<h2 id="開啟效能"><a href="#開啟效能" class="headerlink" title="開啟效能"></a>開啟效能</h2><ol>
-<li><p>找畫面右上角的三個點&#x2F;設定<br><img src="https://hackmd.io/_uploads/BJPaHKDNn.png"></p>
-</li>
-<li><p>左邊欄找到系統與效能(在網址列輸入<code>edge://settings/system</code> 也能進入同樣頁面)<br>這兩個選項可以測試一下開不開比較順，背景執行關掉是因為公司電腦記憶體CPU常常都在100%上下跑，少開一個避免當機比較好<br><img src="https://hackmd.io/_uploads/ryAxqOvE2.png"></p>
-</li>
-</ol>
-<h2 id="關閉GPU加速-這個特別特別重要"><a href="#關閉GPU加速-這個特別特別重要" class="headerlink" title="關閉GPU加速(這個特別特別重要!!)"></a>關閉GPU加速(這個特別特別重要!!)</h2><ol>
-<li>在網址列輸入<code>edge://flags/</code>，前往頁面</li>
-<li>搜尋列搜尋GPU，把<code>Accelerated 2D canvas</code>和<code>GPU rasterization</code>都停用<br><img src="https://i.imgur.com/leRnAGO.png"><br>原本Edge預設會開啟Accelerated 2D canvas，但性能不好的電腦使用GPU加速反而會更慢，所以我們把這個選項停用</li>
-</ol>
-<h2 id="清理瀏覽器的瀏覽紀錄"><a href="#清理瀏覽器的瀏覽紀錄" class="headerlink" title="清理瀏覽器的瀏覽紀錄"></a>清理瀏覽器的瀏覽紀錄</h2><p>因為同仁電腦可能用了十幾年(或以上)掛了非常多的瀏覽紀錄，刪掉能幫助瀏覽器開啟得快一點</p>
-<ol>
-<li><p>一樣在三個點的設定裡&#x2F;隱私權、搜尋與服務</p>
-</li>
-<li><p>右邊畫面找到清除瀏覽資料及除Internet Explorer，點選「要清除的項目」，前者為清除edge模式的瀏覽紀錄，後者顧名思義就是清除IE模式的紀錄(因為某些網站還沒升級，要用IE模式才能使用，未來應該不太會用到了…吧?)<br><img src="https://hackmd.io/_uploads/S1SEBYwEh.png"></p>
-</li>
-<li><p>可以設定關閉瀏覽器之後直接清除瀏覽歷程記錄</p>
-<p> a.Edge版:「選擇每次關閉瀏覽器時要清除的內容」，把想清除的項目開啟<br><img src="https://hackmd.io/_uploads/S1TluFDE3.png"></p>
-<p> b.IE版:如同字面描述，把清除按鈕下面的選項打開就行了</p>
-</li>
-</ol>
-<h2 id="關閉不用的程式、背景作業"><a href="#關閉不用的程式、背景作業" class="headerlink" title="關閉不用的程式、背景作業"></a>關閉不用的程式、背景作業</h2><p>這個應該不用多說了，開太多會電腦當機，不過常常看到有同仁會以為沒開起來就一直按，導致開了一堆開一半的edge(可能有10多個吧)，這時開工作管理員關掉不用的頁面和全部的edge，再重開edge就行囉~沒整台當掉的話。</p>
-<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><ol>
-<li>開啟瀏覽器連結公司ERP(首頁)從將近1分鐘變成30秒內。</li>
-<li>因為公司的瀏覽器希望停留在穩定版本，就不試更新edge的結果了；刪除不需要的元件這個步驟也跳過，平常只有上ERP的電腦也不會下載。</li>
-</ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://zeekmagazine.com/archives/156269">[教學] 解決Edge與Chrome瀏覽器卡頓拖慢問題</a><br><a target="_blank" rel="noopener" href="https://techwisegroup.com/blog/how-to-speed-up-microsoft-edge-on-windows-10/">How to Speed Up Microsoft Edge on Windows 10</a><br><a target="_blank" rel="noopener" href="https://www.thewindowsclub.com/how-to-speed-up-edge-and-make-it-load-faster">How to speed up Edge and make it load faster</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/10/20230510%20%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87edge%E5%95%9F%E5%8B%95%E9%80%9F%E5%BA%A6/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230502 如何跳過Microsoft Authenticator驗證程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/" target="_blank">如何跳過Microsoft Authenticator驗證程序</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/" class="archive-article-date">
-        <time datetime="2023-05-02T12:16:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-05-02</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近公司在幫同仁電腦裝Microsoft 365，總有一個煩躁的步驟:<strong>Microsoft Authenticator驗證</strong>。原本想說全部跳過應該沒關係，後來發現規定14天內要驗證，否則無法使用，硬著頭皮拿著同事手機跟著步驟照做，下載app、掃QRcode……好幾台電腦會發瘋吧……<br>於是，我開始尋找如何跳過這個步驟的方法:</p>
-<h2 id="方法一-官方說法"><a href="#方法一-官方說法" class="headerlink" title="方法一: 官方說法"></a>方法一: 官方說法</h2><p>Microsoft Authenticator驗證是Microsoft的雙步驟驗證的一環，在不信任的裝置使用app，但是不想留下手機信箱之類個人資訊的狀況下，也能對帳號進行保護的一種機制，也可以選擇不要囉(公司的電腦應該不會怎樣吧…?)~<br>這個方法也是最多搜尋結果跳出來的解方，雖然無法解決我想直接跳過的問題(剛開始點進去的時候已經全部都停用了)，還是記錄一下以備不時之需:</p>
-<ol>
-<li><p>先找到admin center，也就是系統管理<br><img src="https://i.imgur.com/d5dz3LN.png"></p>
-</li>
-<li><p>左側功能欄&#x2F;使用者&#x2F;作用中使用者<br><img src="https://i.imgur.com/mXmy5Qi.png"></p>
-</li>
-<li><p>點選畫面中的多重要素驗證</p>
-</li>
-<li><p>勾選想要停用多重要素驗證的帳戶 &#x2F; 停用<br><img src="https://i.imgur.com/amw8DBF.png"></p>
-</li>
-</ol>
-<h2 id="方法二-解決問題"><a href="#方法二-解決問題" class="headerlink" title="方法二(解決問題):"></a>方法二(解決問題):</h2><p>翻了好一段時間，這個辦法才有效解決我想跳過驗證程序的問題(太好了QQ)</p>
-<ol>
-<li><p>一樣在左側功能欄 &#x2F; 找到 Azure Active Directory 點下去<br><img src="https://i.imgur.com/NXsc3ns.png"></p>
-</li>
-<li><p>概觀 &#x2F; 屬性(也可以在搜尋打關鍵字「屬性」，找到租用戶屬性，這樣也會有一樣的操作介面)<br><img src="https://i.imgur.com/kHcKcrH.png"></p>
-</li>
-<li><p>拉到最下面 &#x2F; 管理安全性預設值 &#x2F; 停用<br><img src="https://i.imgur.com/sZ3aRT0.png"></p>
-</li>
-</ol>
-<p>附上第一次不知道怎麼點出來、和參考文章介面一樣的這個面板(再操作一次的時候找不到…orz)<br><img src="https://i.imgur.com/wYKFWiE.png"></p>
-<p>4.完成以上步驟之後，打開Microsoft 365登入就不需要經過驗證囉~不過官方說明寫這樣比較容易被攻擊這個可能要多考慮一下。</p>
-<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/account-billing/%E9%96%8B%E5%95%9F%E6%88%96%E9%97%9C%E9%96%89-microsoft-%E5%B8%B3%E6%88%B6%E7%9A%84%E9%9B%99%E6%AD%A5%E9%A9%9F%E9%A9%97%E8%AD%89-b1a56fc2-caf3-a5a1-f7e3-4309e99987ca">開啟或關閉 Microsoft 帳戶的雙步驟驗證</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/robinooo/article/details/125058722">Office365强制Microsoft Authenticator验证登录如何关闭</a></li>
-</ol>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/05/02/20230502%20%E5%A6%82%E4%BD%95%E8%B7%B3%E9%81%8EMicrosoft%20Authenticator%E9%A9%97%E8%AD%89%E7%A8%8B%E5%BA%8F/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230215 變數提升（Hoisting）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" target="_blank">變數提升（Hoisting）</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/" class="archive-article-date">
-        <time datetime="2023-02-15T08:25:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-15</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>初入JavaScript世界的我，把程式碼宣告的var移上移下，一不小心卻把它移到了console.log下面卻還是能印出undefined？那是因為變數提升這特性造成的；寫程式的時候可能習慣把function整理好統一放在程式碼的前面或後面，但為什麼它們放在哪裡都可以被呼叫呢？也是因為變數提升的關係。</p>
-<h2 id="創造期與執行期"><a href="#創造期與執行期" class="headerlink" title="創造期與執行期"></a>創造期與執行期</h2><p>瀏覽器在執行JavaScript的時候有兩個階段，第一個是創造期、第二個是執行期，像是以下這段程式碼：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var food = &quot;漢堡&quot;</span><br><span class="line">console.log(food)</span><br></pre></td></tr></table></figure>
-
-<p>第一階段創造期是去記憶體取得等下要執行程式碼的空間，這個階段如果要使用<code>console.log(food)</code>印出「food」僅能獲得<code>undefined</code>的結果，接下來進入第二階段創造期才會進行賦值，把「漢堡」賦予到「food」變數上，用<code>console.log(food)</code>印出來的結果就會變成漢堡。</p>
-<h2 id="var的提升"><a href="#var的提升" class="headerlink" title="var的提升"></a>var的提升</h2><p>先看看第一個問題，由於變數提升的特性，下面這段程式碼可以印出undefined：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food)</span><br><span class="line">var food = &quot;漢堡&quot;</span><br></pre></td></tr></table></figure>
-<p>創造期會先得到一個food變數，這和平常一樣，但第二階段由於JS執行順序為上到下，food在被賦值之前就被印出來了，但因為依舊有「登記」到food變數，所以印出undefined。</p>
-<p>ES6之後，出現了let、const這類更嚴謹的宣告，多了TDZ修正var的提升特性，不是說let跟const沒有提升，只是有不一樣的錯誤訊息讓開發者更好偵錯。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">const food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
-<p>或是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(food);</span><br><span class="line">let food = &quot;炸雞&quot;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/X2f9Yei.png"><br>加入TDZ之後就能看到這個錯誤訊息，並不是undefined（畢竟可能是var food真的沒有賦值或是其他情況導致的，當然錯誤越明確越好～）。</p>
-<p>但有些瀏覽器版本不一樣跑出來的結果可能是<code>Uncaught ReferenceError: food is not defined</code>，和沒有宣告變數的錯誤訊息一樣，所以測試的時候可能要多開幾個瀏覽器看看是不是瀏覽器版本問題（上圖是開firefox的開發者工具，下圖則是chrome）。</p>
-<p><img src="https://i.imgur.com/AS1lNij.png"></p>
-<h2 id="函式陳述式與函式表達式的提升"><a href="#函式陳述式與函式表達式的提升" class="headerlink" title="函式陳述式與函式表達式的提升"></a>函式陳述式與函式表達式的提升</h2><p>再來就是為什麼function放在哪裡都可以被取用，其實寫法不同也會有不一樣的結果：</p>
-<h3 id="函式陳述式"><a href="#函式陳述式" class="headerlink" title="函式陳述式"></a>函式陳述式</h3><p>函式陳述式會提升到創造期就準備好了，執行期就可以直接呼叫函式：<br><img src="https://i.imgur.com/EAFSg4J.png"></p>
-<h3 id="函式表達式"><a href="#函式表達式" class="headerlink" title="函式表達式"></a>函式表達式</h3><p>函式表達式則是遵從前面提過的變數提升，因為function已經變成了變數所需要賦的值，使用var宣告的時候由於還沒有給run的值，變成了undefined，所以錯誤訊息給的是<code>run is not a function</code><br><img src="https://i.imgur.com/w2kd6p4.png"></p>
-<p>換成const或let的時候，一樣會有TDZ的狀態，錯誤訊息則會顯示<code>can&#39;t access lexical declaration &#39;run&#39; before initialization</code></p>
-<p><img src="https://i.imgur.com/4uxZEqj.png"></p>
-<h3 id="執行的優先權"><a href="#執行的優先權" class="headerlink" title="執行的優先權"></a>執行的優先權</h3><p>根據上面兩點可以發現函式陳述式的優先權是大於函式表達式的，因為陳述式會在創造期就準備好可以被呼叫，而函式表達式則多了一道關卡，function的本體在執行期才能被賦予到變數上，也就是說如果有兩個同名的function被呼叫的話最終的結果就是執行順序較後面的會覆蓋掉前面的，例如我故意把函式陳述式放在函式表達式後面，最後的結果還是函式表達式寫法的結果：</p>
-<p><img src="https://i.imgur.com/0Z2bsbi.png"></p>
-<p>可以看見，在第二階段執行由上到下呼叫的三個hello，第一次呼叫的是創造期就準備好的函式陳述式hello，而後來呼叫的hello都是函式表達式內容覆蓋之後的結果。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>變數提升好好運用可以更彈性的維護專案，善用const跟let有TDZ的特性可以少走一些除錯的冤枉路。</p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">讀書筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/02/15/20230215%20%E8%AE%8A%E6%95%B8%E6%8F%90%E5%8D%87%EF%BC%88Hoisting%EF%BC%89/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1418,6 +1485,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Servlet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Ｍircosoft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">郵件</a>
               </li>
             
             <div class="clearfix"></div>
