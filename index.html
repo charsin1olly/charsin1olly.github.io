@@ -180,6 +180,433 @@
             
 
   
+    <article id="post-20231110 與FOREGIN KEY的久違重逢，發生了點意外..." class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/11/10/20231110%20%E8%88%87FOREGIN%20KEY%E7%9A%84%E4%B9%85%E9%81%95%E9%87%8D%E9%80%A2%EF%BC%8C%E7%99%BC%E7%94%9F%E4%BA%86%E9%BB%9E%E6%84%8F%E5%A4%96.../" target="_blank">與FOREGIN KEY的久違重逢，發生了點意外...</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/11/10/20231110%20%E8%88%87FOREGIN%20KEY%E7%9A%84%E4%B9%85%E9%81%95%E9%87%8D%E9%80%A2%EF%BC%8C%E7%99%BC%E7%94%9F%E4%BA%86%E9%BB%9E%E6%84%8F%E5%A4%96.../" class="archive-article-date">
+        <time datetime="2023-11-10T13:13:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-11-10</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="問題1-Error-Code-1005"><a href="#問題1-Error-Code-1005" class="headerlink" title="問題1. Error Code: 1005"></a>問題1. Error Code: 1005</h2><p>最近還是在開發權限管理系統，磕磕碰碰終於可以開始搞CRUD了，做到刪除功能時我突然想起之前做Rails專案的時候有FOREGIN KEY，可以確保某些資料的同步，於是開始我的各表之間關聯性連結~<br>(為甚麼一開始設計的時候沒想到?因為我連DB怎麼連都不知道，更別說像之前直接輸入rails g migration 直接生表出來，東拼西湊才弄出一點orz)</p>
+<p>我有兩個table: </p>
+<ul>
+<li>父表- <code>user</code>:用於儲存使用者資訊</li>
+<li>子表- <code>pages_authorize</code>:用於儲存頁面授權清單，其中一個欄位Id要對照user，因為我需要在刪除user表的資料時，一併刪除相關的資料，所以要利用外部鍵建立關聯</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> sys.pages_authorize</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_pageAuth_user</span><br><span class="line"><span class="keyword">FOREIGN</span> KEY (Id)</span><br><span class="line"><span class="keyword">REFERENCES</span> sys.user(Id);</span><br></pre></td></tr></table></figure>
+<p>當我要執行插入外部鍵的動作，發生錯誤訊息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error Code: <span class="number">1005.</span> Can<span class="string">&#x27;t create table &#x27;</span>sys.#<span class="keyword">sql</span><span class="number">-540</span>_1e<span class="string">&#x27; (errno: 150)</span></span><br></pre></td></tr></table></figure>
+<h3 id="問題檢查"><a href="#問題檢查" class="headerlink" title="問題檢查"></a>問題檢查</h3><h4 id="1-檢查欄位的資料類型、大小、編碼是否相同"><a href="#1-檢查欄位的資料類型、大小、編碼是否相同" class="headerlink" title="1. 檢查欄位的資料類型、大小、編碼是否相同"></a>1. 檢查欄位的資料類型、大小、編碼是否相同</h4><p>會發生問題的狀況如下: </p>
+<ul>
+<li>pages_authorize的Id欄為varchar(10) ，user的Id欄為char(10)</li>
+<li>pages_authorize的Id欄為char(10) ，user的Id欄為char(20)</li>
+<li>pages_authorize的Id欄為 utf8mb4_general_ci編碼 ，user的Id欄為utf8mb4_unicode_ci編碼</li>
+</ul>
+<h4 id="2-父表欄位必須是唯一鍵或主鍵"><a href="#2-父表欄位必須是唯一鍵或主鍵" class="headerlink" title="2. 父表欄位必須是唯一鍵或主鍵"></a>2. 父表欄位必須是唯一鍵或主鍵</h4><p>如果user表被對照的欄位Id不是主鍵或唯一，會導致參照問題(你叫我去捷運站的小七取貨，結果有兩家小七，不知道要去哪一間的感覺)。</p>
+<h4 id="3-確保父表已經被創建"><a href="#3-確保父表已經被創建" class="headerlink" title="3. 確保父表已經被創建"></a>3. 確保父表已經被創建</h4><p>這就要看user是否已經建立，爸爸都還沒出生，小孩怎麼出生呢~ </p>
+<h4 id="4-引用的表格和欄位都存在並且沒有拼寫錯誤"><a href="#4-引用的表格和欄位都存在並且沒有拼寫錯誤" class="headerlink" title="4. 引用的表格和欄位都存在並且沒有拼寫錯誤"></a>4. 引用的表格和欄位都存在並且沒有拼寫錯誤</h4><p>就是拼字問題…請檢查有沒有打錯名稱，就像小七跟小匕不一樣</p>
+<h4 id="5-確認是否為相同的資料庫引擎-本次有發生的問題"><a href="#5-確認是否為相同的資料庫引擎-本次有發生的問題" class="headerlink" title="5. 確認是否為相同的資料庫引擎(本次有發生的問題)"></a>5. 確認是否為相同的資料庫引擎(本次有發生的問題)</h4><p>我的user資料是之前從別的地方複製過來的，引擎是MyISAM，而pages_authorize的引擎是InnoDB，除了引擎不同以外，MyISAM不支援外部鍵的功能</p>
+<h4 id="6-確認該外部鍵名是否重複"><a href="#6-確認該外部鍵名是否重複" class="headerlink" title="6. 確認該外部鍵名是否重複"></a>6. 確認該外部鍵名是否重複</h4><p>如果有兩個相同命名的fk會無法成功建立。</p>
+<h3 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h3><p>輸入指令把user的引擎改成InnoDB就能成功執行了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> sys.user ENGINE<span class="operator">=</span>InnoDB;</span><br></pre></td></tr></table></figure>
+<p>因為這是我自己在玩的專案，隨便改沒有關係，但如果是正在運行或是重要的專案還是要謹慎操作，至少要先備份以免資料發生異常，不過一般資料庫最好不要亂動比較好，特別是這種基礎設定</p>
+<hr>
+<h2 id="問題2-Error-Code-1452"><a href="#問題2-Error-Code-1452" class="headerlink" title="問題2. Error Code: 1452"></a>問題2. Error Code: 1452</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`sys`.`#sql-540_1e`, CONSTRAINT `fk_pageCname_sysCname` FOREIGN KEY (`SysCode`) REFERENCES `system_cname` (`System`))</span><br></pre></td></tr></table></figure>
+<p>如果外部鍵是後來才加的，就有可能遇到這個問題(就像我)，這個問題大致上可以說是資料格式不符合不能加外部鍵</p>
+<h3 id="問題檢查-1"><a href="#問題檢查-1" class="headerlink" title="問題檢查"></a>問題檢查</h3><ol>
+<li>同上，檢查欄位的資料類型、大小、編碼是否相同</li>
+<li>檢查子表要連結的欄位是否都包含在父表欄位中(本次問題)</li>
+</ol>
+<h3 id="解決方式-1"><a href="#解決方式-1" class="headerlink" title="解決方式"></a>解決方式</h3><h4 id="方法一、"><a href="#方法一、" class="headerlink" title="方法一、"></a>方法一、</h4><p>我的父表為system_cname，欄位有System(系統代碼)、CName(對照中文)<br>子表為page_cname，欄位有SysCode(對應系統代碼)、PageCode(頁面代碼)、CName(對照頁面中文)<br>一個系統有很多頁面，所以父表資料對子表資料為一對多的關係，以父表的System和子表的SysCode用外部鍵連結。<br>一一核對之後發現子表的SysCode有一筆在父表的System上沒有對應的資料，在添加對應的系統代碼之後就可正常運行<br><img src="https://hackmd.io/_uploads/SkO4orj7a.png" alt="image"></p>
+<h4 id="方法二、-禁用外部鍵檢查"><a href="#方法二、-禁用外部鍵檢查" class="headerlink" title="方法二、 禁用外部鍵檢查"></a>方法二、 禁用外部鍵檢查</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> foreign_key_checks <span class="operator">=</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>有這功能但盡量不要使用，畢竟我們使用外部鍵就是為了確保資料的一致性，不檢查就有可能出現漏網之魚，非萬不得已不要使用。</p>
+<p>目前有使用到的情境是DEBUG的時候:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error Code: 1146. Table &#x27;XXX&#x27; doesn&#x27;t exist</span><br></pre></td></tr></table></figure>
+<p>打開MySQL Workbench，資料表明明也還在，但是要點開的時候依舊顯示這個錯誤訊息，由於這個問題是在新增外部鍵之後發生的，那就有可能是外部鍵有問題，把檢查關閉，進行偵錯，發現關掉就能正常運行，至於怎麼排除錯誤就不多說了~<br>因為是不小心一個操作失誤直接導致table被刪掉…重創table的時候直接加入FK就正常了，但這絕對不會是一個好的解決方式，這告訴我們資料關聯在剛開始寫專案的時候就要想好，後來才插入容易出問題的，無論是改資料格式、類型、大小，都有不小心把table搞不見的風險。</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p>跟GPT問出來的<br><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html#foreign-key-referential-actions">13.1.20.5 FOREIGN KEY Constraints</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/iteye_3142/article/details/82648105?spm=1001.2101.3001.6650.17&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-17-82648105-blog-86089896.235%5Ev38%5Epc_relevant_sort_base1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-17-82648105-blog-86089896.235%5Ev38%5Epc_relevant_sort_base1">重启MySQL服务后，导致数据表不存在的问题记录</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/11/10/20231110%20%E8%88%87FOREGIN%20KEY%E7%9A%84%E4%B9%85%E9%81%95%E9%87%8D%E9%80%A2%EF%BC%8C%E7%99%BC%E7%94%9F%E4%BA%86%E9%BB%9E%E6%84%8F%E5%A4%96.../">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230923 PHPMyAdmin-兩個port使用資料庫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/23/20230923%20PHPMyAdmin-%E5%85%A9%E5%80%8Bport%E4%BD%BF%E7%94%A8%E8%B3%87%E6%96%99%E5%BA%AB/" target="_blank">PHPMyAdmin-兩個port使用資料庫</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/23/20230923%20PHPMyAdmin-%E5%85%A9%E5%80%8Bport%E4%BD%BF%E7%94%A8%E8%B3%87%E6%96%99%E5%BA%AB/" class="archive-article-date">
+        <time datetime="2023-09-23T13:10:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-23</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>原本只是想把公司專案跟練習的MySQLServer分開，改了XAMPP中MySQL的my.ini文件指定port之後，可以正常開啟，但是無法登入PHPMyAdmin的DB管理介面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqli::real_connect(): (HY000/1045): Access denied for user &#x27;pma&#x27;@&#x27;localhost&#x27; (using password: NO)</span><br><span class="line">使用設定檔案定義的控制使用者連線失敗。</span><br><span class="line">mysqli::real_connect(): (HY000/1045): Access denied for user &#x27;XXX&#x27;@&#x27;localhost&#x27; (using password: YES)</span><br></pre></td></tr></table></figure>
+<p>奇怪的是我用MySQL workbench是能分別連上兩個server的，那應該是XAMPP的配置問題。</p>
+<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><ol>
+<li><p>綜合第一和第二條錯誤訊息，這邊查到的結果是說我用一個叫做pma的user嘗試連接到資料庫，可是我翻遍了<code>my.ini</code>檔案，甚至連個pma都搜尋不到，原來是在 <code>config.inc.php</code>裡面(路徑: xampp&#x2F;phpMyAdmin)</p>
+</li>
+<li><p>關閉XAMPP的MySQL，打開<code>config.inc.php</code>之後找到</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* User for advanced features */</span></span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;controluser&#x27;</span>] = <span class="string">&#x27;pma&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;controlpass&#x27;</span>] = <span class="string">&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>我把pma刪掉並儲存，變成空字串就能正常進入(但後來把pma加回去還是能正常使用?_?)</p>
+</li>
+</ol>
+<p>可是登入之後發現畫面變成我3306那個server的內容，原來是因為配置一直都抓3306這個port的資料去比對，所以才有第三條錯誤訊息，老是說我帳號或密碼錯誤，那怎麼讓PHPMyAdmin知道現在我要登入哪個server呢?</p>
+<ol start="3">
+<li><p>同樣<code>config.inc.php</code>這個檔案，設置兩個server<br>往上拉應該會看到</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * First server</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> </span><br><span class="line"><span class="variable">$i</span>++;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;auth_type&#x27;</span>] = <span class="string">&#x27;cookie&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;host&#x27;</span>] = <span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;port&#x27;</span>] = <span class="string">&#x27;3306&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;user&#x27;</span>] = <span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;xxxx&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>這邊就是在3306 port的MySQL Server登入的root訊息，複製一個在下面，並更改成3307，以及3307的登入預設資訊:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * Second server</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line"><span class="variable">$i</span>++;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;auth_type&#x27;</span>] = <span class="string">&#x27;cookie&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;host&#x27;</span>] = <span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;port&#x27;</span>] = <span class="string">&#x27;3307&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;user&#x27;</span>] = <span class="string">&#x27;cc&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;XXXX&#x27;</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>變更完成之後儲存，重開XAMPP的MySQL，進入PHPMyAdmin的畫面會發現多了一個下拉選單:<br><img src="https://hackmd.io/_uploads/HJY8FRoJ6.png"><br>選擇使用3307 port，這樣就可以正常登入了</p>
+</li>
+</ol>
+<p>如果要切換使用的資料庫畫面，在畫面左上角也有一個下拉選單，選好再重新登入就可以了<br><img src="https://hackmd.io/_uploads/rys7sRo1T.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46736319/phpmyadmin-error-mysqli-real-connect-hy000-1045-access-denied-for-user-p">phpMyAdmin ERROR: mysqli_real_connect(): (HY000&#x2F;1045): Access denied for user ‘pma‘@’localhost’ (using password: NO)</a><br>ChatGpt</p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">PHPMyAdmin</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/23/20230923%20PHPMyAdmin-%E5%85%A9%E5%80%8Bport%E4%BD%BF%E7%94%A8%E8%B3%87%E6%96%99%E5%BA%AB/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230921 Servlet-  Not a Java source folder." class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/21/20230921%20Servlet-%20%20Not%20a%20Java%20source%20folder./" target="_blank">Servlet-  Not a Java source folder.</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/21/20230921%20Servlet-%20%20Not%20a%20Java%20source%20folder./" class="archive-article-date">
+        <time datetime="2023-09-21T13:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-21</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>今天自己學著寫會員登錄系統的時候遇到這個問題，使用eclipse做動態web專案，要新增Servlet的時候發生了這個錯誤<br><img src="https://hackmd.io/_uploads/SyTcOYKy6.png"></p>
+<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><p>爬到好幾天都一樣的解法，但我的一切正常，最後解決方法是偶然發現的，但還是記錄下來</p>
+<h3 id="1-檢查Build-Path-建置路徑"><a href="#1-檢查Build-Path-建置路徑" class="headerlink" title="1. 檢查Build Path(建置路徑)"></a>1. 檢查Build Path(建置路徑)</h3><p>a. 一樣的對專案名稱右鍵&#x2F;內容&#x2F;建置路徑<br>b. 來到Source(程式碼)摺頁，這邊要有剛才新增Servlet對話框上的資料夾:<br><img src="https://hackmd.io/_uploads/rk6r5FtyT.png"></p>
+<p>但我這邊明明就有加入Build Path，奇怪的是同樣有被加入的資料夾沒有這個錯誤訊息<br><img src="https://hackmd.io/_uploads/B1TVtKYJp.png"></p>
+<h3 id="2-檢查-Project-Facet"><a href="#2-檢查-Project-Facet" class="headerlink" title="2. 檢查 Project Facet"></a>2. 檢查 Project Facet</h3><p>這邊可以填選專案要使用的語言、構件版本，要勾上Dynamic Web Module<br><img src="https://hackmd.io/_uploads/rJksqYtJa.png"></p>
+<p>很巧的是我也勾了…但還是壞的</p>
+<h3 id="3-檢查資源優先順序-本次解方"><a href="#3-檢查資源優先順序-本次解方" class="headerlink" title="3. 檢查資源優先順序(本次解方)"></a>3. 檢查資源優先順序(本次解方)</h3><p>回到建置路徑&#x2F;次序與匯出，<br>雖然不太清楚為甚麼資源優先序會有影響，但我把java資料夾移到第一個，這問題就解決了<br><img src="https://hackmd.io/_uploads/Sy39jtKy6.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31668290/not-a-java-source-folder-error-while-creating-a-servlet">Not a java source folder error while creating a servlet</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang_yq181/article/details/89344380">Source folder is not a Java project解决</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/21/20230921%20Servlet-%20%20Not%20a%20Java%20source%20folder./">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230920 ThubderBird - 磁碟空間已滿" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/20/20230920%20ThubderBird%20-%20%E7%A3%81%E7%A2%9F%E7%A9%BA%E9%96%93%E5%B7%B2%E6%BB%BF/" target="_blank">ThubderBird - 磁碟空間已滿</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/20/20230920%20ThubderBird%20-%20%E7%A3%81%E7%A2%9F%E7%A9%BA%E9%96%93%E5%B7%B2%E6%BB%BF/" class="archive-article-date">
+        <time datetime="2023-09-20T13:54:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-20</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>同事寄件時發生錯誤:<br>已寄出您的訊息，但因網路或檔案存取錯誤，無法將副本放置於寄件匣(寄件備份)，可以再試一次或將訊息儲存到本機的 本機郵件&#x2F;寄件備份<br><img src="https://hackmd.io/_uploads/rkJNOfukp.png"></p>
+<p>當我按了一次重試之後就出現這個:磁碟空間不足以下載新郵件，請刪除舊郵件、清空垃圾桶，或壓實重整郵件匣後再試試<br><img src="https://hackmd.io/_uploads/r1MpwzOJ6.png"></p>
+<p>確定之後(還有再試一次改按儲存按鈕之後)又跳出: 您的訊息已寄出並已儲存，但對其進行過濾分類時發生錯誤<br><img src="https://hackmd.io/_uploads/Sy_BdG_1a.png"></p>
+<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><p>檢查過WebMail沒滿，同一台的另一個帳號可以正常寄件備份，更別說C槽根本魔術大空間，既然錯誤訊息叫我存本機寄件匣，那就試試看更改儲存路徑吧~</p>
+<h3 id="變更備份路徑"><a href="#變更備份路徑" class="headerlink" title="變更備份路徑"></a>變更備份路徑</h3><p>工具&#x2F;帳號設定&#x2F;備份與郵件匣<br>把「寄送郵件時」的選項改成其他郵件匣，選擇自己想存的資料夾就可以了<br><img src="https://hackmd.io/_uploads/rJRlDVukp.png"></p>
+<h3 id="其他搜尋到還沒嘗試的解決方法"><a href="#其他搜尋到還沒嘗試的解決方法" class="headerlink" title="其他搜尋到還沒嘗試的解決方法"></a>其他搜尋到還沒嘗試的解決方法</h3><p>由於同事急著用電腦，先解決了就放置啦~之後可能遇到一樣情況可以參考別的解方</p>
+<ol>
+<li>移除帳號重新新增</li>
+<li>將聯線的安全驗證從STARTTLS 變更為 SSL&#x2F;TLS，這個我先不考慮，因為公司就是用STARTTLS</li>
+<li>在工具&#x2F;設定&#x2F;一般&#x2F;設定編輯器中把security.tls.version.min的值從3改成1</li>
+<li>修復ThunderBird資料夾</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://www.bob.tw/thunderbird-%e7%aa%81%e7%84%b6%e4%b8%8d%e8%83%bd%e5%af%84%e4%bf%a1/">Thunderbird 突然不能寄信</a></p>
+<p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1299140">Your message was sent but a copy was not placed in your sent folder (Sent) due to network or file access errors. You can retry or save the message locally to Local Folders&#x2F;Sent</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.reddit.com/r/Thunderbird/comments/15xjtoh/cant_save_email_in_sent_folder/">can’t save email in sent folder</a><br><a target="_blank" rel="noopener" href="https://www.lifewire.com/fix-thunderbird-not-starting-1173110">How to Fix Mozilla Thunderbird Not Starting</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">郵件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/20/20230920%20ThubderBird%20-%20%E7%A3%81%E7%A2%9F%E7%A9%BA%E9%96%93%E5%B7%B2%E6%BB%BF/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230914 使用druid.jar所發生的一連串車禍事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -864,422 +1291,6 @@
 
 
   
-    <article id="post-20230818 ThunderBird 更改介面UI字型大小" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/18/20230818%20ThunderBird%20%E6%9B%B4%E6%94%B9%E4%BB%8B%E9%9D%A2UI%E5%AD%97%E5%9E%8B%E5%A4%A7%E5%B0%8F/" target="_blank">ThunderBird 更改介面UI字型大小</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/18/20230818%20ThunderBird%20%E6%9B%B4%E6%94%B9%E4%BB%8B%E9%9D%A2UI%E5%AD%97%E5%9E%8B%E5%A4%A7%E5%B0%8F/" class="archive-article-date">
-        <time datetime="2023-08-18T05:21:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-18</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="問題描述"><a href="#問題描述" class="headerlink" title="問題描述"></a>問題描述</h2><p>由於公司很多都是50+以上的同事，部分有老花眼的情形，有人和我反應信箱介面的字太小看不到，大概像這樣：<br><img src="https://hackmd.io/_uploads/Syn56inh2.png"><br>這樣要找郵件標題可能有點吃力，希望我能把UI的字放大，特別是業務同仁那個信箱之滿的阿(看<br>原本以為就和網頁一樣ctrl和+一起按就能解決，沒想到只有放大到郵件預覽的文字大小，在設定選項裡繞一圈也沒看到設定介面大小的選項，又要怎麼改呢~</p>
-<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><ol>
-<li><p>找到<code>工具(齒輪圖示)/設定/一般</code>，拉到最下面有個<code>編輯器</code>(config)<br><img src="https://hackmd.io/_uploads/rkZfg32h3.png"></p>
-</li>
-<li><p>在搜尋欄內打入<code>layout.css.devPixelsPerPx</code>，看到預設值-1.0，更改成任意正數(推薦1.2 ~ 1.5介面看起來蠻正常的)再打勾儲存就可以囉~<br><img src="https://hackmd.io/_uploads/HkWllhh3h.png"></p>
-<p> 看看設定成2的效果，想改回預設可以按重設鈕<br> <img src="https://hackmd.io/_uploads/ByLnyn3hh.png"></p>
-<p> <img src="https://hackmd.io/_uploads/H1cwWhnhn.png"></p>
-</li>
-</ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://support.mozilla.org/zh-TW/questions/1367601#answer-1486431">Change Display Fonts and size</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/18/20230818%20ThunderBird%20%E6%9B%B4%E6%94%B9%E4%BB%8B%E9%9D%A2UI%E5%AD%97%E5%9E%8B%E5%A4%A7%E5%B0%8F/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230815 如何在XP上儲存使用者認證" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/16/20230815%20%E5%A6%82%E4%BD%95%E5%9C%A8XP%E4%B8%8A%E5%84%B2%E5%AD%98%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" target="_blank">如何在XP上儲存使用者認證</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/16/20230815%20%E5%A6%82%E4%BD%95%E5%9C%A8XP%E4%B8%8A%E5%84%B2%E5%AD%98%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/" class="archive-article-date">
-        <time datetime="2023-08-15T17:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-16</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="狀況描述"><a href="#狀況描述" class="headerlink" title="狀況描述"></a>狀況描述</h2><p>因為我們公司的個人電腦沒有office，所以部分人需要連到舊的xp主機使用office作業，但個別帳戶的網路磁碟機的帳號密碼認證常常在重新開機之後被清除，導致每次開啟資料夾都需要輸入帳號密碼，win10都有儲存認證這功能了，雖然xp很久遠，但應該也是有的吧?</p>
-<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><ol>
-<li><p>打開控制台，點選使用者帳戶圖示，點選左側的使用者帳戶<br> <img src="https://hackmd.io/_uploads/BJmRfjdh2.png"></p>
-</li>
-<li><p>彈出新視窗後，點選管理我的網路密碼<br> <img src="https://hackmd.io/_uploads/B1eQmsd23.png"></p>
-</li>
-<li><p>輸入資訊<br> <img src="https://hackmd.io/_uploads/HJCZEou32.png"></p>
-<p> 對照win10介面(相同顏色為相同資訊)<br> <img src="https://hackmd.io/_uploads/H1cuVj_n3.png"><br> 這邊需要注意的是xp的<strong>伺服器名稱</strong>格式，附上官方範本，我這邊連接的名稱是公司內部的網路磁碟機，和這邊的格式不一樣</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*.Microsoft.com</span><br><span class="line"></span><br><span class="line">或  \\Server\Share</span><br><span class="line"></span><br><span class="line">或  IP</span><br><span class="line"></span><br><span class="line">或  網路磁碟機怎麼連就叫甚麼名字</span><br></pre></td></tr></table></figure>
-
-<p> <strong>使用者名稱</strong>格式Microsoft可以改成網路磁碟機的名字，User則是連線這個網路的使用者帳戶名稱，像是Nas帳號那種，不是登入電腦的User帳戶喔~</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Microsoft\User</span><br><span class="line"></span><br><span class="line">或  User@microsoft.com</span><br></pre></td></tr></table></figure>
-
-<p> <strong>密碼</strong>就是登入這個網路連線的密碼</p>
-</li>
-<li><p>按確定就儲存好了~</p>
-</li>
-</ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/topic/how-to-manage-stored-user-names-and-passwords-on-a-computer-that-is-not-in-a-domain-in-windows-xp-e1809b89-0d8a-94a2-3029-9eacc18ef418">How To Manage Stored User Names and Passwords on a Computer That Is Not in a Domain in Windows XP</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/16/20230815%20%E5%A6%82%E4%BD%95%E5%9C%A8XP%E4%B8%8A%E5%84%B2%E5%AD%98%E4%BD%BF%E7%94%A8%E8%80%85%E8%AA%8D%E8%AD%89/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230805 在Win11上使用VPN連公司內網發生問題" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/05/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" target="_blank">在Win11上使用VPN連公司內網發生問題</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/05/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/" class="archive-article-date">
-        <time datetime="2023-08-05T13:16:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-05</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>今天終於在新電腦上嘗試一下能不能連 VPN 到公司網路，沒想到，這個任務還是問題一堆…</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">嘗試l2tp連線失敗因為安全性階層在與遠端電腦進行初始交涉時處理錯誤</span><br></pre></td></tr></table></figure>
-
-<p>公司防火牆提供給我們連公司內網的 VPN 是使用 L2TP+IPsec 預先共用金鑰，設定的過程跟 Win10 沒什麼兩樣，這邊就不多說了，主要記錄一下我怎麼解決這個錯誤訊息(原理有時間再來深扒)。</p>
-<h2 id="VPN-的內容設定"><a href="#VPN-的內容設定" class="headerlink" title="VPN 的內容設定"></a>VPN 的內容設定</h2><p><code>控制台\網路和網際網路\網路連線</code>，對著剛才新增的 VPN 點右鍵查看內容，要勾選「允許這些通訊協定」<br><img src="https://hackmd.io/_uploads/Ski9mVF32.png"></p>
-<p>在選項頁點 PPP 設定按鈕，查看是否勾選啟用 LCP 擴充<br><img src="https://hackmd.io/_uploads/Hy_ORc9jn.png"></p>
-<h2 id="檢查-windows-版本"><a href="#檢查-windows-版本" class="headerlink" title="檢查 windows 版本"></a>檢查 windows 版本</h2><p>Win10 的 KB5009543、Win11 的 KB5009566 版本可能會造成 L2TP 的連線問題，到<code>設定/WindowsUpdate/更新紀錄</code>可以查看是否有安裝這幾個版本，如果有的話可以移除更新<br><img src="https://hackmd.io/_uploads/H1NRpccjh.png"></p>
-<h2 id="服務"><a href="#服務" class="headerlink" title="服務"></a>服務</h2><p>按下<code>win+R</code>，輸入<code>services.msc</code></p>
-<ol>
-<li><p>找到<code>IPSec Policy Agent</code>右鍵點選重新啟動，打開內容修改啟動類型為自動。也有人說手動，反正不是停用就行了，這項服務負責的是支援 IPsec 的驗證，如果不打開會有連線問題。</p>
-</li>
-<li><p>找到<code>IKE and AuthIP IPsec Keying Modules</code>重複 1.步驟。這個服務是支援金鑰交換，如果停用會導致交換失敗。</p>
-</li>
-</ol>
-<h2 id="更改登錄檔"><a href="#更改登錄檔" class="headerlink" title="更改登錄檔"></a>更改登錄檔</h2><p><code>win+R</code>召喚老朋友，輸入<code>regedit</code>就可以叫出登錄檔</p>
-<ol>
-<li>路徑<code>電腦\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PolicyAgent</code><br>新增一個 DWORD 值(32 位元)，命名為<code>AssumeUDPEncapsulationContextOnSendRule</code>並且設定值為 2</li>
-</ol>
-<p>這個選項的值<br>0 是預設值，無法和 NAT 後的設備產生關連<br>1 是可以和位於 NAT 後端的設備建立安全關連<br>2 是當服務器和 VPN 客戶端都位於 NAT 設備後面時，能夠建立安全關聯</p>
-<ol start="2">
-<li>路徑<code>電腦\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\RasMan\Parameters</code></li>
-</ol>
-<ul>
-<li><p>新增一個 DWORD 值(32 位元)，命名為<code>ProhibitIPSec</code>設定值為 1</p>
-<p>0 為預設值，可以在 RRAS 服務器(遠端存取服務)上使用 IPsec 進行資料保護<br>1 為禁用自動配置的 IPsec(看起來跟 Mac 一樣是繞過 IPsec 的操作呢，不改真的連不上)</p>
-</li>
-<li><p>修改<code>AllowL2TPWeakCrypto</code>的值為 1(原為 0)，不過這個我後來把它改回 0 也沒影響 VPN 連線結果，就放著參考吧~</p>
-<p>0 為表示不允許使用 L2TP 中的較弱的加密方式。<br>1 為允許使用則表示允許使用 L2TP 中的較弱的加密方式。</p>
-</li>
-</ul>
-<p>修改完重開電腦就可以連了~</p>
-<h2 id="查看防火牆"><a href="#查看防火牆" class="headerlink" title="查看防火牆"></a>查看防火牆</h2><p>在 cmd 輸入<code>netstat -ano</code>查看是否有 4500、500port，如果是使用 NAT 技術傳送資料的話，會需要這兩個 port，如果沒有的話可以去防火牆<code>控制台\系統及安全性\Windows Defender 防火牆\進階設定</code>這裡新增，好讓 VPN 傳來的資料可以通過防火牆<br><img src="https://hackmd.io/_uploads/SkPTYo9in.png"></p>
-<p>在輸入規則，<br>新增 UDP 連接埠<code>500, 4500</code>，下一步選允許連線，設定允許的網域之後就完成了<br><img src="https://hackmd.io/_uploads/ryiJ5jcon.png"><br><img src="https://hackmd.io/_uploads/SJtZqs9i3.png"></p>
-<h2 id="VPN-連上了，但我沒辦法使用遠端桌面連線"><a href="#VPN-連上了，但我沒辦法使用遠端桌面連線" class="headerlink" title="VPN 連上了，但我沒辦法使用遠端桌面連線"></a>VPN 連上了，但我沒辦法使用遠端桌面連線</h2><p>使用遠端預設閘道打勾就能解決，之前在 win10 使用這個遠端預設閘道好像會導致本身電腦無法連外，但我用的這個 win11 沒有這個問題，通常預設都會是有勾選的，但我為了避免斷網先關掉它，反而讓自己連不上遠端桌面&#x3D; &#x3D;</p>
-<p>這個在 VPN 的內容&#x2F;網路功能&#x2F;進階設定&#x2F;網路通訊協定第 4 版&#x2F;內容&#x2F;進階<br><img src="https://hackmd.io/_uploads/BJvMi5qi3.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nerdsu/article/details/122544171">Windows 11 L2TP 连接尝试失败，因为安全层在初始化与远程计算机的协商时遇到了一个处理错误</a><br><a target="_blank" rel="noopener" href="https://www.anyviewer.com/tw/how-to/l2tp-connection-attempt-failed-because-the-security-layer.html">我的 VPN 突然無法正常連線了</a><br><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-tw/NAT%E7%A9%BF%E9%80%8F">NAT 穿透</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/configure-l2tp-ipsec-server-behind-nat-t-device">Configure a L2TP&#x2F;IPsec server behind a NAT-T device</a><br><a target="_blank" rel="noopener" href="https://woshub.com/l2tp-ipsec-vpn-server-behind/">Configuring L2TP&#x2F;IPSec VPN Connection Behind a NAT, VPN Error Code 809</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">網路</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/05/20230805%20%E5%9C%A8Win11%E4%B8%8A%E4%BD%BF%E7%94%A8VPN%E9%80%A3%E5%85%AC%E5%8F%B8%E5%85%A7%E7%B6%B2%E7%99%BC%E7%94%9F%E5%95%8F%E9%A1%8C/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230804 ThunderBird-無法自動儲存密碼" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/04/20230804%20ThunderBird-%E7%84%A1%E6%B3%95%E8%87%AA%E5%8B%95%E5%84%B2%E5%AD%98%E5%AF%86%E7%A2%BC/" target="_blank">ThunderBird-無法自動儲存密碼</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/04/20230804%20ThunderBird-%E7%84%A1%E6%B3%95%E8%87%AA%E5%8B%95%E5%84%B2%E5%AD%98%E5%AF%86%E7%A2%BC/" class="archive-article-date">
-        <time datetime="2023-08-03T17:13:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-04</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>有一天同事找我，說 mail 有問題，就是不論輸入幾次密碼，並且將「使用密碼管理員記住此密碼」打勾，依舊會瘋狂地跳出這個警示窗：<br><img src="https://hackmd.io/_uploads/SJLZXMcs2.png"></p>
-<p>直接尋找所謂的密碼管理員，也就是在設定(工具&#x2F;設定&#x2F;隱私權與安全性&#x2F;密碼)這個地方<br><img src="https://hackmd.io/_uploads/S1QjHzqon.png"></p>
-<p>點進去發現是空的，而且帳戶訊息完全寫不進去，正常來說應該是要長這樣<br><img src="https://hackmd.io/_uploads/B1YL8G5s2.png"></p>
-<p>嘗試過把帳號移除重新新增，發現新增帳號功能也壞了，開啟內建的疑難排除模式(說明&#x2F;疑難排解模式)卻可以正常使用，能夠正常新增帳號以及儲存密碼，但我們也沒有額外下載什麼元件，真的滿臉問號</p>
-<p>直到我爬到這篇參考文章，才找到解決方法，又是 profiles 資料夾的文件搞的鬼<br>(真巧，剛好我們的版本也是 102.1 左右呢)</p>
-<p>再次附上這個位置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\(User的名字)\AppData\Roaming\Thunderbird\Profiles\(代表這個mail的亂數資料夾)</span><br></pre></td></tr></table></figure>
-
-<p>有幾篇文章有提到把<code>cert8.db</code>、<code>key3.db</code>刪除，這兩個檔案是舊版本才會產生的，可能會造成使用上的問題，重啟 ThunderBird 之後會重新生成<code>cert9.db</code>、<code>key4.db</code>這兩個檔案，通常這樣就不會有問題了。</p>
-<p>但是，我就是那個還有問題的，再刪除一個叫做<code>secmod.db</code>的檔案，這個檔案看起來也是舊版本留下的遺跡，同事電腦的這個檔案最後更新日期是 2017 年，而我這台新裝的 ThunderBird 卻沒有，把這個檔案砍掉之後就能正常儲存密碼囉~</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/questions/1385134">Thunderbird v102.1.0 Won’t save passwords</a></p>
-<h6 id="ThunderBird-這東西…哪裡壞了八成要從-profiles-下手吧"><a href="#ThunderBird-這東西…哪裡壞了八成要從-profiles-下手吧" class="headerlink" title="ThunderBird 這東西…哪裡壞了八成要從 profiles 下手吧"></a>ThunderBird 這東西…哪裡壞了八成要從 profiles 下手吧</h6>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/04/20230804%20ThunderBird-%E7%84%A1%E6%B3%95%E8%87%AA%E5%8B%95%E5%84%B2%E5%AD%98%E5%AF%86%E7%A2%BC/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1490,6 +1501,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">郵件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">PHPMyAdmin</a>
               </li>
             
             <div class="clearfix"></div>
