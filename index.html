@@ -180,6 +180,100 @@
             
 
   
+    <article id="post-20231206 Win10 語言列消失" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/12/06/20231206%20Win10%20%E8%AA%9E%E8%A8%80%E5%88%97%E6%B6%88%E5%A4%B1/" target="_blank">Win10 語言列消失</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/12/06/20231206%20Win10%20%E8%AA%9E%E8%A8%80%E5%88%97%E6%B6%88%E5%A4%B1/" class="archive-article-date">
+        <time datetime="2023-12-06T15:36:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-12-06</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>同事一上班就跟我說電腦無法切換成中文，我一臉茫然地走去他的座位，天哪語言列都不見了，以前我只遇過只能打英文切換不了中文的情況，這種還是第一次看到，直覺點了工具列右鍵，沒有任何語言列選項，那總可以開個螢幕鍵盤搜尋相關設定吧?但我點下去之後也沒反應!!重開機也是一樣<br>搜尋一陣之後大致上有幾個方法可以排除:</p>
+<h2 id="1-使用ctfmon-exe"><a href="#1-使用ctfmon-exe" class="headerlink" title="1. 使用ctfmon.exe"></a>1. 使用ctfmon.exe</h2><p>大部分找到的解決方法都是這個，找到並點擊使用這個檔案，路徑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\system32\ctfmon.exe</span><br></pre></td></tr></table></figure>
+<p>但我找到了依舊無法顯示語言列，異想天開地從其他正常電腦複製同樣的檔案覆蓋過來(以為檔案損毀之類的)，結果以存取被拒收場。</p>
+<h2 id="2-工具列設定"><a href="#2-工具列設定" class="headerlink" title="2. 工具列設定"></a>2. 工具列設定</h2><p>對工具列<code>右鍵/顯示觸控式鍵盤按鈕</code>，有些人開啟這個之後就會出現語言列了，但我還是…沒有!!<br><img src="https://hackmd.io/_uploads/rkINjBaB6.png" alt="image"></p>
+<h2 id="3-系統設定"><a href="#3-系統設定" class="headerlink" title="3. 系統設定"></a>3. 系統設定</h2><p>設定&#x2F;時間和語言&#x2F;選項<br><img src="https://hackmd.io/_uploads/rJbMnB6Ha.png" alt="image"><br>新增輸入法就可以了…嗎?<br><img src="https://hackmd.io/_uploads/SymV2Harp.png" alt="image"><br>我當然還是不行，天哪這甚麼情況，而且我的新增輸入法還多了一個(僅限桌面)，根本沒辦法新增</p>
+<h2 id="4-開啟Touch-Keyboard-and-Handwriting-Panel-Service服務-本次解決方案"><a href="#4-開啟Touch-Keyboard-and-Handwriting-Panel-Service服務-本次解決方案" class="headerlink" title="4. 開啟Touch Keyboard and Handwriting Panel Service服務(本次解決方案)"></a>4. 開啟Touch Keyboard and Handwriting Panel Service服務(本次解決方案)</h2><p>一樣的<code>win+R</code>輸入<code>services.msc</code>開啟服務，並且設定為手動<br><img src="https://hackmd.io/_uploads/S1IKk8aBT.png" alt="image"><br>看到這個選項，瞬間知道為甚麼我的觸控鍵盤怎麼按都沒反應，因為這個服務是「停用」的狀態，把這個服務打開並且重新開機，輸入法就回來囉~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://jamie580114.pixnet.net/blog/post/241331239">Windows 10 工作列上的輸入法不見了</a><br><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hant/windows/forum/all/%E8%AA%9E%E8%A8%80%E5%88%97%E6%9C%AA%E9%A1%AF/43c4e764-a39c-4b1d-88a6-345bf688227c">語言列未顯示在工作列上- 引致不能轉換輸入法</a><br><a target="_blank" rel="noopener" href="https://www.mobile01.com/topicdetail.php?f=300&t=6382554">Win10 輸入法圖示不見</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">microsoft</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/12/06/20231206%20Win10%20%E8%AA%9E%E8%A8%80%E5%88%97%E6%B6%88%E5%A4%B1/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20231110 與FOREGIN KEY的久違重逢，發生了點意外..." class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1171,126 +1265,6 @@
 
 
   
-    <article id="post-20230827 Servlet標籤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/27/20230827%20Servlet%E6%A8%99%E7%B1%A4/" target="_blank">Servlet標籤</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/27/20230827%20Servlet%E6%A8%99%E7%B1%A4/" class="archive-article-date">
-        <time datetime="2023-08-27T05:23:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-27</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="甚麼是Servlet"><a href="#甚麼是Servlet" class="headerlink" title="甚麼是Servlet?"></a>甚麼是Servlet?</h2><ol>
-<li>它是一個規範、一個接口</li>
-<li>它是JavaWeb的三大組件之一(三大組件:Servlet、Filter、Listener)</li>
-<li>它是運行在server端的小程式，我自己是覺得像Web的服務生，接收客戶端的請求做出回應，也就是API</li>
-</ol>
-<h2 id="要如何實作Servlet"><a href="#要如何實作Servlet" class="headerlink" title="要如何實作Servlet"></a>要如何實作Servlet</h2><ol>
-<li>要寫一個class去應用servlet（但不只一個class）</li>
-<li>Service方法用於處理網站的request和reponse</li>
-<li><code>web.xml</code>檔案用於設定Servlet的訪問地址，我們的servlet就是寫在這個web.xml的檔案裡</li>
-</ol>
-<hr>
-<h2 id="關於Servlet標籤"><a href="#關於Servlet標籤" class="headerlink" title="關於Servlet標籤"></a>關於Servlet標籤</h2><h3 id="lt-servlet-gt-：配置給tomcat-伺服器-看的servlet程序"><a href="#lt-servlet-gt-：配置給tomcat-伺服器-看的servlet程序" class="headerlink" title="&lt;servlet&gt;：配置給tomcat(伺服器) 看的servlet程序"></a>&lt;servlet&gt;：配置給tomcat(伺服器) 看的servlet程序</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletLearning<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.learning.servlet.ServletLearning<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>&lt;servlet-name&gt;是幫servlet取別名(通常是class名)，例如MyServlet。</p>
-</li>
-<li><p>&lt;display-name&gt;也是命名，與&lt;servlet-name&gt;的差別是，這裡是給管理工具用的，在不同語系的xml檔中會不同，但大部分時候不會用到這個標籤，可忽略(參考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3805262/what-is-a-servlets-display-name-for">stackoverflow-What is a servlet’s “display-name” for?</a>)</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">displayable-name</span> <span class="attr">xml:lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>My Servlet<span class="tag">&lt;/<span class="name">displayable-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">displayable-name</span> <span class="attr">xml:lang</span>=<span class="string">&quot;fr&quot;</span>&gt;</span>Ma Servlet<span class="tag">&lt;/<span class="name">displayable-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>&lt;servlet-class&gt;設定這個Servlet要導去哪個class。</p>
-</li>
-</ul>
-<h3 id="lt-servlet-mapping-gt-設定給人看的servlet的訪問位置"><a href="#lt-servlet-mapping-gt-設定給人看的servlet的訪問位置" class="headerlink" title="&lt;servlet-mapping&gt;設定給人看的servlet的訪問位置"></a>&lt;servlet-mapping&gt;設定給人看的servlet的訪問位置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletLearning<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/Learning<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>&lt;servlet-name&gt;這邊的servlet-name是用於辨識要給哪個servlet使用，上方範例的意思就是，這條路徑我要給ServletLearning這個servlet使用，名稱務必符合和servlet標籤裡找的到的name。</p>
-</li>
-<li><p>&lt;url-pattern&gt;用於標記路徑，用於拜訪servlet，網址設定前方一定要有個 <code>/</code>，這是固定格式，拜訪的地址為<code>http://ip:port/專案名稱/設定網址</code>，例如<code>http://localhost:8080/HelloJSP/Learning</code>，輸入即可拜訪servlet，此處有個慣例，那就是盡量讓網址和要拜訪的servlet有關，可以讓人馬上知道這個網址是哪個servlet要用的。</p>
-</li>
-</ul>
-<hr>
-<p>用日常生活情境來比喻的話，我把這個網站當成星Ｘ點<br>&lt;servlet&gt;標籤是他們內部運作要看的<br>    &lt;servlet-name&gt;標籤是部門名牌，負責售票、點歌、點餐服務、提供餐點……<br>    &lt;servlet-class&gt;指定他們工作的內容，可能是內部人員的工作清單。</p>
-<p>&lt;servlet-mapping&gt;是給消費者看的菜單<br>&lt;servlet-name&gt;利用這個標籤找到相對應部門提供的服務（總不會找賣票的工作人員點歌吧）<br>&lt;url-pattern&gt;現在拿的是菜單或是歌單，消費者可以看到選項（進到網址），進而使用服務</p>
-<p>我想要點餐，所以我打開菜單（進到url-pattern網址），撥打服務電話請工作人員來（使用servlet的其中一個），他們就會進行點餐的服務（運行servlet-class設定的class）</p>
-<hr>
-<p>如果出現錯誤訊息<code>The origin server did not find a current representation for the target resource or is not willing to disclose that one exists. </code>可以參考我的<a href="https://charsin1olly.github.io/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/">另一篇文章</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Servlet</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/27/20230827%20Servlet%E6%A8%99%E7%B1%A4/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1505,6 +1479,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PHPMyAdmin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">microsoft</a>
               </li>
             
             <div class="clearfix"></div>

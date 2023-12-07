@@ -180,6 +180,126 @@
             
 
   
+    <article id="post-20230827 Servlet標籤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/08/27/20230827%20Servlet%E6%A8%99%E7%B1%A4/" target="_blank">Servlet標籤</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/08/27/20230827%20Servlet%E6%A8%99%E7%B1%A4/" class="archive-article-date">
+        <time datetime="2023-08-27T05:23:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-27</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="甚麼是Servlet"><a href="#甚麼是Servlet" class="headerlink" title="甚麼是Servlet?"></a>甚麼是Servlet?</h2><ol>
+<li>它是一個規範、一個接口</li>
+<li>它是JavaWeb的三大組件之一(三大組件:Servlet、Filter、Listener)</li>
+<li>它是運行在server端的小程式，我自己是覺得像Web的服務生，接收客戶端的請求做出回應，也就是API</li>
+</ol>
+<h2 id="要如何實作Servlet"><a href="#要如何實作Servlet" class="headerlink" title="要如何實作Servlet"></a>要如何實作Servlet</h2><ol>
+<li>要寫一個class去應用servlet（但不只一個class）</li>
+<li>Service方法用於處理網站的request和reponse</li>
+<li><code>web.xml</code>檔案用於設定Servlet的訪問地址，我們的servlet就是寫在這個web.xml的檔案裡</li>
+</ol>
+<hr>
+<h2 id="關於Servlet標籤"><a href="#關於Servlet標籤" class="headerlink" title="關於Servlet標籤"></a>關於Servlet標籤</h2><h3 id="lt-servlet-gt-：配置給tomcat-伺服器-看的servlet程序"><a href="#lt-servlet-gt-：配置給tomcat-伺服器-看的servlet程序" class="headerlink" title="&lt;servlet&gt;：配置給tomcat(伺服器) 看的servlet程序"></a>&lt;servlet&gt;：配置給tomcat(伺服器) 看的servlet程序</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletLearning<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.learning.servlet.ServletLearning<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>&lt;servlet-name&gt;是幫servlet取別名(通常是class名)，例如MyServlet。</p>
+</li>
+<li><p>&lt;display-name&gt;也是命名，與&lt;servlet-name&gt;的差別是，這裡是給管理工具用的，在不同語系的xml檔中會不同，但大部分時候不會用到這個標籤，可忽略(參考<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3805262/what-is-a-servlets-display-name-for">stackoverflow-What is a servlet’s “display-name” for?</a>)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">displayable-name</span> <span class="attr">xml:lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>My Servlet<span class="tag">&lt;/<span class="name">displayable-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">displayable-name</span> <span class="attr">xml:lang</span>=<span class="string">&quot;fr&quot;</span>&gt;</span>Ma Servlet<span class="tag">&lt;/<span class="name">displayable-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&lt;servlet-class&gt;設定這個Servlet要導去哪個class。</p>
+</li>
+</ul>
+<h3 id="lt-servlet-mapping-gt-設定給人看的servlet的訪問位置"><a href="#lt-servlet-mapping-gt-設定給人看的servlet的訪問位置" class="headerlink" title="&lt;servlet-mapping&gt;設定給人看的servlet的訪問位置"></a>&lt;servlet-mapping&gt;設定給人看的servlet的訪問位置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>ServletLearning<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/Learning<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>&lt;servlet-name&gt;這邊的servlet-name是用於辨識要給哪個servlet使用，上方範例的意思就是，這條路徑我要給ServletLearning這個servlet使用，名稱務必符合和servlet標籤裡找的到的name。</p>
+</li>
+<li><p>&lt;url-pattern&gt;用於標記路徑，用於拜訪servlet，網址設定前方一定要有個 <code>/</code>，這是固定格式，拜訪的地址為<code>http://ip:port/專案名稱/設定網址</code>，例如<code>http://localhost:8080/HelloJSP/Learning</code>，輸入即可拜訪servlet，此處有個慣例，那就是盡量讓網址和要拜訪的servlet有關，可以讓人馬上知道這個網址是哪個servlet要用的。</p>
+</li>
+</ul>
+<hr>
+<p>用日常生活情境來比喻的話，我把這個網站當成星Ｘ點<br>&lt;servlet&gt;標籤是他們內部運作要看的<br>    &lt;servlet-name&gt;標籤是部門名牌，負責售票、點歌、點餐服務、提供餐點……<br>    &lt;servlet-class&gt;指定他們工作的內容，可能是內部人員的工作清單。</p>
+<p>&lt;servlet-mapping&gt;是給消費者看的菜單<br>&lt;servlet-name&gt;利用這個標籤找到相對應部門提供的服務（總不會找賣票的工作人員點歌吧）<br>&lt;url-pattern&gt;現在拿的是菜單或是歌單，消費者可以看到選項（進到網址），進而使用服務</p>
+<p>我想要點餐，所以我打開菜單（進到url-pattern網址），撥打服務電話請工作人員來（使用servlet的其中一個），他們就會進行點餐的服務（運行servlet-class設定的class）</p>
+<hr>
+<p>如果出現錯誤訊息<code>The origin server did not find a current representation for the target resource or is not willing to disclose that one exists. </code>可以參考我的<a href="https://charsin1olly.github.io/2023/07/03/20230703%20%E9%8C%AF%E8%AA%A4The%20origin%20server%20did%20not%20find%20a%20current%20representation/">另一篇文章</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Servlet</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/08/27/20230827%20Servlet%E6%A8%99%E7%B1%A4/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230818 ThunderBird 更改介面UI字型大小" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1130,107 +1250,6 @@
 
 
   
-    <article id="post-20230711 Github如何使用SSH推送檔案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/07/11/20230711%20Github%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8SSH%E6%8E%A8%E9%80%81%E6%AA%94%E6%A1%88/" target="_blank">Github如何使用SSH推送檔案</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/07/11/20230711%20Github%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8SSH%E6%8E%A8%E9%80%81%E6%AA%94%E6%A1%88/" class="archive-article-date">
-        <time datetime="2023-07-10T18:09:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-11</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>最近桌機換新，終於可以用比較大的螢幕寫Code了(灑花)，但當我要push到github的時候，一直跳出SSH是不合法的(大概這個意思，忘了截圖)，才突然想到之前上課的時候有設定用SSH的方式上傳檔案，翻出這個簡略的筆記檔，照做卻卡關!是時候把它完善一下了，步驟開始~</p>
-<h2 id="先產出電腦的SSH-KEY"><a href="#先產出電腦的SSH-KEY" class="headerlink" title="先產出電腦的SSH KEY"></a>先產出電腦的SSH KEY</h2><h3 id="1-在終端機輸入ssh-keygen-建立新的ssh-key"><a href="#1-在終端機輸入ssh-keygen-建立新的ssh-key" class="headerlink" title="1. 在終端機輸入ssh-keygen 建立新的ssh key"></a>1. 在終端機輸入<code>ssh-keygen</code> 建立新的ssh key</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file in which to save the key (C:\User\(使用者)/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
-<p>這邊會顯示等等ssh key存放的位置，如果有設定過的會顯示：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\(使用者)/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)?</span><br></pre></td></tr></table></figure>
-<p>這邊可以選擇要不要覆寫之前創建的ssh檔案，如果要覆寫就輸入y繼續創建流程，不要的話就輸入n。</p>
-<h3 id="2-設定上傳密碼"><a href="#2-設定上傳密碼" class="headerlink" title="2. 設定上傳密碼"></a>2. 設定上傳密碼</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Enter passphrase (empty for no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
-<p>承上一步驟，輸入y之後會顯示Enter passphrase選項，這是用來設定上傳密碼的，如果想要每次上傳都輸入密碼的話可以設定，沒有要設定的話就直接Enter到下一步。下面的選項就是重複輸入密碼而已，不設定密碼的話一樣Enter進入下一步。</p>
-<h3 id="3-成功產生檔案-可以備份到隨身碟帶著走）"><a href="#3-成功產生檔案-可以備份到隨身碟帶著走）" class="headerlink" title="3. 成功產生檔案(可以備份到隨身碟帶著走）"></a>3. 成功產生檔案(可以備份到隨身碟帶著走）</h3><p>成功產出ssh key檔案之後會出現以下訊息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Your identification has been saved in C:\Users\(使用者)/.ssh/id_rsa</span><br><span class="line">Your public key has been saved in C:\Users\(使用者)/.ssh/id_rsa.pub</span><br><span class="line">The key fingerprint is:</span><br><span class="line">SHA256:(一大串密鑰) xx@xxxxx</span><br><span class="line">The key&#x27;s randomart image is:</span><br><span class="line">+---[RSA 3072]----+</span><br><span class="line">|                 |</span><br><span class="line">|                 |</span><br><span class="line">| .               |</span><br><span class="line">|+   .   .        |</span><br><span class="line">|                 |</span><br><span class="line">|=                |</span><br><span class="line">|                 |</span><br><span class="line">|                 |</span><br><span class="line">|                 |</span><br><span class="line">+----[SHA256]-----+</span><br></pre></td></tr></table></figure>
-
-<h2 id="上傳到Github囉"><a href="#上傳到Github囉" class="headerlink" title="上傳到Github囉~"></a>上傳到Github囉~</h2><h3 id="1-讀取SSH-key"><a href="#1-讀取SSH-key" class="headerlink" title="1. 讀取SSH key"></a>1. 讀取SSH key</h3><p>注意!!這很重要!!特別是Windows的朋友!!我卡在這裡!!如果前面操作都是用cmd在操作的朋友，<br><strong>這邊要換成PowerShell</strong>、<strong>這邊要換成PowerShell</strong>、<strong>這邊要換成PowerShell</strong>，因為cat是Linux Bash，在cmd使用這個指令會一直不斷地跳<code>&#39;cat&#39; 不是內部或外部命令、可執行的程式或批次檔</code>。</p>
-<p>cd到.ssh資料夾下可以下這個指令，<code>cat id_rsa.pub</code>把公鑰內容印出來；或是直接點出資料夾，把資料夾的路徑複製過來，也就是<code>cat &quot;C:\Users\(使用者)\.ssh\id_rsa.pub&quot;</code>這樣也能讀取，讀出來的資料格式像是下面這樣，把這一大串複製起來備用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-rsa (一大串密鑰)= xxx@xxxxxx</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-Github帳戶設定"><a href="#2-Github帳戶設定" class="headerlink" title="2. Github帳戶設定"></a>2. Github帳戶設定</h3><p>a. 帳戶設定中找到Settings<br><img src="https://hackmd.io/_uploads/Sk0aEaYtn.png"></p>
-<p>b. 找到SSH and GPG keys選項，點選New SSH key新增SSH key<br><img src="https://hackmd.io/_uploads/rkflBatKn.png"></p>
-<p>c. Title可以取一個方便辨識的名字就行了，Key欄位就貼上剛才我們cat出來複製的那一大串key，按下Add SSH key就完成新增<br><img src="https://hackmd.io/_uploads/BkzbIaYth.png"></p>
-<h3 id="3-終於，SSH可以用了"><a href="#3-終於，SSH可以用了" class="headerlink" title="3. 終於，SSH可以用了"></a>3. 終於，SSH可以用了</h3><p>在Github新建一個repository(步驟不贅述啦)，這邊我們就可以使用SSH的方式上傳檔案了<br><img src="https://hackmd.io/_uploads/Sk_A86FFn.png"></p>
-<p>搬運一下Github的步驟說明，這裡我們remote的分支就是用SSH上傳啦~</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin git@github.com:charsin1olly/JSP-from-zero.git</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/07/11/20230711%20Github%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8SSH%E6%8E%A8%E9%80%81%E6%AA%94%E6%A1%88/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1445,6 +1464,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">PHPMyAdmin</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">microsoft</a>
               </li>
             
             <div class="clearfix"></div>
