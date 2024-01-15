@@ -180,6 +180,359 @@
             
 
   
+    <article id="post-20240115 Gitea的一些小設定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/15/20240115%20Gitea%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E8%A8%AD%E5%AE%9A/" target="_blank">Gitea的一些小設定</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/15/20240115%20Gitea%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E8%A8%AD%E5%AE%9A/" class="archive-article-date">
+        <time datetime="2024-01-15T14:43:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-15</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>上一篇介紹如何安裝Gitea，這篇想分享一下當時在抓SSH問題時發現的一些檔案以及作用，以及第一次用docker的小白我的偷吃步(?)</p>
+<h2 id="網頁介面篇"><a href="#網頁介面篇" class="headerlink" title="網頁介面篇"></a>網頁介面篇</h2><h3 id="網站管理"><a href="#網站管理" class="headerlink" title="網站管理"></a>網站管理</h3><p>只要有關這個Gitea網頁、例如管理成員及組織、查看組態、變更成員資料都在這邊~<br><img src="https://hackmd.io/_uploads/SJnlpX6d6.png" alt="image"><br>其中組態分頁就可以看到建立網站時的設定，在觀察自己的檔案變更設定上蠻實用的</p>
+<h2 id="本機檔案篇"><a href="#本機檔案篇" class="headerlink" title="本機檔案篇"></a>本機檔案篇</h2><h3 id="app-ini"><a href="#app-ini" class="headerlink" title="app.ini"></a>app.ini</h3><p>網站名稱打錯字、port給錯、網址打錯、不小心停用SSH?來到剛才塞docker-compose.yml資料夾，會看到剛才被我們拉下來的容器名稱的資料夾，依照路徑<code>\gitea\gitea\conf</code>，會找到一個app.ini檔案，所有剛才安裝前設定的資料都在這裡。</p>
+<p>編輯完資訊後重開容器就會生效，如果沒有，可以試試看在終端機使用<code>docker compose down -v</code>清除緩存，然後再重新啟動容器即可生效。</p>
+<h2 id="DockerDesktop容器篇"><a href="#DockerDesktop容器篇" class="headerlink" title="DockerDesktop容器篇"></a>DockerDesktop容器篇</h2><p>問GPT、查文件設定SSH相關的指令，一下子在本機、一下子在容器，搞得暈頭轉向的時候，我發現DockerDesktop裡面有一個功能可以直通容器內部打開終端機，還有孰悉的檔案總管那樣呈現的檔案，找到想要看的那個容器點進去<br><img src="https://hackmd.io/_uploads/SJ795Qada.png" alt="image"></p>
+<h3 id="log，偵錯的好地方"><a href="#log，偵錯的好地方" class="headerlink" title="log，偵錯的好地方"></a>log，偵錯的好地方</h3><p><img src="https://hackmd.io/_uploads/ryPi9Q6OT.png" alt="image"></p>
+<h3 id="Exec，輸入指令"><a href="#Exec，輸入指令" class="headerlink" title="Exec，輸入指令"></a>Exec，輸入指令</h3><p>跟一般終端機<code>docker exec -it gitea /bin/bash</code>後的結果一樣，直接在容器內部操作指令<br><img src="https://hackmd.io/_uploads/SkIEjXTOa.png" alt="image"></p>
+<h3 id="Files，查看容器配置"><a href="#Files，查看容器配置" class="headerlink" title="Files，查看容器配置"></a>Files，查看容器配置</h3><p>在檢查有沒有少檔案，或是檔案映像路徑不知到哪裡去的時候很好用<br><img src="https://hackmd.io/_uploads/S1WYj7pd6.png" alt="image"></p>
+<h6 id="更多Gitea小撇步發掘中…"><a href="#更多Gitea小撇步發掘中…" class="headerlink" title="更多Gitea小撇步發掘中…."></a>更多Gitea小撇步發掘中….</h6>
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/15/20240115%20Gitea%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E8%A8%AD%E5%AE%9A/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20240111 在內網安裝git server - gitea" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20gitea/" target="_blank">在內網安裝git server - gitea</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20gitea/" class="archive-article-date">
+        <time datetime="2024-01-11T13:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-11</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>公司終於要引進git啦(灑花~)，但因為安全疑慮不想使用github這類的雲端工具，剛好前陣子聽朋友說可以把git server架在NAS上，於是我開始研究怎麼架server，從一開始嘗試共用網路資料夾(簡單粗暴)，但SSH幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版github的gitea，簡直亢奮到不行!!搭配docker的作法，可以不用設定太多電腦的環境，再甚至未來也許可以把開發環境統一規格放在docker<br>compose文件中，這樣就可以避免版本、相依性問題所花費大把時間的問題，感覺挺美好的</p>
+<h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><p>windows11客戶端、windows10伺服器</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><ol>
+<li><p>因為搭配Docker使用，docker的安裝就不用多說了，去<a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/?_gl=1*1hd2ytf*_ga*Mzk2NTUxNzkzLjE3MDQ2NzYxMDg.*_ga_XJWPQMJYHQ*MTcwNDkzNjkwOC4zLjEuMTcwNDkzNjkxNS41My4wLjA.">官網</a>下載並安裝</p>
+</li>
+<li><p>在要當伺服器的電腦隨意位置開啟資料夾，喜歡放哪裡就放哪裡，我自己是在電腦桌面建立一個docker資料夾，裡面還有一個gitea資料夾，這樣未來還有其他docker compose的話就不會混在一起，方便管理。</p>
+</li>
+<li><p>在資料夾中建立一個<code>docker-compose.yml</code>檔案，內容是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  gitea:</span><br><span class="line">    external: false</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  server:</span><br><span class="line">    image: gitea/gitea:1.21</span><br><span class="line">    container_name: gitea1</span><br><span class="line">    environment:</span><br><span class="line">      - USER_UID=1000</span><br><span class="line">      - USER_GID=1000</span><br><span class="line">      - GITEA__database__DB_TYPE=mysql</span><br><span class="line">      - GITEA__database__HOST=db:3306</span><br><span class="line">      - GITEA__database__NAME=gitea</span><br><span class="line">      - GITEA__database__USER=gitea</span><br><span class="line">      - GITEA__database__PASSWD=gitea</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - gitea</span><br><span class="line">    volumes:</span><br><span class="line">      - ./gitea:/data</span><br><span class="line">      - /etc/timezone:/etc/timezone:ro</span><br><span class="line">      - /etc/localtime:/etc/localtime:ro</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3000:3000&quot;</span><br><span class="line">      - &quot;222:22&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:8</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=gitea</span><br><span class="line">      - MYSQL_USER=gitea</span><br><span class="line">      - MYSQL_PASSWORD=gitea</span><br><span class="line">      - MYSQL_DATABASE=gitea</span><br><span class="line">    networks:</span><br><span class="line">      - gitea</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql:/var/lib/mysql</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>container_name:容器的名稱，如果之前有其他容器也叫這個名字，則無法成功建立這個容器</p>
+</li>
+<li><p>restart:如果不想要每次打開docker就自動啟動容器的話，可以把參數always改成no(我是因為硬體限制，打開docker就馬上運行server會轉圈圈轉到懷疑人生)</p>
+</li>
+<li><p>volumes:不會隨著容器重啟就消失的檔案，本機資料夾(我現在的資料夾位置在docker，在這個目錄之下的gitea資料夾)對應容器中的哪一個資料夾</p>
+</li>
+<li><p>ports: 冒號前面對應的是本機的port，後面對應的是容器上的port，3000那個是給Gitea運行的port，222是給SSH伺服器用的</p>
+</li>
+<li><p>這邊我是搭配MySQL儲存gitea資料，如果不用MySQL也可以使用別的資料庫，不設定資料庫的話會預設使用SQLite</p>
+</li>
+</ul>
+<ol start="3">
+<li>在瀏覽器輸入<code>http://localhost:3000/</code>就可以到安裝畫面，部分資訊是直接帶入剛才在yml檔中的設定，這邊可以調整<br><img src="https://hackmd.io/_uploads/SJbVWC3dT.png" alt="image"><br>基本上維持預設就可以了，有幾項我有用到的客製化</li>
+</ol>
+<ul>
+<li><p>網站標題: 當未來連上這個Gitea網站歡迎頁的標題(打碼區塊)<br><img src="https://hackmd.io/_uploads/r1MYMAh_a.png" alt="image"></p>
+</li>
+<li><p>伺服器域名: 現在只跟自己電腦連，用localhost沒問題，要讓別人連就要改成ip位置，假設ip是192.168.0.3 ，有改設定的話，這個Gitea介面網址就變成<code>http://192.168.0.3:3000/</code></p>
+</li>
+<li><p>Gitea HTTP埠: 更改使用port，簡單來說一樣是改網址的部分，例如預設是8088，原本的網址會是<code>http://localhost:8088/</code>，更改成3000 port之後變成<code>http://localhost:3000/</code></p>
+</li>
+</ul>
+<ol start="4">
+<li><p>設定管理員帳號之後，點安裝Gitea，有成功跳轉到登入畫面的話，基本上就算是成功安裝了<br><img src="https://hackmd.io/_uploads/SJDLqRn_p.png" alt="image"><br>不設定管理員帳號也沒關係，要使用的時候，點註冊，第一個註冊的帳號自動會變成管理員:<br><img src="https://hackmd.io/_uploads/BJJ7cfada.png" alt="image"></p>
+</li>
+<li><p>登入之後就可以看到一個類似github的頁面，沒有格子也沒關係，創建第一個儲存庫之後也會出現<br><img src="https://hackmd.io/_uploads/r1Jt5M6_T.png" alt="image"></p>
+</li>
+</ol>
+<h2 id="試用功能"><a href="#試用功能" class="headerlink" title="試用功能"></a>試用功能</h2><p>架好Gitea之後就是來試用看看它的功能，我從clone開始測</p>
+<ol>
+<li><p>先建一個普通的倉庫<br><img src="https://hackmd.io/_uploads/HyHRhMT_T.png" alt="image"><br>基本上跟github的操作一模一樣，這邊不多贅述<br><img src="https://hackmd.io/_uploads/HJDx6Gpu6.png" alt="image"><br>還有孰悉的上傳指令畫面<br><img src="https://hackmd.io/_uploads/SJxT6f6uT.png" alt="image"></p>
+</li>
+<li><p>開一個資料夾執行<code>git clone http://(你的IP):3000/cc/test1.git</code>，有成功下載下來就是成功了~<br><img src="https://hackmd.io/_uploads/SyOu0GaO6.png" alt="image"></p>
+</li>
+<li><p>再來測試一下push，先在剛剛clone下來的資料夾中隨意建立一個commit(就git add和git commit的那個commit)，<code>git reomte -v</code>檢查一下遠端是不是剛才clone的儲存庫，最後再<code>git push origin</code>推上去，上傳時會要求輸入帳號密碼，也就是剛剛註冊帳號的那一組，這邊詳細步驟就請洽git基礎操作了不多說~</p>
+</li>
+<li><p>在剛剛的Gitea畫面看見剛才推送的檔案就代表完成囉<br><img src="https://hackmd.io/_uploads/r16abm6OT.png" alt="image"></p>
+</li>
+</ol>
+<h2 id="我不想每次都打帳號密碼欸"><a href="#我不想每次都打帳號密碼欸" class="headerlink" title="我不想每次都打帳號密碼欸"></a>我不想每次都打帳號密碼欸</h2><p>用HTTP傳送接收檔案可以正常使用，缺點就是每次上傳都要輸入帳號密碼，之前使用github的時候，大家都使用SSH協定，就不用一直輸入帳號密碼，但裝在docker上的SSH有額外設定，我目前還沒解決每次上傳都一直要求我輸入密碼以及這個問題</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_ed25519_cert&quot;: No such file or directory</span><br><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_rsa_cert&quot;: No such file or directory</span><br><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_ecdsa_cert&quot;: No such file or directory</span><br><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_dsa_cert&quot;: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>等研究出來再來更新~ 目前就以能上傳到伺服器進行協作為主~<br>其他設定就開另外一篇文介紹</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.gitea.com/next/installation/install-with-docker">Gitea-Installation with Docker</a><br><a target="_blank" rel="noopener" href="https://eric0806.blogspot.com/2014/05/ubuntu-git-server-for-small-team-who-use-windows-os.html">給windows使用者的簡易Git環境架設</a><br><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/shared-folder-as-gi-server/">在 Windows 架設 Git 私服 - 免安裝版</a><br><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/gitea/">Git 私服第一品牌 - Gitea</a><br><a target="_blank" rel="noopener" href="https://blog.wu-boy.com/2020/02/install-gitea-using-docker/">使用 Docker 五分鐘安裝好 Gitea (自架 Git Hosting 最佳選擇)</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20gitea/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20240105 Windows 11 無法使用共用印表機" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/01/05/20240105%20Windows%2011%20%E7%84%A1%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%B1%E7%94%A8%E5%8D%B0%E8%A1%A8%E6%A9%9F/" target="_blank">Windows 11 無法使用共用印表機</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/01/05/20240105%20Windows%2011%20%E7%84%A1%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%B1%E7%94%A8%E5%8D%B0%E8%A1%A8%E6%A9%9F/" class="archive-article-date">
+        <time datetime="2024-01-05T14:36:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-05</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><font color='red'><strong>設備環境使用版本: Windows 11 Version 22H2 22621.1702</strong></font></p>
+<p>最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是 win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機…</p>
+<p>由於公司設備有些有點年紀，新版本的 windows 驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題:</p>
+<h2 id="無法連線到印表機"><a href="#無法連線到印表機" class="headerlink" title="無法連線到印表機"></a>無法連線到印表機</h2><p>新增印表機的步驟就不多贅述了，當我來到這個步驟準備按下一步發生了問題<br><img src="https://hackmd.io/_uploads/r1XXq9mdT.png" alt="image"></p>
+<ol>
+<li><p>這個狀況通常就伴隨著無法使用網路位置(或是網路上的芳鄰)，可以先檢查自己是否有儲存正確的使用這認證(路徑:控制台\使用者帳戶\認證管理員的 windows 認證)</p>
+</li>
+<li><p>如果都沒問題，而且網路位置也能正常連接，但還是無法正確連線到印表機，可以嘗試下面步驟<br>a. Win + R，輸入「optionalfeatures」叫出「開啟或關閉 windows 功能」，或是去控制台\程式集點選該選項</p>
+<p>b. 檢查 SMB1.0&#x2F;CIFS 檔案共用支援有沒有勾選，這是共用印表機的主要協議</p>
+<p><img src="https://hackmd.io/_uploads/HJHEn9mup.png" alt="image"></p>
+<p>c.重新開機，問題解決</p>
+</li>
+</ol>
+<p>順利連接到之後發生第二個問題:</p>
+<h2 id="順利連接印表機但依舊無法列印-0x0000011b"><a href="#順利連接印表機但依舊無法列印-0x0000011b" class="headerlink" title="順利連接印表機但依舊無法列印(0x0000011b)"></a>順利連接印表機但依舊無法列印(0x0000011b)</h2><p>按了列印測試頁之後，訊息列跳出列印錯誤，我的檔案還卡在列印佇列，顯示錯誤，連接到遠端桌面看了一下印表機本身的佇列錯誤訊息是甚麼，發現檔案根本沒有傳過去遠端電腦!<br>這個問題源自於 2021 年 1 月的更新漏洞，RpcAuthnLevelPrivacyEnabled 這個機碼是加強了遠端操作的伺服器和客戶端之間行為的安全性，但因為 2021 年 1 月 12 日更新後的預設值為 0(不啟用)，而同年 9 月 14 日或之後更新的預設行為為 1(啟用，代表我們要使用新的授權方式，假設伺服器端未使用這個新的授權方式則會中斷列印)，手頭上這台機器未添加機碼則是根據預設值進行判斷，就不能夠操作遠端印表機了。</p>
+<ol>
+<li><p>win+R 輸入 regedit，路徑: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print</p>
+</li>
+<li><p>新增 DWORD-32「RpcAuthnLevelPrivacyEnabled」設置為 0，重開電腦。</p>
+</li>
+</ol>
+<p>雖然這樣能解決目前問題，但 Microsoft 還是不建議設置為 0，畢竟他出這個功能就是希望提高設戶端及伺服器端的安全性，礙於實際因素就不拿 xp 做實驗了…</p>
+<h2 id="成功連接也傳送到遠端電腦但還是無法列印"><a href="#成功連接也傳送到遠端電腦但還是無法列印" class="headerlink" title="成功連接也傳送到遠端電腦但還是無法列印"></a>成功連接也傳送到遠端電腦但還是無法列印</h2><p>這次看到遠端電腦佇列有文件了!但卡在多工緩衝狀態一下子又消失了，於是上網尋找列印多工緩衝列印失敗的相關解方，發現是 win11 的 22H2 更新導致的，有網友表示使用 21H2 版本的時候沒有問題，我照著<a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win11/e5f51d12-d72d-4ee1-b7f8-bb9914225f1e">這篇</a>的做法做了一次，發現還是無效，閱讀他的指令發現是將檔案備份、重新命名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">net stop spooler</span><br><span class="line">TAKEOWN /F C:\Windows\System32\spoolsv.exe /A</span><br><span class="line">Icacls C:\windows\System32\spoolsv.exe /grant Administrators:F</span><br><span class="line">ren C:\windows\system32\spoolsv.exe C:\windows\system32\spoolsv.exe.old</span><br><span class="line">TAKEOWN /F C:\Windows\System32\localspl.dll /A</span><br><span class="line">Icacls C:\windows\System32\localspl.dll /grant Administrators:F</span><br><span class="line">ren C:\windows\system32\localspl.dll C:\windows\system32\localspl.dll.old</span><br><span class="line">TAKEOWN /F C:\Windows\System32\win32spl.dll /A</span><br><span class="line">Icacls C:\windows\System32\win32spl.dll /grant Administrators:F</span><br><span class="line">ren C:\windows\system32\win32spl.dll C:\windows\system32\win32spl.dll.old</span><br><span class="line">copy localspl.dll C:\windows\system32\localspl.dll</span><br><span class="line">copy win32spl.dll C:\windows\system32\win32spl.dll</span><br><span class="line">copy spoolsv.exe C:\windows\system32\spoolsv.exe</span><br><span class="line">net start spooler</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+
+<p>去相對應資料夾觀察檔案，用系統管理員身分執行三次，重開機三次，發現根本沒有 spoolsv.exe.old 檔案，推測是腳本不起作用，再去搜尋發現也有人使用覆蓋檔案這類類似的方法解決，於是我嘗試了一下:</p>
+<ol>
+<li><p>備份 C:\Windows\System32\路徑中的 spoolsv.exe 、 localspl.dll、win32spl.dll 這三個檔案先複製備份到別的資料夾</p>
+</li>
+<li><p>資源檔(上面提供的文章聯結有檔案載點)複製貼上在原本的路徑(C:\Windows\System32)，覆蓋原檔並且重新開機，問題就解決了!另外，這三個檔案可以從列印功能正常的其他電腦複製過來覆蓋，也能達到同樣效果</p>
+</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/questions/10212069#:~:text=%E7%A2%BA%E8%AA%8DWindows%2011%E4%B8%AD%E7%9A%84SMB%201.0%2FCIFS%E6%AA%94%E6%A1%88%E5%85%B1%E7%94%A8%E6%94%AF%E6%8F%B4%E5%B7%B2%E5%95%9F%E7%94%A8%E3%80%82%20SMB%201.0%2FCIFS%E6%98%AF%E7%94%A8%E6%96%BC%E5%8D%B0%E8%A1%A8%E6%A9%9F%E5%85%B1%E4%BA%AB%E7%9A%84%E5%8D%94%E8%AD%B0%E4%B9%8B%E4%B8%80%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%AA%E5%95%9F%E7%94%A8%EF%BC%8C%E5%85%B1%E4%BA%AB%E5%8D%B0%E8%A1%A8%E6%A9%9F%E5%8F%AF%E8%83%BD%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C%E3%80%82%20%E5%95%9F%E7%94%A8%E6%AD%A4%E6%94%AF%E6%8F%B4%E7%9A%84%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A,%E6%8C%89%E4%B8%8B%E3%80%8CWin%20%2B%20R%E3%80%8D%E7%B5%84%E5%90%88%E9%8D%B5%E6%89%93%E9%96%8B%E3%80%8C%E5%9F%B7%E8%A1%8C%E3%80%8D%E5%B0%8D%E8%A9%B1%E6%A1%86%E3%80%82%20%E5%9C%A8%E5%B0%8D%E8%A9%B1%E6%A1%86%E4%B8%AD%E8%BC%B8%E5%85%A5%E3%80%8Coptionalfeatures%E3%80%8D%E4%B8%A6%E6%8C%89%E4%B8%8B%E3%80%8CEnter%E3%80%8D%E3%80%82%20%E5%9C%A8%E3%80%8CWindows%E5%8A%9F%E8%83%BD%E3%80%8D%E5%B0%8D%E8%A9%B1%E6%A1%86%E4%B8%AD%E6%89%BE%E5%88%B0%E3%80%8CSMB%201.0%2FCIFS%E6%AA%94%E6%A1%88%E5%85%B1%E7%94%A8%E6%94%AF%E6%8F%B4%E3%80%8D%EF%BC%8C%E4%B8%A6%E5%B0%87%E5%85%B6%E5%8B%BE%E9%81%B8%E3%80%82%20%E9%BB%9E%E9%81%B8%E3%80%8C%E7%A2%BA%E5%AE%9A%E3%80%8D%E5%BE%8C%EF%BC%8C%E7%B3%BB%E7%B5%B1%E6%9C%83%E6%8F%90%E7%A4%BA%E9%9C%80%E8%A6%81%E9%87%8D%E5%95%9F%E9%9B%BB%E8%85%A6%E3%80%82">win11 22H2 版本，無法連線共享印表機</a><br><a target="_blank" rel="noopener" href="https://www.kocpc.com.tw/archives/408049">微軟證實 Windows 11 的 Bug 會讓部分印表機無法安裝</a><br><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win11/e5f51d12-d72d-4ee1-b7f8-bb9914225f1e">Win11 22H2 版本出现 0x000000709 无法访问打印机故障</a><br><a target="_blank" rel="noopener" href="https://cheongtat.tw/2021/11/24/%E8%A7%A3%E6%B1%BA%E5%BE%AE%E8%BB%9F%E6%9B%B4%E6%96%B0%E9%80%A0%E6%88%90%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%8Cwin10-21h2-21h1-20h2%E6%9B%B4%E6%96%B0%E7%BF%BB%E8%BB%8A%EF%BC%8C%E4%BF%AE%E6%AD%A3kb5005565/">解決微軟更新造成的問題，Win10 21H2&#x2F;21H1&#x2F;20H2 更新翻車，修正 KB5005565、KB5004945、KB5004760、KB5003690 造成的問題(區網印表機無法列印，網路印表機新增出現 0x0000011b 錯誤)</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/543986023">修复局域网共享打印机 0x0000011b 错误</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/topic/%E7%AE%A1%E7%90%86%E9%87%9D%E5%B0%8D-cve-2021-1678-kb4599464-%E6%89%80%E5%81%9A%E4%B9%8B%E5%8D%B0%E8%A1%A8%E6%A9%9F-rpc-%E7%B9%AB%E7%B5%90%E8%AE%8A%E6%9B%B4%E7%9A%84%E9%83%A8%E7%BD%B2-12a69652-30b9-3d61-d9f7-7201623a8b25">管理針對 CVE-2021-1678 (KB4599464) 所做之印表機 RPC 繫結變更的部署</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">microsoft</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/01/05/20240105%20Windows%2011%20%E7%84%A1%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%B1%E7%94%A8%E5%8D%B0%E8%A1%A8%E6%A9%9F/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20231206 Win10 語言列消失" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -944,330 +1297,9 @@
 
 
   
-    <article id="post-20230906 如何移除應用程式留下的「屍體」" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/09/06/20230906%20%E5%A6%82%E4%BD%95%E7%A7%BB%E9%99%A4%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E7%95%99%E4%B8%8B%E7%9A%84%E3%80%8C%E5%B1%8D%E9%AB%94%E3%80%8D/" target="_blank">如何移除應用程式留下的「屍體」</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/09/06/20230906%20%E5%A6%82%E4%BD%95%E7%A7%BB%E9%99%A4%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E7%95%99%E4%B8%8B%E7%9A%84%E3%80%8C%E5%B1%8D%E9%AB%94%E3%80%8D/" class="archive-article-date">
-        <time datetime="2023-09-06T11:06:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-06</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>由於公司電腦可使用的容量越來越小，外加 edge 日漸穩定，把之前裝在某些電腦的 chrome 移除，但發現移除 chrome 之後在應用清單有「屍體」，就是當初跟著 chrome 下載進來的一些小 app，現在主要程式移除了沒錯，但圖示還留著，按解除安裝還會說找不到檔案路徑(忘記截圖了，大致上就是找不到 google 資料夾的 chrome.exe 之類的)，掛在那邊也很多餘，像下圖的 Gmail 圖示:<br><img src="https://hackmd.io/_uploads/HkDrnuVAh.png"></p>
-<h2 id="解決方式"><a href="#解決方式" class="headerlink" title="解決方式"></a>解決方式</h2><p>問 Chatgpt，它說右邊的<code>程式與功能</code>裡移除就行了~<br><img src="https://hackmd.io/_uploads/SJMNr8BAh.png"></p>
-<p><img src="https://hackmd.io/_uploads/r1VXBLBAh.png"></p>
-<p>對就這麼簡單，因為網路上 google 到的幾乎都是怎麼卸載，沒有提到會有殘留檔案(圖示?)的問題，一樣值得紀錄啦~<br>移除過後也可以去 C 槽的 appData 資料夾把 google 資料夾刪除，這樣可以清得更乾淨。</p>
-<h6 id="mur-前輩說把這個移除很麻煩，這沒有很麻煩-r…"><a href="#mur-前輩說把這個移除很麻煩，這沒有很麻煩-r…" class="headerlink" title="mur:前輩說把這個移除很麻煩，這沒有很麻煩 r…?"></a><del>mur:前輩說把這個移除很麻煩，這沒有很麻煩 r…?</del></h6>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/09/06/20230906%20%E5%A6%82%E4%BD%95%E7%A7%BB%E9%99%A4%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F%E7%95%99%E4%B8%8B%E7%9A%84%E3%80%8C%E5%B1%8D%E9%AB%94%E3%80%8D/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230831 ThunderBird - 天吶 對方的信箱爆了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/31/20230831%20ThunderBird%20-%20%E5%A4%A9%E5%90%B6%20%E5%B0%8D%E6%96%B9%E7%9A%84%E4%BF%A1%E7%AE%B1%E7%88%86%E4%BA%86/" target="_blank">ThunderBird - 天吶 對方的信箱爆了</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/31/20230831%20ThunderBird%20-%20%E5%A4%A9%E5%90%B6%20%E5%B0%8D%E6%96%B9%E7%9A%84%E4%BF%A1%E7%AE%B1%E7%88%86%E4%BA%86/" class="archive-article-date">
-        <time datetime="2023-08-31T12:59:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-31</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="問題描述"><a href="#問題描述" class="headerlink" title="問題描述"></a>問題描述</h2><p>昨天有個業務說影印機掃描PDF檔傳到他的email收不到，助理的卻可以，請我幫他看一下，我想到幾種可能:</p>
-<ol>
-<li>他的IP線路又不通了</li>
-<li>他的應用程式有問題</li>
-<li>其實只是檔案太大還沒發出來，或是傳輸過程發生錯誤</li>
-<li>其實根本寄錯人</li>
-</ol>
-<p>我先點他的下載郵件按鈕，正常顯示正在下載郵件，過幾秒變成目前沒有新郵件，可以排除1.、2.的原因，同時我也立刻去掃瞄了一頁pdf，他的信箱也收的到，排除了3.和4.。這時助理說她轉寄信件給業務的時候會跳出一封信:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">主旨: 	Undelivered Mail Returned to Sender</span><br><span class="line"></span><br><span class="line">This is the mail system at host dns1.XXXX.com.tw.</span><br><span class="line"></span><br><span class="line">I&#x27;m sorry to have to inform you that your message could not</span><br><span class="line">be delivered to one or more recipients. It&#x27;s attached below.</span><br><span class="line"></span><br><span class="line">For further assistance, please send mail to postmaster.</span><br><span class="line"></span><br><span class="line">If you do so, please include this problem report. You can</span><br><span class="line">delete your own text from the attached returned message.</span><br><span class="line"></span><br><span class="line">                   The mail system</span><br><span class="line"></span><br><span class="line">&lt;XXX@XXX.com.tw&gt;: maildir delivery failed: MailBox is out of quota!!</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>看到最後一行，懂了，<strong>接收方的收件夾爆了</strong>，那我把信件搬出收件夾可以吧?建了一個新資料夾在電腦本機，把將近2000封信件移過去(這個獨立文章說明)，並且壓實檔案(google很多篇都說要把快取刪除、清除垃圾桶…)，請助理再寄一次，還是不行。</p>
-<h2 id="處理方式"><a href="#處理方式" class="headerlink" title="處理方式"></a>處理方式</h2><p>試了幾次都失敗，這時我想起工廠那邊負責管理信箱伺服器的同事，他說每個人的信箱都有固定的容量配額，他們那邊的同事都是收完信就會自動刪除伺服器上的信件，但電腦的信件都還是存在，聽完講解之後，大概整理出我們電腦信箱的收件模式，後來跟部門前輩確認過想法也是正確的:</p>
-<p><img src="https://hackmd.io/_uploads/BJxL3O6Th.png"></p>
-<p>這次的問題是出在<font color="red">收件人(紅色區塊)的mail server容量滿了，寄件人沒辦法把信件送進接收方的mail server空間</font>，所以收件人在應用程式(粉色區塊)無法接收到新的信件。解決方式就是去伺服器方提供的管理介面，網址可能是郵件伺服器ip+使用的port(這個還是要問負責管理的人，我們公司是這樣，不代表全部的公司)，輸入信箱帳密就可以看到伺服器上所儲存的信件，<font color="red">刪除「伺服器上」的信件，並清空「伺服器上」的垃圾桶</font>，把空間空出來，就可以正常收發。</p>
-<p>附上mail server的容量示意，滿出來的當事帳號忘記截圖(請自行想像399.95MB&#x2F;400MB的畫面)，拿我自己的來說明，這邊顯示200MB就是對應上圖，我的紅色區塊只能儲存200M容量的信件，目前只使用了3.77MB，不同廠商的介面我猜也會有這個。<br><img src="https://hackmd.io/_uploads/SyXKZF66h.png"></p>
-<p>至於上面提到的那封信件就是<font color="red">伺服器發給寄件人</font>說:「對方的收件匣爆了，你的信進不去喔」，寄件人就要去通知收件人該清理信箱了~</p>
-<h3 id="等等…那跟ThunderBird有甚麼關係"><a href="#等等…那跟ThunderBird有甚麼關係" class="headerlink" title="等等…那跟ThunderBird有甚麼關係"></a>等等…那跟ThunderBird有甚麼關係</h3><p>打開<code>工具/帳號設定</code>，在帳號下的<code>伺服器設定</code>，我們可以看到這邊有個選項是不刪除伺服器上的郵件，<br><img src="https://hackmd.io/_uploads/rkpRGYT6n.png"><br>由於這個業務有時會用手機收發信，如果不勾選這個選項，電腦接收信件之後，他的手機就會看不到剛才接收的那封信，因為電腦接收信件的當下，伺服器(紅色區塊)就會把信件刪除，當手機(粉色區塊)要去下載信件的時候，信件早就已經從伺服器上刪除了，所以可以用這個選項把信件保留下來。</p>
-<p>但是!這個業務的電腦沒有設定定期刪除的天數，所以從6月多開始的信件都囤積在server上，也沒有整理郵件，累積到現在就塞爆了!</p>
-<h3 id="刪除伺服器上的郵件會對我的信箱有甚麼影響嗎"><a href="#刪除伺服器上的郵件會對我的信箱有甚麼影響嗎" class="headerlink" title="刪除伺服器上的郵件會對我的信箱有甚麼影響嗎?"></a>刪除伺服器上的郵件會對我的信箱有甚麼影響嗎?</h3><p><font color="red">其實不會，因為你的信件已經下載到應用程式裡了，要備份會動到的檔案也是下載下來的</font>。硬要說影響的話，可能就是未來有一台新的裝置(手機、電腦或其他)要裝信箱應用，就像上面提到的，連接這個mail server的時候會載不到伺服器上已經刪除的信件，再舉個有情境的例子好了:</p>
-<p>我信箱伺服器設定保存最多30天就會刪除，有一封31天前用ThunderBird收到的信，伺服器上已經被刪除、消失了，我本機的ThunderBird還是有這封信，可是我用剛剛裝的gmail app去收同樣這個信箱的信，我載不到這封31天前的信。</p>
-<h2 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h2><p>定期清才不會發生這次的問題，手動刪除信件也可以(符合第二個選項:直到我將它們刪除)，個人推薦設定時間自動刪除，畢竟工作不一定有時間整理信箱阿~ 而且每天都會收信不太會有還沒載到本機應用程式就被刪除的問題，一直留著不知道會不會再看的，就算容量開到1TB，總有一天也是會滿的呀~</p>
-<h6 id="這篇誕生就是…我跟業務解釋很久，他一直堅持刪掉伺服器的信件手機會收不到，整理思緒用的…"><a href="#這篇誕生就是…我跟業務解釋很久，他一直堅持刪掉伺服器的信件手機會收不到，整理思緒用的…" class="headerlink" title="這篇誕生就是…我跟業務解釋很久，他一直堅持刪掉伺服器的信件手機會收不到，整理思緒用的…"></a>這篇誕生就是…我跟業務解釋很久，他一直堅持刪掉伺服器的信件手機會收不到，整理思緒用的…</h6>
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">郵件</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/31/20230831%20ThunderBird%20-%20%E5%A4%A9%E5%90%B6%20%E5%B0%8D%E6%96%B9%E7%9A%84%E4%BF%A1%E7%AE%B1%E7%88%86%E4%BA%86/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230829 讓特定網站在Edge中自動以IE模式開啟" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/08/27/20230829%20%E8%AE%93%E7%89%B9%E5%AE%9A%E7%B6%B2%E7%AB%99%E5%9C%A8Edge%E4%B8%AD%E8%87%AA%E5%8B%95%E4%BB%A5IE%E6%A8%A1%E5%BC%8F%E9%96%8B%E5%95%9F/" target="_blank">讓特定網站在Edge中自動以IE模式開啟</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/08/27/20230829%20%E8%AE%93%E7%89%B9%E5%AE%9A%E7%B6%B2%E7%AB%99%E5%9C%A8Edge%E4%B8%AD%E8%87%AA%E5%8B%95%E4%BB%A5IE%E6%A8%A1%E5%BC%8F%E9%96%8B%E5%95%9F/" class="archive-article-date">
-        <time datetime="2023-08-27T11:49:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-08-27</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>好幾次工作被打斷都是被叫去看 XXX 網站的按鈕不能按、不能登入、導覽列不見……以上 87%是 IE 惹的禍!<br>因為我們公司作業用到的系統幾乎都還是活在 IE 才能運作，偏偏現在瀏覽器只能用 Edge，每隔一段時間就要手動添加網址到 IE 模式清單裡，無奈時間過得很快，大家的電腦又是不同時間登錄的 IE 模式，變得幾乎每 2、3 天就有人因為瀏覽器模式變回 IE 而發生使用問題(以這半個月來說，就發生了 4 次)，在系統還來不及更新的狀況下，只好把目標轉往設定自動開啟 IE 模式吧~</p>
-<p>故事講太久了，開始解說!</p>
-<h2 id="步驟一、-下載清單編輯檔案"><a href="#步驟一、-下載清單編輯檔案" class="headerlink" title="步驟一、 下載清單編輯檔案"></a>步驟一、 下載清單編輯檔案</h2><ol>
-<li><p>Microsoft 官方有提供一個<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/download/details.aspx?id=49974">企業網站清單編輯應用程式(Enterprise Mode Site List Manager)</a>，它可以用來製作匯入範本檔用的 xml 檔，下載之後啟動安裝。</p>
-</li>
-<li><p>安裝好之後打開應用，點左下角的 Add 按鈕新增網站<br><img src="https://hackmd.io/_uploads/rJXsI1iTn.png"><br>輸入網址，或是簡易的資訊，像是我們公司的系統都是 IP 網址，下面就會註記是哪個系統，這樣後來不熟系統網址的，也比較好辨識<br><img src="https://hackmd.io/_uploads/BJitwys6n.png"><br>補充:如果是 IP 下有分頁的網址(例如 192.168.2.107&#x2F;xxx.jsp)</p>
-</li>
-<li><p>設定完所有網址之後，按左上角<code>File/Save to XML</code>，儲存在自己好管理的地方就可以了。</p>
-</li>
-</ol>
-<h2 id="步驟二、-使用-Edge-範本檔設定"><a href="#步驟二、-使用-Edge-範本檔設定" class="headerlink" title="步驟二、 使用 Edge 範本檔設定"></a>步驟二、 使用 Edge 範本檔設定</h2><ol>
-<li><p><code>win + R</code>輸入<code>gpedit.msc</code>跳出本機群組原則編輯器。</p>
-</li>
-<li><p>找到<code>電腦設定/系統管理範本/Microsoft Edge</code>的<code>設定「企業模式網站清單」</code><br><img src="https://hackmd.io/_uploads/rkJE7Jj6h.png"></p>
-</li>
-</ol>
-<p>如果沒有看到 Edge 的管理範本，可以參考之前的文章:<a target="_blank" rel="noopener" href="https://hackmd.io/sf3RECvvQU-KmVK-h2qGBA?view">如何建立 Edge 群組原則管理範本檔(Win10)</a></p>
-<p>3.勾選<code>啟用</code>，在下方輸入欄填步驟一產生的檔案位置，要讓範本檔可以讀取剛才產生的網站清單，設定好就可以點確定。</p>
-<p>輸入格式有這幾種:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(建議) HTTPS 位置：https://iemode/sites.xml</span><br><span class="line">區域網路檔案：\\network\shares\sites.xml</span><br><span class="line">本機檔案： file:///c:/Users/ &lt; user &gt; /Documents/sites.xml</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://hackmd.io/_uploads/BkQEt1jp2.png"></p>
-<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p>打開 edge 就可以看到剛才的網頁自動以 IE 模式開啟，太棒了~<br>但缺點是它沒辦法像之前手動添加的時候一樣可以直接從瀏覽器上設定要不要結束 IE 模式，如果是要時常切換的網站就不建議添加到 XML 裡喔<br><img src="https://hackmd.io/_uploads/rJkisyjah.png"><br>如果後續要變更網頁清單，只要再從 Enterprise Mode Site List Manager 編輯，產生新的 xml 檔覆蓋舊檔就可以套用設定，真的是非常方便</p>
-<h2 id="可能會遇到的問題"><a href="#可能會遇到的問題" class="headerlink" title="可能會遇到的問題"></a>可能會遇到的問題</h2><p>分享我在操作的時候遇過的情況</p>
-<h3 id="為甚麼打開那個網站還是-Edge-模式"><a href="#為甚麼打開那個網站還是-Edge-模式" class="headerlink" title="為甚麼打開那個網站還是 Edge 模式?"></a>為甚麼打開那個網站還是 Edge 模式?</h3><ol>
-<li>本機檔案開頭要有<code>file:///</code>不然它是不會甩你的~</li>
-<li>路徑如果是從資料夾複製過來的，斜線會是反的，例如<br>複製的: <code>C:\Users\Admin\Desktop\setting\edge</code><br>給範本檔看的: <code>C:/Users/Admin/Desktop/setting/edge</code></li>
-<li>要重開瀏覽器才能吃到設定</li>
-<li>如果變更得太頻繁，可能要幾分鐘才會生效</li>
-<li>區域網路檔案如果是捷徑可能會讀不到，我複製檔案放在桌面上才正確讀取</li>
-</ol>
-<h2 id="進到別的頁面怎麼又變回-IE-模式了"><a href="#進到別的頁面怎麼又變回-IE-模式了" class="headerlink" title="進到別的頁面怎麼又變回 IE 模式了?"></a>進到別的頁面怎麼又變回 IE 模式了?</h2><p>這個情況發生在我用 IE 模式的登入系統成功之後，跳出我超過合法登入時效的訊息，發現瀏覽器又變回 edge，這個怎麼處裡好呢?</p>
-<p>又是設定範本檔囉~這次看到的是<code>指定從Internet Explorer模式頁面啟動時，「頁面內」導航至未設定網站的方式</code>，把它啟用，更改為<code>在IE模式中保留所有頁面內導航</code>，為甚麼要用這個官方最不推薦的選項呢?三個選項分別是:</p>
-<ul>
-<li><code>預設</code>:就跟我們原本沒設定一樣，差別就是這個範本是已啟用的狀態。</li>
-<li><code>在IE中只保留自動導航</code>:跟預設只差在自動跳轉頁面會保留 IE 模式，像是登入之後的自動跳轉正常，但點去別的系統連結就又會跳回 Edge 模式。</li>
-<li><code>在IE模式中保留所有頁面內導航</code>:凡是從這裡點出去的所有頁面，都是 IE 模式，這個最符合我的需求。<br><img src="https://hackmd.io/_uploads/r1u_lfs6h.png"></li>
-</ul>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://jdev.tw/blog/6744/microsoft-edge-ie-mode-automatically-switch">讓 MS-Edge 自動以 IE 模式瀏覽特定網站</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-ie-mode-site-list-manager">Microsoft Edge 中的企業網站清單管理員</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-ie-mode-policies">Microsoft - 設定 IE 模式原則</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-learnmore-inpage-nav">在 Internet Explorer 模式中保留頁面內瀏覽</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Edge</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/08/27/20230829%20%E8%AE%93%E7%89%B9%E5%AE%9A%E7%B6%B2%E7%AB%99%E5%9C%A8Edge%E4%B8%AD%E8%87%AA%E5%8B%95%E4%BB%A5IE%E6%A8%A1%E5%BC%8F%E9%96%8B%E5%95%9F/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1279,7 +1311,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2023 <a href="http://charsin1olly.github.io/" target="_blank">Charsin</a>
+    		&copy; 2018-2024 <a href="http://charsin1olly.github.io/" target="_blank">Charsin</a>
     	</div>
       	<div class="footer-right">
 			
@@ -1483,6 +1515,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">microsoft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
             
             <div class="clearfix"></div>

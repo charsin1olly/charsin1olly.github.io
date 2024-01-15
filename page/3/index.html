@@ -180,6 +180,331 @@
             
 
   
+    <article id="post-20230726 如何使用JDBC連接資料庫(mysql)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/26/20230726%20%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8JDBC%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB(mysql)/" target="_blank">如何使用JDBC連接資料庫(mysql)</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/26/20230726%20%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8JDBC%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB(mysql)/" class="archive-article-date">
+        <time datetime="2023-07-26T15:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-26</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>這邊我是連接公司的XAMPP伺服器上的MySQL，以為連接方式會跟一般MySQL不同(因為公司專案的檔案寫法跟連接SQL Server差很多，雖然看得出意思差不多……)</p>
+<h2 id="1-產生一個Package來裝檔案"><a href="#1-產生一個Package來裝檔案" class="headerlink" title="1. 產生一個Package來裝檔案"></a>1. 產生一個Package來裝檔案</h2><p>功能相近或相關的JAVA檔案通常會放在同一個Package裡，這次要接資料庫也一樣，幫它開一個包廂(X)，package的命名也有慣例，這邊就不歪樓了 <del>(實際上是自己也還搞不清楚)</del><br>在專案的<code>Java Resources/src</code>資料夾右鍵，新建一個Package(套件)，然後建立一個JAVA檔案<code>dbConnect.java</code><br><img src="https://hackmd.io/_uploads/B1Lv4SC92.png"></p>
+<h2 id="2-準備套件"><a href="#2-準備套件" class="headerlink" title="2. 準備套件"></a>2. 準備套件</h2><p>在JAVA使用SQL主要是依賴java.sql這個系列的(?)jar包，剛開始嘗試寫連接的code時，Eclipse的自動修正幫我import了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.Statement;</span><br></pre></td></tr></table></figure>
+<p>雖然要能動，import這些檔案就行了，但import一大串不太好看，萬一又要用其他sql功能可能又要再加，在網上查到很多資料都是直接引入<code>java.sql.*</code>，所以這邊我就引入整包sql的package。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.sql.*;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="3-連接"><a href="#3-連接" class="headerlink" title="3. 連接"></a>3. 連接</h2><p>終於可以開始連接資料庫啦~老樣子先創建一個main方法，使用try執行，我習慣在測試的時候印訊息，確保有成功啟動，搭配catch捕捉錯誤訊息比較好除錯。</p>
+<p>a. 首先裝上第一個零件：driver，使用<code>Class.forName(dbDriver)</code>註冊驅動，如果有順利啟動就會在終端機Log看到「驅動成功啟動」的訊息</p>
+<p>b. 第二個零件：資料庫登入訊息，就像上飛機要檢查機票一樣，要知道我們要去哪裡，核對身分證以及姓名，這邊DriverManager提供的<code>getConnection()</code>方法可以告訴電腦我要連去哪個資料庫(格式：<code>jdbc:資料庫://IP位址:port/欲連接的table</code>)、登入資料庫的帳號密碼(根據之前Rails開發的經驗，Java的帳號密碼資訊應該也是也要丟在其他檔案的吧，這樣直接寫在Code超可怕的耶<del>“</del> 有空研究一下)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection dbConn=DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>, <span class="string">&quot;(你的帳號)&quot;</span>, <span class="string">&quot;(你的密碼)&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>總結這個步驟3，現在code長這樣</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">dbConnect</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;驅動成功啟動&quot;</span>);</span><br><span class="line">            </span><br><span class="line">            Connection dbConn=DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>, <span class="string">&quot;(你的帳號)&quot;</span>, <span class="string">&quot;(你的密碼)&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;連接成功&quot;</span>);</span><br><span class="line"></span><br><span class="line">        &#125;<span class="keyword">catch</span>(ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;找不到驅動程式&quot;</span>);</span><br><span class="line">			</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;加載失敗&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-查詢SQL資料"><a href="#4-查詢SQL資料" class="headerlink" title="4. 查詢SQL資料"></a>4. 查詢SQL資料</h2><p>在try的block繼續加上code，畢竟連接成功才能搜尋嘛~<br>建立一個和資料庫溝通用的Statement物件，搭配儲存結果用的ResultSet物件進行SQL查詢，再用<br>迴圈把結果轉出來</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> dbConn.createStatement();</span><br><span class="line">String sql=<span class="string">&quot;SELECT *  FROM user&quot;</span>;</span><br><span class="line"><span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);		</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;-----資料輸出開始-----&quot;</span>);</span><br><span class="line"><span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;gender&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">email</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;email&quot;</span>); </span><br><span class="line">    System.out.println(name+<span class="string">&quot;,&quot;</span>+age+<span class="string">&quot;,&quot;</span>+gender+<span class="string">&quot;,&quot;</span>+email);</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(<span class="string">&quot;-----資料輸出完畢-----&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>呈現出來的結果<br><img src="https://hackmd.io/_uploads/SJy0gvR5h.png"></p>
+<h2 id="5-清除垃圾"><a href="#5-清除垃圾" class="headerlink" title="5. 清除垃圾"></a>5. 清除垃圾</h2><p>最後，我們使用完查詢要記得關閉資料庫連接，把剛才建立的物件清乾淨，減少記憶體的負擔</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dbConn.close();</span><br><span class="line">stmt.close();</span><br><span class="line">rs.close();</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-整理連接用的數據"><a href="#6-整理連接用的數據" class="headerlink" title="6. 整理連接用的數據"></a>6. 整理連接用的數據</h2><p>全部塞在code裡面很長，把這些資料整理出來另外寫比較好維護，而把這些落落長的資料寫成變數放在方法裡也比較好理解這些方法帶入的資料代表的是什麼。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String dbDriver=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String dbURL=<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>;</span><br><span class="line">                            </span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String userName=<span class="string">&quot;你的帳號&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String userPassword=<span class="string">&quot;你的密碼&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="最後成果"><a href="#最後成果" class="headerlink" title="最後成果"></a>最後成果</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.test.dbConnect;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">dbConnect</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String dbDriver=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String dbURL=<span class="string">&quot;jdbc:mysql://localhost:3306/test&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String userName=<span class="string">&quot;你的帳號&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String userPassword=<span class="string">&quot;你的密碼&quot;</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(dbDriver);</span><br><span class="line">			</span><br><span class="line">            Connection dbConn=DriverManager.getConnection(dbURL, userName, userPassword);</span><br><span class="line">            <span class="type">Statement</span> <span class="variable">stmt</span> <span class="operator">=</span> dbConn.createStatement();</span><br><span class="line">			</span><br><span class="line">            String sql=<span class="string">&quot;SELECT *  FROM user&quot;</span>;</span><br><span class="line">            <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);			</span><br><span class="line">            <span class="keyword">while</span> (rs.next()) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">                <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> rs.getInt(<span class="string">&quot;age&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;gender&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">email</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;email&quot;</span>);</span><br><span class="line">                System.out.println(name+<span class="string">&quot;,&quot;</span>+age+<span class="string">&quot;,&quot;</span>+gender+<span class="string">&quot;,&quot;</span>+email);</span><br><span class="line">            &#125;</span><br><span class="line">                    </span><br><span class="line">            dbConn.close();</span><br><span class="line">            stmt.close();</span><br><span class="line">            rs.close();</span><br><span class="line">	        </span><br><span class="line">        &#125;<span class="keyword">catch</span>(ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;找不到驅動程式&quot;</span>);</span><br><span class="line">			</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">&quot;加載失敗&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="為什麼還是連不上"><a href="#為什麼還是連不上" class="headerlink" title="為什麼還是連不上?"></a>為什麼還是連不上?</h2><h3 id="java-lang-ClassNotFoundException-com-mysql-jdbc-Driver"><a href="#java-lang-ClassNotFoundException-com-mysql-jdbc-Driver" class="headerlink" title="java.lang.ClassNotFoundException: com.mysql.jdbc.Driver"></a>java.lang.ClassNotFoundException: com.mysql.jdbc.Driver</h3><p>出現這就代表mysql-connecter的jar包可能沒有被成功的引入到這個專案，這次的解決方法是：<br>a. 工作區的專案名稱按右鍵&#x2F;內容<br><img src="https://hackmd.io/_uploads/Syn9oE09h.png"></p>
+<p>b. JAVA 建置路徑&#x2F;按類別路徑&#x2F;add library&#x2F;Web 應用程式程式庫&#x2F;下一步&#x2F;完成<br><img src="https://hackmd.io/_uploads/Hyi87SC52.png"><br>如果本身專案有Web應用程式庫，可以檢查看看<code>WEB-INF\lib</code>資料夾有沒有<code>mysql-connector-java-(版本號).jar</code>檔案，可能只缺它，如果沒有的話可以去<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/connector/j/5.0.html">MySQL</a>下載，windows可以選擇Platform Independent版本的zip檔，解壓縮就會獲得jar檔了。</p>
+<p>c.新增完成後就能解決這個問題~</p>
+<p>比對了一下發現Java Resources底下的Libraries資料夾，原本直接寫好code就能動的專案，底下有個Web應用程式庫，不知道是不是new專案的時候選了什麼選項自動生成的，既然漏掉了，現在知道怎麼補救了(經驗+1)<br><img src="https://hackmd.io/_uploads/BJvV5E05n.png"></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/jdbc/overview/index.html">Lesson: JDBC Introduction</a><br><a target="_blank" rel="noopener" href="https://tw511.com/20/213/8346.html">JDBC查詢資料範例</a><br><a target="_blank" rel="noopener" href="https://tw511.com/20/213/8321.html">JDBC快速入門教學</a><br><a target="_blank" rel="noopener" href="https://docs.informatica.com/integration-cloud/data-integration-connectors/current-version/mysql-connector/introduction-to-mysql-connector/administration-of-mysql-connector/installing-mysql-jdbc-driver.html">Installing MySQL JDBC driver(下載driver教學)</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17484764/java-lang-classnotfoundexception-com-mysql-jdbc-driver-in-eclipse">java.lang.ClassNotFoundException: com.mysql.jdbc.Driver in Eclipse</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SQL</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/26/20230726%20%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8JDBC%E9%80%A3%E6%8E%A5%E8%B3%87%E6%96%99%E5%BA%AB(mysql)/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230721 Thunderbird 關於資料備份匯入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/" target="_blank">Thunderbird，關於資料備份匯入</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/" class="archive-article-date">
+        <time datetime="2023-07-21T13:48:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-21</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>公司信箱用的是Thunderbird，遇到某些狀況需要重裝，同事的資料都需要備份(之前有一次忘記備份差點被追殺orz)，可是Thunderbird的資料夾功能可能因為本人覺得不是那麼好理解，來簡單說說怎麼備份~</p>
+<p>相關的檔案在<code>C:\Users\(使用者名稱 )\AppData\Roaming\Thunderbird\Profiles\(亂數).default-release</code>這一層資料夾裡，而亂數名稱的資料夾則是一個亂數對應一個帳號，例如現在我有新增一個A信箱的帳號，就會產生一個像是lyh99o1n之類的亂數名稱資料夾，再新增一個B信箱的話，就會再產生另一個新的亂數名稱hqk49oc9資料夾，就可以得知關於這個帳號的資料都在這個資料夾裡，整個資料夾複製到找的到的地方，但我自己習慣整個Thunderbird資料夾都複製，以免有遺漏。</p>
+<h2 id="信件備份匯入"><a href="#信件備份匯入" class="headerlink" title="信件備份匯入"></a>信件備份匯入</h2><p>亂數資料夾點開之後會看到非常多的資料夾以及檔案，找到Mail資料夾，他是用來存放信件的。</p>
+<p>打開重新安裝的Thunderbird同樣找到<code>C:\Users\(使用者名稱)\AppData\Roaming\Thunderbird\Profiles\</code>資料夾，就會看見多了一個新的亂數資料夾，點進去，把剛才複製的Mail資料夾貼上並且覆蓋即可。</p>
+<p>小提醒:如果沒有要定期自動刪郵件，重裝之後也要自己在<code>帳號設定/伺服器設定</code>那邊勾選不刪除伺服器上的郵件，這樣可以避免下次要重裝結果有信件遺失的意外。</p>
+<h2 id="通訊錄匯入"><a href="#通訊錄匯入" class="headerlink" title="通訊錄匯入"></a>通訊錄匯入</h2><p>亂碼資料夾下有三個檔案關於通訊錄資料，分別是</p>
+<ul>
+<li>個人通訊錄：abook.mab</li>
+<li>收集到的E-mail：history.mab</li>
+<li>群組：impab.mab</li>
+</ul>
+<p>原本我以為只要複製貼上到相對應位置就可以成功，結果怎麼試都沒用，突然想起剛才研究匯出檔案類型時路過的匯入檔案按鈕，巧了，mab檔案可以匯入:<br><img src="https://hackmd.io/_uploads/r1XIfjv53.png"></p>
+<p>這樣就選擇使用mab檔匯入資料，下一步選擇檔案，把剛才備份、也就是舊資料夾的<code>abook.mab</code>、<code>history.mab</code>、<code>impad.mab</code>這三個檔案依次匯入，通訊錄資料就可以回復囉~</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="http://dennisliao.blogspot.com/2012/09/thunderbird.html">Thunderbird通訊錄手動還原</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工作筆記</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/21/20230721%20Thunderbird%20%E9%97%9C%E6%96%BC%E8%B3%87%E6%96%99%E5%82%99%E4%BB%BD%E5%8C%AF%E5%85%A5/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-20230720 在JAVA Web的JSP檔案使用Bootstrap" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/07/20/20230720%20%E5%9C%A8JAVA%20Web%E7%9A%84JSP%E6%AA%94%E6%A1%88%E4%BD%BF%E7%94%A8Bootstrap/" target="_blank">在JAVA Web的JSP檔案使用Bootstrap</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/07/20/20230720%20%E5%9C%A8JAVA%20Web%E7%9A%84JSP%E6%AA%94%E6%A1%88%E4%BD%BF%E7%94%A8Bootstrap/" class="archive-article-date">
+        <time datetime="2023-07-20T12:15:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-07-20</time>
+</a>
+
+  
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>發現公司系統的專案都是寫原生CSS，開發切版花了很多時間，不如來用一下之前學過的Bootstrap加速一下~<br>先貼上一段bootstrap的程式碼，還沒成功引入bootstrap的畫面<br><img src="https://hackmd.io/_uploads/HkOPgNU9n.png"></p>
+<p>預期會變成這樣，它是一個可以展開、摺疊的摺頁，這樣就需要引入bootstrap的CSS和JavaScript控制的這兩個部分<br><img src="https://hackmd.io/_uploads/Byiix48ch.png"></p>
+<h2 id="最簡單粗暴的-線上導入"><a href="#最簡單粗暴的-線上導入" class="headerlink" title="最簡單粗暴的-線上導入"></a>最簡單粗暴的-線上導入</h2><p>在head標籤中加入這串，這樣就能導入css部分的程式碼：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC&quot; crossorigin=&quot;anonymous&quot;&gt;		</span><br></pre></td></tr></table></figure>
+
+<p>別忘了還有負責動態效果的JavaScript，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js&quot; integrity=&quot;sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用下載版本的Bootstrap"><a href="#使用下載版本的Bootstrap" class="headerlink" title="使用下載版本的Bootstrap"></a>使用下載版本的Bootstrap</h2><ol>
+<li><p>先到<a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/getting-started/download/">載點</a>下載CSS以及JS的檔案，這裡下載完會獲得一個壓縮檔<br><img src="https://hackmd.io/_uploads/Sk8WxILc3.png"></p>
+</li>
+<li><p>在專案的WebContent資料夾裡新建一個Bootstrap資料夾(或是其他名字也可以)，把剛才下載的壓縮檔裡的CSS、JS資料夾塞進去，像這樣(js資料夾的錯誤還沒搞清楚是怎麼一回事，但目前用起來沒什麼問題)<br><img src="https://hackmd.io/_uploads/HJBEW8U93.png"></p>
+</li>
+<li><p>和上一種方法相同，將這段程式碼貼在head標籤內，將路徑位置改成資料夾的位置就可以正常使用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;link href=&quot;Bootstrap/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;  &gt;</span><br><span class="line">&lt;script src=&quot;Bootstrap/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.0/getting-started/download/">bootstrap-Download</a><br><a target="_blank" rel="noopener" href="https://vitalflux.com/get-started-bootstrap-ui-eclipse/">How to Get Started with Bootstrap (UI) &amp; Eclipse</a><br><a target="_blank" rel="noopener" href="https://www.javaguides.net/2020/01/add-bootstrap-to-jsp-page.html">Add Bootstrap to JSP Page</a></p>
+
+    
+
+    <!--  -->
+
+    <!--  -->
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/07/20/20230720%20%E5%9C%A8JAVA%20Web%E7%9A%84JSP%E6%AA%94%E6%A1%88%E4%BD%BF%E7%94%A8Bootstrap/">展開全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-20230711 Github如何使用SSH推送檔案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -936,393 +1261,9 @@
 
 
   
-    <article id="post-20230612 Java 變數類型 - 基本類型篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/" target="_blank">Java 變數類型 - 基本類型篇</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/" class="archive-article-date">
-        <time datetime="2023-06-11T01:35:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-11</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>因為JAVA是一種強類型的語言，所以任何變數在宣告的時候就會賦予它一個值的類型，有哪些類型呢？</p>
-<h2 id="如何宣告JAVA變數？"><a href="#如何宣告JAVA變數？" class="headerlink" title="如何宣告JAVA變數？"></a>如何宣告JAVA變數？</h2><p>在看類型之前先了解一下JAVA變數的結構，是由類型、變數名稱、＝、值組成的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int age = 20;</span><br></pre></td></tr></table></figure>
-<p>int是類型，代表這個變數是整數；age為變數名稱；20則是賦予給age的值（已經設定是int了，不能帶小數點，否則會顯示錯誤）。</p>
-<p>或是可以拆開分成兩個步驟：先宣告變量，再賦予值：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int age;</span><br><span class="line">age = 18;</span><br></pre></td></tr></table></figure>
-
-<h2 id="數字"><a href="#數字" class="headerlink" title="數字"></a>數字</h2><p>宣告數值類型除了要符合整數、小術類型，也不能超出數據大小範圍，可以依照需求設定變數類型。</p>
-<h3 id="整數"><a href="#整數" class="headerlink" title="整數"></a>整數</h3><ol>
-<li><strong>byte</strong>	(1 byte)<br> 範圍-128～127，例如：<code>byte myNum = 100;</code></li>
-<li><strong>short</strong> (2 bytes)<br> 範圍-32,768～32,767，例如：<code>short myNum = 5000;</code></li>
-<li><strong>int(開發常用)</strong> (4 bytes)<br> 範圍-2,147,483,648～2,147,483,647，例如：<code>int myNum = 100000;</code></li>
-<li><strong>long</strong> (8 bytes)<ul>
-<li>範圍-9,223,372,036,854,775,808～9,223,372,036,854,775,807</li>
-<li>以”Ｌ”結尾，例如：<code>long myNum = 15000000000L;</code></li>
-</ul>
-</li>
-</ol>
-<h3 id="小數"><a href="#小數" class="headerlink" title="小數"></a>小數</h3><ol>
-<li><p><strong>float</strong> (4 bytes)</p>
-<ul>
-<li>範圍3.4e−038～3.4e+038 (可到小數7位，範圍比double更大，因為精度相較不高)</li>
-<li>以”f”結尾，例如：<code>float myNum = 5.75f;</code></li>
-<li>如果超出小數7位，則只會取到小數第一位：   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> public static void main(String[] args)&#123;</span><br><span class="line">   float f1 = 5.000000003f;</span><br><span class="line">   System.out.println(f1);  //印出5.0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-   所以會造成另一個奇怪的現象，明明ff2是ff1+1的結果，但ff1和FF2卻是相等的：   <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">float f1 = 123123123;</span><br><span class="line">float f2 = f1+1;</span><br><span class="line">System.out.println(f1); //印出 1.2312312E8</span><br><span class="line">System.out.println(f2); //印出 1.2312312E8</span><br><span class="line">System.out.println(f1 == f2); //印出 true</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>double（開發常用）</strong> (8 bytes)</p>
-<ul>
-<li>1.7e-308～1.7e+308(可到小數15位)</li>
-<li>以”d”結尾，例如：<code>double myNum = 19.99d;</code></li>
-</ul>
-</li>
-<li><p><strong>BigDecimal</strong><br> 需要保持高精度的數字（例如財會系統），不適用以上兩種類型，<br> 除了像是上面提過的f1&#x3D;&#x3D;f2現象，還有經典題目：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(0.1+0.2);  //印出0.30000000000000004</span><br></pre></td></tr></table></figure>
-<p>從這些案例來看，專案開發中需要高精度的數據必須使用BigDecimal類型，</p>
-</li>
-</ol>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
-<li><p><strong>boolean</strong>	(內存 1 bit，區域變數 4 bytes)<br> true 或 false，系統默認true數值為1，false數值為0，常用於流程控制</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">boolean isJavaFun = true;</span><br><span class="line"></span><br><span class="line">if (isJavaFun)&#123;</span><br><span class="line">  System.out.println(&quot;Java真有趣！&quot;);</span><br><span class="line">&#125;else&#123;</span><br><span class="line">  System.out.println(&quot;Java不好玩ＱＱ&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//印出 JAVA真有趣！</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>char</strong> (2 bytes)<br> 單個字元&#x2F;字母或 ASCII 值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;B&#x27;;</span><br><span class="line">System.out.println(myGrade); //輸出B</span><br><span class="line"></span><br><span class="line">char myGrade = &#x27;2&#x27;;</span><br><span class="line">System.out.println(myGrade); //輸出2</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>可使用Unicode<br> 在開頭加入\u，後面加上Unicode編碼就能使用Unicode調用字元</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c8 = &#x27;\u0025&#x27;;</span><br><span class="line">System.out.println(c8);  // 印出 %</span><br></pre></td></tr></table></figure></li>
-<li><p>可使用正規表示法</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char c9 = &#x27;\n&#x27;;</span><br><span class="line">System.out.println(&quot;中間有一個&quot; + c9 + &quot;c9喔&quot;);</span><br></pre></td></tr></table></figure>
-<p>  終端機運行結果，發現應該在同一行的文字變成兩行：        <img src="https://hackmd.io/_uploads/BkN8bXQDn.png"></p>
-</li>
-<li><p>轉成ASCII值應用<br> 不管變數名稱是什麼，只要給的值是數字，便會去尋找那個ASCII值所對應的字元:</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char a = 65, hi = 66, c = 68;</span><br><span class="line">System.out.println(a); //輸出A</span><br><span class="line">System.out.println(hi); //輸出B</span><br><span class="line">System.out.println(c); //輸出D</span><br></pre></td></tr></table></figure>
-<p> <em><strong>錯誤示範</strong></em><br> 輸入超過一個字、空白、雙引號字串就會無法編譯，顯示錯誤</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;HI&#x27;; </span><br><span class="line">// error: incompatible types: String cannot be converted to char</span><br><span class="line"></span><br><span class="line">char myName = &quot;C&quot;;  </span><br><span class="line">//同上</span><br><span class="line"></span><br><span class="line">char myAdge= &#x27;&#x27; ;  </span><br><span class="line">//error: empty character literal</span><br></pre></td></tr></table></figure>
-<p> 有些電腦輸入中文也會轉成亂碼無法編譯(可以檢查看看編輯器的編碼，中文是Big5，VScode預設是UTF-8，像我一開始不知道要改的時候，還以為不能打中文，附上<a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10190243">如何更改VS Code的文字編碼</a>的方法)</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char myGrade = &#x27;安&#x27;;  //印出 安</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-<h2 id="String不是基礎數據類型！"><a href="#String不是基礎數據類型！" class="headerlink" title="String不是基礎數據類型！"></a>String不是基礎數據類型！</h2><p>隨然常常都會這樣宣告字串，但String不是基礎數據類型，至於為什麼？這個以後查清楚再來寫一篇～</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String greeting = &quot;Hello World&quot;;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>一個變數的作用域為同一個class的大括號</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    System.out.println(age);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public static void main2(String[] args)&#123;</span><br><span class="line">      System.out.println(age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果只有main class被編譯，並且被執行的話是沒有問題的，可以正常印出18，但如果連同main2一起編譯則會顯示錯誤訊息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ch2/VariableTest.java:10: error: cannot find symbol</span><br><span class="line">      System.out.println(age);</span><br><span class="line">                         ^</span><br><span class="line">  symbol:   variable age</span><br><span class="line">  location: class VariableTest</span><br><span class="line">1 error</span><br></pre></td></tr></table></figure>
-<p>從錯誤訊息看得出來第8行，也就是main2的age變數是找不到的。</p>
-<h2 id="可以重複宣告變數嗎？"><a href="#可以重複宣告變數嗎？" class="headerlink" title="可以重複宣告變數嗎？"></a>可以重複宣告變數嗎？</h2><ol>
-<li><p><strong>不能重複宣告</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    int age =20;</span><br><span class="line">    System.out.println(age);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 錯誤訊息，表示adge這個變數已經在main宣告過了：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ch2/VariableTest.java:6: error: variable age is already defined in method main(String[])</span><br><span class="line">  int age =20;</span><br><span class="line">      ^</span><br><span class="line">1 error</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>可以重複賦值</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class VariableTest &#123;</span><br><span class="line">  public static void main(String[] args)&#123;</span><br><span class="line">    int age = 18;</span><br><span class="line">    age =20;</span><br><span class="line">    System.out.println(age); //印出20</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 順帶一提，如果沒宣告過的變數不能直接賦值</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args)&#123;</span><br><span class="line">  name =20;</span><br><span class="line">  System.out.println(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  錯誤訊息，第一則表示找不到name這個變數，第二則也表示找不到這個變數，所以不能像JavaScript一樣，把賦值這個動作直接生出變數使用，宣告是有一定格式的：</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> ch2/VariableTest.java:6: error: cannot find symbol</span><br><span class="line">   name =20;</span><br><span class="line">   ^</span><br><span class="line">  symbol:   variable name</span><br><span class="line">  location: class VariableTest</span><br><span class="line">ch2/VariableTest.java:7: error: cannot find symbol</span><br><span class="line">    System.out.println(name);</span><br><span class="line">                       ^</span><br><span class="line">  symbol:   variable name</span><br><span class="line">  location: class VariableTest</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">尚硅谷</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/11/20230612%20Java%20%E8%AE%8A%E6%95%B8%E9%A1%9E%E5%9E%8B%20-%20%E5%9F%BA%E6%9C%AC%E9%A1%9E%E5%9E%8B%E7%AF%87/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230609  the import javax.servlet cannot be resolved" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/" target="_blank">錯誤訊息 - the import javax.servlet cannot be resolved</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/" class="archive-article-date">
-        <time datetime="2023-06-09T11:25:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-09</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>因為換了一台新電腦，搬運檔案之後Tomcat的套件遺失，導致servlet沒地方放，就會跳出這個錯誤訊息<br><img src="https://hackmd.io/_uploads/H1tRqlgD3.png"></p>
-<h2 id="解決方法"><a href="#解決方法" class="headerlink" title="解決方法"></a>解決方法</h2><ol>
-<li><p>對著左側專案名稱點右鍵，找到Properties(內容)點下去</p>
-</li>
-<li><p>點Java Build Path(JAVA建置路徑)，右側視窗找到Libraries(函式庫)摺頁，點選類別路徑&#x2F;add Libraries&#x2F;伺服器runtime&#x2F;下一步<br><img src="https://hackmd.io/_uploads/Sy53GbgDh.png"></p>
-</li>
-<li><p>選擇要用的server套件(例如Apache Tomcat 8.5)&#x2F;完成</p>
-</li>
-<li><p>apply and close，就會看到的錯誤訊息消失，而剛才找不到的import套件出現在Libraries資料匣。</p>
-</li>
-</ol>
-<p><img src="https://hackmd.io/_uploads/rJ8mN-eP3.png"></p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32483145/article/details/80114728">【解决】The import javax.servlet cannot be resolved</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Eclipse</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/09/20230609%20%20the%20import%20javax.servlet%20cannot%20be%20resolved/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20230608 回退Microsoft Edge版本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/" target="_blank">回退Microsoft Edge版本</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/" class="archive-article-date">
-        <time datetime="2023-06-08T12:02:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-08</time>
-</a>
-
-  
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>為了設定IE相容性，解決公司系統網站無法正常使用問題，發現IE開啟之後會自動變成Edge開啟(系統來還沒升級RRR)，找了很多文章都說要把<code>Microsoft Edge中以Internet Explorer開啟網站面板</code>改永不，但問題來了，我的Edge版本113.0.1774.57這個面板似乎不見了，前輩的110.0.1587.46版本是有的，我想說把版本降到一致再來設定，雖然說真正解決這個問題的辦法不是降版本，但是摸了好幾天不記錄太對不起自己了~</p>
-<h2 id="下載-amp-安裝"><a href="#下載-amp-安裝" class="headerlink" title="下載&amp;安裝"></a>下載&amp;安裝</h2><h3 id="最新版本的範本檔"><a href="#最新版本的範本檔" class="headerlink" title="最新版本的範本檔"></a>最新版本的範本檔</h3><p>到<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-tw/edge/business/download?form=MA13FJ">Microsoft官網</a>下載範本檔，安裝方式之前我有<a target="_blank" rel="noopener" href="https://hackmd.io/@diXi7OUmRKqIgmAxMuHz9A/SyuZyGXrh">文章</a>寫過，不過這次要把<code>msedgeupdate.admx</code>和<code>msedgeupdate.adml</code>都複製過去，不然會少一個Edge更新的資料夾選項，這是我卡了好幾天的原因QQ</p>
-<h2 id="方法1-使用-MSI-手動啟用復原"><a href="#方法1-使用-MSI-手動啟用復原" class="headerlink" title="方法1: 使用 MSI 手動啟用復原"></a>方法1: 使用 MSI 手動啟用復原</h2><p>這個方法可以直接停用更新，手動變更版本到下載的版本，也不用怕自動更新把把它升級回去。</p>
-<ol>
-<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:</p>
-<ul>
-<li>[更新原則覆寫] 點兩下，改成<code>已啟用</code>，左下方輸入欄改成<code>停用更新</code>，描述:「指定 Microsoft Edge Update 如何從 Microsoft Edge 處理可用更新」</li>
-</ul>
-</li>
-<li><p>安裝指定版本的edge<br> a. 上面提到的官網連結，可以下載指定版本的edge，會獲得一個<code>MicrosoftEdgeEnterpriseX64.msi</code>檔案，別急著按，雖然按了也沒事，只會跳出一個訊息框告訴你:你的電腦已經有安裝更新的版本。</p>
-<p> b. 把這個檔案放到桌面或是其他找的到的地方，然後在開始工具列搜尋<code>cmd</code>，<em><strong>用系統管理員身分執行</strong></em>，這很重要，如果沒用系統管理員，後面的步驟可能會無法執行(對…我又被這個卡了好久)<br> <img src="https://hackmd.io/_uploads/ByGfF9ar3.png"></p>
-<p> c. 打開cmd之後先找到剛才放msi檔的地方，像我是放在桌面一個臨時的資料夾，先把現在位置切換到存放安裝檔的資料夾，例如:<code>cd C:\Users\Administrator\Desktop\123\edge</code>。<br> 如果不知道路徑的話，打開剛才存放msi的資料夾，複製資料夾上方的網址，在cmd輸入<code>cd (你剛才複製的網址)</code>是一樣的效果。<br> <img src="https://hackmd.io/_uploads/ByCnqqTSn.png"></p>
-<p> d. 在cmd輸入<code>msiexec /I MicrosoftEdgeEnterpriseX64.msi /qn ALLOWDOWNGRADE=1</code>按下enter，看起來沒反應，打開工作管理員會看到edgeUpdate就代表有在降版本了(如果沒看到相關程序可能就是沒開系統管理員)，這時候我直接關掉edge等更新。</p>
-<ul>
-<li>如果發現怎麼搞都沒反應，可以試試看系統管理員打開Windows PowerShell輸入cmd，再重複d步驟</li>
-<li>如果之前有關掉Edge Update要記得打開，不然會卡在Edge正在更新，請等幾分鐘。</li>
-</ul>
-<p> e. EdgeUpdate跑完之後重開Edge就會發現版本被降回去了(如果發現Edge Update消失，馬上重開也有可能是降版本前的版本，可以過幾分鐘再開開看)</p>
-</li>
-</ol>
-<h2 id="方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原"><a href="#方法2-使用-Microsoft-Edge-Update-和管理範本啟用復原" class="headerlink" title="方法2: 使用 Microsoft Edge Update 和管理範本啟用復原"></a>方法2: 使用 Microsoft Edge Update 和管理範本啟用復原</h2><p>這個方法是利用自動更新設定指定版本，再怎麼樣更新，也還是同一個版本。</p>
-<ol>
-<li><p>按下<code>Win+R</code>輸入<code>gpedit.msc</code>叫出管理範本設定。</p>
-</li>
-<li><p>找到 <code>電腦設定/系統管理範本/Microsoft Edge 更新/應用程式/Microsoft Edge</code>編輯原則設定:<br>  a. <strong>[目標版本複寫]</strong> 點兩下，改成<code>已啟用</code>左下方輸入欄輸入想要的指定版本(例如:110.0.1587.46)，簡單來說就是指定版本用的選項。</p>
-<p>  b. <strong>[復原至目標版本]</strong> 點兩下，改成<code>已啟用</code><br>  這個選項就可以讓update降回當前版本，但前提是「除非設定 ‘目標版本覆寫’ <strong>且</strong>將 ‘更新原則覆寫’ 設定為開啟狀態 (永遠允許更新、僅限無訊息自動更新、僅限手動更新)，否則此原則不會生效。」，和方法1的步驟衝突，要用的時候要留意~</p>
-</li>
-</ol>
-<h2 id="我自己的設定"><a href="#我自己的設定" class="headerlink" title="我自己的設定"></a>我自己的設定</h2><p>我採用方法1降版本，但是多設定方法2的目標版本複寫打開，預防哪天更新不小心被打開版本被升上去，而關閉更新跟公司的管理習慣比較一致，方法2比較傾向拿來恢復成最新版本。</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://forum.gamer.com.tw/C.php?bsn=60030&snA=621392">【心得】分享Edge降版的方法</a><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-tw/deployedge/edge-learnmore-rollback">如何將 Microsoft Edge 復原到舊版-Mircrosoft Learn</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41963310/article/details/113827270">Microsoft Edge版本回退方法</a></p>
-
-    
-
-    <!--  -->
-
-    <!--  -->
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Microsoft</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Edge</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/06/08/20230608%20%E5%9B%9E%E9%80%80Microsoft%20Edge%E7%89%88%E6%9C%AC/">展開全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1334,7 +1275,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2023 <a href="http://charsin1olly.github.io/" target="_blank">Charsin</a>
+    		&copy; 2018-2024 <a href="http://charsin1olly.github.io/" target="_blank">Charsin</a>
     	</div>
       	<div class="footer-right">
 			
@@ -1538,6 +1479,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">microsoft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
             
             <div class="clearfix"></div>
