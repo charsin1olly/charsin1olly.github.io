@@ -10,17 +10,17 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="設備環境使用版本: Windows 11 Version 22H2 22621.1702 最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是 win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機… 由於公司設備有些有點年紀，新版本的 windows 驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題: 無法連線到印表機新增印表機的步驟就不">
+  <meta name="description" content="設備環境使用版本: Windows 11 Version 22H2 22621.1702 最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機… 由於公司設備有些有點年紀，新版本的windows驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題: 無法連線到印表機新增印表機的步驟就不多贅述">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows 11 無法使用共用印表機">
 <meta property="og:url" content="http://charsin1olly.github.io/2024/01/05/20240105%20Windows%2011%20%E7%84%A1%E6%B3%95%E4%BD%BF%E7%94%A8%E5%85%B1%E7%94%A8%E5%8D%B0%E8%A1%A8%E6%A9%9F/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="設備環境使用版本: Windows 11 Version 22H2 22621.1702 最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是 win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機… 由於公司設備有些有點年紀，新版本的 windows 驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題: 無法連線到印表機新增印表機的步驟就不">
+<meta property="og:description" content="設備環境使用版本: Windows 11 Version 22H2 22621.1702 最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機… 由於公司設備有些有點年紀，新版本的windows驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題: 無法連線到印表機新增印表機的步驟就不多贅述">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://hackmd.io/_uploads/r1XXq9mdT.png">
 <meta property="og:image" content="https://hackmd.io/_uploads/HJHEn9mup.png">
 <meta property="article:published_time" content="2024-01-05T14:36:39.000Z">
-<meta property="article:modified_time" content="2024-01-15T14:53:01.093Z">
+<meta property="article:modified_time" content="2024-01-15T15:04:55.097Z">
 <meta property="article:author" content="Charsin">
 <meta property="article:tag" content="工作筆記">
 <meta property="article:tag" content="microsoft">
@@ -210,38 +210,38 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p><font color='red'><strong>設備環境使用版本: Windows 11 Version 22H2 22621.1702</strong></font></p>
-<p>最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是 win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機…</p>
-<p>由於公司設備有些有點年紀，新版本的 windows 驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題:</p>
+<p>最近有同事電腦壞掉救不回來了，買了一台新的，附上作業系統是win11，該裝的應用裝一裝沒什麼問題，直到安裝印表機…</p>
+<p>由於公司設備有些有點年紀，新版本的windows驅動無法運行，需要透過比較早期的電腦(xp)運作，所以要連線到遠端使用共用印表機，這時出現第一個問題:</p>
 <h2 id="無法連線到印表機"><a href="#無法連線到印表機" class="headerlink" title="無法連線到印表機"></a>無法連線到印表機</h2><p>新增印表機的步驟就不多贅述了，當我來到這個步驟準備按下一步發生了問題<br><img src="https://hackmd.io/_uploads/r1XXq9mdT.png" alt="image"></p>
 <ol>
-<li><p>這個狀況通常就伴隨著無法使用網路位置(或是網路上的芳鄰)，可以先檢查自己是否有儲存正確的使用這認證(路徑:控制台\使用者帳戶\認證管理員的 windows 認證)</p>
+<li><p>這個狀況通常就伴隨著無法使用網路位置(或是網路上的芳鄰)，可以先檢查自己是否有儲存正確的使用這認證(路徑:控制台\使用者帳戶\認證管理員的windows認證)</p>
 </li>
-<li><p>如果都沒問題，而且網路位置也能正常連接，但還是無法正確連線到印表機，可以嘗試下面步驟<br>a. Win + R，輸入「optionalfeatures」叫出「開啟或關閉 windows 功能」，或是去控制台\程式集點選該選項</p>
-<p>b. 檢查 SMB1.0&#x2F;CIFS 檔案共用支援有沒有勾選，這是共用印表機的主要協議</p>
+<li><p>如果都沒問題，而且網路位置也能正常連接，但還是無法正確連線到印表機，可以嘗試下面步驟<br> a. Win + R，輸入「optionalfeatures」叫出「開啟或關閉windows功能」，或是去控制台\程式集點選該選項</p>
+<p> b. 檢查SMB1.0&#x2F;CIFS 檔案共用支援有沒有勾選，這是共用印表機的主要協議</p>
+</li>
+</ol>
 <p><img src="https://hackmd.io/_uploads/HJHEn9mup.png" alt="image"></p>
-<p>c.重新開機，問題解決</p>
-</li>
-</ol>
+<pre><code>c.重新開機，問題解決
+</code></pre>
 <p>順利連接到之後發生第二個問題:</p>
-<h2 id="順利連接印表機但依舊無法列印-0x0000011b"><a href="#順利連接印表機但依舊無法列印-0x0000011b" class="headerlink" title="順利連接印表機但依舊無法列印(0x0000011b)"></a>順利連接印表機但依舊無法列印(0x0000011b)</h2><p>按了列印測試頁之後，訊息列跳出列印錯誤，我的檔案還卡在列印佇列，顯示錯誤，連接到遠端桌面看了一下印表機本身的佇列錯誤訊息是甚麼，發現檔案根本沒有傳過去遠端電腦!<br>這個問題源自於 2021 年 1 月的更新漏洞，RpcAuthnLevelPrivacyEnabled 這個機碼是加強了遠端操作的伺服器和客戶端之間行為的安全性，但因為 2021 年 1 月 12 日更新後的預設值為 0(不啟用)，而同年 9 月 14 日或之後更新的預設行為為 1(啟用，代表我們要使用新的授權方式，假設伺服器端未使用這個新的授權方式則會中斷列印)，手頭上這台機器未添加機碼則是根據預設值進行判斷，就不能夠操作遠端印表機了。</p>
+<h2 id="順利連接印表機但依舊無法列印-0x0000011b"><a href="#順利連接印表機但依舊無法列印-0x0000011b" class="headerlink" title="順利連接印表機但依舊無法列印(0x0000011b)"></a>順利連接印表機但依舊無法列印(0x0000011b)</h2><p>按了列印測試頁之後，訊息列跳出列印錯誤，我的檔案還卡在列印佇列，顯示錯誤，連接到遠端桌面看了一下印表機本身的佇列錯誤訊息是甚麼，發現檔案根本沒有傳過去遠端電腦!<br>這個問題源自於2021年1月的更新漏洞，RpcAuthnLevelPrivacyEnabled這個機碼是加強了遠端操作的伺服器和客戶端之間行為的安全性，但因為2021年1月12日更新後的預設值為0(不啟用)，而同年9月14日或之後更新的預設行為為1(啟用，代表我們要使用新的授權方式，假設伺服器端未使用這個新的授權方式則會中斷列印)，手頭上這台機器未添加機碼則是根據預設值進行判斷，就不能夠操作遠端印表機了。</p>
 <ol>
-<li><p>win+R 輸入 regedit，路徑: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print</p>
+<li><p>win+R輸入regedit，路徑: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print</p>
 </li>
-<li><p>新增 DWORD-32「RpcAuthnLevelPrivacyEnabled」設置為 0，重開電腦。</p>
+<li><p>新增DWORD-32「RpcAuthnLevelPrivacyEnabled」設置為 0，重開電腦。</p>
 </li>
 </ol>
-<p>雖然這樣能解決目前問題，但 Microsoft 還是不建議設置為 0，畢竟他出這個功能就是希望提高設戶端及伺服器端的安全性，礙於實際因素就不拿 xp 做實驗了…</p>
-<h2 id="成功連接也傳送到遠端電腦但還是無法列印"><a href="#成功連接也傳送到遠端電腦但還是無法列印" class="headerlink" title="成功連接也傳送到遠端電腦但還是無法列印"></a>成功連接也傳送到遠端電腦但還是無法列印</h2><p>這次看到遠端電腦佇列有文件了!但卡在多工緩衝狀態一下子又消失了，於是上網尋找列印多工緩衝列印失敗的相關解方，發現是 win11 的 22H2 更新導致的，有網友表示使用 21H2 版本的時候沒有問題，我照著<a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win11/e5f51d12-d72d-4ee1-b7f8-bb9914225f1e">這篇</a>的做法做了一次，發現還是無效，閱讀他的指令發現是將檔案備份、重新命名</p>
+<p>雖然這樣能解決目前問題，但Microsoft還是不建議設置為0，畢竟他出這個功能就是希望提高設戶端及伺服器端的安全性，礙於實際因素就不拿xp做實驗了…</p>
+<h2 id="成功連接也傳送到遠端電腦但還是無法列印"><a href="#成功連接也傳送到遠端電腦但還是無法列印" class="headerlink" title="成功連接也傳送到遠端電腦但還是無法列印"></a>成功連接也傳送到遠端電腦但還是無法列印</h2><p>這次看到遠端電腦佇列有文件了!但卡在多工緩衝狀態一下子又消失了，於是上網尋找列印多工緩衝列印失敗的相關解方，發現是win11的22H2更新導致的，有網友表示它使用21H2版本的時候沒有問題，我照著<a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win11/e5f51d12-d72d-4ee1-b7f8-bb9914225f1e">這篇</a>的做法做了一次，發現還是無效，閱讀他的指令發現是將檔案備份、重新命名</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">net stop spooler</span><br><span class="line">TAKEOWN /F C:\Windows\System32\spoolsv.exe /A</span><br><span class="line">Icacls C:\windows\System32\spoolsv.exe /grant Administrators:F</span><br><span class="line">ren C:\windows\system32\spoolsv.exe C:\windows\system32\spoolsv.exe.old</span><br><span class="line">TAKEOWN /F C:\Windows\System32\localspl.dll /A</span><br><span class="line">Icacls C:\windows\System32\localspl.dll /grant Administrators:F</span><br><span class="line">ren C:\windows\system32\localspl.dll C:\windows\system32\localspl.dll.old</span><br><span class="line">TAKEOWN /F C:\Windows\System32\win32spl.dll /A</span><br><span class="line">Icacls C:\windows\System32\win32spl.dll /grant Administrators:F</span><br><span class="line">ren C:\windows\system32\win32spl.dll C:\windows\system32\win32spl.dll.old</span><br><span class="line">copy localspl.dll C:\windows\system32\localspl.dll</span><br><span class="line">copy win32spl.dll C:\windows\system32\win32spl.dll</span><br><span class="line">copy spoolsv.exe C:\windows\system32\spoolsv.exe</span><br><span class="line">net start spooler</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
-
-<p>去相對應資料夾觀察檔案，用系統管理員身分執行三次，重開機三次，發現根本沒有 spoolsv.exe.old 檔案，推測是腳本不起作用，再去搜尋發現也有人使用覆蓋檔案這類類似的方法解決，於是我嘗試了一下:</p>
+<p>去相對應資料夾觀察檔案，用系統管理員身分執行三次，重開機三次，發現根本沒有spoolsv.exe.old檔案，推測是腳本不起作用，再去搜尋發現也有人使用覆蓋檔案這類類似的方法解決，於是我嘗試了一下:</p>
 <ol>
-<li><p>備份 C:\Windows\System32\路徑中的 spoolsv.exe 、 localspl.dll、win32spl.dll 這三個檔案先複製備份到別的資料夾</p>
+<li><p>備份C:\Windows\System32\路徑中的spoolsv.exe 、 localspl.dll、win32spl.dll 這三個檔案先複製備份到別的資料夾</p>
 </li>
 <li><p>資源檔(上面提供的文章聯結有檔案載點)複製貼上在原本的路徑(C:\Windows\System32)，覆蓋原檔並且重新開機，問題就解決了!另外，這三個檔案可以從列印功能正常的其他電腦複製過來覆蓋，也能達到同樣效果</p>
 </li>
 </ol>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/questions/10212069#:~:text=%E7%A2%BA%E8%AA%8DWindows%2011%E4%B8%AD%E7%9A%84SMB%201.0%2FCIFS%E6%AA%94%E6%A1%88%E5%85%B1%E7%94%A8%E6%94%AF%E6%8F%B4%E5%B7%B2%E5%95%9F%E7%94%A8%E3%80%82%20SMB%201.0%2FCIFS%E6%98%AF%E7%94%A8%E6%96%BC%E5%8D%B0%E8%A1%A8%E6%A9%9F%E5%85%B1%E4%BA%AB%E7%9A%84%E5%8D%94%E8%AD%B0%E4%B9%8B%E4%B8%80%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%AA%E5%95%9F%E7%94%A8%EF%BC%8C%E5%85%B1%E4%BA%AB%E5%8D%B0%E8%A1%A8%E6%A9%9F%E5%8F%AF%E8%83%BD%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C%E3%80%82%20%E5%95%9F%E7%94%A8%E6%AD%A4%E6%94%AF%E6%8F%B4%E7%9A%84%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A,%E6%8C%89%E4%B8%8B%E3%80%8CWin%20%2B%20R%E3%80%8D%E7%B5%84%E5%90%88%E9%8D%B5%E6%89%93%E9%96%8B%E3%80%8C%E5%9F%B7%E8%A1%8C%E3%80%8D%E5%B0%8D%E8%A9%B1%E6%A1%86%E3%80%82%20%E5%9C%A8%E5%B0%8D%E8%A9%B1%E6%A1%86%E4%B8%AD%E8%BC%B8%E5%85%A5%E3%80%8Coptionalfeatures%E3%80%8D%E4%B8%A6%E6%8C%89%E4%B8%8B%E3%80%8CEnter%E3%80%8D%E3%80%82%20%E5%9C%A8%E3%80%8CWindows%E5%8A%9F%E8%83%BD%E3%80%8D%E5%B0%8D%E8%A9%B1%E6%A1%86%E4%B8%AD%E6%89%BE%E5%88%B0%E3%80%8CSMB%201.0%2FCIFS%E6%AA%94%E6%A1%88%E5%85%B1%E7%94%A8%E6%94%AF%E6%8F%B4%E3%80%8D%EF%BC%8C%E4%B8%A6%E5%B0%87%E5%85%B6%E5%8B%BE%E9%81%B8%E3%80%82%20%E9%BB%9E%E9%81%B8%E3%80%8C%E7%A2%BA%E5%AE%9A%E3%80%8D%E5%BE%8C%EF%BC%8C%E7%B3%BB%E7%B5%B1%E6%9C%83%E6%8F%90%E7%A4%BA%E9%9C%80%E8%A6%81%E9%87%8D%E5%95%9F%E9%9B%BB%E8%85%A6%E3%80%82">win11 22H2 版本，無法連線共享印表機</a><br><a target="_blank" rel="noopener" href="https://www.kocpc.com.tw/archives/408049">微軟證實 Windows 11 的 Bug 會讓部分印表機無法安裝</a><br><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win11/e5f51d12-d72d-4ee1-b7f8-bb9914225f1e">Win11 22H2 版本出现 0x000000709 无法访问打印机故障</a><br><a target="_blank" rel="noopener" href="https://cheongtat.tw/2021/11/24/%E8%A7%A3%E6%B1%BA%E5%BE%AE%E8%BB%9F%E6%9B%B4%E6%96%B0%E9%80%A0%E6%88%90%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%8Cwin10-21h2-21h1-20h2%E6%9B%B4%E6%96%B0%E7%BF%BB%E8%BB%8A%EF%BC%8C%E4%BF%AE%E6%AD%A3kb5005565/">解決微軟更新造成的問題，Win10 21H2&#x2F;21H1&#x2F;20H2 更新翻車，修正 KB5005565、KB5004945、KB5004760、KB5003690 造成的問題(區網印表機無法列印，網路印表機新增出現 0x0000011b 錯誤)</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/543986023">修复局域网共享打印机 0x0000011b 错误</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/topic/%E7%AE%A1%E7%90%86%E9%87%9D%E5%B0%8D-cve-2021-1678-kb4599464-%E6%89%80%E5%81%9A%E4%B9%8B%E5%8D%B0%E8%A1%A8%E6%A9%9F-rpc-%E7%B9%AB%E7%B5%90%E8%AE%8A%E6%9B%B4%E7%9A%84%E9%83%A8%E7%BD%B2-12a69652-30b9-3d61-d9f7-7201623a8b25">管理針對 CVE-2021-1678 (KB4599464) 所做之印表機 RPC 繫結變更的部署</a></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/questions/10212069#:~:text=%E7%A2%BA%E8%AA%8DWindows%2011%E4%B8%AD%E7%9A%84SMB%201.0%2FCIFS%E6%AA%94%E6%A1%88%E5%85%B1%E7%94%A8%E6%94%AF%E6%8F%B4%E5%B7%B2%E5%95%9F%E7%94%A8%E3%80%82%20SMB%201.0%2FCIFS%E6%98%AF%E7%94%A8%E6%96%BC%E5%8D%B0%E8%A1%A8%E6%A9%9F%E5%85%B1%E4%BA%AB%E7%9A%84%E5%8D%94%E8%AD%B0%E4%B9%8B%E4%B8%80%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%AA%E5%95%9F%E7%94%A8%EF%BC%8C%E5%85%B1%E4%BA%AB%E5%8D%B0%E8%A1%A8%E6%A9%9F%E5%8F%AF%E8%83%BD%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%B7%A5%E4%BD%9C%E3%80%82%20%E5%95%9F%E7%94%A8%E6%AD%A4%E6%94%AF%E6%8F%B4%E7%9A%84%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A,%E6%8C%89%E4%B8%8B%E3%80%8CWin%20%2B%20R%E3%80%8D%E7%B5%84%E5%90%88%E9%8D%B5%E6%89%93%E9%96%8B%E3%80%8C%E5%9F%B7%E8%A1%8C%E3%80%8D%E5%B0%8D%E8%A9%B1%E6%A1%86%E3%80%82%20%E5%9C%A8%E5%B0%8D%E8%A9%B1%E6%A1%86%E4%B8%AD%E8%BC%B8%E5%85%A5%E3%80%8Coptionalfeatures%E3%80%8D%E4%B8%A6%E6%8C%89%E4%B8%8B%E3%80%8CEnter%E3%80%8D%E3%80%82%20%E5%9C%A8%E3%80%8CWindows%E5%8A%9F%E8%83%BD%E3%80%8D%E5%B0%8D%E8%A9%B1%E6%A1%86%E4%B8%AD%E6%89%BE%E5%88%B0%E3%80%8CSMB%201.0%2FCIFS%E6%AA%94%E6%A1%88%E5%85%B1%E7%94%A8%E6%94%AF%E6%8F%B4%E3%80%8D%EF%BC%8C%E4%B8%A6%E5%B0%87%E5%85%B6%E5%8B%BE%E9%81%B8%E3%80%82%20%E9%BB%9E%E9%81%B8%E3%80%8C%E7%A2%BA%E5%AE%9A%E3%80%8D%E5%BE%8C%EF%BC%8C%E7%B3%BB%E7%B5%B1%E6%9C%83%E6%8F%90%E7%A4%BA%E9%9C%80%E8%A6%81%E9%87%8D%E5%95%9F%E9%9B%BB%E8%85%A6%E3%80%82">win11 22H2版本，無法連線共享印表機</a><br><a target="_blank" rel="noopener" href="https://www.kocpc.com.tw/archives/408049">微軟證實 Windows 11 的 Bug 會讓部分印表機無法安裝</a><br><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win11/e5f51d12-d72d-4ee1-b7f8-bb9914225f1e">Win11 22H2版本出现0x000000709无法访问打印机故障</a><br><a target="_blank" rel="noopener" href="https://cheongtat.tw/2021/11/24/%E8%A7%A3%E6%B1%BA%E5%BE%AE%E8%BB%9F%E6%9B%B4%E6%96%B0%E9%80%A0%E6%88%90%E7%9A%84%E5%95%8F%E9%A1%8C%EF%BC%8Cwin10-21h2-21h1-20h2%E6%9B%B4%E6%96%B0%E7%BF%BB%E8%BB%8A%EF%BC%8C%E4%BF%AE%E6%AD%A3kb5005565/">解決微軟更新造成的問題，Win10 21H2&#x2F;21H1&#x2F;20H2更新翻車，修正KB5005565、KB5004945、KB5004760、KB5003690造成的問題(區網印表機無法列印，網路印表機新增出現0x0000011b錯誤)</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/543986023">修复局域网共享打印机0x0000011b错误</a><br><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-tw/topic/%E7%AE%A1%E7%90%86%E9%87%9D%E5%B0%8D-cve-2021-1678-kb4599464-%E6%89%80%E5%81%9A%E4%B9%8B%E5%8D%B0%E8%A1%A8%E6%A9%9F-rpc-%E7%B9%AB%E7%B5%90%E8%AE%8A%E6%9B%B4%E7%9A%84%E9%83%A8%E7%BD%B2-12a69652-30b9-3d61-d9f7-7201623a8b25">管理針對 CVE-2021-1678 (KB4599464) 所做之印表機 RPC 繫結變更的部署</a></p>
 
     
 
