@@ -10,12 +10,12 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="公司終於要引進 git 啦(灑花~)，但因為安全疑慮不想使用 github 這類的雲端工具，剛好前陣子聽朋友說可以把 git server 架在 NAS 上，於是我開始研究怎麼架 server，從一開始嘗試共用網路資料夾(簡單粗暴)，但 SSH 幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版 github 的 gitea，簡直亢奮到不行!!搭配 docker 的作法，可以不用設定太多電腦的環">
+  <meta name="description" content="公司終於要引進git啦(灑花~)，但因為安全疑慮不想使用github這類的雲端工具，剛好前陣子聽朋友說可以把git server架在NAS上，於是我開始研究怎麼架server，從一開始嘗試共用網路資料夾(簡單粗暴)，但SSH幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版github的gitea，簡直亢奮到不行!!搭配docker的作法，可以不用設定太多電腦的環境，再甚至未來也許可以把開發環境">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在內網安裝git server - Gitea">
-<meta property="og:url" content="http://charsin1olly.github.io/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20Gitea/index.html">
+<meta property="og:url" content="http://charsin1olly.github.io/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20gitea/index.html">
 <meta property="og:site_name" content="Charsin&#39;s co_oding life">
-<meta property="og:description" content="公司終於要引進 git 啦(灑花~)，但因為安全疑慮不想使用 github 這類的雲端工具，剛好前陣子聽朋友說可以把 git server 架在 NAS 上，於是我開始研究怎麼架 server，從一開始嘗試共用網路資料夾(簡單粗暴)，但 SSH 幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版 github 的 gitea，簡直亢奮到不行!!搭配 docker 的作法，可以不用設定太多電腦的環">
+<meta property="og:description" content="公司終於要引進git啦(灑花~)，但因為安全疑慮不想使用github這類的雲端工具，剛好前陣子聽朋友說可以把git server架在NAS上，於是我開始研究怎麼架server，從一開始嘗試共用網路資料夾(簡單粗暴)，但SSH幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版github的gitea，簡直亢奮到不行!!搭配docker的作法，可以不用設定太多電腦的環境，再甚至未來也許可以把開發環境">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://hackmd.io/_uploads/SJbVWC3dT.png">
 <meta property="og:image" content="https://hackmd.io/_uploads/r1MYMAh_a.png">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://hackmd.io/_uploads/SyOu0GaO6.png">
 <meta property="og:image" content="https://hackmd.io/_uploads/r16abm6OT.png">
 <meta property="article:published_time" content="2024-01-11T13:31:00.000Z">
-<meta property="article:modified_time" content="2024-01-15T15:05:29.486Z">
+<meta property="article:modified_time" content="2024-01-15T15:35:33.337Z">
 <meta property="article:author" content="Charsin">
 <meta property="article:tag" content="git">
 <meta property="article:tag" content="Docker">
@@ -188,7 +188,7 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-20240111 在內網安裝git server - Gitea" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-20240111 在內網安裝git server - gitea" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -207,7 +207,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span> -->
 
-<a href="/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20Gitea/" class="archive-article-date">
+<a href="/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20gitea/" class="archive-article-date">
         <time datetime="2024-01-11T13:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-01-11</time>
 </a>
 
@@ -217,63 +217,60 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>公司終於要引進 git 啦(灑花~)，但因為安全疑慮不想使用 github 這類的雲端工具，剛好前陣子聽朋友說可以把 git server 架在 NAS 上，於是我開始研究怎麼架 server，從一開始嘗試共用網路資料夾(簡單粗暴)，但 SSH 幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版 github 的 gitea，簡直亢奮到不行!!搭配 docker 的作法，可以不用設定太多電腦的環境，再甚至未來也許可以把開發環境統一規格放在 docker<br>compose 文件中，這樣就可以避免版本、相依性問題所花費大把時間的問題，感覺挺美好的</p>
-<h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><p>windows11 客戶端、windows10 伺服器</p>
+    <p>公司終於要引進git啦(灑花~)，但因為安全疑慮不想使用github這類的雲端工具，剛好前陣子聽朋友說可以把git server架在NAS上，於是我開始研究怎麼架server，從一開始嘗試共用網路資料夾(簡單粗暴)，但SSH幒是驗證失敗，爬解決方法的時候意外看到根本就是內網版github的gitea，簡直亢奮到不行!!搭配docker的作法，可以不用設定太多電腦的環境，再甚至未來也許可以把開發環境統一規格放在docker<br>compose文件中，這樣就可以避免版本、相依性問題所花費大把時間的問題，感覺挺美好的</p>
+<h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><p>windows11客戶端、windows10伺服器</p>
 <h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><ol>
-<li><p>因為搭配 Docker 使用，docker 的安裝就不用多說了，去<a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/?_gl=1*1hd2ytf*_ga*Mzk2NTUxNzkzLjE3MDQ2NzYxMDg.*_ga_XJWPQMJYHQ*MTcwNDkzNjkwOC4zLjEuMTcwNDkzNjkxNS41My4wLjA.">官網</a>下載並安裝</p>
+<li><p>因為搭配Docker使用，docker的安裝就不用多說了，去<a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/?_gl=1*1hd2ytf*_ga*Mzk2NTUxNzkzLjE3MDQ2NzYxMDg.*_ga_XJWPQMJYHQ*MTcwNDkzNjkwOC4zLjEuMTcwNDkzNjkxNS41My4wLjA.">官網</a>下載並安裝</p>
 </li>
-<li><p>在要當伺服器的電腦隨意位置開啟資料夾，喜歡放哪裡就放哪裡，我自己是在電腦桌面建立一個 docker 資料夾，裡面還有一個 gitea 資料夾，這樣未來還有其他 docker compose 的話就不會混在一起，方便管理。</p>
+<li><p>在要當伺服器的電腦隨意位置開啟資料夾，喜歡放哪裡就放哪裡，我自己是在電腦桌面建立一個docker資料夾，裡面還有一個gitea資料夾，這樣未來還有其他docker compose的話就不會混在一起，方便管理。</p>
 </li>
 <li><p>在資料夾中建立一個<code>docker-compose.yml</code>檔案，內容是</p>
-</li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  gitea:</span><br><span class="line">    external: false</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  server:</span><br><span class="line">    image: gitea/gitea:1.21</span><br><span class="line">    container_name: gitea1</span><br><span class="line">    environment:</span><br><span class="line">      - USER_UID=1000</span><br><span class="line">      - USER_GID=1000</span><br><span class="line">      - GITEA__database__DB_TYPE=mysql</span><br><span class="line">      - GITEA__database__HOST=db:3306</span><br><span class="line">      - GITEA__database__NAME=gitea</span><br><span class="line">      - GITEA__database__USER=gitea</span><br><span class="line">      - GITEA__database__PASSWD=gitea</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - gitea</span><br><span class="line">    volumes:</span><br><span class="line">      - ./gitea:/data</span><br><span class="line">      - /etc/timezone:/etc/timezone:ro</span><br><span class="line">      - /etc/localtime:/etc/localtime:ro</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3000:3000&quot;</span><br><span class="line">      - &quot;222:22&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:8</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=gitea</span><br><span class="line">      - MYSQL_USER=gitea</span><br><span class="line">      - MYSQL_PASSWORD=gitea</span><br><span class="line">      - MYSQL_DATABASE=gitea</span><br><span class="line">    networks:</span><br><span class="line">      - gitea</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql:/var/lib/mysql</span><br></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3&quot;</span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  gitea:</span><br><span class="line">    external: false</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  server:</span><br><span class="line">    image: gitea/gitea:1.21</span><br><span class="line">    container_name: gitea1</span><br><span class="line">    environment:</span><br><span class="line">      - USER_UID=1000</span><br><span class="line">      - USER_GID=1000</span><br><span class="line">      - GITEA__database__DB_TYPE=mysql</span><br><span class="line">      - GITEA__database__HOST=db:3306</span><br><span class="line">      - GITEA__database__NAME=gitea</span><br><span class="line">      - GITEA__database__USER=gitea</span><br><span class="line">      - GITEA__database__PASSWD=gitea</span><br><span class="line">    restart: always</span><br><span class="line">    networks:</span><br><span class="line">      - gitea</span><br><span class="line">    volumes:</span><br><span class="line">      - ./gitea:/data</span><br><span class="line">      - /etc/timezone:/etc/timezone:ro</span><br><span class="line">      - /etc/localtime:/etc/localtime:ro</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;3000:3000&quot;</span><br><span class="line">      - &quot;222:22&quot;</span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:8</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=gitea</span><br><span class="line">      - MYSQL_USER=gitea</span><br><span class="line">      - MYSQL_PASSWORD=gitea</span><br><span class="line">      - MYSQL_DATABASE=gitea</span><br><span class="line">    networks:</span><br><span class="line">      - gitea</span><br><span class="line">    volumes:</span><br><span class="line">      - ./mysql:/var/lib/mysql</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>container_name:容器的名稱，如果之前有其他容器也叫這個名字，則無法成功建立這個容器</p>
 </li>
-<li><p>restart:如果不想要每次打開 docker 就自動啟動容器的話，可以把參數 always 改成 no(我是因為硬體限制，打開 docker 就馬上運行 server 會轉圈圈轉到懷疑人生)</p>
+<li><p>restart:如果不想要每次打開docker就自動啟動容器的話，可以把參數always改成no(我是因為硬體限制，打開docker就馬上運行server會轉圈圈轉到懷疑人生)</p>
 </li>
-<li><p>volumes:不會隨著容器重啟就消失的檔案，本機資料夾(我現在的資料夾位置在 docker，在這個目錄之下的 gitea 資料夾)對應容器中的哪一個資料夾</p>
+<li><p>volumes:不會隨著容器重啟就消失的檔案，本機資料夾(我現在的資料夾位置在docker，在這個目錄之下的gitea資料夾)對應容器中的哪一個資料夾</p>
 </li>
-<li><p>ports: 冒號前面對應的是本機的 port，後面對應的是容器上的 port，3000 那個是給 Gitea 運行的 port，222 是給 SSH 伺服器用的</p>
+<li><p>ports: 冒號前面對應的是本機的port，後面對應的是容器上的port，3000那個是給Gitea運行的port，222是給SSH伺服器用的</p>
 </li>
-<li><p>這邊我是搭配 MySQL 儲存 gitea 資料，如果不用 MySQL 也可以使用別的資料庫，不設定資料庫的話會預設使用 SQLite</p>
+<li><p>這邊我是搭配MySQL儲存gitea資料，如果不用MySQL也可以使用別的資料庫，不設定資料庫的話會預設使用SQLite</p>
 </li>
 </ul>
 <ol start="3">
-<li>在瀏覽器輸入<code>http://localhost:3000/</code>就可以到安裝畫面，部分資訊是直接帶入剛才在 yml 檔中的設定，這邊可以調整<br><img src="https://hackmd.io/_uploads/SJbVWC3dT.png" alt="image"><br>基本上維持預設就可以了，有幾項我有用到的客製化</li>
+<li>在瀏覽器輸入<code>http://localhost:3000/</code>就可以到安裝畫面，部分資訊是直接帶入剛才在yml檔中的設定，這邊可以調整<br><img src="https://hackmd.io/_uploads/SJbVWC3dT.png" alt="image"><br>基本上維持預設就可以了，有幾項我有用到的客製化</li>
 </ol>
 <ul>
-<li><p>網站標題: 當未來連上這個 Gitea 網站歡迎頁的標題(打碼區塊)<br><img src="https://hackmd.io/_uploads/r1MYMAh_a.png" alt="image"></p>
+<li><p>網站標題: 當未來連上這個Gitea網站歡迎頁的標題(打碼區塊)<br><img src="https://hackmd.io/_uploads/r1MYMAh_a.png" alt="image"></p>
 </li>
-<li><p>伺服器域名: 現在只跟自己電腦連，用 localhost 沒問題，要讓別人連就要改成 ip 位置，假設 ip 是 192.168.0.3 ，有改設定的話，這個 Gitea 介面網址就變成<code>http://192.168.0.3:3000/</code></p>
+<li><p>伺服器域名: 現在只跟自己電腦連，用localhost沒問題，要讓別人連就要改成ip位置，假設ip是192.168.0.3 ，有改設定的話，這個Gitea介面網址就變成<code>http://192.168.0.3:3000/</code></p>
 </li>
-<li><p>Gitea HTTP 埠: 更改使用 port，簡單來說一樣是改網址的部分，例如預設是 8088，原本的網址會是<code>http://localhost:8088/</code>，更改成 3000 port 之後變成<code>http://localhost:3000/</code></p>
+<li><p>Gitea HTTP埠: 更改使用port，簡單來說一樣是改網址的部分，例如預設是8088，原本的網址會是<code>http://localhost:8088/</code>，更改成3000 port之後變成<code>http://localhost:3000/</code></p>
 </li>
 </ul>
 <ol start="4">
-<li><p>設定管理員帳號之後，點安裝 Gitea，有成功跳轉到登入畫面的話，基本上就算是成功安裝了<br><img src="https://hackmd.io/_uploads/SJDLqRn_p.png" alt="image"><br>不設定管理員帳號也沒關係，要使用的時候，點註冊，第一個註冊的帳號自動會變成管理員:<br><img src="https://hackmd.io/_uploads/BJJ7cfada.png" alt="image"></p>
+<li><p>設定管理員帳號之後，點安裝Gitea，有成功跳轉到登入畫面的話，基本上就算是成功安裝了<br><img src="https://hackmd.io/_uploads/SJDLqRn_p.png" alt="image"><br>不設定管理員帳號也沒關係，要使用的時候，點註冊，第一個註冊的帳號自動會變成管理員:<br><img src="https://hackmd.io/_uploads/BJJ7cfada.png" alt="image"></p>
 </li>
-<li><p>登入之後就可以看到一個類似 github 的頁面，沒有格子也沒關係，創建第一個儲存庫之後也會出現<br><img src="https://hackmd.io/_uploads/r1Jt5M6_T.png" alt="image"></p>
+<li><p>登入之後就可以看到一個類似github的頁面，沒有格子也沒關係，創建第一個儲存庫之後也會出現<br><img src="https://hackmd.io/_uploads/r1Jt5M6_T.png" alt="image"></p>
 </li>
 </ol>
-<h2 id="試用功能"><a href="#試用功能" class="headerlink" title="試用功能"></a>試用功能</h2><p>架好 Gitea 之後就是來試用看看它的功能，我從 clone 開始測</p>
+<h2 id="試用功能"><a href="#試用功能" class="headerlink" title="試用功能"></a>試用功能</h2><p>架好Gitea之後就是來試用看看它的功能，我從clone開始測</p>
 <ol>
-<li><p>先建一個普通的倉庫<br><img src="https://hackmd.io/_uploads/HyHRhMT_T.png" alt="image"><br>基本上跟 github 的操作一模一樣，這邊不多贅述<br><img src="https://hackmd.io/_uploads/HJDx6Gpu6.png" alt="image"><br>還有孰悉的上傳指令畫面<br><img src="https://hackmd.io/_uploads/SJxT6f6uT.png" alt="image"></p>
+<li><p>先建一個普通的倉庫<br><img src="https://hackmd.io/_uploads/HyHRhMT_T.png" alt="image"><br>基本上跟github的操作一模一樣，這邊不多贅述<br><img src="https://hackmd.io/_uploads/HJDx6Gpu6.png" alt="image"><br>還有孰悉的上傳指令畫面<br><img src="https://hackmd.io/_uploads/SJxT6f6uT.png" alt="image"></p>
 </li>
 <li><p>開一個資料夾執行<code>git clone http://(你的IP):3000/cc/test1.git</code>，有成功下載下來就是成功了~<br><img src="https://hackmd.io/_uploads/SyOu0GaO6.png" alt="image"></p>
 </li>
-<li><p>再來測試一下 push，先在剛剛 clone 下來的資料夾中隨意建立一個 commit(就 git add 和 git commit 的那個 commit)，<code>git reomte -v</code>檢查一下遠端是不是剛才 clone 的儲存庫，最後再<code>git push origin</code>推上去，上傳時會要求輸入帳號密碼，也就是剛剛註冊帳號的那一組，這邊詳細步驟就請洽 git 基礎操作了不多說~</p>
+<li><p>再來測試一下push，先在剛剛clone下來的資料夾中隨意建立一個commit(就git add和git commit的那個commit)，<code>git reomte -v</code>檢查一下遠端是不是剛才clone的儲存庫，最後再<code>git push origin</code>推上去，上傳時會要求輸入帳號密碼，也就是剛剛註冊帳號的那一組，這邊詳細步驟就請洽git基礎操作了不多說~</p>
 </li>
-<li><p>在剛剛的 Gitea 畫面看見剛才推送的檔案就代表完成囉<br><img src="https://hackmd.io/_uploads/r16abm6OT.png" alt="image"></p>
+<li><p>在剛剛的Gitea畫面看見剛才推送的檔案就代表完成囉<br><img src="https://hackmd.io/_uploads/r16abm6OT.png" alt="image"></p>
 </li>
 </ol>
-<h2 id="我不想每次都打帳號密碼欸"><a href="#我不想每次都打帳號密碼欸" class="headerlink" title="我不想每次都打帳號密碼欸"></a>我不想每次都打帳號密碼欸</h2><p>用 HTTP 傳送接收檔案可以正常使用，缺點就是每次上傳都要輸入帳號密碼，之前使用 github 的時候，大家都使用 SSH 協定，就不用一直輸入帳號密碼，但裝在 docker 上的 SSH 有額外設定，我目前還沒解決每次上傳都一直要求我輸入密碼以及這個問題</p>
+<h2 id="我不想每次都打帳號密碼欸"><a href="#我不想每次都打帳號密碼欸" class="headerlink" title="我不想每次都打帳號密碼欸"></a>我不想每次都打帳號密碼欸</h2><p>用HTTP傳送接收檔案可以正常使用，缺點就是每次上傳都要輸入帳號密碼，之前使用github的時候，大家都使用SSH協定，就不用一直輸入帳號密碼，但裝在docker上的SSH有額外設定，我目前還沒解決每次上傳都一直要求我輸入密碼以及這個問題</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_ed25519_cert&quot;: No such file or directory</span><br><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_rsa_cert&quot;: No such file or directory</span><br><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_ecdsa_cert&quot;: No such file or directory</span><br><span class="line">Could not load host certificate &quot;/data/ssh/ssh_host_dsa_cert&quot;: No such file or directory</span><br></pre></td></tr></table></figure>
-
 <p>等研究出來再來更新~ 目前就以能上傳到伺服器進行協作為主~<br>其他設定就開另外一篇文介紹</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.gitea.com/next/installation/install-with-docker">Gitea-Installation with Docker</a><br><a target="_blank" rel="noopener" href="https://eric0806.blogspot.com/2014/05/ubuntu-git-server-for-small-team-who-use-windows-os.html">給 windows 使用者的簡易 Git 環境架設</a><br><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/shared-folder-as-gi-server/">在 Windows 架設 Git 私服 - 免安裝版</a><br><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/gitea/">Git 私服第一品牌 - Gitea</a><br><a target="_blank" rel="noopener" href="https://blog.wu-boy.com/2020/02/install-gitea-using-docker/">使用 Docker 五分鐘安裝好 Gitea (自架 Git Hosting 最佳選擇)</a></p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><p><a target="_blank" rel="noopener" href="https://docs.gitea.com/next/installation/install-with-docker">Gitea-Installation with Docker</a><br><a target="_blank" rel="noopener" href="https://eric0806.blogspot.com/2014/05/ubuntu-git-server-for-small-team-who-use-windows-os.html">給windows使用者的簡易Git環境架設</a><br><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/shared-folder-as-gi-server/">在 Windows 架設 Git 私服 - 免安裝版</a><br><a target="_blank" rel="noopener" href="https://blog.darkthread.net/blog/gitea/">Git 私服第一品牌 - Gitea</a><br><a target="_blank" rel="noopener" href="https://blog.wu-boy.com/2020/02/install-gitea-using-docker/">使用 Docker 五分鐘安裝好 Gitea (自架 Git Hosting 最佳選擇)</a></p>
 
     
 
@@ -320,7 +317,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://charsin1olly.github.io/2024/01/11/20240111 在內網安裝git server - Gitea/" title="在內網安裝git server - Gitea" target="_blank">http://charsin1olly.github.io/2024/01/11/20240111 在內網安裝git server - Gitea/</a>
+          <a href="http://charsin1olly.github.io/2024/01/11/20240111 在內網安裝git server - gitea/" title="在內網安裝git server - Gitea" target="_blank">http://charsin1olly.github.io/2024/01/11/20240111 在內網安裝git server - gitea/</a>
         </li>
         
         <li>
@@ -402,7 +399,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20Gitea/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://charsin1olly.github.io/2024/01/11/20240111%20%E5%9C%A8%E5%85%A7%E7%B6%B2%E5%AE%89%E8%A3%9Dgit%20server%20-%20gitea/" alt="微信分享二维码"> -->
     </div>
 </div>
 
